@@ -1,4 +1,4 @@
-document.getElementById('caregiverForm').addEventListener('submit', function(event) {
+document.getElementById('feedbackForm').addEventListener('submit', function(event) {
     event.preventDefault();
     
     let formData = new FormData(this);

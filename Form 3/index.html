@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carer Well-being and Support (CWS) Questionnaire Form</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h2 class="text-center">Carer Well-being and Support (CWS) Questionnaire</h2>
+            <p>The questions in this section are about aspects of your general well-being. All of the questions are about how you have been over the past four weeks.</p>
+            <p>We recognise that some carers may be caring for more than one person with dementia. For each question, tick one box on each line that best reflects your caring responsibilities as a whole.</p>
+            <h4>Your role as a carer</h4>
+            <p>The first set of questions asks about your role as a carer. (Please tick one box on each line.)</p>
+            <form id="cwsForm">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>During the past 4 weeks, how concerned were you about…</th>
+                            <th>A lot</th>
+                            <th>Quite a bit</th>
+                            <th>Moderately</th>
+                            <th>A little</th>
+                            <th>Not at all</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1. Not having enough time to yourself?</td>
+                            <td><input type="radio" name="enoughTime" value="Alot"></td>
+                            <td><input type="radio" name="enoughTime" value="Quite a bit"></td>
+                            <td><input type="radio" name="enoughTime" value="Moderately"></td>
+                            <td><input type="radio" name="enoughTime" value="A little"></td>
+                            <td><input type="radio" name="enoughTime" value="Not at all"></td>
+                        </tr>
+                        <tr>
+                            <td>2. Having to put the needs of the person you care for ahead of your own needs?</td>
+                            <td><input type="radio" name="patientNeedAhead" value="Alot"></td>
+                            <td><input type="radio" name="patientNeedAhead" value="Quite a bit"></td>
+                            <td><input type="radio" name="patientNeedAhead" value="Moderately"></td>
+                            <td><input type="radio" name="patientNeedAhead" value="A little"></td>
+                            <td><input type="radio" name="patientNeedAhead" value="Not at all"></td>
+                        </tr>
+                        <tr>
+                            <td>3. Not being able to take a break from caring?</td>
+                            <td><input type="radio" name="takeABreak" value="Alot"></td>
+                            <td><input type="radio" name="takeABreak" value="Quite a bit"></td>
+                            <td><input type="radio" name="takeABreak" value="Moderately"></td>
+                            <td><input type="radio" name="takeABreak" value="A little"></td>
+                            <td><input type="radio" name="takeABreak" value="Not at all"></td>
+                        </tr>
+                        <tr>
+                            <td>4. Not being able to plan for the future?</td>
+                            <td><input type="radio" name="futurePlan" value="Alot"></td>
+                            <td><input type="radio" name="futurePlan" value="Quite a bit"></td>
+                            <td><input type="radio" name="futurePlan" value="Moderately"></td>
+                            <td><input type="radio" name="futurePlan" value="A little"></td>
+                            <td><input type="radio" name="futurePlan" value="Not at all"></td>
+                        </tr>
+                        <tr>
+                            <td>5. Not being able to continue caring due to reasons beyond your control (e.g. becoming ill yourself, looking after very young children)?</td>
+                            <td><input type="radio" name="reasonBeyondControl" value="Alot"></td>
+                            <td><input type="radio" name="reasonBeyondControl" value="Quite a bit"></td>
+                            <td><input type="radio" name="reasonBeyondControl" value="Moderately"></td>
+                            <td><input type="radio" name="reasonBeyondControl" value="A little"></td>
+                            <td><input type="radio" name="reasonBeyondControl" value="Not at all"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h4>Your relationship with the person you care for</h4>
+            <p>The next questions are about your relationship with the person you care for. (Please tick one box on each line.)</p>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>During the past 4 weeks, how concerned were you about…</th>
+                            <th>A lot</th>
+                            <th>Quite a bit</th>
+                            <th>Moderately</th>
+                            <th>A little</th>
+                            <th>Not at all</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>6. Strains in your relationship with the person you care for?</td>
+                            <td><input type="radio" name="strainRelationship" value="Alot"></td>
+                            <td><input type="radio" name="strainRelationship" value="Quite a bit"></td>
+                            <td><input type="radio" name="strainRelationship" value="Moderately"></td>
+                            <td><input type="radio" name="strainRelationship" value="A little"></td>
+                            <td><input type="radio" name="strainRelationship" value="Not at all"></td>
+                        </tr>
+                        <tr>
+                            <td>7. The person you care for being too dependent on you at the moment?</td>
+                            <td><input type="radio" name="dependent" value="Alot"></td>
+                            <td><input type="radio" name="dependent" value="Quite a bit"></td>
+                            <td><input type="radio" name="dependent" value="Moderately"></td>
+                            <td><input type="radio" name="dependent" value="A little"></td>
+                            <td><input type="radio" name="dependent" value="Not at all"></td>
+                        </tr>
+                        <tr>
+                            <td>8. The person you care for becoming too dependent on you in the future?</td>
+                            <td><input type="radio" name="tooDependent" value="Alot"></td>
+                            <td><input type="radio" name="tooDependent" value="Quite a bit"></td>
+                            <td><input type="radio" name="tooDependent" value="Moderately"></td>
+                            <td><input type="radio" name="tooDependent" value="A little"></td>
+                            <td><input type="radio" name="tooDependent" value="Not at all"></td>
+                        </tr>
+                        <tr>
+                            <td>9. The person you care for saying things that upset you?</td>
+                            <td><input type="radio" name="upsetYou" value="Alot"></td>
+                            <td><input type="radio" name="upsetYou" value="Quite a bit"></td>
+                            <td><input type="radio" name="upsetYou" value="Moderately"></td>
+                            <td><input type="radio" name="upsetYou" value="A little"></td>
+                            <td><input type="radio" name="upsetYou" value="Not at all"></td>
+                        </tr>
+                        <tr>
+                            <td>10. Feeling irritable with the person you care for?</td>
+                            <td><input type="radio" name="feelingIrritable" value="Alot"></td>
+                            <td><input type="radio" name="feelingIrritable" value="Quite a bit"></td>
+                            <td><input type="radio" name="feelingIrritable" value="Moderately"></td>
+                            <td><input type="radio" name="feelingIrritable" value="A little"></td>
+                            <td><input type="radio" name="feelingIrritable" value="Not at all"></td>
+                        </tr>
+                        <tr>
+                            <td>11. Reaching “breaking point”, where you feel you can’t carry on with things as they are?</td>
+                            <td><input type="radio" name="breakPoint" value="Alot"></td>
+                            <td><input type="radio" name="breakPoint" value="Quite a bit"></td>
+                            <td><input type="radio" name="breakPoint" value="Moderately"></td>
+                            <td><input type="radio" name="breakPoint" value="A little"></td>
+                            <td><input type="radio" name="breakPoint" value="Not at all"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h4>Your relationships with family and friends</h4>
+            <p>The next questions are about your relationships with family and friends. (Please tick one box on each line.)</p>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>During the past 4 weeks, how concerned were you about…</th>
+                            <th>A lot</th>
+                            <th>Quite a bit</th>
+                            <th>Moderately</th>
+                            <th>A little</th>
+                            <th>Not at all</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>12. Strains in your relationships with family and friends, because of your caring responsibilities?</td>
+                            <td><input type="radio" name="strainFamilyRelationship" value="Alot"></td>
+                            <td><input type="radio" name="strainFamilyRelationship" value="Quite a bit"></td>
+                            <td><input type="radio" name="strainFamilyRelationship" value="Moderately"></td>
+                            <td><input type="radio" name="strainFamilyRelationship" value="A little"></td>
+                            <td><input type="radio" name="strainFamilyRelationship" value="Not at all"></td>
+                        </tr>
+                        <tr>
+                            <td>13. “Drifting apart” from family and friends, because your caring responsibilities limit the time available to keep in contact with them?</td>
+                            <td><input type="radio" name="familyDriftingApart" value="Alot"></td>
+                            <td><input type="radio" name="familyDriftingApart" value="Quite a bit"></td>
+                            <td><input type="radio" name="familyDriftingApart" value="Moderately"></td>
+                            <td><input type="radio" name="familyDriftingApart" value="A little"></td>
+                            <td><input type="radio" name="familyDriftingApart" value="Not at all"></td>
+                        </tr>
+                        <tr>
+                            <td>14. Feeling isolated and lonely because of the situation you are in?</td>
+                            <td><input type="radio" name="feelingIsolated" value="Alot"></td>
+                            <td><input type="radio" name="feelingIsolated" value="Quite a bit"></td>
+                            <td><input type="radio" name="feelingIsolated" value="Moderately"></td>
+                            <td><input type="radio" name="feelingIsolated" value="A little"></td>
+                            <td><input type="radio" name="feelingIsolated" value="Not at all"></td>
+                        </tr>
+                        <tr>
+                            <td>15. Not getting the support you need from family and friends?</td>
+                            <td><input type="radio" name="notGettingSupport" value="Alot"></td>
+                            <td><input type="radio" name="notGettingSupport" value="Quite a bit"></td>
+                            <td><input type="radio" name="notGettingSupport" value="Moderately"></td>
+                            <td><input type="radio" name="notGettingSupport" value="A little"></td>
+                            <td><input type="radio" name="notGettingSupport" value="Not at all"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h4>Your financial situation</h4>
+            <p>The next questions are about your financial situation. (Please tick one box on each line.)</p>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>During the past 4 weeks, how concerned were you about…</th>
+                            <th>A lot</th>
+                            <th>Quite a bit</th>
+                            <th>Moderately</th>
+                            <th>A little</th>
+                            <th>Not at all</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>16. Your own financial situation?</td>
+                            <td><input type="radio" name="yourFinancialSituation" value="Alot"></td>
+                            <td><input type="radio" name="yourFinancialSituation" value="Quite a bit"></td>
+                            <td><input type="radio" name="yourFinancialSituation" value="Moderately"></td>
+                            <td><input type="radio" name="yourFinancialSituation" value="A little"></td>
+                            <td><input type="radio" name="yourFinancialSituation" value="Not at all"></td>
+                        </tr>
+                        <tr>
+                            <td>17. The financial situation of the person you care for?</td>
+                            <td><input type="radio" name="patientFinancialSituation" value="Alot"></td>
+                            <td><input type="radio" name="patientFinancialSituation" value="Quite a bit"></td>
+                            <td><input type="radio" name="patientFinancialSituation" value="Moderately"></td>
+                            <td><input type="radio" name="patientFinancialSituation" value="A little"></td>
+                            <td><input type="radio" name="patientFinancialSituation" value="Not at all"></td>
+                        </tr>
+                        <tr>
+                            <td>18. Having to cover extra costs of caring (e.g. extra help in the home, trips to hospital)?</td>
+                            <td><input type="radio" name="extraCost" value="Alot"></td>
+                            <td><input type="radio" name="extraCost" value="Quite a bit"></td>
+                            <td><input type="radio" name="extraCost" value="Moderately"></td>
+                            <td><input type="radio" name="extraCost" value="A little"></td>
+                            <td><input type="radio" name="extraCost" value="Not at all"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+                
+            <h4>Your physical health</h4>
+            <p>The next questions are about your physical health. (Please tick one box on each line.)</p>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>During the past 4 weeks, how concerned were you about…</th>
+                            <th>A lot</th>
+                            <th>Quite a bit</th>
+                            <th>Moderately</th>
+                            <th>A little</th>
+                            <th>Not at all</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>19. Your own physical health?</td>
+                            <td><input type="radio" name="physicalHealth" value="Alot"></td>
+                            <td><input type="radio" name="physicalHealth" value="Quite a bit"></td>
+                            <td><input type="radio" name="physicalHealth" value="Moderately"></td>
+                            <td><input type="radio" name="physicalHealth" value="A little"></td>
+                            <td><input type="radio" name="physicalHealth" value="Not at all"></td>
+                        </tr>
+                        <tr>
+                            <td>20. Your caring role making your physical health worse?</td>
+                            <td><input type="radio" name="patientPhysicalHealth" value="Alot"></td>
+                            <td><input type="radio" name="patientPhysicalHealth" value="Quite a bit"></td>
+                            <td><input type="radio" name="patientPhysicalHealth" value="Moderately"></td>
+                            <td><input type="radio" name="patientPhysicalHealth" value="A little"></td>
+                            <td><input type="radio" name="patientPhysicalHealth" value="Not at all"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h4>Your emotional well-being</h4>
+            <p>The next questions are about your emotional well-being. (Please tick one box on each line.)</p>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>During the past 4 weeks, how concerned were you about…</th>
+                            <th>A lot</th>
+                            <th>Quite a bit</th>
+                            <th>Moderately</th>
+                            <th>A little</th>
+                            <th>Not at all</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>21. Being unable to cope with the “constant anxiety” of caring?</td>
+                            <td><input type="radio" name="constantAnxiety" value="Alot"></td>
+                            <td><input type="radio" name="constantAnxiety" value="Quite a bit"></td>
+                            <td><input type="radio" name="constantAnxiety" value="Moderately"></td>
+                            <td><input type="radio" name="constantAnxiety" value="A little"></td>
+                            <td><input type="radio" name="constantAnxiety" value="Not at all"></td>
+                        </tr>
+                        <tr>
+                            <td>22. Feeling depressed?</td>
+                            <td><input type="radio" name="feelingDepressed" value="Alot"></td>
+                            <td><input type="radio" name="feelingDepressed" value="Quite a bit"></td>
+                            <td><input type="radio" name="feelingDepressed" value="Moderately"></td>
+                            <td><input type="radio" name="feelingDepressed" value="A little"></td>
+                            <td><input type="radio" name="feelingDepressed" value="Not at all"></td>
+                        </tr>
+                        <tr>
+                            <td>23. Being unable to see anything positive in your life?</td>
+                            <td><input type="radio" name="nothingPositive" value="Alot"></td>
+                            <td><input type="radio" name="nothingPositive" value="Quite a bit"></td>
+                            <td><input type="radio" name="nothingPositive" value="Moderately"></td>
+                            <td><input type="radio" name="nothingPositive" value="A little"></td>
+                            <td><input type="radio" name="nothingPositive" value="Not at all"></td>
+                        </tr>
+                        <tr>
+                            <td>24. Lack of sleep brought about through worry or stress?</td>
+                            <td><input type="radio" name="lackOfSleep" value="Alot"></td>
+                            <td><input type="radio" name="lackOfSleep" value="Quite a bit"></td>
+                            <td><input type="radio" name="lackOfSleep" value="Moderately"></td>
+                            <td><input type="radio" name="lackOfSleep" value="A little"></td>
+                            <td><input type="radio" name="lackOfSleep" value="Not at all"></td>
+                        </tr>
+                        <tr>
+                            <td>25. Lack of sleep caused by the person you care for keeping you awake at night?</td>
+                            <td><input type="radio" name="keepingAwake" value="Alot"></td>
+                            <td><input type="radio" name="keepingAwake" value="Quite a bit"></td>
+                            <td><input type="radio" name="keepingAwake" value="Moderately"></td>
+                            <td><input type="radio" name="keepingAwake" value="A little"></td>
+                            <td><input type="radio" name="keepingAwake" value="Not at all"></td>
+                        </tr>
+                        <tr>
+                            <td>26. Feeling so exhausted that you can’t function properly?</td>
+                            <td><input type="radio" name="feelingExhausted" value="Alot"></td>
+                            <td><input type="radio" name="feelingExhausted" value="Quite a bit"></td>
+                            <td><input type="radio" name="feelingExhausted" value="Moderately"></td>
+                            <td><input type="radio" name="feelingExhausted" value="A little"></td>
+                            <td><input type="radio" name="feelingExhausted" value="Not at all"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h4>Stigma and discrimination</h4>
+            <p>(Please tick one box on each line.)</p>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>During the past 4 weeks, how concerned were you about…</th>
+                            <th>A lot</th>
+                            <th>Quite a bit</th>
+                            <th>Moderately</th>
+                            <th>A little</th>
+                            <th>Not at all</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>27. People treating you differently because of the illness/condition of the person you care for?</td>
+                            <td><input type="radio" name="treatedDifferently" value="Alot"></td>
+                            <td><input type="radio" name="treatedDifferently" value="Quite a bit"></td>
+                            <td><input type="radio" name="treatedDifferently" value="Moderately"></td>
+                            <td><input type="radio" name="treatedDifferently" value="A little"></td>
+                            <td><input type="radio" name="treatedDifferently" value="Not at all"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h4>Your own safety</h4>
+            <p>(Please tick one box on each line.)</p>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>During the past 4 weeks, how concerned were you about the person you care for…</th>
+                            <th>A lot</th>
+                            <th>Quite a bit</th>
+                            <th>Moderately</th>
+                            <th>A little</th>
+                            <th>Not at all</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>28. Accidentally doing something that puts you at risk (e.g. leaving the gas on)?</td>
+                            <td><input type="radio" name="somethingRisky" value="Alot"></td>
+                            <td><input type="radio" name="somethingRisky" value="Quite a bit"></td>
+                            <td><input type="radio" name="somethingRisky" value="Moderately"></td>
+                            <td><input type="radio" name="somethingRisky" value="A little"></td>
+                            <td><input type="radio" name="somethingRisky" value="Not at all"></td>
+                        </tr>
+                        <tr>
+                            <td>29. Being aggressive or threatening towards you (e.g. verbal threats, sexual aggression, physical intimidation)?</td>
+                            <td><input type="radio" name="threatening" value="Alot"></td>
+                            <td><input type="radio" name="threatening" value="Quite a bit"></td>
+                            <td><input type="radio" name="threatening" value="Moderately"></td>
+                            <td><input type="radio" name="threatening" value="A little"></td>
+                            <td><input type="radio" name="threatening" value="Not at all"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h4>The safety of the person you care for</h4>
+            <p>(Please tick one box on each line.)</p>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>During the past 4 weeks, how concerned were you about the person you care for…</th>
+                            <th>A lot</th>
+                            <th>Quite a bit</th>
+                            <th>Moderately</th>
+                            <th>A little</th>
+                            <th>Not at all</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>30. Harming themselves?</td>
+                            <td><input type="radio" name="harmingThemselves" value="Alot"></td>
+                            <td><input type="radio" name="harmingThemselves" value="Quite a bit"></td>
+                            <td><input type="radio" name="harmingThemselves" value="Moderately"></td>
+                            <td><input type="radio" name="harmingThemselves" value="A little"></td>
+                            <td><input type="radio" name="harmingThemselves" value="Not at all"></td>
+                        </tr>
+                        <tr>
+                            <td>31. Getting themselves into dangerous situations?</td>
+                            <td><input type="radio" name="dangerousSituations" value="Alot"></td>
+                            <td><input type="radio" name="dangerousSituations" value="Quite a bit"></td>
+                            <td><input type="radio" name="dangerousSituations" value="Moderately"></td>
+                            <td><input type="radio" name="dangerousSituations" value="A little"></td>
+                            <td><input type="radio" name="dangerousSituations" value="Not at all"></td>
+                        </tr>
+                        <tr>
+                            <td>32. Relapsing or deteriorating, such that it puts their safety at risk?</td>
+                            <td><input type="radio" name="relapsing" value="Alot"></td>
+                            <td><input type="radio" name="relapsing" value="Quite a bit"></td>
+                            <td><input type="radio" name="relapsing" value="Moderately"></td>
+                            <td><input type="radio" name="relapsing" value="A little"></td>
+                            <td><input type="radio" name="relapsing" value="Not at all"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h4>Overall general well-being</h4>
+            <p>(Please tick one box only.)</p>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>33. Overall, how would you rate your general well-being during the past 4 weeks?</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="radio" name="generalWellbeing" value="Excellent"> Excellent</td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" name="generalWellbeing" value="Very good"> Very good</td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" name="generalWellbeing" value="Good"> Good</td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" name="generalWellbeing" value="Fair"> Fair</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+                <button type="submit" class="btn btn-primary btn-block">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="scripts.js"></script>
+</body>
+</html>
