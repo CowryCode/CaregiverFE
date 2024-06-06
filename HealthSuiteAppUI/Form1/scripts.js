@@ -31,10 +31,13 @@ document.getElementById('caregiverForm').addEventListener('submit', function(eve
     .then(data => {
         console.log('Success:', data);
         alert('Form submitted successfully!');
+        window.location.href = '../Form2/index.html';  
     })
     .catch((error) => {
         console.error('Error:', error);
         alert('There was an error submitting the form.');
     });
     */
+    // Temporary redirect for demonstration purposes
+    window.location.href = '../Form2/index.html';
 });

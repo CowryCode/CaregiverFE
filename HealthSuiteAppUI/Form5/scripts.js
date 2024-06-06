@@ -31,6 +31,7 @@ document.getElementById('feedbackForm').addEventListener('submit', function(even
     .then(data => {
         console.log('Success:', data);
         alert('Form submitted successfully!');
+        
     })
     .catch((error) => {
         console.error('Error:', error);

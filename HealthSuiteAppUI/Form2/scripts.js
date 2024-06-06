@@ -31,10 +31,12 @@ document.getElementById('backgroundForm').addEventListener('submit', function(ev
     .then(data => {
         console.log('Success:', data);
         alert('Form submitted successfully!');
+        window.location.href = '../Form3/index.html';
     })
     .catch((error) => {
         console.error('Error:', error);
         alert('There was an error submitting the form.');
     });
     */
+    window.location.href = '../Form3/index.html';
 });

@@ -31,10 +31,13 @@ document.getElementById('cwsForm').addEventListener('submit', function(event) {
     .then(data => {
         console.log('Success:', data);
         alert('Form submitted successfully!');
+        window.location.href = '../Form4/index.html';
     })
     .catch((error) => {
         console.error('Error:', error);
         alert('There was an error submitting the form.');
     });
     */
+
+    window.location.href = '../Form4/index.html';
 });

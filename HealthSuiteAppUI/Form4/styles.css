@@ -28,6 +28,10 @@ h2 {
     vertical-align: middle;
 }
 
+.table-responsive {
+    overflow-x: auto;
+}
+
 .btn-primary {
     background-color: #007bff;
     border-color: #007bff;
