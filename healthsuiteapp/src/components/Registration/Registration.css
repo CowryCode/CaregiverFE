@@ -1,0 +1,22 @@
+.registration-form-container {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .registration-form-container h6 {
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  .registration-form-container .MuiFormControl-root {
+    margin-bottom: 20px;
+  }
+  
+  .registration-error {
+    color: red;
+    font-size: 0.9em;
+  }
+  
