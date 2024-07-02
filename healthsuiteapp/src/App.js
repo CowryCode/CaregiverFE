@@ -10,6 +10,8 @@ import Registration from './components/Registration/Registration';
 import CaregiverRegistration from './components/CaregiverRegistration/CaregiverRegistration';
 import UserTable from './components/UserTable/UserTable';
 import ReferralCodeValidation from './components/ReferralCodeValidation/ReferralCodeValidation';
+import NeedAssessmentForm from './components/NeedAssessmentForm/NeedAssessmentForm';
+
 function App() {
     return (
         <Router>
@@ -23,6 +25,7 @@ function App() {
                 <Route path='/caregiverregister' element={<CaregiverRegistration />} />
                 <Route path='/usertable' element={<UserTable />} />
                 <Route path='/referral-code-validation' element={<ReferralCodeValidation />} />
+                <Route path='/need-assessment' element={<NeedAssessmentForm />} />
                 <Route path="/" exact element={<Home />} />
             </Routes>
         </Router>

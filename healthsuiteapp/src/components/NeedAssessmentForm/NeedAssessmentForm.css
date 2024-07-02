@@ -1,0 +1,26 @@
+/* src/components/NeedAssessmentForm/NeedAssessmentForm.css */
+.form-container {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h4 {
+    margin-bottom: 20px;
+}
+
+.form-container .MuiTypography-h6 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.form-container .MuiGrid-item {
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.form-container .MuiButton-contained {
+    margin-top: 20px;
+}
