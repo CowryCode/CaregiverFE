@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Home.css';
 import { FaBars } from 'react-icons/fa'; // Importing the FaBars icon
 import beginImg from '../../assets/begin.png';
@@ -11,8 +12,20 @@ import lifecareImg from '../../assets/lifecare.png';
 import formImg from '../../assets/form.png';
 
 const Home = () => {
+    const navigate = useNavigate();
+
     const handleSidebarToggle = () => {
         document.getElementById('sidebar').classList.toggle('active');
+    };
+
+    const handleLibraryClick = () => {
+        const data = [3, 2, 4, 5, 1]; // Static array for development purposes
+        if (data.length > 0) {
+            //const firstTopic = data[0];
+            const firstTopic = 1;
+            
+            navigate(`/library/core-topic${firstTopic}`);
+        }
     };
 
     return (
@@ -22,46 +35,46 @@ const Home = () => {
                     <div className="sidebar-sticky">
                         <ul className="nav flex-column">
                             <li className="nav-item">
-                                <a className="nav-link active" href="#">
+                                <span className="nav-link active">
                                     <i className="fas fa-home"></i>
                                     Home
-                                </a>
+                                </span>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#">
+                                <span className="nav-link">
                                     <i className="fas fa-user"></i>
                                     My Profile
-                                </a>
+                                </span>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#">
+                                <span className="nav-link" onClick={handleLibraryClick}>
                                     <i className="fas fa-file-alt"></i>
                                     Library
-                                </a>
+                                </span>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#">
+                                <span className="nav-link">
                                     <i className="fas fa-sign-out-alt"></i>
                                     Voluntary Withdrawal
-                                </a>
+                                </span>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#">
+                                <span className="nav-link">
                                     <i className="fas fa-comments"></i>
                                     Feedback
-                                </a>
+                                </span>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#">
+                                <span className="nav-link">
                                     <i className="fas fa-envelope"></i>
                                     Contact Us
-                                </a>
+                                </span>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="../Form1">
+                                <span className="nav-link" onClick={() => navigate('/Form1')}>
                                     <i className="fas fa-clipboard-list"></i>
                                     Forms
-                                </a>
+                                </span>
                             </li>
                         </ul>
                     </div>
@@ -78,38 +91,38 @@ const Home = () => {
                     </header>
                     <hr className="blue-line" />
                     <div className="icon-container">
-                        <a href="#" className="icon">
+                        <span className="icon">
                             <img src={beginImg} alt="Where to Begin" />
                             <p>Where to Begin</p>
-                        </a>
-                        <a href="#" className="icon">
+                        </span>
+                        <span className="icon">
                             <img src={handbookImg} alt="Caregiver's Handbook" />
                             <p>Caregiver's Handbook</p>
-                        </a>
-                        <a href="#" className="icon">
+                        </span>
+                        <span className="icon">
                             <img src={supportImg} alt="Support Groups" />
                             <p>Support Groups</p>
-                        </a>
-                        <a href="#" className="icon">
+                        </span>
+                        <span className="icon">
                             <img src={workshopImg} alt="Workshops" />
                             <p>Workshops</p>
-                        </a>
-                        <a href="#" className="icon">
+                        </span>
+                        <span className="icon">
                             <img src={governmentImg} alt="Government Programs" />
                             <p>Government Programs</p>
-                        </a>
-                        <a href="#" className="icon">
+                        </span>
+                        <span className="icon">
                             <img src={adultcareImg} alt="Transitions in Adult Care" />
                             <p>Transitions in Adult Care</p>
-                        </a>
-                        <a href="#" className="icon">
+                        </span>
+                        <span className="icon">
                             <img src={lifecareImg} alt="Palliative and End Of Life Care" />
                             <p>Palliative and End Of Life Care</p>
-                        </a>
-                        <a href="#" className="icon">
+                        </span>
+                        <span className="icon">
                             <img src={formImg} alt="Referral Form" />
                             <p>Referral Form</p>
-                        </a>
+                        </span>
                     </div>
                 </main>
             </div>
