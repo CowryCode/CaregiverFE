@@ -7,6 +7,8 @@ import Form2 from './components/Form2/Form2';
 import Form3 from './components/Form3/Form3';
 import Form4 from './components/Form4/Form4';
 import Form5 from './components/Form5/Form5';
+import Login from './components/Login/Login';
+
 import Registration from './components/Registration/Registration';
 import CaregiverRegistration from './components/CaregiverRegistration/CaregiverRegistration';
 import UserTable from './components/UserTable/UserTable';
@@ -30,6 +32,7 @@ function App() {
         <Route path="/referral-code-validation" element={<ReferralCodeValidation />} />
         <Route path="/need-assessment" element={<NeedAssessmentForm />} />
         <Route path="/library/*" element={<CoreTopics />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </Router>
   );
