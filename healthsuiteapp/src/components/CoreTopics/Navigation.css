@@ -29,6 +29,7 @@ html, body {
 
 .core-sidebar .nav-link:hover, .core-sidebar .nav-link.active {
     background-color: #495057;
+    color: #d3d3d3;
     border-radius: 5px;
 }
 

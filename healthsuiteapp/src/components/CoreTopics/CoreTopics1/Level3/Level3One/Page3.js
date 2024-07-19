@@ -10,7 +10,7 @@ const Page3 = () => {
     };
 
     const handleNext = () => {
-        // navigate('/level-3-1/next-section'); // Uncomment and adjust if there is a next section
+        navigate('/library/core-topic1/level3/level3two/page1'); // Uncomment and adjust if there is a next section
     };
 
     return (

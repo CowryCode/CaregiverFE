@@ -9,7 +9,7 @@ function Navigation({ topics, onTopicChange, mobileOpen, setMobileOpen }) {
 
     const handleTopicClick = (index) => {
         onTopicChange(index);
-        setMobileOpen(false); // Close drawer on mobile after selection
+        setMobileOpen(false); 
     };
 
     return (
