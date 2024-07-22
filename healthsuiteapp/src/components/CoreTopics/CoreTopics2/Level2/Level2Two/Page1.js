@@ -1,17 +1,48 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Box, Button, Typography, Table, TableBody, TableCell, TableRow, TableContainer, Paper } from '@mui/material';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import {
+  Box,
+  Button,
+  Typography,
+  Table,
+  TableBody,
+  TableCell,
+  TableRow,
+  TableContainer,
+  Paper,
+  IconButton,
+} from "@mui/material";
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+import BookmarkIcon from '@mui/icons-material/Bookmark'; // For a filled bookmark icon
+import { addToWishlist, removeFromWishlist, getWishlist } from '../../../../../utils/localStorageHelpers.js';
 
 const Page1 = () => {
     const navigate = useNavigate();
+    const pageId = 'CoreTopics2_Level2_Level2Two_Page1'; // Unique identifier for this page
+    const [isBookmarked, setIsBookmarked] = useState(false);
 
-    // These functions handle navigation between pages. Adjust according to actual paths.
+    // Check if the page is in the wishlist on component mount and update state
+    useEffect(() => {
+        const wishlist = getWishlist();
+        setIsBookmarked(wishlist.includes(pageId));
+    }, []);
+
     const handlePrevious = () => {
-       navigate('/library/core-topic2/level2/level2one/page2')
+        navigate('/library/core-topic2/level2/level2one/page2'); // Adjust as needed
     };
 
     const handleNext = () => {
-        navigate("/library/core-topic2/level3")
+        navigate("/library/core-topic2/level3"); // Adjust if there is a next section
+    };
+
+    const handleBookmark = () => {
+        if (isBookmarked) {
+            removeFromWishlist(pageId);
+            setIsBookmarked(false);
+        } else {
+            addToWishlist(pageId);
+            setIsBookmarked(true);
+        }
     };
 
     return (
@@ -23,7 +54,12 @@ const Page1 = () => {
             justifyContent: 'space-between',
             backgroundColor: '#f3f3f3' // Adjust the background color as needed
         }}>
-            <Typography variant="h4" sx={{ mb: 1, textAlign: 'center', color: '#007FFF' }}>Level 2.2: Accessing Support Networks and Groups</Typography>
+            <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <Typography variant="h4" sx={{ mb: 1, textAlign: 'center', color: '#007FFF' }}>Level 2.2: Accessing Support Networks and Groups</Typography>
+                <IconButton onClick={handleBookmark} aria-label="add to wishlist">
+                    {isBookmarked ? <BookmarkIcon /> : <BookmarkBorderIcon />}
+                </IconButton>
+            </Box>
             <Typography variant="h6" sx={{ mb: 2, fontSize: '1rem' }}>Page 1 of 1</Typography>
             <TableContainer component={Paper} sx={{ boxShadow: 1 }}>
                 <Table>
@@ -54,9 +90,9 @@ const Page1 = () => {
                 </Table>
             </TableContainer>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
-                <Button variant="contained" onClick={handlePrevious}>Previous</Button> {/* Disabled since it's the first page */}
+                <Button variant="contained" onClick={handlePrevious}>Previous</Button>
                 <Typography sx={{ fontSize: '0.875rem', alignSelf: 'center' }}>Page 1</Typography>
-                <Button variant="contained" onClick={handleNext}>Next</Button> {/* Disabled since there is no next page */}
+                <Button variant="contained" onClick={handleNext}>Next</Button>
             </Box>
         </Box>
     );
