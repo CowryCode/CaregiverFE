@@ -21,7 +21,6 @@ const Page3 = () => {
   const pageId = 'CoreTopics1_Level1_Level1Two_Page3'; // Unique identifier for this page
   const [isBookmarked, setIsBookmarked] = useState(false);
 
-  // Check if the page is in the wishlist on component mount and update state
   useEffect(() => {
     const wishlist = getWishlist();
     setIsBookmarked(wishlist.includes(pageId));
@@ -76,17 +75,11 @@ const Page3 = () => {
       <Typography variant="h3" sx={{ mb: 1, fontSize: "1.25rem", textAlign: "center" }}>
         Page 3 of 3
       </Typography>
-      <TableContainer component={Paper} sx={{ boxShadow: 1 }}>
+      <TableContainer component={Paper} sx={{ boxShadow: 1, marginBottom: 2 }}>
         <Table>
           <TableBody>
             <TableRow>
-              <TableCell
-                sx={{
-                  width: "50%",
-                  verticalAlign: "top",
-                  borderRight: "2px solid black",
-                }}
-              >
+              <TableCell sx={{ verticalAlign: "top" }}>
                 <Typography
                   variant="h6"
                   sx={{
@@ -115,7 +108,9 @@ const Page3 = () => {
                   <li>Speaking with your family physician.</li>
                 </ul>
               </TableCell>
-              <TableCell sx={{ width: "50%", verticalAlign: "top" }}>
+            </TableRow>
+            <TableRow>
+              <TableCell sx={{ verticalAlign: "top" }}>
                 <Typography
                   variant="h6"
                   sx={{
