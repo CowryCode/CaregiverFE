@@ -1,9 +1,26 @@
 // src/components/NeedAssessmentForm/NeedAssessmentForm.js
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { TextField, MenuItem, Button, Container, Typography, Grid } from '@mui/material';
 import './NeedAssessmentForm.css';
 
 const NeedAssessmentForm = () => {
+
+    const navigate = useNavigate();
+
+    const handleLibraryClick = () => {
+        // THIS ARRAY IS GENERATED AFTER SUBMITTING NEED ASSESSMENT
+         const data = [3, 2, 4, 5, 1]; // Static array for development purposes
+        if (data.length > 0) {
+            //const firstTopic = data[0];
+            const firstTopic = 1;
+            
+            navigate(`/library/core-topic${firstTopic}`);
+        }else{
+            navigate(`/need-assessment`);
+        }
+    };
+
     const [formData, setFormData] = useState({
         Difficulty_Supporting: {
             Dressing: 0,
@@ -55,6 +72,7 @@ const NeedAssessmentForm = () => {
         //     body: JSON.stringify(formData),
         // }).then(response => response.json()).then(data => console.log(data));
         alert(JSON.stringify(formData, null, 2));
+        handleLibraryClick();
     };
 
     const options = [

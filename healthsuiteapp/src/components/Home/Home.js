@@ -19,12 +19,17 @@ const Home = () => {
     };
 
     const handleLibraryClick = () => {
-        const data = [3, 2, 4, 5, 1]; // Static array for development purposes
+        // THIS ARRAY IS GENERATED AFTER SUBMITTING NEED ASSESSMENT
+        // const data = [3, 2, 4, 5, 1]; // Static array for development purposes
+        // WHEN NEED ASSESSMENT HAS NOT BEEN SUBMITTED DATA IS EMPTY
+        const data = [];
         if (data.length > 0) {
             //const firstTopic = data[0];
             const firstTopic = 1;
             
             navigate(`/library/core-topic${firstTopic}`);
+        }else{
+            navigate(`/need-assessment`);
         }
     };
 
