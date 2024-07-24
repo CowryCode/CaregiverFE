@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { TextField, Button, Typography, Container, Box } from '@mui/material';
 
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const navigate = useNavigate();
+
     const handleLogin = (event) => {
         event.preventDefault();
         console.log('Logging in with:', email, password);
+        navigate(`/baseline-questionnaire`); 
         // Add your login logic or call to API here
     };
 

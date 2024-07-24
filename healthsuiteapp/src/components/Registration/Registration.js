@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Container, TextField, FormControl, InputLabel, Select, MenuItem, Button, FormHelperText, RadioGroup, FormControlLabel, Radio, Typography
 } from '@mui/material';
 import './Registration.css';
 
 const Registration = () => {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     providerName: '',
     practicingProvince: '',
@@ -43,8 +46,8 @@ const Registration = () => {
         return;
       }
     }
-
     console.log("Form submitted successfully", formData);
+    navigate(`/login`); 
   };
 
   const checkPhoneNumber = async (phoneNumber) => {

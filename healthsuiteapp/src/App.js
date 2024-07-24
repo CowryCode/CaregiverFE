@@ -29,12 +29,12 @@ function App() {
         <Route path="/eligibility-form" element={<EligibilityForm />} />
          {/* TODO: CONSENT FORM NEED TO BE CREATED */}
          <Route path="/consent-form" element={<ConsentForm />} />
+         <Route path="/registration" element={<Registration />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/form2" element={<Form2 />} />
+        <Route path="/baseline-questionnaire" element={<Form2 />} />
         <Route path="/form3" element={<Form3 />} />
         <Route path="/form4" element={<Form4 />} />
         <Route path="/form5" element={<Form5 />} />
-        <Route path="/registration" element={<Registration />} />
         <Route path="/caregiverregister" element={<CaregiverRegistration />} />
         <Route path="/usertable" element={<UserTable />} />
         <Route path="/need-assessment" element={<NeedAssessmentForm />} />
