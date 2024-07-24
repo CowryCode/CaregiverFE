@@ -11,7 +11,7 @@ function Login() {
     const handleLogin = (event) => {
         event.preventDefault();
         console.log('Logging in with:', email, password);
-        navigate(`/baseline-questionnaire`); 
+        navigate(`/baseline-questionnaire-f1`); 
         // Add your login logic or call to API here
     };
 

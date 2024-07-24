@@ -3,10 +3,10 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './components/Home/Home';
 import EligibilityForm from './components/Form1/EligibilityForm';
-import Form2 from './components/Form2/Form2';
-import Form3 from './components/Form3/Form3';
-import Form4 from './components/Form4/Form4';
-import Form5 from './components/Form5/Form5';
+import BaselineQuestionnaireF1 from './components/Form2/BaselineQuestionnaireF1';
+import BaselineQuestionnaireF2 from './components/Form3/BaselineQuestionnaireF2';
+import BaselineQuestionnaireF3 from './components/Form4/BaselineQuestionnaireF3';
+import BaselineQuestionnaireF4 from './components/Form5/BaselineQuestionnaireF4';
 import Login from './components/Login/Login';
 import Wishlist from './components/WishList/Wishlist';
 
@@ -31,10 +31,10 @@ function App() {
          <Route path="/consent-form" element={<ConsentForm />} />
          <Route path="/registration" element={<Registration />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/baseline-questionnaire" element={<Form2 />} />
-        <Route path="/form3" element={<Form3 />} />
-        <Route path="/form4" element={<Form4 />} />
-        <Route path="/form5" element={<Form5 />} />
+        <Route path="/baseline-questionnaire-f1" element={<BaselineQuestionnaireF1 />} />
+        <Route path="/baseline-questionnaire-f2" element={<BaselineQuestionnaireF2 />} />
+        <Route path="/baseline-questionnaire-f3" element={<BaselineQuestionnaireF3 />} />
+        <Route path="/baseline-questionnaire-f4" element={<BaselineQuestionnaireF4 />} />
         <Route path="/caregiverregister" element={<CaregiverRegistration />} />
         <Route path="/usertable" element={<UserTable />} />
         <Route path="/need-assessment" element={<NeedAssessmentForm />} />
