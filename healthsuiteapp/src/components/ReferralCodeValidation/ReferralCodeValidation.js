@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Container, TextField, FormControlLabel, Checkbox, Button, Typography, RadioGroup, Radio, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle
 } from '@mui/material';
 import './ReferralCodeValidation.css';
 
 const ReferralCodeValidation = () => {
+  const navigate = useNavigate();
+
   const [referralCode, setReferralCode] = useState('');
   const [unknownReferralCode, setUnknownReferralCode] = useState(false);
   const [participantName, setParticipantName] = useState('');
@@ -25,6 +28,10 @@ const ReferralCodeValidation = () => {
       setValidationMessage('');
       setParticipantName('');
     }
+  };
+
+  const comfirm = () => {
+        navigate(`/eligibility-form`); 
   };
 
   const handleSubmit = (event) => {
@@ -113,7 +120,8 @@ const ReferralCodeValidation = () => {
           <Button
             variant="contained"
             color="primary"
-            onClick={() => alert('Referral code submitted to backend')}
+            // onClick={() => alert('Referral code submitted to backend')}
+            onClick={comfirm}
             disabled={!submitActive}
           >
             Confirm

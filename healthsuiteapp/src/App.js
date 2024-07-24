@@ -2,7 +2,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './components/Home/Home';
-import Form1 from './components/Form1/Form1';
+import EligibilityForm from './components/Form1/EligibilityForm';
 import Form2 from './components/Form2/Form2';
 import Form3 from './components/Form3/Form3';
 import Form4 from './components/Form4/Form4';
@@ -23,7 +23,11 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/form1" element={<Form1 />} />
+        <Route path="/referral-code-validation" element={<ReferralCodeValidation />} />
+        {/* <Route path="/form1" element={<Form1 />} /> */}
+        <Route path="/eligibility-form" element={<EligibilityForm />} />
+         {/* TODO: CONSENT FORM NEED TO BE CREATED */}
+        <Route path="/login" element={<Login />} />
         <Route path="/form2" element={<Form2 />} />
         <Route path="/form3" element={<Form3 />} />
         <Route path="/form4" element={<Form4 />} />
@@ -31,10 +35,8 @@ function App() {
         <Route path="/registration" element={<Registration />} />
         <Route path="/caregiverregister" element={<CaregiverRegistration />} />
         <Route path="/usertable" element={<UserTable />} />
-        <Route path="/referral-code-validation" element={<ReferralCodeValidation />} />
         <Route path="/need-assessment" element={<NeedAssessmentForm />} />
         <Route path="/library/*" element={<CoreTopics />} />
-        <Route path="/login" element={<Login />} />
         <Route path="/wishlist" element={<Wishlist />} />
       </Routes>
     </Router>
