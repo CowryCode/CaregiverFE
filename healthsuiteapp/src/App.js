@@ -8,7 +8,7 @@ import BaselineQuestionnaireF2 from './components/Form3/BaselineQuestionnaireF2'
 import BaselineQuestionnaireF3 from './components/Form4/BaselineQuestionnaireF3';
 import BaselineQuestionnaireF4 from './components/Form5/BaselineQuestionnaireF4';
 import Login from './components/Login/Login';
-import Wishlist from './components/WishList/Wishlist';
+import QuickTips from './components/WishList/QuickTips';
 
 
 import Registration from './components/Registration/Registration';
@@ -37,9 +37,9 @@ function App() {
         <Route path="/baseline-questionnaire-f4" element={<BaselineQuestionnaireF4 />} />
         <Route path="/need-assessment" element={<NeedAssessmentForm />} />
         <Route path="/caregiverregister" element={<CaregiverRegistration />} />
-        <Route path="/usertable" element={<UserTable />} />
+        <Route path="/admin" element={<UserTable />} />
         <Route path="/library/*" element={<CoreTopics />} />
-        <Route path="/wishlist" element={<Wishlist />} />
+        <Route path="/quicktips" element={<QuickTips />} />
       </Routes>
     </Router>
   );

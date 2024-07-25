@@ -14,6 +14,20 @@ import formImg from '../../assets/form.png';
 const Home = () => {
     const navigate = useNavigate();
 
+    const myPriorityNeed = () => {
+        // THIS ARRAY IS GENERATED AFTER SUBMITTING NEED ASSESSMENT
+        // const data = [3, 2, 4, 5, 1]; // Static array for development purposes
+         const data = []; // Static array for development purposes
+        if (data.length > 0) {
+            //const firstTopic = data[0];
+            const firstTopic = 1;
+            
+            navigate(`/library/core-topic${firstTopic}`);
+        }else{
+            alert('You need to complete your Needs Assessment by clicking on My tasks list to be able to view your priority needs areas.');
+        }
+    };
+
     const handleSidebarToggle = () => {
         document.getElementById('sidebar').classList.toggle('active');
     };
@@ -54,7 +68,7 @@ const Home = () => {
                             <li className="nav-item">
                                 <span className="nav-link" onClick={handleLibraryClick}>
                                     <i className="fas fa-file-alt"></i>
-                                    Library
+                                    Content Library
                                 </span>
                             </li>
                             <li className="nav-item">
@@ -81,6 +95,13 @@ const Home = () => {
                                     Forms
                                 </span>
                             </li>
+
+                            <li className="nav-item">
+                                <span className="nav-link" onClick={() => navigate('/admin')}>
+                                    <i className="fas fa-clipboard-list"></i>
+                                    Admin
+                                </span>
+                            </li>
                         </ul>
                     </div>
                 </nav>
@@ -98,35 +119,35 @@ const Home = () => {
                     <div className="icon-container">
                         <span className="icon">
                             <img src={beginImg} alt="Where to Begin" />
-                            <p>Where to Begin</p>
+                            <p>My Profile</p>
                         </span>
-                        <span className="icon">
+                        <span className="icon" onClick={myPriorityNeed} > 
                             <img src={handbookImg} alt="Caregiver's Handbook" />
-                            <p>Caregiver's Handbook</p>
+                            <p>My Priority Needs Area</p>
                         </span>
-                        <span className="icon">
+                        <span className="icon" onClick={() => navigate('/need-assessment')}  >
                             <img src={supportImg} alt="Support Groups" />
-                            <p>Support Groups</p>
+                            <p>My Task List</p>
                         </span>
                         <span className="icon">
                             <img src={workshopImg} alt="Workshops" />
-                            <p>Workshops</p>
+                            <p>My Goals</p>
                         </span>
-                        <span className="icon">
+                        <span className="icon" onClick={() => navigate('/quicktips')}>
                             <img src={governmentImg} alt="Government Programs" />
-                            <p>Government Programs</p>
+                            <p>My Quick Tips</p>
                         </span>
                         <span className="icon">
                             <img src={adultcareImg} alt="Transitions in Adult Care" />
-                            <p>Transitions in Adult Care</p>
+                            <p>My Bookmarks</p>
                         </span>
                         <span className="icon">
                             <img src={lifecareImg} alt="Palliative and End Of Life Care" />
-                            <p>Palliative and End Of Life Care</p>
+                            <p>Voluntary Withdrawal</p>
                         </span>
                         <span className="icon">
                             <img src={formImg} alt="Referral Form" />
-                            <p>Referral Form</p>
+                            <p>Feedback</p>
                         </span>
                     </div>
                 </main>
