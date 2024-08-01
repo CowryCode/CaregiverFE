@@ -12,13 +12,17 @@ import {
   Paper,
   IconButton,
 } from "@mui/material";
-import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
-import BookmarkIcon from '@mui/icons-material/Bookmark'; // For a filled bookmark icon
-import { addToWishlist, removeFromWishlist, getWishlist } from '../../../../../utils/localStorageHelpers.js';
+import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
+import BookmarkIcon from "@mui/icons-material/Bookmark"; // For a filled bookmark icon
+import {
+  addToWishlist,
+  removeFromWishlist,
+  getWishlist,
+} from "../../../../../utils/localStorageHelpers.js";
 
 const Page3 = () => {
   const navigate = useNavigate();
-  const pageId = 'CoreTopics1_Level1_Level1Two_Page3'; // Unique identifier for this page
+  const pageId = "CoreTopics1_Level1_Level1Two_Page3"; // Unique identifier for this page
   const [isBookmarked, setIsBookmarked] = useState(false);
 
   useEffect(() => {
@@ -55,7 +59,13 @@ const Page3 = () => {
         backgroundColor: "#f3f3f3",
       }}
     >
-      <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
         <Typography
           variant="h2"
           sx={{
@@ -72,7 +82,10 @@ const Page3 = () => {
           {isBookmarked ? <BookmarkIcon /> : <BookmarkBorderIcon />}
         </IconButton>
       </Box>
-      <Typography variant="h3" sx={{ mb: 1, fontSize: "1.25rem", textAlign: "center" }}>
+      <Typography
+        variant="h3"
+        sx={{ mb: 1, fontSize: "1.25rem", textAlign: "center" }}
+      >
         Page 3 of 3
       </Typography>
       <TableContainer component={Paper} sx={{ boxShadow: 1, marginBottom: 2 }}>
@@ -92,18 +105,19 @@ const Page3 = () => {
                 </Typography>
                 <ul>
                   <li>
-                    Walking away from the situation for 5-10 minutes if it is safe to do so.
+                    Walking away from the situation for 5-10 minutes if it is
+                    safe to do so.
                   </li>
                   <li>Taking a few slow, deep breaths.</li>
                   <li>Acknowledging how and what you are feeling.</li>
                   <li>
-                    Sharing your feelings and frustrations with others and asking for help.
+                    Sharing your feelings and frustrations with others and
+                    asking for help.
                   </li>
+                  <li>Accessing formal support or joining a support group.</li>
                   <li>
-                    Accessing formal support or joining a support group.
-                  </li>
-                  <li>
-                    Reflect on what makes you happy; try to find ways to engage in those activities.
+                    Reflect on what makes you happy; try to find ways to engage
+                    in those activities.
                   </li>
                   <li>Speaking with your family physician.</li>
                 </ul>
@@ -124,7 +138,8 @@ const Page3 = () => {
                 <ul>
                   <li>Isolating yourself from others.</li>
                   <li>
-                    Feeling guilty about asking for or accepting help from others.
+                    Feeling guilty about asking for or accepting help from
+                    others.
                   </li>
                   <li>Feeling guilty about taking time for yourself.</li>
                 </ul>

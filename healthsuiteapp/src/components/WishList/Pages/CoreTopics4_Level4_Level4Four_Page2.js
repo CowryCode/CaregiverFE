@@ -69,17 +69,11 @@ const CoreTopics4_Level4_Level4Four_Page2 = () => {
       <Typography variant="h6" sx={{ mb: 2, fontSize: "1rem" }}>
         {/* Page 2 of 3 */}
       </Typography>
-      <TableContainer component={Paper} sx={{ boxShadow: 1 }}>
+      <TableContainer component={Paper} sx={{ boxShadow: 1, marginBottom: 2 }}>
         <Table>
           <TableBody>
             <TableRow>
-              <TableCell
-                sx={{
-                  width: "50%",
-                  verticalAlign: "top",
-                  borderRight: "2px solid black",
-                }}
-              >
+              <TableCell sx={{ verticalAlign: "top" }}>
                 <Typography
                   variant="h6"
                   sx={{ fontSize: "1rem", fontWeight: "bold", color: "black" }}
@@ -98,7 +92,9 @@ const CoreTopics4_Level4_Level4Four_Page2 = () => {
                   <li>Discussing treatment options.</li>
                 </ul>
               </TableCell>
-              <TableCell sx={{ width: "50%", verticalAlign: "top" }}>
+            </TableRow>
+            <TableRow>
+              <TableCell sx={{ verticalAlign: "top" }}>
                 <Typography
                   variant="h6"
                   sx={{ fontSize: "1rem", fontWeight: "bold", color: "black" }}
@@ -116,7 +112,6 @@ const CoreTopics4_Level4_Level4Four_Page2 = () => {
           </TableBody>
         </Table>
       </TableContainer>
-
       <Typography
         sx={{ mt: 2, mb: 2, fontSize: "0.875rem", textAlign: "center" }}
       ></Typography>

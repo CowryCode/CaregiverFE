@@ -21,18 +21,17 @@ const Page2 = () => {
     const pageId = 'CoreTopics4_Level1_Level1Three_Page2'; // Unique identifier for this page
     const [isBookmarked, setIsBookmarked] = useState(false);
 
-    // Check if the page is in the wishlist on component mount and update state
     useEffect(() => {
         const wishlist = getWishlist();
         setIsBookmarked(wishlist.includes(pageId));
     }, []);
 
     const handlePrevious = () => {
-        navigate('/library/core-topic4/level1/level1three/page1'); // Adjust this path to point to the previous page
+        navigate('/library/core-topic4/level1/level1three/page1'); // Correct previous page path
     };
 
     const handleNext = () => {
-        navigate('/library/core-topic4/level1/level1four/page1'); // Adjust this path to point to the next page, if exists
+        navigate('/library/core-topic4/level1/level1four/page1'); // Correct next page path
     };
 
     const handleBookmark = () => {
@@ -52,7 +51,7 @@ const Page2 = () => {
             flexDirection: 'column',
             minHeight: '100vh',
             justifyContent: 'space-between',
-            backgroundColor: '#f3f3f3' // Adjust the background color as needed
+            backgroundColor: '#f3f3f3'
         }}>
             <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <Typography variant="h4" sx={{ mb: 1, textAlign: 'center', color: '#007FFF' }}>Level 1.3: Family Meetings</Typography>
@@ -61,21 +60,23 @@ const Page2 = () => {
                 </IconButton>
             </Box>
             <Typography variant="h6" sx={{ mb: 2, fontSize: '1rem' }}>Page 2 of 2</Typography>
-            <TableContainer component={Paper} sx={{ boxShadow: 1 }}>
+            <TableContainer component={Paper} sx={{ boxShadow: 1, marginBottom: 2 }}>
                 <Table>
                     <TableBody>
                         <TableRow>
-                            <TableCell sx={{ width: '50%', verticalAlign: 'top', borderRight: '2px solid black' }}>
+                            <TableCell sx={{ verticalAlign: 'top' }}>
                                 <Typography variant="h6" sx={{ fontSize: '1rem', fontWeight: 'bold', color: 'black' }}>Try</Typography>
                                 <ul>
                                     <li>Deciding who will attend the meeting beforehand.</li>
                                     <li>Setting on a location and time that suits most people.</li>
-                                    <li>Deciding what goals, you want to achieve and creating an agenda of what needs to be discussed.</li>
+                                    <li>Deciding what goals you want to achieve and creating an agenda of what needs to be discussed.</li>
                                     <li>Allowing everyone to speak.</li>
                                     <li>Taking time to acknowledge everyone's fears and emotions.</li>
                                 </ul>
                             </TableCell>
-                            <TableCell sx={{ width: '50%', verticalAlign: 'top' }}>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell sx={{ verticalAlign: 'top' }}>
                                 <Typography variant="h6" sx={{ fontSize: '1rem', fontWeight: 'bold', color: 'black' }}>Avoid</Typography>
                                 <ul>
                                     <li>Making tough decisions on the spot.</li>

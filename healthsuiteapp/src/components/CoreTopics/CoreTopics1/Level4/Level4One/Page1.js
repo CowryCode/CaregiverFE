@@ -21,7 +21,6 @@ const Page1 = () => {
     const pageId = 'CoreTopics1_Level4_Level4One_Page1'; // Unique identifier for this page
     const [isBookmarked, setIsBookmarked] = useState(false);
 
-    // Check if the page is in the wishlist on component mount and update state
     useEffect(() => {
         const wishlist = getWishlist();
         setIsBookmarked(wishlist.includes(pageId));
@@ -61,7 +60,7 @@ const Page1 = () => {
                 <Table>
                     <TableBody>
                         <TableRow>
-                            <TableCell sx={{ width: '50%', verticalAlign: 'top', borderRight: '2px solid black' }}>
+                            <TableCell sx={{ verticalAlign: 'top' }}>
                                 <Typography variant="h6" sx={{ fontSize: '1rem', fontWeight: 'bold', color: 'black' }}>Try</Typography>
                                 <ul>
                                     <li>Setting aside scheduled time for social and leisure activities every week.</li>
@@ -72,7 +71,9 @@ const Page1 = () => {
                                     <li>Meeting with a friend for coffee, tea, or lunch.</li>
                                 </ul>
                             </TableCell>
-                            <TableCell sx={{ width: '50%', verticalAlign: 'top' }}>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell sx={{ verticalAlign: 'top' }}>
                                 <Typography variant="h6" sx={{ fontSize: '1rem', fontWeight: 'bold', color: 'black' }}>Avoid</Typography>
                                 <ul>
                                     <li>Isolating yourself from friends and family.</li>
@@ -85,7 +86,7 @@ const Page1 = () => {
                 </Table>
             </TableContainer>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
-                <Button variant="contained" onClick={handlePrevious}>Previous</Button> {/* Disable as this is the first page */}
+                <Button variant="contained" onClick={handlePrevious}>Previous</Button> {/* Consider disabling if this is the first page */}
                 <Typography sx={{ fontSize: '0.875rem', alignSelf: 'center' }}>End Of Level1</Typography>
                 <Button variant="contained" disabled>Next</Button> {/* Disabled since this is the last page */}
             </Box>

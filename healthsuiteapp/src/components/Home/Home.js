@@ -90,7 +90,7 @@ const Home = () => {
                                 </span>
                             </li>
                             <li className="nav-item">
-                                <span className="nav-link" onClick={() => navigate('/Form1')}>
+                                <span className="nav-link" onClick={() => navigate('/eligibility-form')}>
                                     <i className="fas fa-clipboard-list"></i>
                                     Forms
                                 </span>

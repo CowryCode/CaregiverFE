@@ -66,58 +66,33 @@ const CoreTopics3_Level1_Level1Three_Page3 = () => {
           {isBookmarked ? <BookmarkIcon /> : <BookmarkBorderIcon />}
         </IconButton>
       </Box>
-      <Typography variant="h6" sx={{ mb: 2, fontSize: "1rem" }}>
-        Page 3 of 3
-      </Typography>
-      <TableContainer component={Paper} sx={{ boxShadow: 1 }}>
-        <Table>
-          <TableBody>
-            <TableRow>
-              <TableCell
-                sx={{
-                  width: "50%",
-                  verticalAlign: "top",
-                  borderRight: "2px solid black",
-                }}
-              >
-                <Typography
-                  variant="h6"
-                  sx={{ fontSize: "1rem", fontWeight: "bold", color: "black" }}
-                >
-                  Try
-                </Typography>
-                <ul>
-                  <li>
-                    Explaining the disease process to your children in a way
-                    they will understand.
-                  </li>
-                  <li>Making time for your children.</li>
-                  <li>Listening to your children’s fears or concerns.</li>
-                  <li>
-                    Being honest with your children about the changes happening
-                    in your home.
-                  </li>
-                  <li>Letting your child know their feelings are normal.</li>
-                </ul>
-              </TableCell>
-              <TableCell sx={{ width: "50%", verticalAlign: "top" }}>
-                <Typography
-                  variant="h6"
-                  sx={{ fontSize: "1rem", fontWeight: "bold", color: "black" }}
-                >
-                  Avoid
-                </Typography>
-                <ul>
-                  <li>
-                    Pushing your child to interact with the person if they are
-                    uncomfortable.
-                  </li>
-                </ul>
-              </TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </TableContainer>
+      
+      <TableContainer component={Paper} sx={{ boxShadow: 1, marginBottom: 2 }}>
+                <Table>
+                    <TableBody>
+                        <TableRow>
+                            <TableCell sx={{ verticalAlign: 'top' }}>
+                                <Typography variant="h6" sx={{ fontSize: '1rem', fontWeight: 'bold', color: 'black' }}>Try</Typography>
+                                <ul>
+                                    <li>Explaining the disease process to your children in a way they will understand.</li>
+                                    <li>Making time for your children.</li>
+                                    <li>Listening to your children’s fears or concerns.</li>
+                                    <li>Being honest with your children about the changes happening in your home.</li>
+                                    <li>Letting your child know their feelings are normal.</li>
+                                </ul>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell sx={{ verticalAlign: 'top' }}>
+                                <Typography variant="h6" sx={{ fontSize: '1rem', fontWeight: 'bold', color: 'black' }}>Avoid</Typography>
+                                <ul>
+                                    <li>Pushing your child to interact with the person if they are uncomfortable.</li>
+                                </ul>
+                            </TableCell>
+                        </TableRow>
+                    </TableBody>
+                </Table>
+            </TableContainer>
       <Typography
         sx={{ mt: 2, mb: 2, fontSize: "0.875rem", textAlign: "center" }}
       ></Typography>

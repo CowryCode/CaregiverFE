@@ -57,11 +57,11 @@ const Page2 = () => {
                 </IconButton>
             </Box>
             <Typography variant="h6" sx={{ mb: 2, fontSize: '1rem' }}>Page 2 of 2</Typography>
-            <TableContainer component={Paper} sx={{ boxShadow: 1 }}>
+            <TableContainer component={Paper} sx={{ boxShadow: 1, marginBottom: 2 }}>
                 <Table>
                     <TableBody>
                         <TableRow>
-                            <TableCell sx={{ width: '50%', verticalAlign: 'top', borderRight: '2px solid black' }}>
+                            <TableCell sx={{ verticalAlign: 'top' }}>
                                 <Typography variant="h6" sx={{ fontSize: '1rem', fontWeight: 'bold', color: 'black' }}>Try</Typography>
                                 <ul>
                                     <li>Creating 'to-do lists'. Put the most important items at the top of the list and attend to those items first.</li>
@@ -73,7 +73,9 @@ const Page2 = () => {
                                     <li>Scheduling time for yourself.</li>
                                 </ul>
                             </TableCell>
-                            <TableCell sx={{ width: '50%', verticalAlign: 'top' }}>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell sx={{ verticalAlign: 'top' }}>
                                 <Typography variant="h6" sx={{ fontSize: '1rem', fontWeight: 'bold', color: 'black' }}>Avoid</Typography>
                                 <ul>
                                     <li>Trying to maintain a perfect home.</li>

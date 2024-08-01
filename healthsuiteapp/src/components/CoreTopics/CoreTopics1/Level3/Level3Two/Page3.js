@@ -21,14 +21,13 @@ const Page3 = () => {
     const pageId = 'CoreTopics1_Level3_Level3Two_Page3'; // Unique identifier for this page
     const [isBookmarked, setIsBookmarked] = useState(false);
 
-    // Check if the page is in the wishlist on component mount and update state
     useEffect(() => {
         const wishlist = getWishlist();
         setIsBookmarked(wishlist.includes(pageId));
     }, []);
 
     const handlePrevious = () => {
-        navigate('/library/core-topic1/level3/level3two/page2'); // Adjust this path based on your routing structure
+        navigate('/library/core-topic1/level3/level3two/page2'); 
     };
 
     const handleNext = () => {
@@ -52,7 +51,7 @@ const Page3 = () => {
             flexDirection: 'column',
             minHeight: '100vh',
             justifyContent: 'space-between',
-            backgroundColor: '#f3f3f3' // Adjust the background color as needed
+            backgroundColor: '#f3f3f3'
         }}>
             <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <Typography variant="h4" sx={{ mb: 1, textAlign: 'center', color: '#007FFF' }}>Level 3.2: Anxiety</Typography>
@@ -61,11 +60,11 @@ const Page3 = () => {
                 </IconButton>
             </Box>
             <Typography variant="h6" sx={{ mb: 2, fontSize: '1rem' }}>Page 3 of 3</Typography>
-            <TableContainer component={Paper} sx={{ boxShadow: 1 }}>
+            <TableContainer component={Paper} sx={{ boxShadow: 1, marginBottom: 2 }}>
                 <Table>
                     <TableBody>
                         <TableRow>
-                            <TableCell sx={{ width: '50%', verticalAlign: 'top', borderRight: '2px solid black' }}>
+                            <TableCell sx={{ verticalAlign: 'top' }}>
                                 <Typography variant="h6" sx={{ fontSize: '1rem', fontWeight: 'bold', color: 'black' }}>Try</Typography>
                                 <ul>
                                     <li>Taking a few deep breaths to center yourself.</li>
@@ -78,7 +77,9 @@ const Page3 = () => {
                                     <li>Speaking with your family physician if symptoms persist.</li>
                                 </ul>
                             </TableCell>
-                            <TableCell sx={{ width: '50%', verticalAlign: 'top' }}>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell sx={{ verticalAlign: 'top' }}>
                                 <Typography variant="h6" sx={{ fontSize: '1rem', fontWeight: 'bold', color: 'black' }}>Avoid</Typography>
                                 <ul>
                                     <li>Isolating yourself from friends or family.</li>

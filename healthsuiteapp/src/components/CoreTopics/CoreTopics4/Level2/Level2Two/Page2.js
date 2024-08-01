@@ -21,18 +21,17 @@ const Page2 = () => {
     const pageId = 'CoreTopics4_Level2_Level2Two_Page2'; // Unique identifier for this page
     const [isBookmarked, setIsBookmarked] = useState(false);
 
-    // Check if the page is in the wishlist on component mount and update state
     useEffect(() => {
         const wishlist = getWishlist();
         setIsBookmarked(wishlist.includes(pageId));
     }, []);
 
     const handlePrevious = () => {
-        navigate('/library/core-topic4/level2/level2two/page1'); // Adjust this path to point to the previous page
+        navigate('/library/core-topic4/level2/level2two/page1');
     };
 
     const handleNext = () => {
-        navigate('/library/core-topic4/level2/level2three/page1'); // Adjust this path to point to the next page, if exists
+        navigate('/library/core-topic4/level2/level2three/page1');
     };
 
     const handleBookmark = () => {
@@ -52,20 +51,20 @@ const Page2 = () => {
             flexDirection: 'column',
             minHeight: '100vh',
             justifyContent: 'space-between',
-            backgroundColor: '#f3f3f3' // Adjust the background color as needed
+            backgroundColor: '#f3f3f3'
         }}>
             <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                <Typography variant="h4" sx={{ mb: 1, textAlign: 'center', color: '#007FFF' }}>Level 2.2: Communication: Middle Stage Dementia</Typography>
+                <Typography variant="h4" sx={{ mb: 1, textAlign: 'center', color: '#007FFF' }}>Level 1.5: Sibling Tension</Typography>
                 <IconButton onClick={handleBookmark} aria-label="add to wishlist">
                     {isBookmarked ? <BookmarkIcon /> : <BookmarkBorderIcon />}
                 </IconButton>
             </Box>
-            <Typography variant="h6" sx={{ mb: 2, fontSize: '1rem' }}>Page 2 of 2</Typography>
-            <TableContainer component={Paper} sx={{ boxShadow: 1 }}>
+            <Typography variant="h6" sx={{ mb: 2, fontSize: '1rem' }}>Page 2 of 3</Typography>
+            <TableContainer component={Paper} sx={{ boxShadow: 1, marginBottom: 2 }}>
                 <Table>
                     <TableBody>
                         <TableRow>
-                            <TableCell sx={{ width: '50%', verticalAlign: 'top', borderRight: '2px solid black' }}>
+                            <TableCell sx={{ verticalAlign: 'top' }}>
                                 <Typography variant="h6" sx={{ fontSize: '1rem', fontWeight: 'bold', color: 'black' }}>Try</Typography>
                                 <ul>
                                     <li>Engaging in a one-to-one conversation.</li>
@@ -76,13 +75,17 @@ const Page2 = () => {
                                     <li>Limiting questions to one at a time.</li>
                                     <li>Using visual cues or written notes.</li>
                                 </ul>
+
                             </TableCell>
-                            <TableCell sx={{ width: '50%', verticalAlign: 'top' }}>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell sx={{ verticalAlign: 'top' }}>
                                 <Typography variant="h6" sx={{ fontSize: '1rem', fontWeight: 'bold', color: 'black' }}>Avoid</Typography>
                                 <ul>
                                     <li>Arguing with the person.</li>
                                     <li>Correcting or criticizing the person.</li>
                                 </ul>
+
                             </TableCell>
                         </TableRow>
                     </TableBody>

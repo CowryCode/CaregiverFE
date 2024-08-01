@@ -53,12 +53,11 @@ const CoreTopics4_Level1_Level1Five_Page2 = () => {
                     {isBookmarked ? <BookmarkIcon /> : <BookmarkBorderIcon />}
                 </IconButton>
             </Box>
-            <Typography variant="h6" sx={{ mb: 2, fontSize: '1rem' }}>Page 2 of 3</Typography>
-            <TableContainer component={Paper} sx={{ boxShadow: 1 }}>
+            <TableContainer component={Paper} sx={{ boxShadow: 1, marginBottom: 2 }}>
                 <Table>
                     <TableBody>
                         <TableRow>
-                            <TableCell sx={{ width: '50%', verticalAlign: 'top', borderRight: '2px solid black' }}>
+                            <TableCell sx={{ verticalAlign: 'top' }}>
                                 <Typography variant="h6" sx={{ fontSize: '1rem', fontWeight: 'bold', color: 'black' }}>Try</Typography>
                                 <ul>
                                     <li>Recognizing that your siblings’ relationship with your parent may be different from your own.</li>
@@ -68,7 +67,9 @@ const CoreTopics4_Level1_Level1Five_Page2 = () => {
                                     <li>Being empathetic and trying to imagine their pain or fear that may be causing the tensions.</li>
                                 </ul>
                             </TableCell>
-                            <TableCell sx={{ width: '50%', verticalAlign: 'top' }}>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell sx={{ verticalAlign: 'top' }}>
                                 <Typography variant="h6" sx={{ fontSize: '1rem', fontWeight: 'bold', color: 'black' }}>Avoid</Typography>
                                 <ul>
                                     <li>Excusing negative behavior.</li>

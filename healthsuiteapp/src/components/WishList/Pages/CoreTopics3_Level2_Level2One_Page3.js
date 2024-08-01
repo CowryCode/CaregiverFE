@@ -69,67 +69,36 @@ const CoreTopics3_Level2_Level2One_Page3 = () => {
       <Typography variant="h6" sx={{ mb: 2, fontSize: "1rem" }}>
         {/* Page 3 of 3 */}
       </Typography>
-      <TableContainer component={Paper} sx={{ boxShadow: 1 }}>
-        <Table>
-          <TableBody>
-            <TableRow>
-              <TableCell
-                sx={{
-                  width: "50%",
-                  verticalAlign: "top",
-                  borderRight: "2px solid black",
-                }}
-              >
-                <Typography
-                  variant="h6"
-                  sx={{ fontSize: "1rem", fontWeight: "bold", color: "black" }}
-                >
-                  Try
-                </Typography>
-                <ul>
-                  <li>
-                    Addressing potential causes such as pain, hunger, or the
-                    need to use the toilet.
-                  </li>
-                  <li>Providing a calming environment.</li>
-                  <li>Turning on a lamp or overhead light to limit shadows.</li>
-                  <li>
-                    Setting and maintaining familiar routines and schedules.
-                  </li>
-                  <li>
-                    Engaging the person in activities when this behavior
-                    typically happens.
-                  </li>
-                  <li>
-                    Providing exposure to natural or artificial light in the
-                    early/late morning.
-                  </li>
-                </ul>
-              </TableCell>
-              <TableCell sx={{ width: "50%", verticalAlign: "top" }}>
-                <Typography
-                  variant="h6"
-                  sx={{ fontSize: "1rem", fontWeight: "bold", color: "black" }}
-                >
-                  Avoid
-                </Typography>
-                <ul>
-                  <li>Over-stimulation such as loud background noises.</li>
-                  <li>
-                    Stressful activities such as bathing and appointments in the
-                    late afternoon.
-                  </li>
-                  <li>Extended napping during the day.</li>
-                  <li>
-                    Providing the person with large amounts of caffeine and
-                    sugar in the morning.
-                  </li>
-                </ul>
-              </TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </TableContainer>
+      <TableContainer component={Paper} sx={{ boxShadow: 1, marginBottom: 2 }}>
+                <Table>
+                    <TableBody>
+                        <TableRow>
+                            <TableCell sx={{ verticalAlign: 'top' }}>
+                                <Typography variant="h6" sx={{ fontSize: '1rem', fontWeight: 'bold', color: 'black' }}>Try</Typography>
+                                <ul>
+                                    <li>Addressing potential causes such as pain, hunger, or the need to use the toilet.</li>
+                                    <li>Providing a calming environment.</li>
+                                    <li>Turning on a lamp or overhead light to limit shadows.</li>
+                                    <li>Setting and maintaining familiar routines and schedules.</li>
+                                    <li>Engaging the person in activities when this behavior typically happens.</li>
+                                    <li>Providing exposure to natural or artificial light in the early/late morning.</li>
+                                </ul>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell sx={{ verticalAlign: 'top' }}>
+                                <Typography variant="h6" sx={{ fontSize: '1rem', fontWeight: 'bold', color: 'black' }}>Avoid</Typography>
+                                <ul>
+                                    <li>Over-stimulation such as loud background noises.</li>
+                                    <li>Stressful activities such as bathing and appointments in the late afternoon.</li>
+                                    <li>Extended napping during the day.</li>
+                                    <li>Providing the person with large amounts of caffeine and sugar in the morning.</li>
+                                </ul>
+                            </TableCell>
+                        </TableRow>
+                    </TableBody>
+                </Table>
+            </TableContainer>
 
       <Typography
         sx={{ mt: 2, mb: 2, fontSize: "0.875rem", textAlign: "center" }}

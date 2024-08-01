@@ -17,7 +17,7 @@ import UserTable from './components/UserTable/UserTable';
 import ReferralCodeValidation from './components/ReferralCodeValidation/ReferralCodeValidation';
 import NeedAssessmentForm from './components/NeedAssessmentForm/NeedAssessmentForm';
 import CoreTopics from './components/CoreTopics/CoreTopics';
-import ConsentForm from './components/consent/ConsentForm';
+import ConsentForm from './components/consent/index';
 
 function App() {
   return (
@@ -28,7 +28,7 @@ function App() {
         {/* <Route path="/form1" element={<Form1 />} /> */}
         <Route path="/eligibility-form" element={<EligibilityForm />} />
          {/* TODO: CONSENT FORM NEED TO BE CREATED */}
-         <Route path="/consent-form" element={<ConsentForm />} />
+         <Route path="/consent-form/*" element={<ConsentForm />} />
          <Route path="/registration" element={<Registration />} />
         <Route path="/login" element={<Login />} />
         <Route path="/baseline-questionnaire-f1" element={<BaselineQuestionnaireF1 />} />

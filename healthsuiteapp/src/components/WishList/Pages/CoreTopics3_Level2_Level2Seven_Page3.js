@@ -68,64 +68,36 @@ const CoreTopics3_Level2_Level2Seven_Page3 = () => {
       <Typography variant="h6" sx={{ mb: 2, fontSize: "1rem" }}>
         {/* Page 3 of 3 */}
       </Typography>
-      <TableContainer component={Paper} sx={{ boxShadow: 1 }}>
-        <Table>
-          <TableBody>
-            <TableRow>
-              <TableCell
-                sx={{
-                  width: "50%",
-                  verticalAlign: "top",
-                  borderRight: "2px solid black",
-                }}
-              >
-                <Typography
-                  variant="h6"
-                  sx={{ fontSize: "1rem", fontWeight: "bold", color: "black" }}
-                >
-                  Try
-                </Typography>
-                <ul>
-                  <li>
-                    Creating spaces and providing items to safely support the
-                    behaviors, such as an old side table, chest of drawers, etc.
-                  </li>
-                  <li>Reminding the person where their valuables are kept.</li>
-                  <li>Helping look for lost items.</li>
-                  <li>
-                    Monitoring where the person hides items; check these places
-                    often for perishables and dispose of them.
-                  </li>
-                  <li>Locking up dangerous goods/items.</li>
-                  <li>Removing expired food from the cupboards and fridge.</li>
-                  <li>
-                    Securing valuable items which could be hidden or misplaced
-                    by the person.
-                  </li>
-                  <li>
-                    Keeping trash locked away and checking bins before emptying.
-                  </li>
-                </ul>
-              </TableCell>
-              <TableCell sx={{ width: "50%", verticalAlign: "top" }}>
-                <Typography
-                  variant="h6"
-                  sx={{ fontSize: "1rem", fontWeight: "bold", color: "black" }}
-                >
-                  Avoid
-                </Typography>
-                <ul>
-                  <li>Leaving valuable items or important documents out.</li>
-                  <li>
-                    Getting angry or frustrated with the person when/if things
-                    are misplaced.
-                  </li>
-                </ul>
-              </TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </TableContainer>
+      <TableContainer component={Paper} sx={{ boxShadow: 1, marginBottom: 2 }}>
+                <Table>
+                    <TableBody>
+                        <TableRow>
+                            <TableCell sx={{ verticalAlign: 'top' }}>
+                                <Typography variant="h6" sx={{ fontSize: '1rem', fontWeight: 'bold', color: 'black' }}>Try</Typography>
+                                <ul>
+                                    <li>Creating spaces and providing items to safely support the behaviors, such as an old side table, chest of drawers, etc.</li>
+                                    <li>Reminding the person where their valuables are kept.</li>
+                                    <li>Helping look for lost items.</li>
+                                    <li>Monitoring where the person hides items; check these places often for perishables and dispose of them.</li>
+                                    <li>Locking up dangerous goods/items.</li>
+                                    <li>Removing expired food from the cupboards and fridge.</li>
+                                    <li>Securing valuable items which could be hidden or misplaced by the person.</li>
+                                    <li>Keeping trash locked away and checking bins before emptying.</li>
+                                </ul>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell sx={{ verticalAlign: 'top' }}>
+                                <Typography variant="h6" sx={{ fontSize: '1rem', fontWeight: 'bold', color: 'black' }}>Avoid</Typography>
+                                <ul>
+                                    <li>Leaving valuable items or important documents out.</li>
+                                    <li>Getting angry or frustrated with the person when/if things are misplaced.</li>
+                                </ul>
+                            </TableCell>
+                        </TableRow>
+                    </TableBody>
+                </Table>
+            </TableContainer>
       <Typography
         sx={{ mt: 2, mb: 2, fontSize: "0.875rem", textAlign: "center" }}
       ></Typography>

@@ -57,50 +57,36 @@ const CoreTopics1_Level2_Level2One_Page2 = () => {
         </IconButton>
       </Box>
 
-      <TableContainer component={Paper} sx={{ boxShadow: 1 }}>
-        <Table>
-          <TableBody>
-            <TableRow>
-              <TableCell sx={{
-                width: '50%',
-                verticalAlign: 'top',
-                borderRight: '2px solid black'
-              }}>
-                <Typography variant="h6" sx={{
-                  fontSize: '1rem',
-                  fontWeight: 'bold',
-                  color: 'black'
-                }}>
-                  Try
-                </Typography>
-                <ul>
-                  <li>Setting aside scheduled time to exercise.</li>
-                  <li>Doing stretches or watching an exercise video while the person is resting.</li>
-                  <li>Being active with the person you are caring for.</li>
-                  <li>Sharing your caregiving responsibilities with family or friends.</li>
-                  <li>Accessing formal supports such as adult day programs or companionship.</li>
-                  <li>Signing up for a weekly exercise class at your local recreation or community center.</li>
-                  <li>Exercising with a friend.</li>
-                </ul>
-              </TableCell>
-              <TableCell sx={{ width: '50%', verticalAlign: 'top' }}>
-                <Typography variant="h6" sx={{
-                  fontSize: '1rem',
-                  fontWeight: 'bold',
-                  color: 'black'
-                }}>
-                  Avoid
-                </Typography>
-                <ul>
-                  <li>Feeling guilty if you are having difficulty finding time to exercise.</li>
-                  <li>Pushing yourself too hard when you exercise; can increase your risk of straining muscles or harming yourself.</li>
-                  <li>Activities that will leave you feeling sore and exhausted afterward.</li>
-                </ul>
-              </TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </TableContainer>
+      <TableContainer component={Paper} sx={{ boxShadow: 1, marginBottom: 2 }}>
+                <Table>
+                    <TableBody>
+                        <TableRow>
+                            <TableCell sx={{ verticalAlign: 'top' }}>
+                                <Typography variant="h6" sx={{ fontSize: '1rem', fontWeight: 'bold', color: 'black' }}>Try</Typography>
+                                <ul>
+                                    <li>Setting aside scheduled time to exercise.</li>
+                                    <li>Doing stretches or watching an exercise video while the person is resting.</li>
+                                    <li>Being active with the person you are caring for.</li>
+                                    <li>Sharing your caregiving responsibilities with family or friends.</li>
+                                    <li>Accessing formal supports such as adult day programs or companionship.</li>
+                                    <li>Signing up for a weekly exercise class at your local recreation or community center.</li>
+                                    <li>Exercising with a friend.</li>
+                                </ul>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell sx={{ verticalAlign: 'top' }}>
+                                <Typography variant="h6" sx={{ fontSize: '1rem', fontWeight: 'bold', color: 'black' }}>Avoid</Typography>
+                                <ul>
+                                    <li>Feeling guilty if you are having difficulty finding time to exercise.</li>
+                                    <li>Pushing yourself too hard when you exercise; can increase your risk of straining muscles or harming yourself.</li>
+                                    <li>Activities that will leave you feeling sore and exhausted afterward.</li>
+                                </ul>
+                            </TableCell>
+                        </TableRow>
+                    </TableBody>
+                </Table>
+            </TableContainer>
       <Typography sx={{ mt: 2, fontSize: '0.875rem', textAlign: 'center' }}>
         
       </Typography>
