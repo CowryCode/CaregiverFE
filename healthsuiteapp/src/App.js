@@ -18,10 +18,13 @@ import ReferralCodeValidation from './components/ReferralCodeValidation/Referral
 import NeedAssessmentForm from './components/NeedAssessmentForm/NeedAssessmentForm';
 import CoreTopics from './components/CoreTopics/CoreTopics';
 import ConsentForm from './components/consent/ConsentForm';
+import WebSocketComponent from './components/notification/WebSocketComponent';
+
 
 function App() {
   return (
     <Router>
+      <WebSocketComponent />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/referral-code-validation" element={<ReferralCodeValidation />} />
