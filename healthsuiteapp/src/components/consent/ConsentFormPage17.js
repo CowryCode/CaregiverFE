@@ -6,7 +6,8 @@ import {
   Typography,
   FormGroup,
   FormControlLabel,
-  Checkbox,
+  Radio,
+  RadioGroup,
   Dialog,
   DialogActions,
   DialogContent,
@@ -17,24 +18,25 @@ import {
 const ConsentFormPage17 = () => {
   const navigate = useNavigate();
   const [participation, setParticipation] = useState('');
-  const [openDialog, setOpenDialog] = useState(false);
 
   const handleParticipationChange = (event) => {
-    setParticipation(event.target.checked ? event.target.value : '');
+    setParticipation(event.target.value);
   };
 
   const handleContinue = () => {
     if (participation === 'agree') {
-      navigate('/consent-form/consentform-page18'); // specify the next page route here if they agree to participate
+      navigate('/consent-form/consentform-page18');
     } else {
       setOpenDialog(true);
     }
   };
 
+  const [openDialog, setOpenDialog] = useState(false);
+
   const handleCloseDialog = (confirmExit) => {
     setOpenDialog(false);
     if (confirmExit) {
-      navigate('/'); // specify the exit route here if they do not want to participate
+      navigate('/');
     }
   };
 
@@ -60,14 +62,14 @@ const ConsentFormPage17 = () => {
           If you would like to speak to a member of the Research Team about this Consent Form or ask questions about the study before you decide to take part, please click the Contact Us button or call toll-free: [1-877-341-8309 ext 5- Monday to Friday 10:00 am – 5:00 pm Atlantic Time].
         </Typography>
         <FormGroup>
-          <FormControlLabel
-            control={<Checkbox onChange={handleParticipationChange} value="agree" />}
-            label="I would like to participate."
-          />
-          <FormControlLabel
-            control={<Checkbox onChange={handleParticipationChange} value="disagree" />}
-            label="I am not interested in participating."
-          />
+          <RadioGroup
+            name="participation"
+            value={participation}
+            onChange={handleParticipationChange}
+          >
+            <FormControlLabel value="agree" control={<Radio />} label="I would like to participate." />
+            <FormControlLabel value="disagree" control={<Radio />} label="I am not interested in participating." />
+          </RadioGroup>
         </FormGroup>
         <Button
           variant="outlined"
