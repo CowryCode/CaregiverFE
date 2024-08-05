@@ -65,68 +65,40 @@ const CoreTopics3_Level2_Level2Four_Page3 = () => {
           {isBookmarked ? <BookmarkIcon /> : <BookmarkBorderIcon />}
         </IconButton>
       </Box>
-      <Typography variant="h6" sx={{ mb: 2, fontSize: "1rem" }}>
-        Page 3 of 3
-      </Typography>
-      <TableContainer component={Paper} sx={{ boxShadow: 1 }}>
-        <Table>
-          <TableBody>
-            <TableRow>
-              <TableCell
-                sx={{
-                  width: "50%",
-                  verticalAlign: "top",
-                  borderRight: "2px solid black",
-                }}
-              >
-                <Typography
-                  variant="h6"
-                  sx={{ fontSize: "1rem", fontWeight: "bold", color: "black" }}
-                >
-                  Try
-                </Typography>
-                <ul>
-                  <li>Determining what the person is trying to express.</li>
-                  <li>Determining why the person wants to go home.</li>
-                  <li>Distracting the person with an activity.</li>
-                  <li>
-                    Removing objects from the environment that may remind the
-                    person to go home, such as shoes, jackets, purses, etc.
-                  </li>
-                  <li>Reassuring the person.</li>
-                  <li>
-                    Giving the person an incentive to stay, such as a cup of
-                    coffee or a snack.
-                  </li>
-                  <li>Providing a safe space for wandering or pacing.</li>
-                </ul>
-              </TableCell>
-              <TableCell sx={{ width: "50%", verticalAlign: "top" }}>
-                <Typography
-                  variant="h6"
-                  sx={{ fontSize: "1rem", fontWeight: "bold", color: "black" }}
-                >
-                  Avoid
-                </Typography>
-                <ul>
-                  <li>
-                    Contradicting the person and their wish to go home or find
-                    someone.
-                  </li>
-                  <li>Prohibiting them from wandering or pacing.</li>
-                  <li>
-                    Overstimulating environments such as clutter, noise, large
-                    groups of people, etc.
-                  </li>
-                  <li>Using a loud voice.</li>
-                  <li>Being authoritative.</li>
-                  <li>Rushing the person.</li>
-                </ul>
-              </TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </TableContainer>
+      
+      <TableContainer component={Paper} sx={{ boxShadow: 1, marginBottom: 2 }}>
+                <Table>
+                    <TableBody>
+                        <TableRow>
+                            <TableCell sx={{ verticalAlign: 'top' }}>
+                                <Typography variant="h6" sx={{ fontSize: '1rem', fontWeight: 'bold', color: 'black' }}>Try</Typography>
+                                <ul>
+                                    <li>Determining what the person is trying to express.</li>
+                                    <li>Determining why the person wants to go home.</li>
+                                    <li>Distracting the person with an activity.</li>
+                                    <li>Removing objects from the environment that may remind the person to go home, such as shoes, jackets, purses, etc.</li>
+                                    <li>Reassuring the person.</li>
+                                    <li>Giving the person an incentive to stay, such as a cup of coffee or a snack.</li>
+                                    <li>Providing a safe space for wandering or pacing.</li>
+                                </ul>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell sx={{ verticalAlign: 'top' }}>
+                                <Typography variant="h6" sx={{ fontSize: '1rem', fontWeight: 'bold', color: 'black' }}>Avoid</Typography>
+                                <ul>
+                                    <li>Contradicting the person and their wish to go home or find someone.</li>
+                                    <li>Prohibiting them from wandering or pacing.</li>
+                                    <li>Overstimulating environments such as clutter, noise, large groups of people, etc.</li>
+                                    <li>Using a loud voice.</li>
+                                    <li>Being authoritative.</li>
+                                    <li>Rushing the person.</li>
+                                </ul>
+                            </TableCell>
+                        </TableRow>
+                    </TableBody>
+                </Table>
+            </TableContainer>
 
       <Typography
         sx={{ mt: 2, mb: 2, fontSize: "0.875rem", textAlign: "center" }}

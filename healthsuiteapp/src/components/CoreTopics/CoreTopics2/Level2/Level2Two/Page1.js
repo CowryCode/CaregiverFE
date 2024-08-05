@@ -21,7 +21,6 @@ const Page1 = () => {
     const pageId = 'CoreTopics2_Level2_Level2Two_Page1'; // Unique identifier for this page
     const [isBookmarked, setIsBookmarked] = useState(false);
 
-    // Check if the page is in the wishlist on component mount and update state
     useEffect(() => {
         const wishlist = getWishlist();
         setIsBookmarked(wishlist.includes(pageId));
@@ -61,11 +60,11 @@ const Page1 = () => {
                 </IconButton>
             </Box>
             <Typography variant="h6" sx={{ mb: 2, fontSize: '1rem' }}>Page 1 of 1</Typography>
-            <TableContainer component={Paper} sx={{ boxShadow: 1 }}>
+            <TableContainer component={Paper} sx={{ boxShadow: 1, marginBottom: 2 }}>
                 <Table>
                     <TableBody>
                         <TableRow>
-                            <TableCell sx={{ width: '50%', verticalAlign: 'top', borderRight: '2px solid black' }}>
+                            <TableCell sx={{ verticalAlign: 'top' }}>
                                 <Typography variant="h6" sx={{ fontSize: '1rem', fontWeight: 'bold', color: 'black' }}>Try</Typography>
                                 <ul>
                                     <li>Making a list of what it is you wish to share or discuss.</li>
@@ -76,7 +75,9 @@ const Page1 = () => {
                                     <li>Asking questions; everyone’s caregiving experiences are different.</li>
                                 </ul>
                             </TableCell>
-                            <TableCell sx={{ width: '50%', verticalAlign: 'top' }}>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell sx={{ verticalAlign: 'top' }}>
                                 <Typography variant="h6" sx={{ fontSize: '1rem', fontWeight: 'bold', color: 'black' }}>Avoid</Typography>
                                 <ul>
                                     <li>Internalizing your feelings.</li>

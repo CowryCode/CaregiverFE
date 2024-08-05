@@ -65,20 +65,12 @@ const CoreTopics2_Level2_Level2Two_Page1 = () => {
           {isBookmarked ? <BookmarkIcon /> : <BookmarkBorderIcon />}
         </IconButton>
       </Box>
-      <Typography variant="h6" sx={{ mb: 2, fontSize: "1rem" }}>
-        Page 1 of 1
-      </Typography>
-      <TableContainer component={Paper} sx={{ boxShadow: 1 }}>
+
+      <TableContainer component={Paper} sx={{ boxShadow: 1, marginBottom: 2 }}>
         <Table>
           <TableBody>
             <TableRow>
-              <TableCell
-                sx={{
-                  width: "50%",
-                  verticalAlign: "top",
-                  borderRight: "2px solid black",
-                }}
-              >
+              <TableCell sx={{ verticalAlign: "top" }}>
                 <Typography
                   variant="h6"
                   sx={{ fontSize: "1rem", fontWeight: "bold", color: "black" }}
@@ -102,7 +94,9 @@ const CoreTopics2_Level2_Level2Two_Page1 = () => {
                   </li>
                 </ul>
               </TableCell>
-              <TableCell sx={{ width: "50%", verticalAlign: "top" }}>
+            </TableRow>
+            <TableRow>
+              <TableCell sx={{ verticalAlign: "top" }}>
                 <Typography
                   variant="h6"
                   sx={{ fontSize: "1rem", fontWeight: "bold", color: "black" }}

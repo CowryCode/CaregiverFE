@@ -67,59 +67,35 @@ const CoreTopics4_Level1_Level1Two_Page2 = () => {
         </IconButton>
       </Box>
       <Typography variant="h6" sx={{ mb: 2, fontSize: "1rem" }}>
-        Page 2 of 3
+        {/* Page 2 of 3 */}
       </Typography>
-      <TableContainer component={Paper} sx={{ boxShadow: 1 }}>
-        <Table>
-          <TableBody>
-            <TableRow>
-              <TableCell
-                sx={{
-                  width: "50%",
-                  verticalAlign: "top",
-                  borderRight: "2px solid black",
-                }}
-              >
-                <Typography
-                  variant="h6"
-                  sx={{ fontSize: "1rem", fontWeight: "bold", color: "black" }}
-                >
-                  Try
-                </Typography>
-                <ul>
-                  <li>Accepting help when it is offered to you.</li>
-                  <li>Sharing your caregiving responsibilities with others.</li>
-                  <li>
-                    Making a prioritized list of the things you need help with.
-                  </li>
-                </ul>
-              </TableCell>
-              <TableCell sx={{ width: "50%", verticalAlign: "top" }}>
-                <Typography
-                  variant="h6"
-                  sx={{ fontSize: "1rem", fontWeight: "bold", color: "black" }}
-                >
-                  Avoid
-                </Typography>
-                <ul>
-                  <li>Refusing help when it is offered.</li>
-                  <li>
-                    Feeling that you are burdening others by accepting their
-                    help.
-                  </li>
-                  <li>
-                    Waiting until you are exhausted and overwhelmed to accept
-                    help.
-                  </li>
-                  <li>
-                    Feeling like you have let down the person by accepting help.
-                  </li>
-                </ul>
-              </TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </TableContainer>
+      <TableContainer component={Paper} sx={{ boxShadow: 1, marginBottom: 2 }}>
+                <Table>
+                    <TableBody>
+                        <TableRow>
+                            <TableCell sx={{ verticalAlign: 'top' }}>
+                                <Typography variant="h6" sx={{ fontSize: '1rem', fontWeight: 'bold', color: 'black' }}>Try</Typography>
+                                <ul>
+                                    <li>Accepting help when it is offered to you.</li>
+                                    <li>Sharing your caregiving responsibilities with others.</li>
+                                    <li>Making a prioritized list of the things you need help with.</li>
+                                </ul>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell sx={{ verticalAlign: 'top' }}>
+                                <Typography variant="h6" sx={{ fontSize: '1rem', fontWeight: 'bold', color: 'black' }}>Avoid</Typography>
+                                <ul>
+                                    <li>Refusing help when it is offered.</li>
+                                    <li>Feeling that you are burdening others by accepting their help.</li>
+                                    <li>Waiting until you are exhausted and overwhelmed to accept help.</li>
+                                    <li>Feeling like you have let down the person by accepting help.</li>
+                                </ul>
+                            </TableCell>
+                        </TableRow>
+                    </TableBody>
+                </Table>
+            </TableContainer>
       <Typography
         sx={{ mt: 2, mb: 2, fontSize: "0.875rem", textAlign: "center" }}
       ></Typography>

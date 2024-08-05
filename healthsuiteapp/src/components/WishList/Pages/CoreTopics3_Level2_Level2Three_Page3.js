@@ -65,78 +65,39 @@ const CoreTopics3_Level2_Level2Three_Page3 = () => {
           {isBookmarked ? <BookmarkIcon /> : <BookmarkBorderIcon />}
         </IconButton>
       </Box>
-      <Typography variant="h6" sx={{ mb: 2, fontSize: "1rem" }}>
-        Page 3 of 3
-      </Typography>
-      <TableContainer component={Paper} sx={{ boxShadow: 1 }}>
-        <Table>
-          <TableBody>
-            <TableRow>
-              <TableCell
-                sx={{
-                  width: "50%",
-                  verticalAlign: "top",
-                  borderRight: "2px solid black",
-                }}
-              >
-                <Typography
-                  variant="h6"
-                  sx={{ fontSize: "1rem", fontWeight: "bold", color: "black" }}
-                >
-                  Try
-                </Typography>
-                <ul>
-                  <li>
-                    Maintaining the person's normal sleeping and eating
-                    patterns.
-                  </li>
-                  <li>
-                    Providing engaging activities throughout the day and
-                    spending time in the sun.
-                  </li>
-                  <li>
-                    Reminding the person that it is late and redirecting them
-                    back to bed.
-                  </li>
-                  <li>
-                    Keeping the bedroom dark at night and reducing noise levels.
-                  </li>
-                  <li>Journaling to track sleeping habits or trends.</li>
-                  <li>
-                    Checking whether incontinence aids fit properly and are
-                    appropriate for nighttime use.
-                  </li>
-                </ul>
-              </TableCell>
-              <TableCell sx={{ width: "50%", verticalAlign: "top" }}>
-                <Typography
-                  variant="h6"
-                  sx={{ fontSize: "1rem", fontWeight: "bold", color: "black" }}
-                >
-                  Avoid
-                </Typography>
-                <ul>
-                  <li>Providing the person with large meals before bed.</li>
-                  <li>Permitting the person to nap in the afternoon.</li>
-                  <li>Permitting the person to nap longer than one hour.</li>
-                  <li>
-                    Having upsetting conversations with the person in the
-                    evenings.
-                  </li>
-                  <li>
-                    Providing the person with caffeine, liquid and alcohol
-                    intake before bedtime.
-                  </li>
-                  <li>
-                    Allowing the person to lie in bed awake at night. If they
-                    can’t sleep, redirect them to a chair or the couch.
-                  </li>
-                </ul>
-              </TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </TableContainer>
+      
+      <TableContainer component={Paper} sx={{ boxShadow: 1, marginBottom: 2 }}>
+                <Table>
+                    <TableBody>
+                        <TableRow>
+                            <TableCell sx={{ verticalAlign: 'top' }}>
+                                <Typography variant="h6" sx={{ fontSize: '1rem', fontWeight: 'bold', color: 'black' }}>Try</Typography>
+                                <ul>
+                                    <li>Maintaining the person's normal sleeping and eating patterns.</li>
+                                    <li>Providing engaging activities throughout the day and spending time in the sun.</li>
+                                    <li>Reminding the person that it is late and redirecting them back to bed.</li>
+                                    <li>Keeping the bedroom dark at night and reducing noise levels.</li>
+                                    <li>Journaling to track sleeping habits or trends.</li>
+                                    <li>Checking whether incontinence aids fit properly and are appropriate for nighttime use.</li>
+                                </ul>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell sx={{ verticalAlign: 'top' }}>
+                                <Typography variant="h6" sx={{ fontSize: '1rem', fontWeight: 'bold', color: 'black' }}>Avoid</Typography>
+                                <ul>
+                                    <li>Providing the person with large meals before bed.</li>
+                                    <li>Permitting the person to nap in the afternoon.</li>
+                                    <li>Permitting the person to nap longer than one hour.</li>
+                                    <li>Having upsetting conversations with the person in the evenings.</li>
+                                    <li>Providing the person with caffeine, liquid and alcohol intake before bedtime.</li>
+                                    <li>Allowing the person to lie in bed awake at night. If they can’t sleep, redirect them to a chair or the couch.</li>
+                                </ul>
+                            </TableCell>
+                        </TableRow>
+                    </TableBody>
+                </Table>
+            </TableContainer>
 
       <Typography
         sx={{ mt: 2, mb: 2, fontSize: "0.875rem", textAlign: "center" }}

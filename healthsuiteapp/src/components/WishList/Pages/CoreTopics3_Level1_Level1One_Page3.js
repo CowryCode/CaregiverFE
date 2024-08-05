@@ -66,53 +66,35 @@ const CoreTopics3_Level1_Level1One_Page3 = () => {
           {isBookmarked ? <BookmarkIcon /> : <BookmarkBorderIcon />}
         </IconButton>
       </Box>
-      <Typography variant="h6" sx={{ mb: 2, fontSize: "1rem" }}>
-        Page 3 of 3
-      </Typography>
-      <TableContainer component={Paper} sx={{ boxShadow: 1 }}>
-        <Table>
-          <TableBody>
-            <TableRow>
-              <TableCell
-                sx={{
-                  width: "50%",
-                  verticalAlign: "top",
-                  borderRight: "2px solid black",
-                }}
-              >
-                <Typography
-                  variant="h6"
-                  sx={{ fontSize: "1rem", fontWeight: "bold", color: "black" }}
-                >
-                  Try
-                </Typography>
-                <ul>
-                  <li>Asking the primary caregiver how you can help.</li>
-                  <li>
-                    Finding local resources to help the primary caregiver.
-                  </li>
-                  <li>Arranging or helping arrange formal care services.</li>
-                  <li>Visiting often for support.</li>
-                  <li>Offering respite to the primary caregiver.</li>
-                  <li>Helping develop a backup plan in case of emergencies.</li>
-                  <li>Joining a support group.</li>
-                </ul>
-              </TableCell>
-              <TableCell sx={{ width: "50%", verticalAlign: "top" }}>
-                <Typography
-                  variant="h6"
-                  sx={{ fontSize: "1rem", fontWeight: "bold", color: "black" }}
-                >
-                  Avoid
-                </Typography>
-                <ul>
-                  <li>Feeling guilty for living far away.</li>
-                </ul>
-              </TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </TableContainer>
+     
+      <TableContainer component={Paper} sx={{ boxShadow: 1, marginBottom: 2 }}>
+                <Table>
+                    <TableBody>
+                        <TableRow>
+                            <TableCell sx={{ verticalAlign: 'top' }}>
+                                <Typography variant="h6" sx={{ fontSize: '1rem', fontWeight: 'bold', color: 'black' }}>Try</Typography>
+                                <ul>
+                                    <li>Asking the primary caregiver how you can help.</li>
+                                    <li>Finding local resources to help the primary caregiver.</li>
+                                    <li>Arranging or helping arrange formal care services.</li>
+                                    <li>Visiting often for support.</li>
+                                    <li>Offering respite to the primary caregiver.</li>
+                                    <li>Helping develop a backup plan in case of emergencies.</li>
+                                    <li>Joining a support group.</li>
+                                </ul>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell sx={{ verticalAlign: 'top' }}>
+                                <Typography variant="h6" sx={{ fontSize: '1rem', fontWeight: 'bold', color: 'black' }}>Avoid</Typography>
+                                <ul>
+                                    <li>Feeling guilty for living far away.</li>
+                                </ul>
+                            </TableCell>
+                        </TableRow>
+                    </TableBody>
+                </Table>
+            </TableContainer>
       <Typography
         sx={{ mt: 2, mb: 2, fontSize: "0.875rem", textAlign: "center" }}
       ></Typography>

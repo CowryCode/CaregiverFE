@@ -21,18 +21,17 @@ const Page3 = () => {
     const pageId = 'CoreTopics3_Level2_Level2Three_Page3'; // Unique identifier for this page
     const [isBookmarked, setIsBookmarked] = useState(false);
 
-    // Check if the page is in the wishlist on component mount and update state
     useEffect(() => {
         const wishlist = getWishlist();
         setIsBookmarked(wishlist.includes(pageId));
     }, []);
 
     const handlePrevious = () => {
-        navigate('/library/core-topic3/level2/level2three/page2'); // Adjust this path to point to the previous page
+        navigate('/library/core-topic3/level2/level2three/page2'); // Correct previous page path
     };
 
     const handleNext = () => {
-        navigate('/library/core-topic3/level2/level2four/page1'); // Adjust this path to point to the next page, if exists
+        navigate('/library/core-topic3/level2/level2four/page1'); // Correct next page path
     };
 
     const handleBookmark = () => {
@@ -61,11 +60,11 @@ const Page3 = () => {
                 </IconButton>
             </Box>
             <Typography variant="h6" sx={{ mb: 2, fontSize: '1rem' }}>Page 3 of 3</Typography>
-            <TableContainer component={Paper} sx={{ boxShadow: 1 }}>
+            <TableContainer component={Paper} sx={{ boxShadow: 1, marginBottom: 2 }}>
                 <Table>
                     <TableBody>
                         <TableRow>
-                            <TableCell sx={{ width: '50%', verticalAlign: 'top', borderRight: '2px solid black' }}>
+                            <TableCell sx={{ verticalAlign: 'top' }}>
                                 <Typography variant="h6" sx={{ fontSize: '1rem', fontWeight: 'bold', color: 'black' }}>Try</Typography>
                                 <ul>
                                     <li>Maintaining the person's normal sleeping and eating patterns.</li>
@@ -76,7 +75,9 @@ const Page3 = () => {
                                     <li>Checking whether incontinence aids fit properly and are appropriate for nighttime use.</li>
                                 </ul>
                             </TableCell>
-                            <TableCell sx={{ width: '50%', verticalAlign: 'top' }}>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell sx={{ verticalAlign: 'top' }}>
                                 <Typography variant="h6" sx={{ fontSize: '1rem', fontWeight: 'bold', color: 'black' }}>Avoid</Typography>
                                 <ul>
                                     <li>Providing the person with large meals before bed.</li>

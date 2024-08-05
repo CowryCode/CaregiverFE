@@ -65,51 +65,59 @@ const CoreTopics1_Level1_Level1Two_Page3 = () => {
         </IconButton>
       </Box>
       
-      <TableContainer component={Paper} sx={{ boxShadow: 1 }}>
+      <TableContainer component={Paper} sx={{ boxShadow: 1, marginBottom: 2 }}>
         <Table>
           <TableBody>
             <TableRow>
-              <TableCell
-                sx={{
-                  width: '50%',
-                  verticalAlign: 'top',
-                  borderRight: '2px solid black',
-                }}
-              >
+              <TableCell sx={{ verticalAlign: "top" }}>
                 <Typography
                   variant="h6"
                   sx={{
-                    fontSize: '1rem',
-                    fontWeight: 'bold',
-                    color: 'black',
+                    fontSize: "1rem",
+                    fontWeight: "bold",
+                    color: "black",
                   }}
                 >
                   Try
                 </Typography>
                 <ul>
-                  <li>Walking away from the situation for 5-10 minutes if it is safe to do so.</li>
+                  <li>
+                    Walking away from the situation for 5-10 minutes if it is
+                    safe to do so.
+                  </li>
                   <li>Taking a few slow, deep breaths.</li>
                   <li>Acknowledging how and what you are feeling.</li>
-                  <li>Sharing your feelings and frustrations with others and asking for help.</li>
+                  <li>
+                    Sharing your feelings and frustrations with others and
+                    asking for help.
+                  </li>
                   <li>Accessing formal support or joining a support group.</li>
-                  <li>Reflect on what makes you happy; try to find ways to engage in those activities.</li>
+                  <li>
+                    Reflect on what makes you happy; try to find ways to engage
+                    in those activities.
+                  </li>
                   <li>Speaking with your family physician.</li>
                 </ul>
               </TableCell>
-              <TableCell sx={{ width: '50%', verticalAlign: 'top' }}>
+            </TableRow>
+            <TableRow>
+              <TableCell sx={{ verticalAlign: "top" }}>
                 <Typography
                   variant="h6"
                   sx={{
-                    fontSize: '1rem',
-                    fontWeight: 'bold',
-                    color: 'black',
+                    fontSize: "1rem",
+                    fontWeight: "bold",
+                    color: "black",
                   }}
                 >
                   Avoid
                 </Typography>
                 <ul>
                   <li>Isolating yourself from others.</li>
-                  <li>Feeling guilty about asking for or accepting help from others.</li>
+                  <li>
+                    Feeling guilty about asking for or accepting help from
+                    others.
+                  </li>
                   <li>Feeling guilty about taking time for yourself.</li>
                 </ul>
               </TableCell>

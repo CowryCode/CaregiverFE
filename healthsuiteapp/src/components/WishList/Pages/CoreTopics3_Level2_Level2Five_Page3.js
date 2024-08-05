@@ -66,60 +66,38 @@ const CoreTopics3_Level2_Level2Five_Page3 = () => {
           {isBookmarked ? <BookmarkIcon /> : <BookmarkBorderIcon />}
         </IconButton>
       </Box>
-      <Typography variant="h6" sx={{ mb: 2, fontSize: "1rem" }}>
-        Page 3 of 3
-      </Typography>
-      <TableContainer component={Paper} sx={{ boxShadow: 1 }}>
-        <Table>
-          <TableBody>
-            <TableRow>
-              <TableCell
-                sx={{
-                  width: "50%",
-                  verticalAlign: "top",
-                  borderRight: "2px solid black",
-                }}
-              >
-                <Typography
-                  variant="h6"
-                  sx={{ fontSize: "1rem", fontWeight: "bold", color: "black" }}
-                >
-                  Try
-                </Typography>
-                <ul>
-                  <li>Ignoring insults or gestures.</li>
-                  <li>
-                    Identifying stressors and triggers for inappropriate
-                    behaviours.
-                  </li>
-                  <li>Using firm, but gentle communication.</li>
-                  <li>Reassuring the person.</li>
-                  <li>
-                    Encouraging participation in activities that occupy the
-                    person’s hands, such as folding laundry, playing cards, etc.
-                  </li>
-                  <li>Redirecting the person to a private place as needed.</li>
-                  <li>Redirecting them to their room or a private space.</li>
-                </ul>
-              </TableCell>
-              <TableCell sx={{ width: "50%", verticalAlign: "top" }}>
-                <Typography
-                  variant="h6"
-                  sx={{ fontSize: "1rem", fontWeight: "bold", color: "black" }}
-                >
-                  Avoid
-                </Typography>
-                <ul>
-                  <li>Arguing or debating with the person.</li>
-                  <li>Shaming the person for their behaviour or actions.</li>
-                  <li>Overreacting as this may lead to feelings of shame.</li>
-                  <li>Restraining the person.</li>
-                </ul>
-              </TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </TableContainer>
+      
+      <TableContainer component={Paper} sx={{ boxShadow: 1, marginBottom: 2 }}>
+                <Table>
+                    <TableBody>
+                        <TableRow>
+                            <TableCell sx={{ verticalAlign: 'top' }}>
+                                <Typography variant="h6" sx={{ fontSize: '1rem', fontWeight: 'bold', color: 'black' }}>Try</Typography>
+                                <ul>
+                                    <li>Ignoring insults or gestures.</li>
+                                    <li>Identifying stressors and triggers for inappropriate behaviours.</li>
+                                    <li>Using firm, but gentle communication.</li>
+                                    <li>Reassuring the person.</li>
+                                    <li>Encouraging participation in activities that occupy the person’s hands, such as folding laundry, playing cards, etc.</li>
+                                    <li>Redirecting the person to a private place as needed.</li>
+                                    <li>Redirecting them to their room or a private space.</li>
+                                </ul>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell sx={{ verticalAlign: 'top' }}>
+                                <Typography variant="h6" sx={{ fontSize: '1rem', fontWeight: 'bold', color: 'black' }}>Avoid</Typography>
+                                <ul>
+                                    <li>Arguing or debating with the person.</li>
+                                    <li>Shaming the person for their behaviour or actions.</li>
+                                    <li>Overreacting as this may lead to feelings of shame.</li>
+                                    <li>Restraining the person.</li>
+                                </ul>
+                            </TableCell>
+                        </TableRow>
+                    </TableBody>
+                </Table>
+            </TableContainer>
       <Box sx={{ display: "flex", justifyContent: "space-between", mt: 2 }}>
       <Typography
         sx={{ mt: 2, mb: 2, fontSize: "0.875rem", textAlign: "center" }}
