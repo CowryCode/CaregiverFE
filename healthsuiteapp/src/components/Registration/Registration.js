@@ -1,12 +1,21 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-  Container, TextField, FormControl, InputLabel, Select, MenuItem, Button, FormHelperText, RadioGroup, FormControlLabel, Radio, Typography
+  Container, TextField, FormControl, InputLabel, Select, MenuItem, Button, FormHelperText, RadioGroup, FormControlLabel, Radio, Typography,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+
 } from '@mui/material';
 import './Registration.css';
 
 const Registration = () => {
   const navigate = useNavigate();
+
+  const [showSuccess, setShowSuccess] = useState(false);
+
 
   const [formData, setFormData] = useState({
     providerName: '',
@@ -46,8 +55,19 @@ const Registration = () => {
         return;
       }
     }
+
+    setShowSuccess(true);
     console.log("Form submitted successfully", formData);
-    navigate(`/login`); 
+    // navigate(`/login`); 
+  };
+
+  const handleCloseExitDialog = (confirmStart) => {
+    // setShowSuccess(false);
+    if (confirmStart) {
+      navigate('/baseline-questionnaire-f1');
+    }else{
+      navigate(`/login`); 
+    }
   };
 
   const checkPhoneNumber = async (phoneNumber) => {
@@ -193,6 +213,29 @@ const Registration = () => {
         <Button variant="contained" color="primary" type="submit">
           Submit
         </Button>
+        {showSuccess && (
+                 <Dialog
+                 open={showSuccess}
+                 onClose={() => handleCloseExitDialog(false)}
+               >
+                 <DialogTitle>Registration Completed</DialogTitle>
+                 <DialogContent>
+                   <DialogContentText>
+                     You have successfully completed your profile, you can start the study now by completing the baseline Questionnair or you can click on the email the system will sent to you.
+                     <br /><br />
+                     Do you want to start now?
+                   </DialogContentText>
+                 </DialogContent>
+                 <DialogActions>
+                   <Button onClick={() => handleCloseExitDialog(true)} color="primary">
+                     Yes Start
+                   </Button>
+                   <Button onClick={() => handleCloseExitDialog(false)} color="secondary" autoFocus>
+                     No
+                   </Button>
+                 </DialogActions>
+               </Dialog>
+            )}
       </form>
     </Container>
   );

@@ -18,6 +18,8 @@ import ReferralCodeValidation from './components/ReferralCodeValidation/Referral
 import NeedAssessmentForm from './components/NeedAssessmentForm/NeedAssessmentForm';
 import CoreTopics from './components/CoreTopics/CoreTopics';
 import ConsentForm from './components/consent/index';
+import WebSocketComponent from './components/notification/WebSocketComponent'
+import UserDuplicateRecords from './components/UserTable/UserDuplicateRecords';
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
       <WebSocketComponent />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/caregiverregister" element={<CaregiverRegistration />} />
+        <Route path="/similar-users" element={<UserDuplicateRecords />} />
         <Route path="/referral-code-validation" element={<ReferralCodeValidation />} />
         {/* <Route path="/form1" element={<Form1 />} /> */}
         <Route path="/eligibility-form" element={<EligibilityForm />} />
@@ -37,7 +41,6 @@ function App() {
         <Route path="/baseline-questionnaire-f3" element={<BaselineQuestionnaireF3 />} />
         <Route path="/baseline-questionnaire-f4" element={<BaselineQuestionnaireF4 />} />
         <Route path="/need-assessment" element={<NeedAssessmentForm />} />
-        <Route path="/caregiverregister" element={<CaregiverRegistration />} />
         <Route path="/admin" element={<UserTable />} />
         <Route path="/library/*" element={<CoreTopics />} />
         <Route path="/quicktips" element={<QuickTips />} />

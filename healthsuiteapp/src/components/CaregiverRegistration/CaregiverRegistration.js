@@ -4,7 +4,12 @@ import {
 } from '@mui/material';
 import './CaregiverRegistration.css';
 
+import { useNavigate } from 'react-router-dom';
+import axiosInstance from '../../apicall/AxiosInstance';
+
 const CaregiverRegistration = () => {
+  const navigate = useNavigate();
+
   const [eligibility, setEligibility] = useState({
     moderateDementia: '',
     experiencingDistress: ''
@@ -59,7 +64,23 @@ const CaregiverRegistration = () => {
 
     const response = await fetchReferralCode();
     setReferralCode(response);
+
+    submitToAPI();
+    
   };
+
+  const submitToAPI = () => {
+    axiosInstance.post('/caregiver/v1/create-care-provider', { data: formData }) // Replace with your API endpoint and data
+    .then(response => {
+        // setResponseData(response.data);
+        alert(`Caregiver API response :  ${response.data}`);
+    })
+    .catch(error => {
+        console.error('There was an error making the POST request!', error);
+    });
+  }
+
+
 
   const fetchReferralCode = async () => {
     await new Promise(resolve => setTimeout(resolve, 500));
@@ -145,6 +166,9 @@ const CaregiverRegistration = () => {
           </FormControl>
           <Button variant="contained" color="primary" type="submit" className="submit-button">
             Submit
+          </Button> 
+          <Button variant="contained" color="primary"  style={{ marginLeft: '10px' }}  onClick={() => navigate('/similar-users')}>
+            Similiar Users Exists
           </Button>
         </form>
       )}

@@ -55,7 +55,11 @@ const ReferralCodeValidation = () => {
     // Dummy data for demonstration
     const data = { participantName: 'John Doe' };
     setParticipantName(data.participantName);
-    setValidationMessage(`The code you have entered is for ${data.participantName}. Please confirm that your code has been entered correctly:`);
+    if(unknownReferralCode){
+      setValidationMessage(`Please contact admin from the home page to retrieve your refcode`);
+    }else{
+      setValidationMessage(`The code you have entered is for ${data.participantName}. Please confirm that your code has been entered correctly:`);
+    }
     setOpenDialog(true);
   };
 
@@ -70,6 +74,9 @@ const ReferralCodeValidation = () => {
 
   const handleDialogClose = () => {
     setOpenDialog(false);
+    if(unknownReferralCode){
+      navigate(`/`); 
+    }
   };
 
   return (
@@ -108,10 +115,12 @@ const ReferralCodeValidation = () => {
           <DialogContentText>
             {validationMessage}
           </DialogContentText>
+          {!unknownReferralCode && 
           <RadioGroup name="confirmation" value={confirmation} onChange={handleConfirmationChange}>
             <FormControlLabel value="yes" control={<Radio />} label="Yes. This is me." />
             <FormControlLabel value="no" control={<Radio />} label="No. This is not me." />
           </RadioGroup>
+          }
         </DialogContent>
         <DialogActions>
           <Button onClick={handleDialogClose} color="primary">

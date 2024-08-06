@@ -77,7 +77,7 @@ const WebSocketComponent = () => {
 
     return (
         <div>
-            <h1>WebSocket Heartbeat Example 1</h1>
+            {/* <h1>WebSocket Heartbeat Example 1</h1> */}
             <ul>
                 {messages.map((msg, index) => (
                     <li key={index}>{msg}</li>

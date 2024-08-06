@@ -60,7 +60,8 @@ const EligibilityForm = () => {
         });
         */
         // Temporary redirect for demonstration purposes
-        window.location.href = 'baseline-questionnaire-f1';
+       // window.location.href = 'baseline-questionnaire-f1';
+        window.location.href = 'consent-form';
     };
 
     return (

@@ -20,7 +20,7 @@ function CoreTopics() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-  const order = location.state?.order || [3, 2, 4, 5, 1]; // Static array for development purposes
+  const order = location.state?.order || [3, 2, 1, 5, 4]; // Static array for development purposes
 
   const orderedTopics = order.map(index => coreTopics[index - 1]);
 
