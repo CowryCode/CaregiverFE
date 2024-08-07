@@ -22,7 +22,7 @@ const WebSocketComponent = () => {
                 //socket.current.send('pong');
             }else{
                 const newMessage = event.data;
-                alert(`You need to complete: ${newMessage}`);
+                // alert(`You need to complete: ${newMessage}`);
             }
             resetServerTimeout();
         };
