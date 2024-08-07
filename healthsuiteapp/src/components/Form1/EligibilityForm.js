@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import './EligibilityForm.css';
+import Sidebar from '../SidebarMenu/SideBar';
+import { FaBars } from 'react-icons/fa';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 
 const EligibilityForm = () => {
     const [formData, setFormData] = useState({
@@ -9,6 +13,12 @@ const EligibilityForm = () => {
         encouragementNeeded: [],
         hourPerWeek: '',
     });
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+    const handleSidebarToggle = () => {
+        setIsSidebarOpen(!isSidebarOpen);
+        console.log("Sidebar is " + (isSidebarOpen ? "open" : "closed"));
+    };
 
     const handleChange = (event) => {
         const { name, value, type, checked } = event.target;
@@ -60,12 +70,17 @@ const EligibilityForm = () => {
         });
         */
         // Temporary redirect for demonstration purposes
-       // window.location.href = 'baseline-questionnaire-f1';
+        // window.location.href = 'baseline-questionnaire-f1';
         window.location.href = 'consent-form';
     };
 
     return (
-        <div className="container">
+        <div className={`app-container ${isSidebarOpen ? 'with-sidebar' : ''}`}>
+            <button className="sidebar-toggle" onClick={handleSidebarToggle}>
+                <FaBars />
+            </button>
+            {isSidebarOpen && <Sidebar />}
+            <Header />
             <div className="form-container">
                 <h2 className="text-center">Caregiver Eligibility Screening</h2>
                 <form id="caregiverForm" onSubmit={handleSubmit}>
@@ -297,6 +312,7 @@ const EligibilityForm = () => {
                     <button type="submit" className="btn btn-primary btn-block">Submit</button>
                 </form>
             </div>
+            <Footer />
         </div>
     );
 }

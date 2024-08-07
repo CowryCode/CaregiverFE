@@ -1,0 +1,67 @@
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    text-align: center;
+    padding: 20px;
+    border-bottom: 1px solid #ccc;
+}
+
+.header-content {
+    flex-grow: 1;
+    text-align: center; /* Ensures text is centered on mobile */
+}
+
+.logo {
+    width: 80px; /* Adjust size as needed */
+    margin-left: 40px;
+}
+
+header h1 {
+    font-size: 2em; /* Reduced size for better fit on smaller screens */
+    color: #554fb0;
+    font-weight: bold;
+    margin: 0;
+    white-space: nowrap; /* Prevents text wrapping */
+}
+
+header p {
+    font-size: 1em; /* Smaller text on smaller screens */
+    color: #4338d1;
+    font-weight: bold;
+    margin: 0;
+    /* display: none; Optionally hide on smaller screens */
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 10px; /* Reduced padding on smaller screens */
+    }
+
+    .logo {
+        width: 60px; /* Smaller logo on mobile */
+        margin-right: 0; /* Remove margin between logo and text */
+        margin-bottom: 10px; /* Add space below the logo */
+    }
+
+    header h1 {
+        font-size: 1.5em; /* Smaller font size for h1 */
+    }
+
+    header p {
+        font-size: 0.9em; /* Adjusted font size */
+        display: block; /* Make visible again if needed */
+    }
+
+    .header-content {
+        text-align: center; /* Center text in the header content */
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.2em; /* Even smaller font size for very small screens */
+    }
+}

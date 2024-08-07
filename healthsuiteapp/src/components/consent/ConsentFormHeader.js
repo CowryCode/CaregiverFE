@@ -1,6 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Typography, Container, Button } from '@mui/material';
+import Footer from '../Footer/Footer';
+import Header from '../Header/Header';
 
 const ConsentFormHeader = () => {
   const navigate = useNavigate();
@@ -10,6 +12,8 @@ const ConsentFormHeader = () => {
   };
 
   return (
+    <>
+    <Header />
     <Container maxWidth="sm">
       <Typography variant="h6" gutterBottom component="div">
         Online Consent Form
@@ -55,6 +59,8 @@ const ConsentFormHeader = () => {
         Next
       </Button>
     </Container>
+    <Footer />
+    </>
   );
 };
 

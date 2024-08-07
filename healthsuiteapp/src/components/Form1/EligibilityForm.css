@@ -1,12 +1,24 @@
 body {
-    margin: 20px;
+    margin: 0; /* Set margin to 0 for the body to prevent unnecessary spacing */
     font-family: 'Roboto', sans-serif;
     background-color: #f8f9fa;
 }
 
+.app-container {
+    display: flex; /* Ensures that the sidebar and the content are side-by-side */
+    flex-direction: column;
+    min-height: 100vh; /* Minimum height */
+    transition: margin-left 0.3s;
+}
+
+.app-container.with-sidebar {
+    margin-left: 250px; /* Adjust this value to match the sidebar's width */
+}
+
 .form-container {
-    max-width: 600px;
-    margin: auto;
+    flex-grow: 1; /* Allows the form container to fill the available space */
+    max-width: 600px; /* Maximum width of the form */
+    margin: 20px auto; /* Center the form horizontally and add margin vertically */
     padding: 30px;
     border: 1px solid #dee2e6;
     border-radius: 10px;
@@ -53,6 +65,24 @@ h2 {
     border-color: #004085;
 }
 
+.sidebar-toggle {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1000;
+    border: none;
+    background: none;
+    color: #007bff; /* Primary color */
+    cursor: pointer;
+    font-size: 24px; /* Adjust size as needed */
+}
+
+@media (max-width: 768px) {
+    .app-container.with-sidebar {
+        margin-left: 0 !important; /* Ensure no shifting on small screens */
+    }
+}
+
 @media (max-width: 576px) {
     .form-container {
         padding: 20px;
@@ -64,5 +94,9 @@ h2 {
 
     .form-check-inline .form-check-label {
         margin-right: 0;
+    }
+
+    .sidebar-toggle {
+        font-size: 20px;
     }
 }

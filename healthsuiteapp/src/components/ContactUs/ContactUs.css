@@ -15,30 +15,22 @@ body {
     margin-left: 250px; /* Adjust this value to match the sidebar's width */
 }
 
-.form-container {
+.contactus-container {
     margin-top: 20px;
+}
+
+.contactus-card {
     padding: 20px;
-    background-color: #f9f9f9;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.form-container h4 {
-    margin-bottom: 20px;
-}
-
-.form-container .MuiTypography-h6 {
-    margin-top: 20px;
+.contactus-card .MuiTypography-h5 {
     margin-bottom: 10px;
 }
 
-.form-container .MuiGrid-item {
-    padding-left: 8px;
-    padding-right: 8px;
-}
-
-.form-container .MuiButton-contained {
-    margin-top: 20px;
+.contactus-card .MuiTextField-root {
+    margin-bottom: 20px;
 }
 
 .sidebar-toggle {
@@ -54,20 +46,12 @@ body {
 }
 
 @media (max-width: 768px) {
-    .form-container {
-        padding: 20px;
-    }
-
     .app-container.with-sidebar {
         margin-left: 0 !important; /* Ensure no shifting on small screens */
     }
 }
 
 @media (max-width: 576px) {
-    .form-container {
-        padding: 20px;
-    }
-
     .sidebar-toggle {
         font-size: 20px;
     }
