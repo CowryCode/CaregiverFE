@@ -70,7 +70,9 @@ const CaregiverRegistration = () => {
   };
 
   const submitToAPI = () => {
-    axiosInstance.post('/caregiver/v1/create-care-provider', { data: formData }) // Replace with your API endpoint and data
+    const jsonString = JSON.stringify(formData);
+    alert(`Caregiver API response :  ${jsonString}`);
+    axiosInstance.post('/caregiver/v1/create-care-provider', formData) // Replace with your API endpoint and data
     .then(response => {
         // setResponseData(response.data);
         alert(`Caregiver API response :  ${response.data}`);
@@ -99,6 +101,7 @@ const CaregiverRegistration = () => {
       <Typography variant="h6" gutterBottom>
         Caregiver’s eligibility and registration
       </Typography>
+      {!showForm &&  (
       <form onSubmit={handleEligibilitySubmit}>
         <FormControl component="fieldset" className="caregiver-form-group">
           <FormLabel component="legend">1. Does the person this caregiver is providing care for have moderate dementia?</FormLabel>
@@ -120,8 +123,9 @@ const CaregiverRegistration = () => {
           </Button>
         </div>
       </form>
+      )}
 
-      {showForm && (
+      {showForm && referralCode == null && (
         <form onSubmit={handleFormSubmit} className="caregiver-referral-form">
           <Typography variant="h6" gutterBottom>
             Referral form
