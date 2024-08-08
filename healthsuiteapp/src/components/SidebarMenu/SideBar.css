@@ -1,0 +1,44 @@
+.sidebarmenu {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 250px;
+    background-color: #343a40;
+    overflow-y: auto;
+    padding-top: 20px;
+    color: #fff;
+}
+
+/* Adjust link styling for better spacing and alignment */
+.sidebarmenu .nav-link {
+    padding: 10px 15px;
+    color: #fff;
+    display: flex; /* Use flexbox for better alignment */
+    align-items: center; /* Center items vertically */
+    gap: 10px; /* Space between icon and text */
+}
+
+.sidebarmenu .nav-link i {
+    min-width: 20px; /* Ensure icons have enough space */
+    text-align: center; /* Center icons if smaller than min-width */
+}
+
+.sidebarmenu .nav-link:hover, .sidebarmenu .nav-link.active {
+    background-color: #495057;
+}
+
+/* Media queries for responsive behavior */
+@media (max-width: 768px) {
+    .sidebarmenu {
+        width: 100%;
+        position: relative;
+    }
+}
+.app-container {
+    transition: margin-left 0.3s;
+}
+
+.app-container.with-sidebar {
+    margin-left: 250px; /* Adjust this value to match the sidebar's width */
+}

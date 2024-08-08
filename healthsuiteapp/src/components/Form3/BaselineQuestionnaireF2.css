@@ -4,9 +4,21 @@ body {
     background-color: #f8f9fa;
 }
 
+.app-container {
+    display: flex; /* Ensures that the sidebar and the content are side-by-side */
+    flex-direction: column;
+    min-height: 100vh; /* Minimum height */
+    transition: margin-left 0.3s;
+}
+
+.app-container.with-sidebar {
+    margin-left: 250px; /* Adjust this value to match the sidebar's width */
+}
+
 .form-container {
-    max-width: 800px;
-    margin: auto;
+    flex-grow: 1; /* Allows the form container to fill the available space */
+    max-width: 800px; /* Maximum width of the form */
+    margin: 20px auto; /* Center the form horizontally and add margin vertically */
     padding: 30px;
     border: 1px solid #dee2e6;
     border-radius: 10px;
@@ -45,6 +57,18 @@ h2 {
     border-color: #004085;
 }
 
+.sidebar-toggle {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1000;
+    border: none;
+    background: none;
+    color: #007bff; /* Primary color */
+    cursor: pointer;
+    font-size: 24px; /* Adjust size as needed */
+}
+
 @media (max-width: 768px) {
     .form-container {
         padding: 20px;
@@ -60,6 +84,10 @@ h2 {
     .table tbody td, .table thead th {
         font-size: 14px;
     }
+
+    .app-container.with-sidebar {
+        margin-left: 0 !important; /* Ensure no shifting on small screens */
+    }
 }
 
 @media (max-width: 576px) {
@@ -74,5 +102,9 @@ h2 {
 
     h2 {
         font-size: 18px;
+    }
+
+    .sidebar-toggle {
+        font-size: 20px;
     }
 }

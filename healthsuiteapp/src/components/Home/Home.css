@@ -48,7 +48,16 @@ a {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     flex-basis: calc(25% - 30px); /* 4 cards per row with a 30px gap */
     box-sizing: border-box;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
 }
+
+.icon:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-color: #4338d1;
+}
+
 
 .icon img {
     width: 80px; 

@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import './BaselineQuestionnaireF1.css';
+import Sidebar from '../SidebarMenu/SideBar';
+import { FaBars } from 'react-icons/fa';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 
 const BaselineQuestionnaireF1 = () => {
     const [formData, setFormData] = useState({
@@ -20,6 +24,13 @@ const BaselineQuestionnaireF1 = () => {
         hoursPerTypicalWeek: '',
         typicalWeekDetail: ''
     });
+
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+    const handleSidebarToggle = () => {
+        setIsSidebarOpen(!isSidebarOpen);
+        console.log("Sidebar is " + (isSidebarOpen ? "open" : "closed"));
+    };
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
@@ -65,7 +76,12 @@ const BaselineQuestionnaireF1 = () => {
     };
 
     return (
-        <div className="container">
+        <div className={`app-container ${isSidebarOpen ? 'with-sidebar' : ''}`}>
+            <button className="sidebar-toggle" onClick={handleSidebarToggle}>
+                <FaBars />
+            </button>
+            {isSidebarOpen && <Sidebar />}
+            <Header />
             <div className="form-container">
                 <h2 className="text-center">Background Information Form</h2>
                 <form id="backgroundForm" onSubmit={handleSubmit}>
@@ -274,6 +290,7 @@ const BaselineQuestionnaireF1 = () => {
                     <button type="submit" className="btn btn-primary btn-block">Submit</button>
                 </form>
             </div>
+            <Footer />
         </div>
     );
 };

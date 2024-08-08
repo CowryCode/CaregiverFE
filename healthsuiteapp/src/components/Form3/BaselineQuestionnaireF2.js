@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import './BaselineQuestionnaireF2.css';
-
+import Sidebar from '../SidebarMenu/SideBar';
+import { FaBars } from 'react-icons/fa';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 const BaselineQuestionnaireF2 = () => {
     const [formData, setFormData] = useState({
         enoughTime: '',
@@ -37,7 +40,12 @@ const BaselineQuestionnaireF2 = () => {
         relapsing: '',
         generalWellbeing: ''
     });
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
+    const handleSidebarToggle = () => {
+        setIsSidebarOpen(!isSidebarOpen);
+        console.log("Sidebar is " + (isSidebarOpen ? "open" : "closed"));
+    };
     const handleChange = (event) => {
         const { name, value } = event.target;
         setFormData({ ...formData, [name]: value });
@@ -74,7 +82,12 @@ const BaselineQuestionnaireF2 = () => {
     };
 
     return (
-        <div className="container">
+        <div className={`app-container ${isSidebarOpen ? 'with-sidebar' : ''}`}>
+            <button className="sidebar-toggle" onClick={handleSidebarToggle}>
+                <FaBars />
+            </button>
+            {isSidebarOpen && <Sidebar />}
+            <Header />
             <div className="form-container">
                 <h2 className="text-center">Carer Well-being and Support (CWS) Questionnaire</h2>
                 <p>The questions in this section are about aspects of your general well-being. All of the questions are about how you have been over the past four weeks.</p>
@@ -393,6 +406,7 @@ const BaselineQuestionnaireF2 = () => {
                     <button type="submit" className="btn btn-primary btn-block">Submit</button>
                 </form>
             </div>
+            <Footer />
         </div>
     );
 };

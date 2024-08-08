@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './EligibilityForm.css';
-import LoadingComponent from '../loader/LoadingComponent';
-import axiosInstance from '../../apicall/AxiosInstance';
-import LocalStorageService from '../../utils/LocalStorageService';
 
 const EligibilityForm = () => {
     const [loading, setLoading] = useState(false);
@@ -15,20 +12,6 @@ const EligibilityForm = () => {
         hourPerWeek: '',
         userID: ''
     });
-
-    const updateUserID = (newUserID) => {
-        setFormData((prevFormData) => ({
-            ...prevFormData,
-            userID: newUserID
-        }));
-    };
-
-    useEffect(() => {
-        const userData = LocalStorageService.getItem('profile');
-        if (userData) {
-            updateUserID(userData.id);
-        }
-    }, []);
 
     const handleChange = (event) => {
         const { name, value, type, checked } = event.target;
@@ -80,30 +63,12 @@ const EligibilityForm = () => {
         });
         */
         // Temporary redirect for demonstration purposes
-        // window.location.href = 'consent-form';
-        submitToAPI();
+       // window.location.href = 'baseline-questionnaire-f1';
+        window.location.href = 'consent-form';
     };
-
-    const submitToAPI = () => {
-        setLoading(true);
-        axiosInstance.post('/caregiver/v1/submit-eligibility-form', formData) // Replace with your API endpoint and data
-        .then(response => {
-            alert(`${response.data}`);
-            window.location.href = 'consent-form';
-        })
-        .catch(error => {
-            alert(`We couldn't complete the processing at this point, try again later`);
-            console.error('Error', error);
-            window.location.href = '/';
-        })
-        .finally(() => {
-          setLoading(false);
-        });
-      }
 
     return (
         <div className="container">
-            {!loading && (
             <div className="form-container">
                 <h2 className="text-center">Caregiver Eligibility Screening</h2>
                 <form id="caregiverForm" onSubmit={handleSubmit}>
@@ -335,12 +300,6 @@ const EligibilityForm = () => {
                     <button type="submit" className="btn btn-primary btn-block">Submit</button>
                 </form>
             </div>
-            )}
-            {loading && (
-            <div>
-                <LoadingComponent/>
-            </div>
-            )}
         </div>
     );
 }
