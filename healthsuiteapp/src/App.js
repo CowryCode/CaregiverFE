@@ -12,14 +12,14 @@ import QuickTips from './components/WishList/QuickTips';
 import Profile from './components/Profile/Profile';
 import Feedback from './components/Feedback/Feedback';
 import Registration from './components/Registration/Registration';
-// import CaregiverRegistration from './components/CaregiverRegistration/CaregiverRegistration';
+import CaregiverRegistration from './components/CaregiverRegistration/CaregiverRegistration';
 import UserTable from './components/UserTable/UserTable';
 import ReferralCodeValidation from './components/ReferralCodeValidation/ReferralCodeValidation';
 import NeedAssessmentForm from './components/NeedAssessmentForm/NeedAssessmentForm';
 import CoreTopics from './components/CoreTopics/CoreTopics';
 import ConsentForm from './components/consent/index';
 import WebSocketComponent from './components/notification/WebSocketComponent'
-// import UserDuplicateRecords from './components/UserTable/UserDuplicateRecords';
+import UserDuplicateRecords from './components/UserTable/UserDuplicateRecords';
 import VoluntaryWithdrawal from './components/VoluntaryWithdrawal/VoluntaryWithdrawal';
 import ContactUs from './components/ContactUs/ContactUs';import LoadingComponent from './components/loader/LoadingComponent';
 

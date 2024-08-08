@@ -72,13 +72,16 @@ const ReferralCodeValidation = () => {
     //   .catch(error => console.error('Error validating referral code:', error));
 
     // Dummy data for demonstration
-    const data = { participantName: "John Doe" };
-    setParticipantName(data.participantName);
-    if(unknownReferralCode){
-      setValidationMessage(`Please contact admin from the home page to retrieve your refcode`);
-    }else{
-      setValidationMessage(`The code you have entered is for ${data.participantName}. Please confirm that your code has been entered correctly:`);
-    }
+    // const data = { participantName: "John Doe" };
+    // setParticipantName(data.participantName);
+    // if(unknownReferralCode){
+    //   setValidationMessage(`Please contact admin from the home page to retrieve your refcode`);
+    // }else{
+    //   setValidationMessage(`The code you have entered is for ${data.participantName}. Please confirm that your code has been entered correctly:`);
+    // }
+
+    submitToAPI();
+
   };
 
   const submitToAPI = () => {
@@ -122,6 +125,7 @@ const ReferralCodeValidation = () => {
       <Typography variant="h6" gutterBottom>
         Health enSuite Caregivers (Referral code validation)
       </Typography>
+      {!loading && (
       <form onSubmit={handleSubmit}>
         <FormControlLabel
           control={<Checkbox checked={unknownReferralCode} onChange={handleUnknownReferralCodeChange} />}
@@ -146,6 +150,12 @@ const ReferralCodeValidation = () => {
           Submit
         </Button>
       </form>
+      )}
+      {loading && (
+      <div>
+        <LoadingComponent/>
+      </div>
+      )}
 
       <Dialog open={openDialog} onClose={handleDialogClose}>
         <DialogTitle>Referral Code Validation</DialogTitle>

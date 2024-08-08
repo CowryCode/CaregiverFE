@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './EligibilityForm.css';
+import axiosInstance from '../../apicall/AxiosInstance';
+import LoadingComponent from '../loader/LoadingComponent';
 
 const EligibilityForm = () => {
     const [loading, setLoading] = useState(false);
@@ -64,11 +66,29 @@ const EligibilityForm = () => {
         */
         // Temporary redirect for demonstration purposes
        // window.location.href = 'baseline-questionnaire-f1';
-        window.location.href = 'consent-form';
+       submitToAPI();
     };
+    const submitToAPI = () => {
+        setLoading(true);
+        const jsonString = JSON.stringify(formData);
+        alert(`Caregiver API response :  ${jsonString}`);
+        axiosInstance.post('/caregiver/v1/submit-eligibility-form', formData) 
+        .then(response => {
+            alert(`${response.data}`);
+            window.location.href = 'consent-form';
+        })
+        .catch(error => {
+            window.location.href = '/';
+            console.error('Error', error);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+      }
 
     return (
         <div className="container">
+            {!loading && (
             <div className="form-container">
                 <h2 className="text-center">Caregiver Eligibility Screening</h2>
                 <form id="caregiverForm" onSubmit={handleSubmit}>
@@ -300,7 +320,14 @@ const EligibilityForm = () => {
                     <button type="submit" className="btn btn-primary btn-block">Submit</button>
                 </form>
             </div>
+            )}
+            {loading && (
+            <div>
+                <LoadingComponent/>
+            </div>
+            )}
         </div>
+        
     );
 }
 
