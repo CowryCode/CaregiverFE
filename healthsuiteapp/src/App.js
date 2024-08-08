@@ -20,6 +20,7 @@ import CoreTopics from './components/CoreTopics/CoreTopics';
 import ConsentForm from './components/consent/index';
 import WebSocketComponent from './components/notification/WebSocketComponent'
 import UserDuplicateRecords from './components/UserTable/UserDuplicateRecords';
+import LoadingComponent from './components/loader/LoadingComponent';
 
 function App() {
   return (
@@ -30,7 +31,6 @@ function App() {
         <Route path="/caregiverregister" element={<CaregiverRegistration />} />
         <Route path="/similar-users" element={<UserDuplicateRecords />} />
         <Route path="/referral-code-validation" element={<ReferralCodeValidation />} />
-        {/* <Route path="/form1" element={<Form1 />} /> */}
         <Route path="/eligibility-form" element={<EligibilityForm />} />
          {/* TODO: CONSENT FORM NEED TO BE CREATED */}
          <Route path="/consent-form/*" element={<ConsentForm />} />
@@ -44,6 +44,7 @@ function App() {
         <Route path="/admin" element={<UserTable />} />
         <Route path="/library/*" element={<CoreTopics />} />
         <Route path="/quicktips" element={<QuickTips />} />
+        <Route path="/test" element={<LoadingComponent />} />
       </Routes>
     </Router>
   );

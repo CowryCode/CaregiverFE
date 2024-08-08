@@ -6,9 +6,13 @@ import './CaregiverRegistration.css';
 
 import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../../apicall/AxiosInstance';
+import LoadingComponent from '../loader/LoadingComponent';
+
 
 const CaregiverRegistration = () => {
   const navigate = useNavigate();
+
+  const [loading, setLoading] = useState(false);
 
   const [eligibility, setEligibility] = useState({
     moderateDementia: '',
@@ -24,6 +28,8 @@ const CaregiverRegistration = () => {
   const [showForm, setShowForm] = useState(false);
   const [openDialog, setOpenDialog] = useState(false);
   const [referralCode, setReferralCode] = useState(null);
+  const [referralCodeUrl, setReferralCodeUrl] = useState(null);
+  const [openErrorDialog, setOpenErrorDialog] = useState(false);
 
   const handleEligibilityChange = (event) => {
     setEligibility({
@@ -62,42 +68,52 @@ const CaregiverRegistration = () => {
     event.preventDefault();
     if (!validateForm()) return;
 
-    const response = await fetchReferralCode();
-    setReferralCode(response);
+    // const response = await fetchReferralCode();
+    // setReferralCode(response);
 
     submitToAPI();
     
   };
 
   const submitToAPI = () => {
+    setLoading(true);
     const jsonString = JSON.stringify(formData);
     alert(`Caregiver API response :  ${jsonString}`);
     axiosInstance.post('/caregiver/v1/create-care-provider', formData) // Replace with your API endpoint and data
     .then(response => {
         // setResponseData(response.data);
-        alert(`Caregiver API response :  ${response.data}`);
+        //alert(`Caregiver API response :  ${response.data}`);
+        setReferralCode(response.data.referralCode);
+        setReferralCodeUrl(response.data.url);
     })
     .catch(error => {
-        console.error('There was an error making the POST request!', error);
+        setOpenErrorDialog(true);
+        console.error('Error', error);
+    })
+    .finally(() => {
+      setLoading(false);
     });
   }
 
-
-
-  const fetchReferralCode = async () => {
-    await new Promise(resolve => setTimeout(resolve, 500));
-    return "REF123456";
-  };
+  // const fetchReferralCode = async () => {
+  //   await new Promise(resolve => setTimeout(resolve, 500));
+  //   return "REF123456";
+  // };
 
   const handleDialogClose = (action) => {
     if (action === 'OK') {
       window.location.href = '/provider-dashboard';
+    }else if (action === 'error'){
+      window.location.href = '/caregiverregister';
     }
     setOpenDialog(false);
   };
 
   return (
+    
     <Container maxWidth="sm" className="caregiver-registration-container">
+      {!loading && (
+      <div>
       <Typography variant="h6" gutterBottom>
         Caregiver’s eligibility and registration
       </Typography>
@@ -177,7 +193,7 @@ const CaregiverRegistration = () => {
         </form>
       )}
 
-      {referralCode && (
+      {referralCode && !loading && (
         <div className="referral-code-container">
           <Typography variant="h6" gutterBottom>
             Health enSuite Caregivers
@@ -188,7 +204,7 @@ const CaregiverRegistration = () => {
           <Typography variant="body1">
             To access the Health enSuite Caregivers:
             <ol>
-              <li>Open a web browser on your computer, tablet, or smartphone. Direct your browser to this address: &lt;&lt;URL goes here&gt;&gt;</li>
+              <li>Open a web browser on your computer, tablet, or smartphone. Direct your browser to this address: <strong>{referralCodeUrl}</strong> </li>
               <li>Enter your referral code. This will be used to verify who you are. Your referral code is: <strong>{referralCode}</strong></li>
               <li>Follow the directions on the screen to learn more about the Health enSuite Caregivers Study and to decide whether you would like to participate.</li>
             </ol>
@@ -222,6 +238,28 @@ const CaregiverRegistration = () => {
           </Button>
         </DialogActions>
       </Dialog>
+
+
+      <Dialog open={openErrorDialog} onClose={() => handleDialogClose('error')}>
+        <DialogTitle>Unsuccessful</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            For some reason you can't create an account now. Try again later, if it persists contact admin
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => handleDialogClose('error')} color="primary">
+            OK
+          </Button>
+        </DialogActions>
+      </Dialog>
+      </div>
+      )}
+      {loading && (
+      <div>
+        <LoadingComponent/>
+      </div>
+      )}
     </Container>
   );
 };
