@@ -48,10 +48,30 @@ const BaselineQuestionnaireF1 = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const jsonString = JSON.stringify(formData);
+    
+        // Prepare the payload
+        const payload = {
+            postalCode: formData.postalCode,
+            maritalStatus: formData.maritalStatus,
+            levelOfEducation: formData.levelOfEducation,
+            employmentStatus: formData.employmentStatus.join(', '),  
+            numberOfChildren: parseInt(formData.numberOfChildren, 10),  
+            relationshipToDementiaPerson: formData.relationshipToDementiaPerson,
+            dementiaPersonAge: parseInt(formData.dementiaPersonAge, 10),  
+            dementiaPersonIdentity: formData.dementiaPersonIdentity,
+            chronicHealthCondition: formData.chronicHealthCondition.join(', '),  
+            liveWithDementiaPerson: formData.liveWithDementiaPerson === 'yes',  
+            proximityToPatient: formData.proximityToPatient,
+            supportDuration: `${formData.supportDurationYears} years, ${formData.supportDurationMonths} months`,  
+            hoursPerWeek: parseInt(formData.hoursPerWeek, 10),  
+            hoursPerTypicalWeek: formData.hoursPerTypicalWeek === 'yes',  
+            typicalWeekDetail: formData.typicalWeekDetail
+        };
+    
+        const jsonString = JSON.stringify(payload);
         console.log(jsonString);
         alert('Form data prepared as JSON:\n' + jsonString);
-
+    
         // API post request
         /*
         fetch('https://api.demo.com', {
@@ -74,6 +94,7 @@ const BaselineQuestionnaireF1 = () => {
         */
         window.location.href = '/baseline-questionnaire-f2';
     };
+    
 
     return (
         <div className={`app-container ${isSidebarOpen ? 'with-sidebar' : ''}`}>
