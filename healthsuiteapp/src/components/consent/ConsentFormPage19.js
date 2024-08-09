@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   Container,
@@ -16,7 +16,13 @@ import {
   DialogTitle,
 } from '@mui/material';
 
+import axiosInstance from '../../apicall/AxiosInstance';
+import LoadingComponent from '../loader/LoadingComponent';
+import LocalStorageService from '../../utils/LocalStorageService';
+
 const ConsentFormPage19 = () => {
+  const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
   const [checkBoxStates, setCheckBoxStates] = useState({
     summary: false,
@@ -36,6 +42,7 @@ const ConsentFormPage19 = () => {
   });
   const [openExitDialog, setOpenExitDialog] = useState(false);
   const [openSuccessDialog, setOpenSuccessDialog] = useState(false);
+  const [userid, setUserID] = useState(0);
 
   const handleCheckboxChange = (event) => {
     setCheckBoxStates({ ...checkBoxStates, [event.target.name]: event.target.checked });
@@ -68,6 +75,13 @@ const ConsentFormPage19 = () => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
+  useEffect(() => {
+    const userData = LocalStorageService.getItem('profile');
+    if (userData) {
+      setUserID(userData.id);
+    }
+  }, []);
+
   const handleAgree = () => {
     const { fullName, email, verifyEmail, phone, nickname } = formData;
     if (!fullName || !email || email !== verifyEmail || !phone || !nickname) {
@@ -82,8 +96,27 @@ const ConsentFormPage19 = () => {
       agreed: dataConsent === 'yes',
       fullName: fullName,
       emailAddress: email,
-      phoneNumber: phone
+      phoneNumber: phone,
+      userID: userid
     };
+
+    setLoading(true);
+    const jsonString = JSON.stringify(payload);
+    alert(`PAYLOAD:  ${jsonString}`);
+    axiosInstance.post('/caregiver/v1/submit-consent', payload) // Replace with your API endpoint and data
+    .then(response => {
+        setOpenSuccessDialog(true); 
+    })
+    .catch(error => {
+        alert(`Your consenting process wasn't successful at this time`);
+        console.error('Error', error);
+    })
+    .finally(() => {
+      setLoading(false);
+    });
+
+
+
 
     // Commented out the API call, and displaying the payload in an alert
     // fetch('https://your-backend-api/consent', {
@@ -104,7 +137,7 @@ const ConsentFormPage19 = () => {
     //     setError('There was an error submitting your consent. Please try again.');
     //   });
 
-    setOpenSuccessDialog(true); // Open success dialog instead of alert
+    // setOpenSuccessDialog(true); // Open success dialog instead of alert
   };
 
   const handleNoThanks = () => {
@@ -125,6 +158,7 @@ const ConsentFormPage19 = () => {
 
   return (
     <Container maxWidth="sm">
+      {!loading && (
       <Container component="main" maxWidth="sm" sx={{ marginTop: 8 }}>
         <Typography variant="h6" gutterBottom>
           Participant Consent:
@@ -230,8 +264,13 @@ const ConsentFormPage19 = () => {
           </>
         )}
         {error && <Alert severity="error" sx={{ mt: 2 }}>{error}</Alert>}
-      </Container>
-
+      </Container>  
+      )}
+      {loading && (
+      <div>
+        <LoadingComponent/>
+      </div>
+      )}
       <Dialog
         open={openExitDialog}
         onClose={() => handleCloseExitDialog(false)}

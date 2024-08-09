@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import './EligibilityForm.css';
 import axiosInstance from '../../apicall/AxiosInstance';
 import LoadingComponent from '../loader/LoadingComponent';
+import LocalStorageService from '../../utils/LocalStorageService';
 
 const EligibilityForm = () => {
     const [loading, setLoading] = useState(false);
+
 
     const [formData, setFormData] = useState({
         age18: '',
@@ -14,6 +16,20 @@ const EligibilityForm = () => {
         hourPerWeek: '',
         userID: ''
     });
+
+    const updateUserID = (newUserID) => {
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            userID: newUserID
+        }));
+    };
+
+    useEffect(() => {
+        const userData = LocalStorageService.getItem('profile');
+        if (userData) {
+            updateUserID(userData.id);
+        }
+      }, []);
 
     const handleChange = (event) => {
         const { name, value, type, checked } = event.target;
@@ -66,7 +82,7 @@ const EligibilityForm = () => {
         */
         // Temporary redirect for demonstration purposes
        // window.location.href = 'baseline-questionnaire-f1';
-       submitToAPI();
+       //submitToAPI();
     };
     const submitToAPI = () => {
         setLoading(true);
