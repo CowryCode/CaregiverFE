@@ -69,58 +69,78 @@ const BaselineQuestionnaireF1 = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const jsonString = JSON.stringify(formData);
-        console.log(jsonString);
-        alert('Form data prepared as JSON:\n' + jsonString);
-
-        // API post request
-        fetch('http://localhost:8081/caregiver/v1/save-baseline-questionnaire', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Success:', data);
-            alert('Form submitted successfully!');
-            //window.location.href = '../Form4/index.html';
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-            alert('There was an error submitting the form.');
-        });
-        ///submitToAPI();
-    };
-
-    const submitToAPI = () => {
-        setLoading(true);
-
+    
+        // Prepare the payload
         const payload = {
             postalCode: formData.postalCode,
             maritalStatus: formData.maritalStatus,
             levelOfEducation: formData.levelOfEducation,
-            employmentStatus: 'DEMO',
-            numberOfChildren: 0,
-            // relationshipToDementiaPerson: formData.relationshipToDementiaPerson,
-            // dementiaPersonAge: 0,
-            // dementiaPersonIdentity: formData.dementiaPersonIdentity,
-            // chronicHealthCondition: 'DEMO',
-            // liveWithDementiaPerson: false,
-            // proximityToPatient: formData.proximityToPatient,
-            // supportDurationYears: formData.supportDurationYears,
-            // supportDurationMonths: formData.supportDurationMonths,
-            // hoursPerWeek: 0,
-            // hoursPerTypicalWeek: 0,
-            // typicalWeekDetail: '',
-            userID : 0
+            employmentStatus: formData.employmentStatus.join(', '),  
+            numberOfChildren: parseInt(formData.numberOfChildren, 10),  
+            relationshipToDementiaPerson: formData.relationshipToDementiaPerson,
+            dementiaPersonAge: parseInt(formData.dementiaPersonAge, 10),  
+            dementiaPersonIdentity: formData.dementiaPersonIdentity,
+            chronicHealthCondition: formData.chronicHealthCondition.join(', '),  
+            liveWithDementiaPerson: formData.liveWithDementiaPerson === 'yes',  
+            proximityToPatient: formData.proximityToPatient,
+            supportDuration: `${formData.supportDurationYears} years, ${formData.supportDurationMonths} months`,  
+            hoursPerWeek: parseInt(formData.hoursPerWeek, 10),  
+            // hoursPerTypicalWeek: formData.hoursPerTypicalWeek === 'yes',  
+            typicalWeekDetail: formData.typicalWeekDetail,
+            userID : formData.userID
         };
+    
+        const jsonString = JSON.stringify(payload);
+        console.log(jsonString);
+        alert('Form data prepared as JSON:\n' + jsonString);
+    
+        // API post request
+        // fetch('http://localhost:8081/caregiver/v1/save-baseline-questionnaire', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: formData
+        // })
+        // .then(response => response.json())
+        // .then(data => {
+        //     console.log('Success:', data);
+        //     alert('Form submitted successfully!');
+        //     //window.location.href = '../Form4/index.html';
+        // })
+        // .catch((error) => {
+        //     console.error('Error:', error);
+        //     alert('There was an error submitting the form.');
+        // });
+        submitToAPI();
+    };
+    
 
-        
+    const submitToAPI = () => {
+        setLoading(true);
+
+            // Prepare the payload
+            const payload = {
+                postalCode: formData.postalCode,
+                maritalStatus: formData.maritalStatus,
+                levelOfEducation: formData.levelOfEducation,
+                employmentStatus: formData.employmentStatus.join(', '),  
+                numberOfChildren: parseInt(formData.numberOfChildren, 10),  
+                relationshipToDementiaPerson: formData.relationshipToDementiaPerson,
+                dementiaPersonAge: parseInt(formData.dementiaPersonAge, 10),  
+                dementiaPersonIdentity: formData.dementiaPersonIdentity,
+                chronicHealthCondition: formData.chronicHealthCondition.join(', '),  
+                liveWithDementiaPerson: formData.liveWithDementiaPerson === 'yes',  
+                proximityToPatient: formData.proximityToPatient,
+                supportDuration: `${formData.supportDurationYears} years, ${formData.supportDurationMonths} months`,  
+                hoursPerWeek: parseInt(formData.hoursPerWeek, 10),  
+                // hoursPerTypicalWeek: formData.hoursPerTypicalWeek === 'yes',  
+                typicalWeekDetail: formData.typicalWeekDetail,
+                userID : formData.userID
+            };
 
 
-        axiosInstance.post('/save-baseline-questionnaire', payload) 
+        axiosInstance.post('/caregiver/v1/save-baseline-questionnaire', payload) 
         .then(response => {
             window.location.href = '/baseline-questionnaire-f2';
         })

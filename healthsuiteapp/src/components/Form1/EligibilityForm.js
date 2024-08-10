@@ -56,11 +56,30 @@ const EligibilityForm = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const jsonString = JSON.stringify(formData);
+    
+        // Convert age18 and internetAccess to booleans
+        const age18 = formData.age18 === 'yes';
+        const internetAccess = formData.internetAccess === 'yes';
+    
+        // Convert assistanceNeeded and encouragementNeeded arrays to comma-separated strings
+        const assistanceNeeded = formData.assistanceNeeded.join(', ');
+        const encouragementNeeded = formData.encouragementNeeded.join(', ');
+    
+        // Prepare the payload
+        const payload = {
+            age18,
+            internetAccess,
+            assistanceNeeded,
+            encouragementNeeded,
+            hourPerWeek: formData.hourPerWeek,
+            userID: formData.userID
+        };
+    
+        const jsonString = JSON.stringify(payload);
         console.log(jsonString);
         alert('Form data prepared as JSON:\n' + jsonString);
-
-        // API post request
+    
+        // API post request (commented out for now)
         /*
         fetch('https://api.demo.com', {
             method: 'POST',
@@ -80,15 +99,37 @@ const EligibilityForm = () => {
             alert('There was an error submitting the form.');
         });
         */
+    
         // Temporary redirect for demonstration purposes
-       // window.location.href = 'baseline-questionnaire-f1';
-       submitToAPI();
+        //window.location.href = 'consent-form';
+        submitToAPI();
     };
+    
     const submitToAPI = () => {
         setLoading(true);
+
+         // Convert age18 and internetAccess to booleans
+         const age18 = formData.age18 === 'yes';
+         const internetAccess = formData.internetAccess === 'yes';
+     
+         // Convert assistanceNeeded and encouragementNeeded arrays to comma-separated strings
+         const assistanceNeeded = formData.assistanceNeeded.join(', ');
+         const encouragementNeeded = formData.encouragementNeeded.join(', ');
+     
+         // Prepare the payload
+         const payload = {
+             age18,
+             internetAccess,
+             assistanceNeeded,
+             encouragementNeeded,
+             hourPerWeek: formData.hourPerWeek,
+             userID: formData.userID
+         };
+
+
         const jsonString = JSON.stringify(formData);
         alert(`Caregiver API response :  ${jsonString}`);
-        axiosInstance.post('/caregiver/v1/submit-eligibility-form', formData) 
+        axiosInstance.post('/caregiver/v1/submit-eligibility-form', payload) 
         .then(response => {
             alert(`${response.data}`);
             window.location.href = 'consent-form';
