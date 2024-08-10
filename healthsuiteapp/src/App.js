@@ -33,14 +33,13 @@ function App() {
         <Route path="/similar-users" element={<UserDuplicateRecords />} /> 
         <Route path="/referral-code-validation" element={<ReferralCodeValidation />} />
         <Route path="/eligibility-form" element={<EligibilityForm />} />
-         {/* TODO: CONSENT FORM NEED TO BE CREATED */}
          <Route path="/consent-form/*" element={<ConsentForm />} />
-         <Route path="/registration" element={<Registration />} />
-        <Route path="/login" element={<Login />} />
         <Route path="/baseline-questionnaire-f1" element={<BaselineQuestionnaireF1 />} />
         <Route path="/baseline-questionnaire-f2" element={<BaselineQuestionnaireF2 />} />
         <Route path="/baseline-questionnaire-f3" element={<BaselineQuestionnaireF3 />} />
         <Route path="/baseline-questionnaire-f4" element={<BaselineQuestionnaireF4 />} />
+        <Route path="/registration" element={<Registration />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/need-assessment" element={<NeedAssessmentForm />} />
         <Route path="/admin" element={<UserTable />} />
         <Route path="/library/*" element={<CoreTopics />} />

@@ -114,30 +114,6 @@ const ConsentFormPage19 = () => {
     .finally(() => {
       setLoading(false);
     });
-
-
-
-
-    // Commented out the API call, and displaying the payload in an alert
-    // fetch('https://your-backend-api/consent', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify(payload),
-    // })
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     console.log('Success:', data);
-    //     alert("Thank you for your time. An email will be sent to you within 2 business days confirming your consent with the study information attached.");
-    //     navigate('/'); // Navigate to home page after successful submission
-    //   })
-    //   .catch((error) => {
-    //     console.error('Error:', error);
-    //     setError('There was an error submitting your consent. Please try again.');
-    //   });
-
-    // setOpenSuccessDialog(true); // Open success dialog instead of alert
   };
 
   const handleNoThanks = () => {

@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './BaselineQuestionnaireF1.css';
 import Sidebar from '../SidebarMenu/SideBar';
 import { FaBars } from 'react-icons/fa';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
+import axiosInstance from '../../apicall/AxiosInstance';
+import LoadingComponent from '../loader/LoadingComponent';
+import LocalStorageService from '../../utils/LocalStorageService';
+
 const BaselineQuestionnaireF1 = () => {
+    const [loading, setLoading] = useState(false);
+
     const [formData, setFormData] = useState({
         postalCode: '',
         maritalStatus: '',
@@ -22,7 +28,8 @@ const BaselineQuestionnaireF1 = () => {
         supportDurationMonths: '',
         hoursPerWeek: '',
         hoursPerTypicalWeek: '',
-        typicalWeekDetail: ''
+        typicalWeekDetail: '',
+        userID : 0
     });
 
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -46,6 +53,20 @@ const BaselineQuestionnaireF1 = () => {
         }
     };
 
+    const updateUserID = (newUserID) => {
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            userID: newUserID
+        }));
+    };
+
+    useEffect(() => {
+        const userData = LocalStorageService.getItem('profile');
+        if (userData) {
+            updateUserID(userData.id);
+        }
+      }, []);
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const jsonString = JSON.stringify(formData);
@@ -53,27 +74,65 @@ const BaselineQuestionnaireF1 = () => {
         alert('Form data prepared as JSON:\n' + jsonString);
 
         // API post request
-        /*
-        fetch('https://api.demo.com', {
+        fetch('http://localhost:8081/caregiver/v1/save-baseline-questionnaire', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: jsonString
+            body: formData
         })
         .then(response => response.json())
         .then(data => {
             console.log('Success:', data);
             alert('Form submitted successfully!');
-            window.location.href = '../Form3/index.html';
+            //window.location.href = '../Form4/index.html';
         })
         .catch((error) => {
             console.error('Error:', error);
             alert('There was an error submitting the form.');
         });
-        */
-        window.location.href = '/baseline-questionnaire-f2';
+        ///submitToAPI();
     };
+
+    const submitToAPI = () => {
+        setLoading(true);
+
+        const payload = {
+            postalCode: formData.postalCode,
+            maritalStatus: formData.maritalStatus,
+            levelOfEducation: formData.levelOfEducation,
+            employmentStatus: 'DEMO',
+            numberOfChildren: 0,
+            // relationshipToDementiaPerson: formData.relationshipToDementiaPerson,
+            // dementiaPersonAge: 0,
+            // dementiaPersonIdentity: formData.dementiaPersonIdentity,
+            // chronicHealthCondition: 'DEMO',
+            // liveWithDementiaPerson: false,
+            // proximityToPatient: formData.proximityToPatient,
+            // supportDurationYears: formData.supportDurationYears,
+            // supportDurationMonths: formData.supportDurationMonths,
+            // hoursPerWeek: 0,
+            // hoursPerTypicalWeek: 0,
+            // typicalWeekDetail: '',
+            userID : 0
+        };
+
+        
+
+
+        axiosInstance.post('/save-baseline-questionnaire', payload) 
+        .then(response => {
+            window.location.href = '/baseline-questionnaire-f2';
+        })
+        .catch(error => {
+            alert(`Form processing unsuccessful  . . .`);
+           // window.location.href = '/baseline-questionnaire-f1';
+            console.error('Error', error);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+      }
 
     return (
         <div className={`app-container ${isSidebarOpen ? 'with-sidebar' : ''}`}>
@@ -82,6 +141,7 @@ const BaselineQuestionnaireF1 = () => {
             </button>
             {isSidebarOpen && <Sidebar />}
             <Header />
+            {!loading && (
             <div className="form-container">
                 <h2 className="text-center">Background Information Form</h2>
                 <form id="backgroundForm" onSubmit={handleSubmit}>
@@ -287,11 +347,19 @@ const BaselineQuestionnaireF1 = () => {
                         <label>If no, what is:</label>
                         <input type="text" className="form-control" name="typicalWeekDetail" value={formData.typicalWeekDetail} onChange={handleChange} />
                     </div>
-                    <button type="submit" className="btn btn-primary btn-block">Submit</button>
+                    <button type="submit" className="btn btn-primary btn-block">Next</button>
                 </form>
             </div>
+            )}
+            {loading && (
+            <div>
+                <LoadingComponent/>
+            </div>
+            )}
             <Footer />
         </div>
+        
+        
     );
 };
 
