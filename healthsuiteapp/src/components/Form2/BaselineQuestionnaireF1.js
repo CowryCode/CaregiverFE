@@ -69,49 +69,6 @@ const BaselineQuestionnaireF1 = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-    
-        // Prepare the payload
-        const payload = {
-            postalCode: formData.postalCode,
-            maritalStatus: formData.maritalStatus,
-            levelOfEducation: formData.levelOfEducation,
-            employmentStatus: formData.employmentStatus.join(', '),  
-            numberOfChildren: parseInt(formData.numberOfChildren, 10),  
-            relationshipToDementiaPerson: formData.relationshipToDementiaPerson,
-            dementiaPersonAge: parseInt(formData.dementiaPersonAge, 10),  
-            dementiaPersonIdentity: formData.dementiaPersonIdentity,
-            chronicHealthCondition: formData.chronicHealthCondition.join(', '),  
-            liveWithDementiaPerson: formData.liveWithDementiaPerson === 'yes',  
-            proximityToPatient: formData.proximityToPatient,
-            supportDuration: `${formData.supportDurationYears} years, ${formData.supportDurationMonths} months`,  
-            hoursPerWeek: parseInt(formData.hoursPerWeek, 10),  
-            // hoursPerTypicalWeek: formData.hoursPerTypicalWeek === 'yes',  
-            typicalWeekDetail: formData.typicalWeekDetail,
-            userID : formData.userID
-        };
-    
-        const jsonString = JSON.stringify(payload);
-        console.log(jsonString);
-        alert('Form data prepared as JSON:\n' + jsonString);
-    
-        // API post request
-        // fetch('http://localhost:8081/caregiver/v1/save-baseline-questionnaire', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: formData
-        // })
-        // .then(response => response.json())
-        // .then(data => {
-        //     console.log('Success:', data);
-        //     alert('Form submitted successfully!');
-        //     //window.location.href = '../Form4/index.html';
-        // })
-        // .catch((error) => {
-        //     console.error('Error:', error);
-        //     alert('There was an error submitting the form.');
-        // });
         submitToAPI();
     };
     
