@@ -1,11 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./BaselineQuestionnaireF4.css";
 import Sidebar from "../SidebarMenu/SideBar";
 import { FaBars } from "react-icons/fa";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
+
+import axiosInstance from '../../apicall/AxiosInstance';
+import LoadingComponent from '../loader/LoadingComponent';
+import LocalStorageService from '../../utils/LocalStorageService';
+
 const BaselineQuestionnaireF4 = () => {
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -34,7 +40,6 @@ const BaselineQuestionnaireF4 = () => {
     const jsonString = JSON.stringify(formData);
     console.log(jsonString);
     alert("Form data prepared as JSON:\n" + jsonString);
-    navigate(`/`);
     // API post request
     /*
         fetch('https://api.demo.com', {
@@ -55,7 +60,39 @@ const BaselineQuestionnaireF4 = () => {
             alert('There was an error submitting the form.');
         });
         */
+        submitToAPI()
   };
+
+  const updateUserID = (newUserID) => {
+    setFormData((prevFormData) => ({
+        ...prevFormData,
+        userID: newUserID
+    }));
+  };
+
+  useEffect(() => {
+    const userData = LocalStorageService.getItem('profile');
+    if (userData) {
+        updateUserID(userData.id);
+    }
+}, []);
+
+const submitToAPI = () => {
+    setLoading(true);
+
+    axiosInstance.post('/caregiver/v1/save-b4questionnaire', formData) 
+    .then(response => {
+      alert(`Congratulations, you just completed the baseline questionnaire.`);
+      navigate(`/registration`);
+    })
+    .catch(error => {
+        alert(`Form processing unsuccessful  . . .`);
+        console.error('Error', error);
+    })
+    .finally(() => {
+      setLoading(false);
+    });
+}
 
   return (
     <div className={`app-container ${isSidebarOpen ? "with-sidebar" : ""}`}>
@@ -64,6 +101,7 @@ const BaselineQuestionnaireF4 = () => {
       </button>
       {isSidebarOpen && <Sidebar />}
       <Header />
+      {!loading && (
       <div className="form-container">
         <h2 className="text-center">
           Health enSuite – Caregivers Application Feedback Form
@@ -391,6 +429,12 @@ const BaselineQuestionnaireF4 = () => {
           </button>
         </form>
       </div>
+      )}
+      {loading && (
+          <div>
+            <LoadingComponent/>
+          </div>
+      )}
       <Footer />
     </div>
   );
