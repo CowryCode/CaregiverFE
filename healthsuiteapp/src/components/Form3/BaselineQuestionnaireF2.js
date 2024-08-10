@@ -62,32 +62,6 @@ const BaselineQuestionnaireF2 = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const jsonString = JSON.stringify(formData);
-        console.log(jsonString);
-        alert('Form data prepared as JSON:\n' + jsonString);
-
-        // API post request
-        /*
-        fetch('https://api.demo.com', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: jsonString
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Success:', data);
-            alert('Form submitted successfully!');
-            window.location.href = '../Form4/index.html';
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-            alert('There was an error submitting the form.');
-        });
-        */
-
-       // window.location.href = '/baseline-questionnaire-f3';
        submitToAPI();
     };
 

@@ -1,10 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./BaselineQuestionnaireF3.css";
 import Sidebar from "../SidebarMenu/SideBar";
 import { FaBars } from "react-icons/fa";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
+
+import axiosInstance from '../../apicall/AxiosInstance';
+import LoadingComponent from '../loader/LoadingComponent';
+import LocalStorageService from '../../utils/LocalStorageService';
+
 const BaselineQuestionnaireF3 = () => {
+  const [loading, setLoading] = useState(false);
+
   const [formData, setFormData] = useState({
     handleMemoryLoss: "",
     dealWithFrustration: "",
@@ -55,8 +62,39 @@ const BaselineQuestionnaireF3 = () => {
         });
         */
 
-    window.location.href = "/baseline-questionnaire-f4";
+    //window.location.href = "/baseline-questionnaire-f4";
+    submitToAPI();
   };
+  const updateUserID = (newUserID) => {
+    setFormData((prevFormData) => ({
+        ...prevFormData,
+        userID: newUserID
+    }));
+  };
+
+  useEffect(() => {
+    const userData = LocalStorageService.getItem('profile');
+    if (userData) {
+        updateUserID(userData.id);
+    }
+}, []);
+
+const submitToAPI = () => {
+    setLoading(true);
+
+    axiosInstance.post('/caregiver/v1/save-b3questionnaire', formData) 
+    .then(response => {
+        window.location.href = '/baseline-questionnaire-f4';
+    })
+    .catch(error => {
+        alert(`Form processing unsuccessful  . . .`);
+       // window.location.href = '/baseline-questionnaire-f1';
+        console.error('Error', error);
+    })
+    .finally(() => {
+      setLoading(false);
+    });
+}
 
   return (
     <div className={`app-container ${isSidebarOpen ? "with-sidebar" : ""}`}>
@@ -65,6 +103,7 @@ const BaselineQuestionnaireF3 = () => {
       </button>
       {isSidebarOpen && <Sidebar />}
       <Header />
+      {!loading && (
       <div className="form-container">
         <h2 className="text-center">
           Family Caregivers' Self-Efficacy for Managing Dementia Form
@@ -153,10 +192,16 @@ const BaselineQuestionnaireF3 = () => {
             </table>
           </div>
           <button type="submit" className="btn btn-primary btn-block">
-            Submit
+            Next
           </button>
         </form>
       </div>
+        )}
+            {loading && (
+            <div>
+                <LoadingComponent/>
+            </div>
+            )}
       <Footer />
     </div>
   );
