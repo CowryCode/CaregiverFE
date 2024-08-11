@@ -23,6 +23,7 @@ const BaselineQuestionnaireF4 = () => {
     usefulFeature: "",
     futureUse: "",
     comment: "",
+    userID: ""
   });
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
@@ -75,7 +76,7 @@ const BaselineQuestionnaireF4 = () => {
     if (userData) {
         updateUserID(userData.id);
     }
-}, []);
+ }, []);
 
 const submitToAPI = () => {
     setLoading(true);
@@ -92,7 +93,7 @@ const submitToAPI = () => {
     .finally(() => {
       setLoading(false);
     });
-}
+  }
 
   return (
     <div className={`app-container ${isSidebarOpen ? "with-sidebar" : ""}`}>

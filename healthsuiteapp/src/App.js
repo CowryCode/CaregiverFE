@@ -22,6 +22,7 @@ import WebSocketComponent from './components/notification/WebSocketComponent'
 import UserDuplicateRecords from './components/UserTable/UserDuplicateRecords';
 import VoluntaryWithdrawal from './components/VoluntaryWithdrawal/VoluntaryWithdrawal';
 import ContactUs from './components/ContactUs/ContactUs';import LoadingComponent from './components/loader/LoadingComponent';
+import CompleteCareGiverProfile from './components/Registration/CompleteCareGiverProfile';
 
 function App() {
   return (
@@ -38,7 +39,8 @@ function App() {
         <Route path="/baseline-questionnaire-f2" element={<BaselineQuestionnaireF2 />} />
         <Route path="/baseline-questionnaire-f3" element={<BaselineQuestionnaireF3 />} />
         <Route path="/baseline-questionnaire-f4" element={<BaselineQuestionnaireF4 />} />
-        <Route path="/registration" element={<Registration />} />
+        {/* <Route path="/registration" element={<Registration />} /> */}
+        <Route path="/user-complete-profile" element={<CompleteCareGiverProfile />} />
         <Route path="/login" element={<Login />} />
         <Route path="/need-assessment" element={<NeedAssessmentForm />} />
         <Route path="/admin" element={<UserTable />} />

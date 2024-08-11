@@ -50,6 +50,7 @@ const CaregiverRegistration = () => {
     if (!formData.firstName) newErrors.firstName = "First Name is required";
     if (!formData.lastName) newErrors.lastName = "Last Name is required";
     if (!formData.age || isNaN(formData.age)) newErrors.age = "Valid Age is required";
+    if (!formData.gender) newErrors.gender = "Gender is required";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -71,7 +72,7 @@ const CaregiverRegistration = () => {
     // const response = await fetchReferralCode();
     // setReferralCode(response);
 
-    submitToAPI();
+   // submitToAPI();
     
   };
 
