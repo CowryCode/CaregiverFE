@@ -31,11 +31,6 @@ import LocalStorageService from '../../utils/LocalStorageService';
 const CompleteCareGiverProfile = () => {
   const [loading, setLoading] = useState(false);
   const [profile, setProfile] = useState({});
-  //const [selectedOptions, setSelectedOptions] = useState([]);
-//   const [emailAllowed, setEmailAllowed] = useState(false);
-//   const [smsAllowed, setsmsAllowed] = useState(false);
-//   const [appAllowed, setappAllowed] = useState(false);
-//   const [noneAllowed, setnoneAllowed] = useState(false);
   
 
 

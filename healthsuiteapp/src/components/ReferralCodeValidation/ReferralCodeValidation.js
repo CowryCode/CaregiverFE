@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Container,
@@ -34,6 +34,8 @@ const ReferralCodeValidation = () => {
   const [openDialog, setOpenDialog] = useState(false);
   const [errorDialog, setErrorDialog] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [screenNumber, setScreenNumber] = useState(0);
+  const [profile, setProfile] = useState({});
 
   const handleReferralCodeChange = (event) => {
     setReferralCode(event.target.value);
@@ -50,8 +52,62 @@ const ReferralCodeValidation = () => {
   };
 
   const comfirm = () => {
-    navigate(`/eligibility-form`);
-  };
+    routeUser(screenNumber);
+  }
+
+  const routeUser = (screenNumber) => {
+    // 1 = Caregiver Eligibility Screen (/eligibility-form)
+      // 2 = Consent form (/consent-form)
+      // 3 = Baseline Questionnaire Screen 1 (/baseline-questionnaire-f1)
+      // 4 = Baseline Questionnaire Screen 2 (/baseline-questionnaire-f2)
+      // 5 = Baseline Questionnaire Screen 3 (/baseline-questionnaire-f3)
+      // 6 = Baseline Questionnaire Screen 4 (/baseline-questionnaire-f4)
+      // 7 = Complete user profile (/user-complete-profile)
+      console.log(`SCREEN NUMBER :  ${screenNumber}`);
+      const profileDetail = JSON.stringify(profile);
+      console.log('SAVED PROFILE ' + profileDetail);
+    
+    switch (screenNumber) {
+      case 1:
+        navigate(`/eligibility-form`);
+        break;
+      case 2:
+        navigate(`/consent-form`);
+        break;
+      case 3:
+        navigate(`/baseline-questionnaire-f1`);
+        break;
+      case 4:
+        navigate(`/baseline-questionnaire-f2`);
+        break;
+      case 5:
+        navigate(`/baseline-questionnaire-f3`);
+        break;
+      case 6:
+        navigate(`/baseline-questionnaire-f4`);
+        break;
+      case 7:
+        navigate(`/user-complete-profile`);
+        break;
+      default:
+        console.warn('Unknown screen number:', screenNumber);
+  }
+};
+
+    const updateScreenNumber = (userData) => {
+      setScreenNumber(userData.preActiveScreenNumber);
+      setProfile(userData);
+    };
+
+
+  useEffect(() => {
+    const userData = LocalStorageService.getItem('profile');
+    // const jsonString = JSON.stringify(userData);
+    // console.log('SAVED PROFILE ' + jsonString);
+    if (userData) {
+      updateScreenNumber(userData);
+    }
+  }, []);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -89,8 +145,9 @@ const ReferralCodeValidation = () => {
     axiosInstance.get(`/caregiver/v1/login-with-refcode/${referralCode}`)
     .then(response => {
       const data = { participantName: `${response.data.firstName} ${response.data.lastName}` };
-       LocalStorageService.setItem('profile', response.data)
-        setErrorDialog(false)
+       LocalStorageService.setItem('profile', response.data);
+        setErrorDialog(false);
+        setScreenNumber(response.data.preActiveScreenNumber);
         setValidationMessage(`The code you have entered is for ${data.participantName}. Please confirm that your code has been entered correctly:`);
     })
     .catch(error => {
@@ -100,6 +157,18 @@ const ReferralCodeValidation = () => {
     .finally(() => {
       setLoading(false); // Hide throbber
       setOpenDialog(true);
+    });
+  }
+
+  const submitPageUpdateToAPI = (id, nextPage) => {
+    const data = { userID: `${id}` , nextPageNumber: `${nextPage}`};
+    console.log('ID : ' + id + ' Number : ' + nextPage);
+    axiosInstance.post(`/caregiver/v1/update-signup-stage`, data)
+    .then(response => {
+      console.log('Page state updated')
+    })
+    .catch(error => {
+      console.log('Page state updated failed')
     });
   }
 
@@ -163,7 +232,7 @@ const ReferralCodeValidation = () => {
           <DialogContentText>
             {validationMessage}
           </DialogContentText>
-          {!unknownReferralCode && 
+          {!unknownReferralCode && !errorDialog &&
           <RadioGroup name="confirmation" value={confirmation} onChange={handleConfirmationChange}>
             <FormControlLabel value="yes" control={<Radio />} label="Yes. This is me." />
             <FormControlLabel value="no" control={<Radio />} label="No. This is not me." />

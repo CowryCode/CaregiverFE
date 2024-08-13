@@ -5,8 +5,12 @@ const LocalStorageService = {
     // profile : This stores user profile
     // token : This stores token
     // state : This stores the state object that conatins all the states
+  
     setItem(key, value) {
       try {
+        const profileDetail = JSON.stringify(value);
+        console.log('Raw Profile ' + profileDetail);
+        this.removeItem(key);
         const serializedValue = JSON.stringify(value);
         localStorage.setItem(key, serializedValue);
       } catch (error) {
