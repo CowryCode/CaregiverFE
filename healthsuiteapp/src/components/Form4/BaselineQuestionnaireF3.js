@@ -23,6 +23,7 @@ const BaselineQuestionnaireF3 = () => {
     findOrganizations: "",
     arrangeServices: "",
     getAnswersRelativeCare: "",
+    userID: 0
   });
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 

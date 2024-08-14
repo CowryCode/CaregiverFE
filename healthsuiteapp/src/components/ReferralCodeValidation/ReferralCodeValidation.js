@@ -89,6 +89,9 @@ const ReferralCodeValidation = () => {
       case 7:
         navigate(`/user-complete-profile`);
         break;
+      case 8:
+        navigate(`/login`);
+        break;
       default:
         console.warn('Unknown screen number:', screenNumber);
   }
