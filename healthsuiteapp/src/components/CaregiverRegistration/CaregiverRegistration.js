@@ -185,6 +185,37 @@ const CaregiverRegistration = () => {
               <FormControlLabel value="Others" control={<Radio />} label="Others" />
             </RadioGroup>
           </FormControl>
+          {/* <FormControl fullWidth margin="normal" error={!!errors.gender}>
+                <FormLabel>
+                  Gender <span style={{ color: "red" }}>*</span>
+                </FormLabel>
+                <RadioGroup
+                  name="gender"
+                  value={formData.gender}
+                  onChange={handleFormChange}
+                >
+                  <FormControlLabel
+                    value="Male"
+                    control={<Radio />}
+                    label="Male"
+                  />
+                  <FormControlLabel
+                    value="Female"
+                    control={<Radio />}
+                    label="Female"
+                  />
+                  <FormControlLabel
+                    value="Others"
+                    control={<Radio />}
+                    label="Others"
+                  />
+                </RadioGroup>
+                {errors.gender && (
+                  <Typography variant="body2" color="error">
+                    {errors.gender}
+                  </Typography>
+                )}
+              </FormControl> */}
           <Button variant="contained" color="primary" type="submit" className="submit-button">
             Submit
           </Button> 
