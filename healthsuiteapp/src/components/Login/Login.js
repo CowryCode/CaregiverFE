@@ -4,18 +4,44 @@ import { TextField, Button, Typography, Container, Box } from "@mui/material";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 
+import axiosInstance from '../../apicall/AxiosInstance';
+import LoadingComponent from '../loader/LoadingComponent';
+import LocalStorageService from "../../utils/LocalStorageService";
+
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const [loading, setLoading] = useState(false);
+
 
   const navigate = useNavigate();
 
   const handleLogin = (event) => {
     event.preventDefault();
     console.log("Logging in with:", email, password);
-    navigate(`/baseline-questionnaire-f1`);
+    // navigate(`/baseline-questionnaire-f1`);
     // Add your login logic or call to API here
+    submitToAPI();
   };
+
+  const submitToAPI = () => {
+    setLoading(true);
+    const payload = {userName: email, passWord: password}
+    axiosInstance.post('/caregiver/auth/v1/login-caregiver', payload) 
+    .then(response => {
+      LocalStorageService.setItem('token', response.data);
+      navigate(`/`);
+    })
+    .catch(error => {
+        alert(`Login unsuccessful  . . .`);
+       // window.location.href = '/baseline-questionnaire-f1';
+        console.error('Error', error);
+    })
+    .finally(() => {
+      setLoading(false);
+    });
+}
 
   return (
     <>
@@ -31,6 +57,7 @@ function Login() {
           minHeight: "70vh",
         }}
       >
+      {!loading && (
         <Box
           sx={{
             display: "flex",
@@ -84,8 +111,14 @@ function Login() {
             </Button>
           </Box>
         </Box>
+      )}
+      {loading && (
+      <div>
+        <LoadingComponent/>
+      </div>
+      )}
       </Container>
-      <Footer />
+      <Footer/>
     </>
   );
 }
