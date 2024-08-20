@@ -30,7 +30,17 @@ function Login() {
     const payload = {userName: email, passWord: password}
     axiosInstance.post('/caregiver/auth/v1/login-caregiver', payload) 
     .then(response => {
-      LocalStorageService.setItem('token', response.data);
+      LocalStorageService.setItem('token', response.data.token);
+      LocalStorageService.setItem('profile', response.data.profile);
+
+      const needSequence = response.data.profile.needSequence;
+
+      if(needSequence != null){
+        const order =   needSequence.split(',');
+        LocalStorageService.setItem('libraryorder', needSequence);
+      }
+
+      
       navigate(`/`);
     })
     .catch(error => {
@@ -41,7 +51,7 @@ function Login() {
     .finally(() => {
       setLoading(false);
     });
-}
+  }
 
   return (
     <>

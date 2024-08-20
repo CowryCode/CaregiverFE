@@ -8,8 +8,6 @@ const LocalStorageService = {
   
     setItem(key, value) {
       try {
-        const profileDetail = JSON.stringify(value);
-        console.log('Raw Profile ' + profileDetail);
         this.removeItem(key);
         const serializedValue = JSON.stringify(value);
         localStorage.setItem(key, serializedValue);
@@ -21,7 +19,19 @@ const LocalStorageService = {
     getItem(key) {
       try {
         const serializedValue = localStorage.getItem(key);
+        console.log(`Value : ${serializedValue}`);
         return serializedValue ? JSON.parse(serializedValue) : null;
+      } catch (error) {
+        console.error(`Error getting item ${key} from localStorage:`, error);
+        return null;
+      }
+    },
+
+    getUnStringifiedItem(key) {
+      try {
+        const serializedValue = localStorage.getItem(key);
+        console.log(`Value : ${serializedValue}`);
+        return serializedValue ? serializedValue.split(',') : null;
       } catch (error) {
         console.error(`Error getting item ${key} from localStorage:`, error);
         return null;

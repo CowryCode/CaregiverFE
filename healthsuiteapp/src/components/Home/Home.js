@@ -1,4 +1,4 @@
-import React from "react";
+import React , { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Home.css";
 import { FaBars } from "react-icons/fa"; // Importing the FaBars icon
@@ -12,9 +12,13 @@ import lifecareImg from "../../assets/lifecare.png";
 import formImg from "../../assets/form.png";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
+import LocalStorageService from "../../utils/LocalStorageService";
 
 const Home = () => {
   const navigate = useNavigate();
+
+  const [token, setToken] = useState(null);
+  const [profile, setProfile] = useState({});
 
   const myPriorityNeed = () => {
     // THIS ARRAY IS GENERATED AFTER SUBMITTING NEED ASSESSMENT
@@ -32,23 +36,58 @@ const Home = () => {
     }
   };
 
+  useEffect(() => {
+    const localtoken = LocalStorageService.getItem('token');
+    const localprofile = LocalStorageService.getItem('profile');
+    setToken(localtoken);
+    setProfile(localprofile);
+
+    if(localtoken === null || localprofile === null){
+      navigate(`/login`);
+    }
+
+  }, []);
+
+  const logout = () => {
+    LocalStorageService.clear();
+    navigate(`/login`);
+  }
+
   const handleSidebarToggle = () => {
     document.getElementById("sidebar").classList.toggle("active");
   };
 
   const handleLibraryClick = () => {
+    // const data = [3, 2, 4, 5, 1]; 
+
+    const data = LocalStorageService.getItem('token');
+
+    if(profile.needAssessmentSubmitted  && data.length > 0){
+      // THIS ARRAY IS GENERATED AFTER SUBMITTING NEED ASSESSMENT
+      // WHEN NEED ASSESSMENT HAS NOT BEEN SUBMITTED DATA IS EMPTY
+      
+        //const firstTopic = data[0];
+        const firstTopic = 1;
+
+      navigate(`/library/core-topic${firstTopic}`);
+    }else{
+      navigate(`/need-assessment`);
+    }
+    
+
+
     // THIS ARRAY IS GENERATED AFTER SUBMITTING NEED ASSESSMENT
     // const data = [3, 2, 4, 5, 1]; // Static array for development purposes
     // WHEN NEED ASSESSMENT HAS NOT BEEN SUBMITTED DATA IS EMPTY
-    const data = [];
-    if (data.length > 0) {
-      //const firstTopic = data[0];
-      const firstTopic = 1;
+    // const data = [];
+    // if (data.length > 0) {
+    //   //const firstTopic = data[0];
+    //   const firstTopic = 1;
 
-      navigate(`/library/core-topic${firstTopic}`);
-    } else {
-      navigate(`/need-assessment`);
-    }
+    //   navigate(`/library/core-topic${firstTopic}`);
+    // } else {
+    //   navigate(`/need-assessment`);
+    // }
   };
 
   return (
@@ -103,11 +142,16 @@ const Home = () => {
                     Forms
                   </span>
                 </li>
-
                 <li className="nav-item">
                   <span className="nav-link" onClick={() => navigate("/admin")}>
                     <i className="fas fa-clipboard-list"></i>
                     Admin
+                  </span>
+                </li>
+                <li className="nav-item">
+                  <span className="nav-link" onClick={logout}>
+                    <i className="fas fa-clipboard-list"></i>
+                    Logout
                   </span>
                 </li>
                 <li className="nav-item">

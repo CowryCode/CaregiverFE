@@ -7,6 +7,7 @@ import CoreTopics2 from './CoreTopics2';
 import CoreTopics3 from './CoreTopics3';
 import CoreTopics4 from './CoreTopics4';
 import CoreTopics5 from './CoreTopics5';
+import LocalStorageService from '../../utils/LocalStorageService';
 
 const coreTopics = [
   { path: "core-topic1", component: <CoreTopics1 />, title: "Core-Topic1 Taking Care of Yourself" },
@@ -14,15 +15,23 @@ const coreTopics = [
   { path: "core-topic3", component: <CoreTopics3 />, title: "Core-Topic3 Supporting the Person Living with Dementia" },
   { path: "core-topic4", component: <CoreTopics4 />, title: "Core-Topic4 Communication" },
   { path: "core-topic5", component: <CoreTopics5 />, title: "Core-Topic5 Time Management" },
+
 ];
 
 function CoreTopics() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-  const order = location.state?.order || [3, 2, 1, 5, 4]; // Static array for development purposes
 
+  const liborder = LocalStorageService.getItem('libraryorder');
+  
+  // const jsonString = JSON.stringify(libraryOrder);
+  console.log('TTTTTTTTTT : ' + liborder);
+  //const order = location.state?.order || [3, 2, 1, 5, 4]; // Static array for development purposes
+  const order = location.state?.order || liborder;
+  console.log('ORDER TTTTTT : ' + liborder);
   const orderedTopics = order.map(index => coreTopics[index - 1]);
+
 
   const handleTopicChange = (index) => {
     navigate(orderedTopics[index].path);

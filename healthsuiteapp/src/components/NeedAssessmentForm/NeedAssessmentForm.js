@@ -22,14 +22,26 @@ const NeedAssessmentForm = () => {
         console.log("Sidebar is " + (isSidebarOpen ? "open" : "closed"));
     };
 
-    const handleLibraryClick = () => {
-        const data = [3, 2, 4, 5, 1]; // Static array for development purposes
-        if (data.length > 0) {
-            const firstTopic = 1;
-            navigate(`/library/core-topic${firstTopic}`);
+    const handleLibraryClick = (libraryOrder) => {
+        const jsonString = JSON.stringify(libraryOrder);
+        console.log('Raw Library Order : ' + jsonString);
+
+        const firstItem = libraryOrder[0];
+
+        // const data = [3, 2, 4, 5, 1]; 
+        if (libraryOrder.length > 0) {
+            navigate(`/library/core-topic${firstItem}`);
         } else {
             navigate(`/need-assessment`);
         }
+
+        // const data = [3, 2, 4, 5, 1]; // Static array for development purposes
+        // if (data.length > 0) {
+        //     const firstTopic = 1;
+        //     navigate(`/library/core-topic${firstTopic}`);
+        // } else {
+        //     navigate(`/need-assessment`);
+        // }
     };
 
     const [formData, setFormData] = useState(
@@ -99,6 +111,12 @@ const NeedAssessmentForm = () => {
             },
         }));
 
+        if(field === null){
+            setFormData((prevData) => ({
+                ...prevData,
+                'difficulty_with_changes': value,
+            }));
+        }
         setFormData2((prevData) => ({
             ...prevData,
             [field]: value,
@@ -108,7 +126,7 @@ const NeedAssessmentForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         submitToAPI();
-        handleLibraryClick();
+        // handleLibraryClick();
     };
 
     const updateUserID = (newUserID) => {
@@ -138,8 +156,8 @@ const NeedAssessmentForm = () => {
 
         axiosInstance.post('/caregiver/v1/save-need-assessment', formData2)
             .then(response => {
-                const jsonString = JSON.stringify(response.data);
-                console.log('Successful' + jsonString);
+                LocalStorageService.setItem('libraryorder', response.data);
+                handleLibraryClick(response.data);
             })
             .catch(error => {
                 console.error('Error', error);
@@ -166,6 +184,7 @@ const NeedAssessmentForm = () => {
                 <Typography variant="h4" gutterBottom>
                     Needs Assessment Questionnaire
                 </Typography>
+                {!loading && (
                 <form onSubmit={handleSubmit}>
                     <Grid container spacing={3}>
                         <Grid item xs={12}>
@@ -573,6 +592,12 @@ const NeedAssessmentForm = () => {
                         </Grid>
                     </Grid>
                 </form>
+                 )}
+                {loading && (
+                <div>
+                    <LoadingComponent/>
+                </div>
+                )}
             </Container>
             <Footer />
         </div>

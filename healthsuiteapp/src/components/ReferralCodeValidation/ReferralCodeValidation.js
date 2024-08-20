@@ -163,17 +163,17 @@ const ReferralCodeValidation = () => {
     });
   }
 
-  const submitPageUpdateToAPI = (id, nextPage) => {
-    const data = { userID: `${id}` , nextPageNumber: `${nextPage}`};
-    console.log('ID : ' + id + ' Number : ' + nextPage);
-    axiosInstance.post(`/caregiver/v1/update-signup-stage`, data)
-    .then(response => {
-      console.log('Page state updated')
-    })
-    .catch(error => {
-      console.log('Page state updated failed')
-    });
-  }
+  // const submitPageUpdateToAPI = (id, nextPage) => {
+  //   const data = { userID: `${id}` , nextPageNumber: `${nextPage}`};
+  //   console.log('ID : ' + id + ' Number : ' + nextPage);
+  //   axiosInstance.post(`/caregiver/v1/update-signup-stage`, data)
+  //   .then(response => {
+  //     console.log('Page state updated')
+  //   })
+  //   .catch(error => {
+  //     console.log('Page state updated failed')
+  //   });
+  // }
 
   const handleConfirmationChange = (event) => {
     setConfirmation(event.target.value);
