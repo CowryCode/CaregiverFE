@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Box, Button, Typography } from '@mui/material';
+import UpdateLibraryLastPage from '../../../../../apicall/UpdateLibraryLastPage';
 
 const Page2 = () => {
     const navigate = useNavigate();
@@ -12,6 +13,19 @@ const Page2 = () => {
     const handlePrevious = () => {
         navigate('/library/core-topic3/level1/level1one/page1'); // Navigate back to the first page
     };
+
+    useEffect(() => {
+        savePageUrl();
+        console.log(`Paged saved successfully : ${successful}` )
+      }, []);
+    
+    const { successful, savePageUrl } = UpdateLibraryLastPage({
+          setLoading: (loading) => console.log(`Loading: ${loading}`),
+          handleLibraryClick: (data) => {
+              console.log('Library Clicked:', data);
+          },
+    });
+
 
     return (
         <Box sx={{
