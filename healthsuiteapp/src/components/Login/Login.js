@@ -32,6 +32,7 @@ function Login() {
     .then(response => {
       LocalStorageService.setItem('token', response.data.token);
       LocalStorageService.setItem('profile', response.data.profile);
+      LocalStorageService.setItem('libraryLastPage', response.data.profile.libraryLastScreen);
 
       const needSequence = response.data.profile.needSequence;
 
