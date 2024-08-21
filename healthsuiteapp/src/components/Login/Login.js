@@ -35,9 +35,13 @@ function Login() {
 
       const needSequence = response.data.profile.needSequence;
 
-      if(needSequence != null){
-        const order =   needSequence.split(',');
-        LocalStorageService.setItem('libraryorder', needSequence);
+      const needSequenceArray = JSON.parse(needSequence);
+
+      if(needSequenceArray.length > 0 ){
+        LocalStorageService.setArray('libraryorder', needSequenceArray);
+
+        // const order =   needSequence.split(',');
+        // LocalStorageService.setItem('libraryorder', needSequence);
       }
 
       

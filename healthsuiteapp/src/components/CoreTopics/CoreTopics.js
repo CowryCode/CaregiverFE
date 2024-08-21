@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { CssBaseline, Container, Grid } from '@mui/material';
 import Navigation from './Navigation'
@@ -23,15 +23,23 @@ function CoreTopics() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const liborder = LocalStorageService.getItem('libraryorder');
+  const liborder = LocalStorageService.getArray('libraryorder');
+
   
   // const jsonString = JSON.stringify(libraryOrder);
-  console.log('TTTTTTTTTT : ' + liborder);
   //const order = location.state?.order || [3, 2, 1, 5, 4]; // Static array for development purposes
   const order = location.state?.order || liborder;
   console.log('ORDER TTTTTT : ' + liborder);
+  console.log('ORDER LENGTH : ' + liborder.length);
   const orderedTopics = order.map(index => coreTopics[index - 1]);
 
+
+  // useEffect(() => {
+  //   const liborder = LocalStorageService.getItem('libraryorder');
+  //   if (liborder.) {
+  //       updateUserID(userData.id);
+  //   }
+  // }, []);
 
   const handleTopicChange = (index) => {
     navigate(orderedTopics[index].path);

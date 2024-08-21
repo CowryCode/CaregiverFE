@@ -15,6 +15,16 @@ const LocalStorageService = {
         console.error(`Error setting item ${key} in localStorage:`, error);
       }
     },
+
+    setArray(key, value) {
+      try {
+        this.removeItem(key);
+        localStorage.setItem(key, value);
+      } catch (error) {
+        console.error(`Error setting item ${key} in localStorage:`, error);
+      }
+    },
+  
   
     getItem(key) {
       try {
@@ -27,16 +37,17 @@ const LocalStorageService = {
       }
     },
 
-    getUnStringifiedItem(key) {
+    getArray(key) {
       try {
-        const serializedValue = localStorage.getItem(key);
-        console.log(`Value : ${serializedValue}`);
-        return serializedValue ? serializedValue.split(',') : null;
+        const value = localStorage.getItem(key);
+        return value.split(',') ;
       } catch (error) {
         console.error(`Error getting item ${key} from localStorage:`, error);
         return null;
       }
     },
+
+  
   
     removeItem(key) {
       try {

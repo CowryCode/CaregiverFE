@@ -156,7 +156,14 @@ const NeedAssessmentForm = () => {
 
         axiosInstance.post('/caregiver/v1/save-need-assessment', formData2)
             .then(response => {
-                LocalStorageService.setItem('libraryorder', response.data);
+                const needSequence = response.data;
+
+                const needSequenceArray = JSON.parse(needSequence);
+
+                if(needSequenceArray.length > 0 ){
+                    LocalStorageService.setArray('libraryorder', needSequenceArray);
+                }
+                // LocalStorageService.setItem('libraryorder', response.data);
                 handleLibraryClick(response.data);
             })
             .catch(error => {
