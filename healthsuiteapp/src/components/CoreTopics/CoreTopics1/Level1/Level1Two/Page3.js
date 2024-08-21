@@ -19,6 +19,7 @@ import {
   removeFromWishlist,
   getWishlist,
 } from "../../../../../utils/localStorageHelpers.js";
+import UpdateLibraryLastPage from "../../../../../apicall/UpdateLibraryLastPage.js"; 
 
 const Page3 = () => {
   const navigate = useNavigate();
@@ -47,6 +48,18 @@ const Page3 = () => {
       setIsBookmarked(true);
     }
   };
+
+  useEffect(() => {
+    savePageUrl();
+    console.log(`Paged saved successfully : ${successful}` )
+  }, []);
+
+  const { successful, savePageUrl } = UpdateLibraryLastPage({
+      setLoading: (loading) => console.log(`Loading: ${loading}`),
+      handleLibraryClick: (data) => {
+          console.log('Library Clicked:', data);
+      },
+  });
 
   return (
     <Box

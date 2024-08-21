@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Box, Button, Typography, Link } from '@mui/material';
+import UpdateLibraryLastPage from '../../../../apicall/UpdateLibraryLastPage'; 
 
 const StartingPage = () => {
     const navigate = useNavigate();
@@ -14,6 +15,19 @@ const StartingPage = () => {
         // Placeholder function, update with the actual navigation logic
         navigate('/library/core-topic1/level1/level1one/page1');
     };
+
+    useEffect(() => {
+        savePageUrl();
+        console.log(`Paged saved successfully : ${successful}` )
+    }, []);
+
+    const { successful, savePageUrl } = UpdateLibraryLastPage({
+        setLoading: (loading) => console.log(`Loading: ${loading}`),
+        handleLibraryClick: (data) => {
+            console.log('Library Clicked:', data);
+        },
+    });
+
 
     return (
         <Box

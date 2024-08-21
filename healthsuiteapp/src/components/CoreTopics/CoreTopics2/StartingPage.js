@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import UpdateLibraryLastPage from '../../../apicall/UpdateLibraryLastPage'; 
 import { useNavigate } from 'react-router-dom';
 import { Box, Button, Typography } from '@mui/material';
 
@@ -14,6 +15,18 @@ const StartingPage = () => {
     //     // Set this to navigate back to the main menu or previous section
     //     navigate('/previous-section-path');
     // };
+
+    useEffect(() => {
+        savePageUrl();
+        console.log(`Paged saved successfully : ${successful}` )
+      }, []);
+    
+      const { successful, savePageUrl } = UpdateLibraryLastPage({
+          setLoading: (loading) => console.log(`Loading: ${loading}`),
+          handleLibraryClick: (data) => {
+              console.log('Library Clicked:', data);
+          },
+    });
 
     return (
         <Box sx={{

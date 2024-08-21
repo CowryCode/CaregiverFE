@@ -29,8 +29,6 @@ function CoreTopics() {
   // const jsonString = JSON.stringify(libraryOrder);
   //const order = location.state?.order || [3, 2, 1, 5, 4]; // Static array for development purposes
   const order = location.state?.order || liborder;
-  console.log('ORDER TTTTTT : ' + liborder);
-  console.log('ORDER LENGTH : ' + liborder.length);
   const orderedTopics = order.map(index => coreTopics[index - 1]);
 
 
