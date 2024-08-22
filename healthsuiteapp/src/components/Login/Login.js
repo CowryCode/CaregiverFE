@@ -7,6 +7,7 @@ import Header from "../Header/Header";
 import axiosInstance from '../../apicall/AxiosInstance';
 import LoadingComponent from '../loader/LoadingComponent';
 import LocalStorageService from "../../utils/LocalStorageService";
+import { refreshQuickTips } from "../../utils/localStorageHelpers";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -33,6 +34,7 @@ function Login() {
       LocalStorageService.setItem('token', response.data.token);
       LocalStorageService.setItem('profile', response.data.profile);
       LocalStorageService.setItem('libraryLastPage', response.data.profile.libraryLastScreen);
+      refreshQuickTips(response.data.profile.quickTips);
 
       const needSequence = response.data.profile.needSequence;
 

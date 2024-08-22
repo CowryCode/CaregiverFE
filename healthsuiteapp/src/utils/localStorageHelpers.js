@@ -1,5 +1,7 @@
 // src/utils/localStorageHelpers.js
 
+import axiosInstance from "../apicall/AxiosInstance";
+
 /**
  * Adds a page to the wishlist stored in local storage.
  * @param {string} pageId - The unique identifier for the page to be added.
@@ -8,8 +10,15 @@ export const addToWishlist = (pageId) => {
     const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
     if (!wishlist.includes(pageId)) {
       wishlist.push(pageId);
-      localStorage.setItem('wishlist', JSON.stringify(wishlist));
+      // localStorage.setItem('wishlist', JSON.stringify(wishlist));
+      const updatedlist = JSON.stringify(wishlist);
+      localStorage.setItem('wishlist', updatedlist);
+      submitToAPI(updatedlist);
     }
+  };
+
+  export const refreshQuickTips = (quicktips) => {
+      localStorage.setItem('wishlist', quicktips);
   };
   
   /**
@@ -27,6 +36,20 @@ export const addToWishlist = (pageId) => {
    * @returns {Array} An array of page IDs stored in the wishlist.
    */
   export const getWishlist = () => {
+
+    const wishlist = localStorage.getItem('wishlist');
+    
+    // MY CODE
     return JSON.parse(localStorage.getItem('wishlist')) || [];
   };
+
+  const submitToAPI = (wishlist) => {
+    const payload = {content: wishlist}
+    axiosInstance.post('/caregiver/v1/update-quick-link', payload) 
+    .then(response => {
+    })
+    .catch(error => {
+        console.error('Error', error);
+    })
+  }
   
