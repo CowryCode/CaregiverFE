@@ -29,7 +29,6 @@ const LocalStorageService = {
     getItem(key) {
       try {
         const serializedValue = localStorage.getItem(key);
-        console.log(`Value : ${serializedValue}`);
         return serializedValue ? JSON.parse(serializedValue) : null;
       } catch (error) {
         console.error(`Error getting item ${key} from localStorage:`, error);

@@ -8,6 +8,7 @@ import CoreTopics3 from './CoreTopics3';
 import CoreTopics4 from './CoreTopics4';
 import CoreTopics5 from './CoreTopics5';
 import LocalStorageService from '../../utils/LocalStorageService';
+import LoadingComponent from '../loader/LoadingComponent';
 
 const coreTopics = [
   { path: "core-topic1", component: <CoreTopics1 />, title: "Core-Topic1 Taking Care of Yourself" },
@@ -22,6 +23,8 @@ function CoreTopics() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+
+  const [loading, setLoading] = useState(true);
 
   const liborder = LocalStorageService.getArray('libraryorder');
 
@@ -43,10 +46,24 @@ function CoreTopics() {
     navigate(orderedTopics[index].path);
   };
 
+  useEffect(() => {
+    const savedPath = LocalStorageService.getItem('libraryLastPage');
+    console.log(`PATH : ${savedPath}`);
+    if( savedPath != null) {
+      console.log(`PATH 1 : ${savedPath}`);
+      navigate(`${savedPath}`);
+      setLoading(false);
+     }else{
+      console.log(`PATH 2 : ${savedPath}`);
+      setLoading(false);
+     }
+  }, []);
+
   return (
     <>
       <CssBaseline />
       <Container>
+      {!loading && (
         <Grid container>
           <Grid item xs={12}>
             <Navigation topics={orderedTopics.map(topic => topic.title)} onTopicChange={handleTopicChange} mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} />
@@ -59,6 +76,12 @@ function CoreTopics() {
             </Routes>
           </Grid>
         </Grid>
+      )}
+      {loading && (
+      <div>
+        <LoadingComponent/>
+      </div>
+      )}
       </Container>
     </>
   );
