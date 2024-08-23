@@ -28,7 +28,10 @@ export const addToWishlist = (pageId) => {
   export const removeFromWishlist = (pageId) => {
     let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
     wishlist = wishlist.filter(id => id !== pageId);
-    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+    // localStorage.setItem('wishlist', JSON.stringify(wishlist));
+    const updatedlist = JSON.stringify(wishlist);
+    localStorage.setItem('wishlist', updatedlist);
+    submitToAPI(updatedlist);
   };
   
   /**

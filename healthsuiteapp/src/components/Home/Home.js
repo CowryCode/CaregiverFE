@@ -229,7 +229,7 @@ const Home = () => {
                 onClick={() => navigate("/need-assessment")}
               >
                 <img src={supportImg} alt="Support Groups" />
-                <p>My Task List</p>
+                <p>Need Assessment</p>
               </span>
               <span className="icon">
                 <img src={workshopImg} alt="Workshops" />
