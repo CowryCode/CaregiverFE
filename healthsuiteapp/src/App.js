@@ -23,6 +23,8 @@ import UserDuplicateRecords from './components/UserTable/UserDuplicateRecords';
 import VoluntaryWithdrawal from './components/VoluntaryWithdrawal/VoluntaryWithdrawal';
 import ContactUs from './components/ContactUs/ContactUs';import LoadingComponent from './components/loader/LoadingComponent';
 import CompleteCareGiverProfile from './components/Registration/CompleteCareGiverProfile';
+import Page3 from './components/Test/Page3';
+import Video from './components/Video/Video';
 
 function App() {
   return (
@@ -30,6 +32,7 @@ function App() {
       <WebSocketComponent />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path='/test' element={<Page3 />} />
         <Route path="/caregiverregister" element={<CaregiverRegistration />} />
         <Route path="/similar-users" element={<UserDuplicateRecords />} /> 
         <Route path="/referral-code-validation" element={<ReferralCodeValidation />} />
@@ -49,7 +52,8 @@ function App() {
         <Route path="/withdraw" element={<VoluntaryWithdrawal />} />
         <Route path="/feedback" element={<Feedback />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/contact-us" element={<ContactUs />} />0
+        <Route path="/contact-us" element={<ContactUs />} />
+        <Route path="/video" element={<Video />} />
       </Routes>
     </Router>
   );
