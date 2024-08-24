@@ -20,7 +20,7 @@ header {
 
 header h1 {
     font-size: 2em; /* Reduced size for better fit on smaller screens */
-    color: #554fb0;
+    color: #2196F3;
     font-weight: bold;
     margin: 0;
     white-space: nowrap; /* Prevents text wrapping */
@@ -28,7 +28,7 @@ header h1 {
 
 header p {
     font-size: 1em; /* Smaller text on smaller screens */
-    color: #4338d1;
+    color: #2196F3;
     font-weight: bold;
     margin: 0;
     /* display: none; Optionally hide on smaller screens */

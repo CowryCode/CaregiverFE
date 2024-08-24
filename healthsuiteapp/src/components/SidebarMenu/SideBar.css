@@ -10,13 +10,13 @@
     color: #fff;
 }
 
-/* Adjust link styling for better spacing and alignment */
 .sidebarmenu .nav-link {
     padding: 10px 15px;
     color: #fff;
     display: flex; /* Use flexbox for better alignment */
     align-items: center; /* Center items vertically */
     gap: 10px; /* Space between icon and text */
+    transition: color 0.3s ease, background-color 0.3s ease; /* Smooth transition for color and background */
 }
 
 .sidebarmenu .nav-link i {
@@ -24,8 +24,17 @@
     text-align: center; /* Center icons if smaller than min-width */
 }
 
-.sidebarmenu .nav-link:hover, .sidebarmenu .nav-link.active {
+/* On hover, change the text color and add a subtle background color change */
+.sidebarmenu .nav-link:hover, .sidebarmenu .nav-link.active:hover {
+    color: #adb5bd; /* Lighter gray for hover text color */
+    background-color: #3a4048; /* Slightly darker background on hover */
+    cursor: pointer;
+}
+
+/* Keep the active link background color the same, but adjust the text color slightly */
+.sidebarmenu .nav-link.active {
     background-color: #495057;
+    color: #e9ecef; /* Slightly lighter text color for active link */
 }
 
 /* Media queries for responsive behavior */
@@ -35,6 +44,7 @@
         position: relative;
     }
 }
+
 .app-container {
     transition: margin-left 0.3s;
 }

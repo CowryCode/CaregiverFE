@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import Sidebar from '../SidebarMenu/SideBar';
-import { FaBars } from 'react-icons/fa';
-import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
-import { Tabs, Tab, Box } from '@mui/material';
+import React, { useState, useEffect } from "react";
+import Sidebar from "../SidebarMenu/SideBar";
+import { FaBars } from "react-icons/fa";
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
+import { Tabs, Tab, Box } from "@mui/material";
 
 const UserTable = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [rows, setRows] = useState([
-    { name: 'John Doe', status: 'Active', days: 4 }
+    { name: "John Doe", status: "Active", days: 4 },
   ]);
   const [openDialog, setOpenDialog] = useState(false);
   const [referralCode, setReferralCode] = useState(null);
@@ -71,9 +71,16 @@ const UserTable = () => {
                     <td>{row.status}</td>
                     <td>{row.days}</td>
                     <td>
-                      <button className="action-button view-profile">View Profile</button>
+                      <button className="action-button view-profile">
+                        View Profile
+                      </button>
                       <button className="action-button pause">Pause</button>
-                      <button className="action-button get-refcode" onClick={() => handleGetRefCode(row.name)}>Get RefCode</button>
+                      <button
+                        className="action-button get-refcode"
+                        onClick={() => handleGetRefCode(row.name)}
+                      >
+                        Get RefCode
+                      </button>
                     </td>
                   </tr>
                 ))}
@@ -84,7 +91,9 @@ const UserTable = () => {
               <div className="dialog">
                 <div className="dialog-content">
                   <h3>Referral Code</h3>
-                  <p>Your referral code is: <strong>{referralCode}</strong></p>
+                  <p>
+                    Your referral code is: <strong>{referralCode}</strong>
+                  </p>
                   <button onClick={handleDialogClose}>Close</button>
                 </div>
               </div>
@@ -135,13 +144,13 @@ const UserTable = () => {
   };
 
   return (
-    <div className={`app-container ${isSidebarOpen ? 'with-sidebar' : ''}`}>
+    <div className={`app-container ${isSidebarOpen ? "with-sidebar" : ""}`}>
       <button className="sidebar-toggle" onClick={handleSidebarToggle}>
         <FaBars />
       </button>
       {isSidebarOpen && <Sidebar />}
       <Header />
-      <Box sx={{ width: '100%', borderBottom: 1, borderColor: 'divider' }}>
+      <Box sx={{ width: "100%", borderBottom: 1, borderColor: "divider" }}>
         <Tabs
           value={activeTab}
           onChange={(event, newValue) => setActiveTab(newValue)}
@@ -149,16 +158,25 @@ const UserTable = () => {
           textColor="primary"
           variant="fullWidth"
           centered
+          sx={{
+            "& .MuiTabs-indicator": {
+              display: "none", // This hides the default underline
+            },
+            "& .Mui-selected": {
+              // Styles for the selected tab
+              backgroundColor: "#e0f7fa", // Change this to your desired background color for selected tab
+              color: "#0d47a1", // Optional: change text color for selected tab
+            },
+          }}
         >
-          <Tab label="Overview" />
+          <Tab style={{marginLeft: "5px"}} label="Overview" />
           <Tab label="Add User" />
           <Tab label="Reports" />
           <Tab label="Settings" />
         </Tabs>
       </Box>
-      <div className="tab-content">
-        {renderContent()}
-      </div>
+
+      <div className="tab-content">{renderContent()}</div>
       <Footer />
     </div>
   );
