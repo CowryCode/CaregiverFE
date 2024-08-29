@@ -15,7 +15,7 @@ const UpdateLibraryLastPage = ({ setLoading, handleLibraryClick }) => {
         
     }, [location]);
 
-    const savePageUrl = () => {
+    const savePageUrl = async () => {
         setLoading(true);
 
         // Get the pathname, which is the URL excluding the base URL

@@ -13,7 +13,7 @@ import formImg from "../../assets/form.png";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import LocalStorageService from "../../utils/LocalStorageService";
-
+import axiosInstance from "../../apicall/AxiosInstance";
 const Home = () => {
   const navigate = useNavigate();
 
@@ -46,7 +46,67 @@ const Home = () => {
       navigate(`/login`);
     }
 
+    trackLastDateUser();
+
   }, []);
+
+//   const trackLastDateUser = async () => {
+//     const profile = LocalStorageService.getItem('profile');
+//     const date = JSON.stringify(profile.lastUsedDate) ;
+//     const today = new Date();
+//     const savedDate = new Date(date);
+
+//     console.log(`Today Date : ${today}`);
+//     console.log(`Saved Date : ${savedDate}`);
+
+//   if(today > savedDate || today < savedDate){
+//       axiosInstance.get('/caregiver/v1/save-presence')
+//       .then(response => {
+//           console.info('Successful', response);
+//       })
+//       .catch(error => {
+//           console.error('Error', error);
+//       });
+//   }
+
+//   axiosInstance.get('/caregiver/v1/test-token')
+//       .then(response => {
+//           console.log(`Token is Valid`);
+//       })
+//       .catch(error => {
+//           console.error('Error', error);
+//           LocalStorageService.clear();
+//           navigate(`/login`);
+//       });
+// };
+
+
+const trackLastDateUser = async () => {
+  const profile = LocalStorageService.getItem('profile');
+  const lastUsedDate = profile?.lastUsedDate ? new Date(profile.lastUsedDate).toISOString().split('T')[0] : null;
+  const today = new Date().toISOString().split('T')[0];
+
+ // Check if lastUsedDate exists and compare dates
+  if (lastUsedDate && today > lastUsedDate) {
+    try {
+      const response = await axiosInstance.get('/caregiver/v1/save-presence');
+      console.info('Successful', response);
+    } catch (error) {
+      console.error('Error', error);
+    }
+  }
+
+  try {
+    const tokenResponse = await axiosInstance.get('/caregiver/v1/test-token');
+    console.log(`Token is Valid`);
+  } catch (error) {
+    console.error('Error', error);
+    LocalStorageService.clear();
+    navigate(`/login`);
+  }
+};
+
+
 
   const logout = () => {
     LocalStorageService.clear();
