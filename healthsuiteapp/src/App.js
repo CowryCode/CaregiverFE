@@ -25,11 +25,13 @@ import ContactUs from './components/ContactUs/ContactUs';import LoadingComponent
 import CompleteCareGiverProfile from './components/Registration/CompleteCareGiverProfile';
 import Page3 from './components/Test/Page3';
 import Video from './components/Video/Video';
+import InstallPWA from './utils/installpwa'; 
 
 function App() {
   return (
     <Router>
       <WebSocketComponent />
+      <InstallPWA />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path='/test' element={<Page3 />} />
