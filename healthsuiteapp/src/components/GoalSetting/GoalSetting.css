@@ -1,0 +1,58 @@
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f8f9fa;
+}
+
+.app-container {
+    display: flex; /* Ensures that the sidebar and the content are side-by-side */
+    flex-direction: column;
+    min-height: 100vh; /* Minimum height */
+    transition: margin-left 0.3s;
+}
+
+.app-container.with-sidebar {
+    margin-left: 250px; /* Adjust this value to match the sidebar's width */
+}
+
+.feedback-form-container {
+    min-height: 70vh;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.feedback-form-container h6 {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.feedback-form-container .MuiFormControl-root {
+    margin-bottom: 20px;
+}
+
+.sidebar-toggle {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1000;
+    border: none;
+    background: none;
+    color: #007bff; 
+    cursor: pointer;
+    font-size: 24px; 
+}
+
+@media (max-width: 768px) {
+    .app-container.with-sidebar {
+        margin-left: 0 !important; 
+    }
+}
+
+@media (max-width: 576px) {
+    .sidebar-toggle {
+        font-size: 20px;
+    }
+}
