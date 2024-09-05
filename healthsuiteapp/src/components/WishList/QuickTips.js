@@ -23,7 +23,7 @@ const QuickTips = () => {
 
   return (
     <div>
-      <h1>My Wishlist</h1>
+      <h1>Quick Tipes</h1>
       {pages.length > 0 ? (
         <ul style={{ listStyleType: 'none', padding: 0 }}>
           {pages.map((PageComponent, index) => (

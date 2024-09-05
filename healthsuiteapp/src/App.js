@@ -26,6 +26,8 @@ import CompleteCareGiverProfile from './components/Registration/CompleteCareGive
 import Page3 from './components/Test/Page3';
 import Video from './components/Video/Video';
 import InstallPWA from './utils/installpwa'; 
+import GoalSetting from './components/GoalSetting/GoalSetting';
+import Goals from './components/GoalSetting/Goals'
 
 function App() {
   return (
@@ -51,6 +53,8 @@ function App() {
         <Route path="/admin" element={<UserTable />} />
         <Route path="/library/*" element={<CoreTopics />} />
         <Route path="/quicktips" element={<QuickTips />} />
+        <Route path="/goalsetting" element={<GoalSetting />} />
+        <Route path="/goals" element={<Goals />} />
         <Route path="/withdraw" element={<VoluntaryWithdrawal />} />
         <Route path="/feedback" element={<Feedback />} />
         <Route path="/profile" element={<Profile />} />

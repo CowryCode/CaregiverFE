@@ -40,6 +40,7 @@ const BaselineQuestionnaireF3 = () => {
     event.preventDefault();
     submitToAPI();
   };
+  
   const updateUserID = (newUserID) => {
     setFormData((prevFormData) => ({
         ...prevFormData,

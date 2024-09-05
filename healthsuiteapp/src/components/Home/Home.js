@@ -193,7 +193,7 @@ const trackLastDateUser = async () => {
                     Contact Us
                   </span>
                 </li>
-                <li className="nav-item">
+                {/* <li className="nav-item">
                   <span
                     className="nav-link"
                     onClick={() => navigate("/eligibility-form")}
@@ -201,7 +201,7 @@ const trackLastDateUser = async () => {
                     <i className="fas fa-clipboard-list"></i>
                     Forms
                   </span>
-                </li>
+                </li> */}
                 <li className="nav-item">
                   <span className="nav-link" onClick={() => navigate("/admin")}>
                     <i className="fas fa-clipboard-list"></i>
@@ -214,7 +214,7 @@ const trackLastDateUser = async () => {
                     Logout
                   </span>
                 </li>
-                <li className="nav-item">
+                {/* <li className="nav-item">
                   <span className="nav-link">
                     <i className="fas fa-clipboard-list"></i>
                     ******************************************
@@ -255,7 +255,7 @@ const trackLastDateUser = async () => {
                     <i className="fas fa-clipboard-list"></i>
                     Complete Registration
                   </span>
-                </li>
+                </li> */}
               </ul>
             </div>
           </nav>
@@ -276,20 +276,13 @@ const trackLastDateUser = async () => {
             <Header />
             <hr className="blue-line" />
             <div className="icon-container">
-              <span className="icon">
+              <span className="icon" onClick={() => navigate("/Profile")}>
                 <img src={beginImg} alt="Where to Begin" />
                 <p>My Profile</p>
               </span>
-              <span className="icon" onClick={myPriorityNeed}>
+              <span className="icon" onClick={handleLibraryClick}>
                 <img src={handbookImg} alt="Caregiver's Handbook" />
                 <p>My Priority Needs Area</p>
-              </span>
-              <span
-                className="icon"
-                onClick={() => navigate("/need-assessment")}
-              >
-                <img src={supportImg} alt="Support Groups" />
-                <p>Need Assessment</p>
               </span>
               <span className="icon">
                 <img src={workshopImg} alt="Workshops" />
@@ -303,13 +296,17 @@ const trackLastDateUser = async () => {
                 <img src={adultcareImg} alt="Transitions in Adult Care" />
                 <p>My Bookmarks</p>
               </span>
-              <span className="icon">
-                <img src={lifecareImg} alt="Palliative and End Of Life Care" />
-                <p>Voluntary Withdrawal</p>
-              </span>
-              <span className="icon">
+              <span className="icon" onClick={() => navigate("/feedback")}>
                 <img src={formImg} alt="Referral Form" />
                 <p>Feedback</p>
+              </span>
+              <span className="icon" >
+                <img src={supportImg} alt="Support Groups" />
+                <p>Contact Us</p>
+              </span>
+              <span className="icon" onClick={() => navigate("/withdraw")}>
+                <img src={lifecareImg} alt="Palliative and End Of Life Care" />
+                <p>Voluntary Withdrawal</p>
               </span>
             </div>
           </main>
