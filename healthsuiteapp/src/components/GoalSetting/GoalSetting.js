@@ -66,6 +66,7 @@ const submitToAPI = () => {
     setLoading(true);
     axiosInstance.post('/caregiver/v1/save-goal', feedbackData)
     .then(response => {
+      LocalStorageService.saveGoals(response);
       navigate(`/`);
     })
     .catch(error => {

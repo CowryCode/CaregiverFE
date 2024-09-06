@@ -1,6 +1,7 @@
 // src/utils/localStorageHelpers.js
 
 import axiosInstance from "../apicall/AxiosInstance";
+import LocalStorageService from "./LocalStorageService";
 
 /**
  * Adds a page to the wishlist stored in local storage.
@@ -20,6 +21,16 @@ export const addToWishlist = (pageId) => {
   export const refreshQuickTips = (quicktips) => {
       localStorage.setItem('wishlist', quicktips);
   };
+
+  export const getGoals = () => {
+    console.log("GOTT GOTTT HERE 1");
+    axiosInstance.get('/caregiver/v1/get-goals')
+    .then(goals => {
+        LocalStorageService.saveGoals(goals);
+    }).catch(error => {
+      console.error('Error', error);
+  });
+ };
   
   /**
    * Removes a page from the wishlist stored in local storage.

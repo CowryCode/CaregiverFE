@@ -46,7 +46,7 @@ const TrackUsage = () => {
             });
     };
 
-    return { trackLastDateUser };
+    return { trackLastDateUser};
 };
 
 export default TrackUsage;

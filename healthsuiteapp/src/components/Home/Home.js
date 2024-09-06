@@ -284,7 +284,7 @@ const trackLastDateUser = async () => {
                 <img src={handbookImg} alt="Caregiver's Handbook" />
                 <p>My Priority Needs Area</p>
               </span>
-              <span className="icon">
+              <span className="icon" onClick={() => navigate("/goals")}>
                 <img src={workshopImg} alt="Workshops" />
                 <p>My Goals</p>
               </span>
