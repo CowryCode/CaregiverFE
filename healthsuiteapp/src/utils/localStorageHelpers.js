@@ -23,7 +23,6 @@ export const addToWishlist = (pageId) => {
   };
 
   export const getGoals = () => {
-    console.log("GOTT GOTTT HERE 1");
     axiosInstance.get('/caregiver/v1/get-goals')
     .then(goals => {
         LocalStorageService.saveGoals(goals);

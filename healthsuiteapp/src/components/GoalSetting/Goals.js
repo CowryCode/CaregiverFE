@@ -5,9 +5,9 @@ import { FaBars } from "react-icons/fa";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import LocalStorageService from "../../utils/LocalStorageService";
-import LoadingComponent from "../loader/LoadingComponent";
 import { Box, Button } from '@mui/material';
 import { amber, green } from '@mui/material/colors';
+import axiosInstance from "../../apicall/AxiosInstance";
 
 function getGoals() {
     const goalsJSON = LocalStorageService.getGoals();
@@ -16,50 +16,48 @@ function getGoals() {
 
 const UserTable = () => {
     const navigate = useNavigate();
-  const [rows, setRows] = useState([
-    { subject: "My Goal ", content: "flkvhsdlkhmn kdshlk jdhs khdsk  jkdhsg sdk hd kz jkhdzlh kl llvjkdzhv kkhlkdzh vljhjkl zxh hjzhlkvh hjxhlvzk vjh kjxhvl hgfgzvfurusyuiv vuygdlvhfZ vlgh vlgvkydfugvlfh;kh hvldfgkvzgf uvgldzhg vufkd ggkfjhgvl hjvgdflhfgh:hfdsudshasfc hsgvkhGSilsdg  sdvjgVKJSHGDv jghdsvl,jsJBJvdklshb lkhsfl khsfk"},
-  ]);
   const [openDialog, setOpenDialog] = useState(false);
-  const [referralCode, setReferralCode] = useState(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [goals, setGoals] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [goalId, setGoalId] = useState(0);
+
 
   useEffect(() => {
     const goalsJSON = LocalStorageService.getGoals();
-    console.log("Retrieved Goals 2 : " + goalsJSON);  
     setGoals(goalsJSON);
     if (goalsJSON.length > 0) {
        setLoading(false);
+    }else{
+      setLoading(true);
     }
-  }, []);
+  }, [openDialog, goals]);
 
   const handleSidebarToggle = () => {
     setIsSidebarOpen(!isSidebarOpen);
     console.log("Sidebar is " + (isSidebarOpen ? "open" : "closed"));
   };
 
-  const handleComplete = async (name) => {
-    // Simulate API call
-    // const response = await fetch('/api/getRefCode', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify({ name })
-    // });
-    // const data = await response.json();
-    // setReferralCode(data.referralCode);
-
-    // Dummy referral code for demonstration
-    setReferralCode("REF123456");
+  const handleComplete = async (id) => {
     setOpenDialog(true);
+    setGoalId(id)
   };
 
   const handleDialogClose = () => {
+    submitToAPI();
     setOpenDialog(false);
-    setReferralCode(null);
   };
+
+  const submitToAPI = () => {
+    axiosInstance.get(`/caregiver/v1/update-goals/${goalId}`) 
+    .then(response => {
+     LocalStorageService.saveGoals(response);
+      navigate(`/goals`);
+    })
+    .catch(error => {
+        console.error('Error', error);
+    });
+  }
 
   const renderContent = () => {
     return (
@@ -150,9 +148,9 @@ const UserTable = () => {
               <div className="dialog-content">
                 <h3>Referral Code</h3>
                 <p>
-                  Your referral code is: <strong>{referralCode}</strong>
+                <strong>Are you sure you want to complete this task?</strong>
                 </p>
-                <button onClick={handleDialogClose}>Close</button>
+                <button onClick={handleDialogClose}>Yes</button>
               </div>
             </div>
           )}

@@ -48,7 +48,6 @@ const LocalStorageService = {
 
     saveGoals(goals) {
       const goalsJSON = JSON.stringify(goals.data);
-      console.log("GOALS : " + goalsJSON);
       this.removeItem(goals);
       localStorage.setItem('goals', goalsJSON);
    },
@@ -58,8 +57,6 @@ const LocalStorageService = {
     if (!goalsJSON) {
         return [];
     }
-    console.log("Retrieved Goals : " + goalsJSON);  
-    console.log(`SPLIT RETRIEVED VALUE : ${goalsJSON.split(',') }`);  
      return JSON.parse(goalsJSON);
    },
   
