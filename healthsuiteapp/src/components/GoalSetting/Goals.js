@@ -9,12 +9,12 @@ import { Box, Button } from '@mui/material';
 import { amber, green } from '@mui/material/colors';
 import axiosInstance from "../../apicall/AxiosInstance";
 
-function getGoals() {
-    const goalsJSON = LocalStorageService.getGoals();
-    return goalsJSON ? JSON.parse(goalsJSON) : [];
-}
+// function getGoals() {
+//     const goalsJSON = LocalStorageService.getGoals();
+//     return goalsJSON ? JSON.parse(goalsJSON) : [];
+// }
 
-const UserTable = () => {
+const Goals = () => {
     const navigate = useNavigate();
   const [openDialog, setOpenDialog] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -171,4 +171,4 @@ const UserTable = () => {
   );
 };
 
-export default UserTable;
+export default Goals;

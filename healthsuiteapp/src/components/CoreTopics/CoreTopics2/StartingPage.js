@@ -1,16 +1,16 @@
-import React, {useEffect} from 'react';
+import React, {useEffect , useRef, useState } from 'react';
 import UpdateLibraryLastPage from '../../../apicall/UpdateLibraryLastPage'; 
 import { useNavigate } from 'react-router-dom';
 import { Box, Button, Typography } from '@mui/material';
 
 const StartingPage = () => {
     const navigate = useNavigate();
+    const pageTitleRef = useRef(null);
 
     const handleNext = () => {
         // Adjust this to navigate to the next relevant content or section
         navigate('/library/core-topic2/level1');
     };
-
     // const handlePrevious = () => {
     //     // Set this to navigate back to the main menu or previous section
     //     navigate('/previous-section-path');
@@ -18,10 +18,17 @@ const StartingPage = () => {
 
     useEffect(() => {
         savePageUrl();
-        console.log(`Paged saved successfully : ${successful}` )
+        if (pageTitleRef.current) {
+           // setFirstTypographyText(firstTypographyRef.current.textContent.trim());
+           const pageTitle = pageTitleRef.current.textContent.trim();
+           bookmarkPageUrl(pageTitle);
+          }
+
+        
+        
       }, []);
     
-    const { successful, savePageUrl } = UpdateLibraryLastPage({
+    const { successful, savePageUrl,bookmarkPageUrl } = UpdateLibraryLastPage({
           setLoading: (loading) => console.log(`Loading: ${loading}`),
           handleLibraryClick: (data) => {
               console.log('Library Clicked:', data);
@@ -29,6 +36,7 @@ const StartingPage = () => {
     });
 
     return (
+    
         <Box sx={{
             p: 3,
             display: 'flex',
@@ -36,7 +44,8 @@ const StartingPage = () => {
             minHeight: '100vh',
             justifyContent: 'space-between'
         }}>
-            <Typography variant="h4" sx={{ color: 'red', textAlign: 'center', mb: 3 }}>Core Topic 2</Typography>
+            <Typography  ref={pageTitleRef} variant="h4" sx={{ color: 'red', textAlign: 'center', mb: 3 }}>Core Topic 2</Typography>
+        
             <Box>
                 <Typography variant="h5" sx={{ mb: 1, textAlign: 'center', bgcolor: '#007FFF', color: 'white', p: 1 }}>Support for You</Typography>
                 <Typography variant="h6" sx={{ mb: 2 }}>Page 1 of 1</Typography>

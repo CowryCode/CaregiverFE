@@ -28,6 +28,7 @@ import Video from './components/Video/Video';
 import InstallPWA from './utils/installpwa'; 
 import GoalSetting from './components/GoalSetting/GoalSetting';
 import Goals from './components/GoalSetting/Goals'
+import BookMarks from './components/BookMark/bookmarks';
 
 function App() {
   return (
@@ -55,6 +56,7 @@ function App() {
         <Route path="/quicktips" element={<QuickTips />} />
         <Route path="/goalsetting" element={<GoalSetting />} />
         <Route path="/goals" element={<Goals />} />
+        <Route path="/bookmarks" element={<BookMarks />} />
         <Route path="/withdraw" element={<VoluntaryWithdrawal />} />
         <Route path="/feedback" element={<Feedback />} />
         <Route path="/profile" element={<Profile />} />

@@ -35,6 +35,7 @@ const Page3 = () => {
   useEffect(() => {
     const wishlist = getWishlist();
     setIsBookmarked(wishlist.includes(pageId));
+    
   }, []);
 
   const handlePrevious = () => {
@@ -210,3 +211,4 @@ const Page3 = () => {
 };
 
 export default Page3;
+

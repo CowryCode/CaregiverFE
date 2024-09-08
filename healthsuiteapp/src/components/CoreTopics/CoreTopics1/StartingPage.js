@@ -13,7 +13,7 @@ const StartingPage = () => {
         console.log(`Paged saved successfully : ${successful}` )
     }, []);
 
-    const { successful, savePageUrl } = UpdateLibraryLastPage({
+    const { successful, savePageUrl, bookmarkPageUrl } = UpdateLibraryLastPage({
         setLoading: (loading) => console.log(`Loading: ${loading}`),
         handleLibraryClick: (data) => {
             console.log('Library Clicked:', data);
