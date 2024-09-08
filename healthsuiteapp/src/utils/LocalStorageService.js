@@ -59,6 +59,20 @@ const LocalStorageService = {
     }
      return JSON.parse(goalsJSON);
    },
+
+   saveBookmarks(bookmarks){
+      const bookmarksJSON = JSON.stringify(bookmarks.data);
+      this.removeItem(bookmarks);
+      localStorage.setItem('bookmarks', bookmarksJSON);
+   },
+
+   getBookMarks() {
+    const boomarksJSON = localStorage.getItem('bookmarks');
+    if (!boomarksJSON) {
+        return [];
+    }
+     return JSON.parse(boomarksJSON);
+   },
   
     removeItem(key) {
       try {

@@ -11,9 +11,8 @@ const UpdateLibraryLastPage = ({ setLoading, handleLibraryClick }) => {
 
     const location = useLocation();
 
-    useEffect(() => {
+    useEffect(() => {    
         setPayload(payload);
-        
     }, [location]);
 
     const savePageUrl = async () => {
@@ -42,37 +41,41 @@ const UpdateLibraryLastPage = ({ setLoading, handleLibraryClick }) => {
             });
     };
 
-    const getFirstTypographyText = (children) => {
-        const typographyChildren = React.Children.toArray(children).find(child => {
-            return child.type === Typography;
-        });
+    // const getFirstTypographyText = (children) => {
+    //     const typographyChildren = React.Children.toArray(children).find(child => {
+    //         return child.type === Typography;
+    //     });
     
-        return typographyChildren ? typographyChildren.props.children : null;
-    };
+    //     return typographyChildren ? typographyChildren.props.children : null;
+    // };
 
     const bookmarkPageUrl = async (pagetitle) => {
         const currentPath = location.pathname;
-        const payload = {content: currentPath};
+        const payload = {title: pagetitle, url: currentPath};
        // const header = getFirstTypographyText(currentPage.props.children);
 
-        console.log(`Page Title: ${pagetitle} The URL ${currentPath}`)
+        console.log(`Page Title: ${pagetitle} The URL ${currentPath}`);
 
-        //   const savedPath = LocalStorageService.getItem('libraryLastPage');
-
-        // axiosInstance.post('/caregiver/v1/update-library-page', payload)
-        //     .then(response => {
-        //         setSuccessful(response.data);
-        //         LocalStorageService.setItem('libraryLastPage', currentPath);
-        //     })
-        //     .catch(error => {
-        //         console.error('Error', error);
-        //     })
-        //     .finally(() => {
-        //         setLoading(false);
-        //     });
+        axiosInstance.post('/caregiver/v1/save-bookmark', payload)
+            .then(response => {
+                LocalStorageService.saveBookmarks(response);
+            })
+            .catch(error => {
+                console.error('Error', error);
+            })
+            .finally(() => {
+                setLoading(false);
+            });
     };
 
-    return { successful, savePageUrl, bookmarkPageUrl };
+    const bookmarkedAlready = () => {
+        const currentPath = location.pathname;
+        const bookmarksJSON = LocalStorageService.getBookMarks();
+        return bookmarksJSON.some(obj => obj.url === currentPath);
+       // return false;
+    }
+
+    return { successful, savePageUrl, bookmarkPageUrl, bookmarkedAlready };
 };
 
 export default UpdateLibraryLastPage;

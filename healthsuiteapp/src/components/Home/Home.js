@@ -292,7 +292,7 @@ const trackLastDateUser = async () => {
                 <img src={governmentImg} alt="Government Programs" />
                 <p>My Quick Tips</p>
               </span>
-              <span className="icon">
+              <span className="icon" onClick={() => navigate("/bookmarks")}>
                 <img src={adultcareImg} alt="Transitions in Adult Care" />
                 <p>My Bookmarks</p>
               </span>

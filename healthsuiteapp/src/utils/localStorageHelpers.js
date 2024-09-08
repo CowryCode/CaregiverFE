@@ -1,6 +1,7 @@
 // src/utils/localStorageHelpers.js
 
 import axiosInstance from "../apicall/AxiosInstance";
+import BookMarks from "../components/BookMark/bookmarks";
 import LocalStorageService from "./LocalStorageService";
 
 /**
@@ -30,6 +31,15 @@ export const addToWishlist = (pageId) => {
       console.error('Error', error);
   });
  };
+
+ export const getBookMarks = () => {
+  axiosInstance.get('/caregiver/v1/get-bookmarks')
+  .then(BookMarks => {
+      LocalStorageService.saveBookmarks(BookMarks);
+  }).catch(error => {
+    console.error('Error', error);
+});
+};
   
   /**
    * Removes a page from the wishlist stored in local storage.

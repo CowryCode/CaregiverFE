@@ -50,7 +50,7 @@ const Page1 = () => {
         console.log(`Paged saved successfully : ${successful}` )
       }, []);
     
-    const { successful, savePageUrl } = UpdateLibraryLastPage({
+    const { successful, savePageUrl, bookmarkedAlready } = UpdateLibraryLastPage({
           setLoading: (loading) => console.log(`Loading: ${loading}`),
           handleLibraryClick: (data) => {
               console.log('Library Clicked:', data);

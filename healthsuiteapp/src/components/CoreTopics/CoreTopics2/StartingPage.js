@@ -1,11 +1,15 @@
 import React, {useEffect , useRef, useState } from 'react';
 import UpdateLibraryLastPage from '../../../apicall/UpdateLibraryLastPage'; 
 import { useNavigate } from 'react-router-dom';
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Button, Typography, IconButton, Alert} from '@mui/material';
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+import BookmarkIcon from '@mui/icons-material/Bookmark'; 
+import Tooltip from '@mui/material/Tooltip';
 
 const StartingPage = () => {
     const navigate = useNavigate();
     const pageTitleRef = useRef(null);
+    const [isBookmarked, setIsBookmarked] = useState(false);
 
     const handleNext = () => {
         // Adjust this to navigate to the next relevant content or section
@@ -18,22 +22,28 @@ const StartingPage = () => {
 
     useEffect(() => {
         savePageUrl();
-        if (pageTitleRef.current) {
-           // setFirstTypographyText(firstTypographyRef.current.textContent.trim());
-           const pageTitle = pageTitleRef.current.textContent.trim();
-           bookmarkPageUrl(pageTitle);
-          }
-
-        
-        
-      }, []);
+        setIsBookmarked(bookmarkedAlready);
+      }, [isBookmarked]);
     
-    const { successful, savePageUrl,bookmarkPageUrl } = UpdateLibraryLastPage({
+    const { successful, savePageUrl,bookmarkPageUrl, bookmarkedAlready } = UpdateLibraryLastPage({
           setLoading: (loading) => console.log(`Loading: ${loading}`),
           handleLibraryClick: (data) => {
               console.log('Library Clicked:', data);
           },
     });
+
+    function handleBookmark(){
+        if(isBookmarked){
+            console.log('This page have been bookmarked already.');
+            alert("This page have been bookmarked already.");
+        }else{
+            if (pageTitleRef.current) {
+                const pageTitle = pageTitleRef.current.textContent.trim();
+                bookmarkPageUrl(pageTitle);
+                alert("Bookmarked successfully.");
+            }
+        }
+    }
 
     return (
     
@@ -44,6 +54,14 @@ const StartingPage = () => {
             minHeight: '100vh',
             justifyContent: 'space-between'
         }}>
+            <Box sx={{ display: "flex", justifyContent: "right", alignItems: "right" }}>
+                <Tooltip title="Click to Bookmark">
+                    <IconButton onClick={handleBookmark} aria-label="add to wishlist">
+                        {isBookmarked ? <BookmarkIcon /> : <BookmarkBorderIcon />}
+                    </IconButton>
+                </Tooltip>
+            </Box>
+
             <Typography  ref={pageTitleRef} variant="h4" sx={{ color: 'red', textAlign: 'center', mb: 3 }}>Core Topic 2</Typography>
         
             <Box>
