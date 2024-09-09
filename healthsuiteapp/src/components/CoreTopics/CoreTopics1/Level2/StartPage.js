@@ -1,10 +1,15 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Button, Typography, IconButton } from '@mui/material';
 import UpdateLibraryLastPage from '../../../../apicall/UpdateLibraryLastPage'; 
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+import BookmarkIcon from '@mui/icons-material/Bookmark'; 
+import Tooltip from '@mui/material/Tooltip';
 
 const StartingPage = () => {
     const navigate = useNavigate();
+    const pageTitleRef = useRef(null);
+    const [isBookmarked, setIsBookmarked] = useState(false);
 
     const handlePrevious = () => {
         navigate('/library/core-topic1/level1/level1Two/page3'); // Adjust the path according to your routing structure
@@ -16,15 +21,28 @@ const StartingPage = () => {
 
     useEffect(() => {
         savePageUrl();
-        console.log(`Paged saved successfully : ${successful}` )
-      }, []);
+        setIsBookmarked(bookmarkedAlready);
+      }, [isBookmarked]);
     
-      const { successful, savePageUrl } = UpdateLibraryLastPage({
+      const { successful, savePageUrl,bookmarkPageUrl, bookmarkedAlready  } = UpdateLibraryLastPage({
           setLoading: (loading) => console.log(`Loading: ${loading}`),
           handleLibraryClick: (data) => {
               console.log('Library Clicked:', data);
           },
       });
+
+      function handleBookmark(){
+        if(isBookmarked){
+            console.log('This page have been bookmarked already.');
+            alert("This page have been bookmarked already.");
+        }else{
+            if (pageTitleRef.current) {
+                const pageTitle = pageTitleRef.current.textContent.trim();
+                bookmarkPageUrl(pageTitle);
+                alert("Bookmarked successfully.");
+            }
+        }
+    }
 
     return (
         <Box sx={{
@@ -35,8 +53,16 @@ const StartingPage = () => {
             justifyContent: 'space-between',
             bgcolor: '#f3f3f3' // Adds background color similar to your image, adjust as necessary
         }}>
+            <Box sx={{ display: "flex", justifyContent: "right", alignItems: "right" }}>
+                <Tooltip title="Click to Bookmark">
+                    <IconButton onClick={handleBookmark} aria-label="add to wishlist">
+                        {isBookmarked ? <BookmarkIcon /> : <BookmarkBorderIcon />}
+                    </IconButton>
+                </Tooltip>
+            </Box>
+
             <Box sx={{ width: '100%', bgcolor: '#007FFF', color: 'white', p: 1 }}>
-                <Typography variant="h5" sx={{ textAlign: 'center' }}>Physical Well-Being</Typography>
+                <Typography   ref={pageTitleRef}  variant="h5" sx={{ textAlign: 'center' }}>Physical Well-Being</Typography>
             </Box>
             <Box sx={{ p: 3 }}>
                 <Typography variant="h4" sx={{ mb: 1, textAlign: 'center' }}>Level 2: Physical Well-Being</Typography>

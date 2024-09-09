@@ -1,19 +1,25 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import { useNavigate} from 'react-router-dom';
-import { Box, Button, Typography, Link } from '@mui/material';
+import { Box, Button, Typography, Link, IconButton } from '@mui/material';
 import UpdateLibraryLastPage from '../../../apicall/UpdateLibraryLastPage';
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+import BookmarkIcon from '@mui/icons-material/Bookmark'; 
+import Tooltip from '@mui/material/Tooltip';
+
 
 const StartingPage = () => {
     
     const navigate = useNavigate();
+    const pageTitleRef = useRef(null);
+    const [isBookmarked, setIsBookmarked] = useState(false);
     
 
     useEffect(() => {
         savePageUrl();
-        console.log(`Paged saved successfully : ${successful}` )
-    }, []);
+        setIsBookmarked(bookmarkedAlready);
+    }, [isBookmarked]);
 
-    const { successful, savePageUrl, bookmarkPageUrl } = UpdateLibraryLastPage({
+    const { successful, savePageUrl, bookmarkPageUrl , bookmarkedAlready} = UpdateLibraryLastPage({
         setLoading: (loading) => console.log(`Loading: ${loading}`),
         handleLibraryClick: (data) => {
             console.log('Library Clicked:', data);
@@ -24,6 +30,18 @@ const StartingPage = () => {
         navigate('/library/core-topic1/level1');
     };
 
+    function handleBookmark(){
+        if(isBookmarked){
+            console.log('This page have been bookmarked already.');
+            alert("This page have been bookmarked already.");
+        }else{
+            if (pageTitleRef.current) {
+                const pageTitle = pageTitleRef.current.textContent.trim();
+                bookmarkPageUrl(pageTitle);
+                alert("Bookmarked successfully.");
+            }
+        }
+    }
 
     return (
         <Box
@@ -37,8 +55,16 @@ const StartingPage = () => {
                 boxSizing: 'border-box'
             }}
         >
+            <Box sx={{ display: "flex", justifyContent: "right", alignItems: "right" }}>
+                <Tooltip title="Click to Bookmark">
+                    <IconButton onClick={handleBookmark} aria-label="add to wishlist">
+                        {isBookmarked ? <BookmarkIcon /> : <BookmarkBorderIcon />}
+                    </IconButton>
+                </Tooltip>
+            </Box>
+
             <Box sx={{ flex: 1 }}>
-                <Typography variant="h2" sx={{ fontSize: '2.5rem', color: '#007FFF', textAlign: 'center', py: 2 }}>
+                <Typography ref={pageTitleRef}  variant="h2" sx={{ fontSize: '2.5rem', color: '#007FFF', textAlign: 'center', py: 2 }}>
                     Core Topic 1: Taking Care of Yourself (Self-care)
                 </Typography>
                 <Typography variant="h3" sx={{ backgroundColor: '#007FFF', color: 'white', textAlign: 'center', fontSize: '1.5rem', py: 1 }}>

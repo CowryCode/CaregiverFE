@@ -1,7 +1,7 @@
-import React, {useEffect , useRef, useState } from 'react';
+import React, {useEffect , useRef, useState} from 'react';
 import UpdateLibraryLastPage from '../../../apicall/UpdateLibraryLastPage'; 
 import { useNavigate } from 'react-router-dom';
-import { Box, Button, Typography, IconButton, Alert} from '@mui/material';
+import { Box, Button, Typography, IconButton} from '@mui/material';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import BookmarkIcon from '@mui/icons-material/Bookmark'; 
 import Tooltip from '@mui/material/Tooltip';
@@ -25,7 +25,7 @@ const StartingPage = () => {
         setIsBookmarked(bookmarkedAlready);
       }, [isBookmarked]);
     
-    const { successful, savePageUrl,bookmarkPageUrl, bookmarkedAlready } = UpdateLibraryLastPage({
+    const { successful, savePageUrl,bookmarkPageUrl, bookmarkedAlready} = UpdateLibraryLastPage({
           setLoading: (loading) => console.log(`Loading: ${loading}`),
           handleLibraryClick: (data) => {
               console.log('Library Clicked:', data);
@@ -40,10 +40,13 @@ const StartingPage = () => {
             if (pageTitleRef.current) {
                 const pageTitle = pageTitleRef.current.textContent.trim();
                 bookmarkPageUrl(pageTitle);
+                setIsBookmarked(true);
                 alert("Bookmarked successfully.");
             }
         }
     }
+
+    // <Tooltip title="Add to QuickTips"></Tooltip>
 
     return (
     
@@ -62,7 +65,7 @@ const StartingPage = () => {
                 </Tooltip>
             </Box>
 
-            <Typography  ref={pageTitleRef} variant="h4" sx={{ color: 'red', textAlign: 'center', mb: 3 }}>Core Topic 2</Typography>
+            <Typography ref={pageTitleRef} variant="h4" sx={{ color: 'red', textAlign: 'center', mb: 3 }}>Core Topic 2</Typography>
         
             <Box>
                 <Typography variant="h5" sx={{ mb: 1, textAlign: 'center', bgcolor: '#007FFF', color: 'white', p: 1 }}>Support for You</Typography>

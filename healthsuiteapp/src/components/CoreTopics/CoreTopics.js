@@ -56,7 +56,8 @@ function CoreTopics() {
      }else{
       console.log(`PATH 2 : ${savedPath}`);
       setLoading(false);
-      navigate(`login`);
+      //navigate(`/login`);
+      navigate(`/library/core-topic1`);
      }
   }, []);
 

@@ -11,6 +11,7 @@ import {
   TableContainer,
   Paper,
   IconButton,
+  Tooltip
 } from "@mui/material";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import BookmarkIcon from "@mui/icons-material/Bookmark"; // For a filled bookmark icon
@@ -91,9 +92,11 @@ const Page3 = () => {
         >
           Level 1.2: Taking a Break from Caregiving
         </Typography>
+        <Tooltip title="Add to QuickTips">
         <IconButton onClick={handleBookmark} aria-label="add to wishlist">
           {isBookmarked ? <BookmarkIcon /> : <BookmarkBorderIcon />}
         </IconButton>
+        </Tooltip>
       </Box>
       <Typography
         variant="h3"

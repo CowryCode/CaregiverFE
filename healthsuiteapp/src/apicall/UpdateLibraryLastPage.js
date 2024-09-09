@@ -59,6 +59,7 @@ const UpdateLibraryLastPage = ({ setLoading, handleLibraryClick }) => {
         axiosInstance.post('/caregiver/v1/save-bookmark', payload)
             .then(response => {
                 LocalStorageService.saveBookmarks(response);
+                // window.location.reload();
             })
             .catch(error => {
                 console.error('Error', error);

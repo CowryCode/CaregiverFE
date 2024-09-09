@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Box,
@@ -16,9 +16,11 @@ import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import BookmarkIcon from '@mui/icons-material/Bookmark'; // For a filled bookmark icon
 import { addToWishlist, removeFromWishlist, getWishlist } from '../../../../../utils/localStorageHelpers.js';
 import UpdateLibraryLastPage from "../../../../../apicall/UpdateLibraryLastPage.js"; 
+import Tooltip from '@mui/material/Tooltip';
 
 const Page2 = () => {
     const navigate = useNavigate();
+    const pageTitleRef = useRef(null);
     const pageId = 'CoreTopics1_Level2_Level2One_Page2'; // Unique identifier for this page
     const [isBookmarked, setIsBookmarked] = useState(false);
 
@@ -47,15 +49,17 @@ const Page2 = () => {
 
     useEffect(() => {
         savePageUrl();
-        console.log(`Paged saved successfully : ${successful}` )
-      }, []);
+        setIsBookmarked(bookmarkedAlready);
+      }, [isBookmarked]);
     
-      const { successful, savePageUrl } = UpdateLibraryLastPage({
+      const { successful, savePageUrl,bookmarkPageUrl, bookmarkedAlready  } = UpdateLibraryLastPage({
           setLoading: (loading) => console.log(`Loading: ${loading}`),
           handleLibraryClick: (data) => {
               console.log('Library Clicked:', data);
           },
       });
+
+   
 
     return (
         <Box sx={{
@@ -66,11 +70,14 @@ const Page2 = () => {
             justifyContent: 'space-between',
             backgroundColor: '#f3f3f3' 
         }}>
+           
             <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                <Typography variant="h4" sx={{ mb: 1, textAlign: 'center', color: '#007FFF' }}>Level 2.1: Exercise</Typography>
+                <Typography ref={pageTitleRef} variant="h4" sx={{ mb: 1, textAlign: 'center', color: '#007FFF' }}>Level 2.1: Exercise</Typography>
+                <Tooltip title="Add to QuickTips">
                 <IconButton onClick={handleBookmark} aria-label="add to wishlist">
                     {isBookmarked ? <BookmarkIcon /> : <BookmarkBorderIcon />}
                 </IconButton>
+                </Tooltip>
             </Box>
             <Typography variant="h6" sx={{ mb: 2, fontSize: '1rem' }}>Page 2 of 2</Typography>
             <TableContainer component={Paper} sx={{ boxShadow: 1, marginBottom: 2 }}>

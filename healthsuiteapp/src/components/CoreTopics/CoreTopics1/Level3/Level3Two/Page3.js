@@ -10,7 +10,7 @@ import {
   TableRow,
   TableContainer,
   Paper,
-  IconButton,
+  IconButton,Tooltip
 } from "@mui/material";
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import BookmarkIcon from '@mui/icons-material/Bookmark'; // For a filled bookmark icon
@@ -66,11 +66,14 @@ const Page3 = () => {
             justifyContent: 'space-between',
             backgroundColor: '#f3f3f3'
         }}>
+            
             <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <Typography variant="h4" sx={{ mb: 1, textAlign: 'center', color: '#007FFF' }}>Level 3.2: Anxiety</Typography>
+                <Tooltip title="Add to QuickTips">
                 <IconButton onClick={handleBookmark} aria-label="add to wishlist">
                     {isBookmarked ? <BookmarkIcon /> : <BookmarkBorderIcon />}
                 </IconButton>
+                </Tooltip>
             </Box>
             <Typography variant="h6" sx={{ mb: 2, fontSize: '1rem' }}>Page 3 of 3</Typography>
             <TableContainer component={Paper} sx={{ boxShadow: 1, marginBottom: 2 }}>
