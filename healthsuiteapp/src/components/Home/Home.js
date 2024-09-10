@@ -2,14 +2,21 @@ import React , { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Home.css";
 import { FaBars } from "react-icons/fa"; // Importing the FaBars icon
-import beginImg from "../../assets/begin.png";
-import handbookImg from "../../assets/handbook.png";
-import supportImg from "../../assets/support.png";
-import workshopImg from "../../assets/workshop.png";
-import governmentImg from "../../assets/government.png";
-import adultcareImg from "../../assets/adultcare.png";
-import lifecareImg from "../../assets/lifecare.png";
-import formImg from "../../assets/form.png";
+// import beginImg from "../../assets/begin.png";
+import profileImg from "../../assets/profile-icon.png";
+// import handbookImg from "../../assets/handbook.png";
+import priorityNeedImg from "../../assets/priority-need-icon.jpg";
+import supportImg from "../../assets/contactus.png";
+// import workshopImg from "../../assets/workshop.png";
+import myGoalsImg from "../../assets/mygoalsIcon.png";
+// import governmentImg from "../../assets/government.png";
+import quickTipsImg from "../../assets/myQuickTipsIcon.jpg";
+// import adultcareImg from "../../assets/adultcare.png";
+import bookmarkImg from "../../assets/bookMarksIcon.jpg";
+// import lifecareImg from "../../assets/lifecare.png";
+import withdrawalImg from "../../assets/withdrawalIcon.png"; 
+// import formImg from "../../assets/form.png";
+import feedbackImg from "../../assets/feedbackIcon.jpg";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import LocalStorageService from "../../utils/LocalStorageService";
@@ -49,36 +56,6 @@ const Home = () => {
     trackLastDateUser();
 
   }, []);
-
-//   const trackLastDateUser = async () => {
-//     const profile = LocalStorageService.getItem('profile');
-//     const date = JSON.stringify(profile.lastUsedDate) ;
-//     const today = new Date();
-//     const savedDate = new Date(date);
-
-//     console.log(`Today Date : ${today}`);
-//     console.log(`Saved Date : ${savedDate}`);
-
-//   if(today > savedDate || today < savedDate){
-//       axiosInstance.get('/caregiver/v1/save-presence')
-//       .then(response => {
-//           console.info('Successful', response);
-//       })
-//       .catch(error => {
-//           console.error('Error', error);
-//       });
-//   }
-
-//   axiosInstance.get('/caregiver/v1/test-token')
-//       .then(response => {
-//           console.log(`Token is Valid`);
-//       })
-//       .catch(error => {
-//           console.error('Error', error);
-//           LocalStorageService.clear();
-//           navigate(`/login`);
-//       });
-// };
 
 
 const trackLastDateUser = async () => {
@@ -277,35 +254,43 @@ const trackLastDateUser = async () => {
             <hr className="blue-line" />
             <div className="icon-container">
               <span className="icon" onClick={() => navigate("/Profile")}>
-                <img src={beginImg} alt="Where to Begin" />
+                {/* <img src={beginImg} alt="Where to Begin" /> */}
+                <img src={profileImg} alt="My Profile" />
                 <p>My Profile</p>
               </span>
               <span className="icon" onClick={handleLibraryClick}>
-                <img src={handbookImg} alt="Caregiver's Handbook" />
+                {/* <img src={handbookImg} alt="Caregiver's Handbook" /> */}
+                <img src={priorityNeedImg} alt="My Priority Needs" />
                 <p>My Priority Needs Area</p>
               </span>
               <span className="icon" onClick={() => navigate("/goals")}>
-                <img src={workshopImg} alt="Workshops" />
+                {/* <img src={workshopImg} alt="Workshops" /> */}
+                <img src={myGoalsImg} alt="Workshops" />
                 <p>My Goals</p>
               </span>
               <span className="icon" onClick={() => navigate("/quicktips")}>
-                <img src={governmentImg} alt="Government Programs" />
+                {/* <img src={governmentImg} alt="Government Programs" /> */}
+                <img src={quickTipsImg} alt="My Quick Tips" />
                 <p>My Quick Tips</p>
               </span>
               <span className="icon" onClick={() => navigate("/bookmarks")}>
-                <img src={adultcareImg} alt="Transitions in Adult Care" />
+                {/* <img src={adultcareImg} alt="Transitions in Adult Care" /> */}
+                <img src={bookmarkImg} alt="BookMarks" />
                 <p>My Bookmarks</p>
               </span>
               <span className="icon" onClick={() => navigate("/feedback")}>
-                <img src={formImg} alt="Referral Form" />
+                {/* <img src={formImg} alt="Referral Form" /> */}
+                <img src={feedbackImg} alt="Feedback" />
                 <p>Feedback</p>
               </span>
               <span className="icon" >
-                <img src={supportImg} alt="Support Groups" />
+                {/* <img src={supportImg} alt="Contact Us" /> */}
+                <img src={supportImg} alt="Contact Us" />
                 <p>Contact Us</p>
               </span>
               <span className="icon" onClick={() => navigate("/withdraw")}>
-                <img src={lifecareImg} alt="Palliative and End Of Life Care" />
+                {/* <img src={lifecareImg} alt="Voluntary withdrawal" /> */}
+                <img src={withdrawalImg} alt="Voluntary withdrawal" />
                 <p>Voluntary Withdrawal</p>
               </span>
             </div>
