@@ -1,10 +1,15 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Box, Button, Typography, List, ListItem, TableContainer, Paper } from '@mui/material';
+import { Box, Button, Typography, List, ListItem, TableContainer, Paper, IconButton } from '@mui/material';
 import UpdateLibraryLastPage from '../../../../../apicall/UpdateLibraryLastPage';
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+import BookmarkIcon from '@mui/icons-material/Bookmark'; 
+import Tooltip from '@mui/material/Tooltip';
 
 const Page2 = () => {
     const navigate = useNavigate();
+    const pageTitleRef = useRef(null);
+    const [isBookmarked, setIsBookmarked] = useState(false);
 
     const handlePrevious = () => {
         navigate('/library/core-topic4/level2/level2one/page1'); // Adjust this path to point to the previous page
@@ -16,15 +21,29 @@ const Page2 = () => {
 
     useEffect(() => {
         savePageUrl();
-        console.log(`Paged saved successfully : ${successful}` )
-      }, []);
+        setIsBookmarked(bookmarkedAlready);
+      }, [isBookmarked]);
     
-    const { successful, savePageUrl } = UpdateLibraryLastPage({
+    const { successful, savePageUrl,bookmarkPageUrl, bookmarkedAlready  } = UpdateLibraryLastPage({
           setLoading: (loading) => console.log(`Loading: ${loading}`),
           handleLibraryClick: (data) => {
               console.log('Library Clicked:', data);
           },
     });
+
+    function handleBookmark(){
+        if(isBookmarked){
+            console.log('This page have been bookmarked already.');
+            alert("This page have been bookmarked already.");
+        }else{
+            if (pageTitleRef.current) {
+                const pageTitle = pageTitleRef.current.textContent.trim();
+                bookmarkPageUrl(pageTitle);
+                setIsBookmarked(true);
+                alert("Bookmarked successfully.");
+            }
+        }
+    }
 
 
     return (
@@ -36,7 +55,14 @@ const Page2 = () => {
             justifyContent: 'space-between',
             backgroundColor: '#f3f3f3' // Adjust the background color as needed
         }}>
-            <Typography variant="h4" sx={{ mb: 1, textAlign: 'center', color: '#007FFF' }}>Level 2.1: Changes in Communication</Typography>
+             <Box sx={{ display: "flex", justifyContent: "right", alignItems: "right" }}>
+                <Tooltip title="Click to Bookmark">
+                    <IconButton onClick={handleBookmark} aria-label="add to wishlist">
+                        {isBookmarked ? <BookmarkIcon /> : <BookmarkBorderIcon />}
+                    </IconButton>
+                </Tooltip>
+            </Box>
+            <Typography ref={pageTitleRef} variant="h4" sx={{ mb: 1, textAlign: 'center', color: '#007FFF' }}>Level 2.1: Changes in Communication</Typography>
             <Typography variant="h6" sx={{ mb: 2, fontSize: '1rem' }}>Page 2 of 2</Typography>
             <TableContainer component={Paper} sx={{ boxShadow: 1, padding: 2 }}>
                 <Typography variant="h6" sx={{ fontSize: '1rem', fontWeight: 'bold', marginBottom: 2 }}>Persons living with dementia may:</Typography>
