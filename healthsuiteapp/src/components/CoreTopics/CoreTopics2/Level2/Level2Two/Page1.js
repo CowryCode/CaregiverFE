@@ -10,7 +10,7 @@ import {
   TableRow,
   TableContainer,
   Paper,
-  IconButton,
+  IconButton,Tooltip
 } from "@mui/material";
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import BookmarkIcon from '@mui/icons-material/Bookmark'; // For a filled bookmark icon
@@ -23,8 +23,8 @@ const Page1 = () => {
     const [isBookmarked, setIsBookmarked] = useState(false);
 
     useEffect(() => {
-        const wishlist = getWishlist();
-        setIsBookmarked(wishlist.includes(pageId));
+         const wishlist = getWishlist();
+         setIsBookmarked(wishlist.includes(pageId));
     }, []);
 
     const handlePrevious = () => {
@@ -45,18 +45,18 @@ const Page1 = () => {
         }
     };
 
+    
     useEffect(() => {
         savePageUrl();
         console.log(`Paged saved successfully : ${successful}` )
       }, []);
     
-    const { successful, savePageUrl, bookmarkedAlready } = UpdateLibraryLastPage({
+    const { successful, savePageUrl,bookmarkPageUrl, bookmarkedAlready} = UpdateLibraryLastPage({
           setLoading: (loading) => console.log(`Loading: ${loading}`),
           handleLibraryClick: (data) => {
               console.log('Library Clicked:', data);
           },
     });
-
 
     return (
         <Box sx={{
@@ -69,9 +69,11 @@ const Page1 = () => {
         }}>
             <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <Typography variant="h4" sx={{ mb: 1, textAlign: 'center', color: '#007FFF' }}>Level 2.2: Accessing Support Networks and Groups</Typography>
+                <Tooltip title="Add to QuickTips">
                 <IconButton onClick={handleBookmark} aria-label="add to wishlist">
                     {isBookmarked ? <BookmarkIcon /> : <BookmarkBorderIcon />}
                 </IconButton>
+                </Tooltip>
             </Box>
             <Typography variant="h6" sx={{ mb: 2, fontSize: '1rem' }}>Page 1 of 1</Typography>
             <TableContainer component={Paper} sx={{ boxShadow: 1, marginBottom: 2 }}>

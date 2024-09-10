@@ -1,11 +1,16 @@
 
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import UpdateLibraryLastPage from '../../../../../apicall/UpdateLibraryLastPage';
 import { useNavigate } from 'react-router-dom';
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Button, Typography, IconButton } from '@mui/material';
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+import BookmarkIcon from '@mui/icons-material/Bookmark'; 
+import Tooltip from '@mui/material/Tooltip';
 
 const Page1 = () => {
     const navigate = useNavigate();
+    const pageTitleRef = useRef(null);
+    const [isBookmarked, setIsBookmarked] = useState(false);
 
     const handleNext = () => {
         navigate('/library/core-topic2/level1/level1two/page2'); // Adjust this path based on your routing structure
@@ -17,15 +22,29 @@ const Page1 = () => {
 
     useEffect(() => {
         savePageUrl();
-        console.log(`Paged saved successfully : ${successful}` )
-      }, []);
+        setIsBookmarked(bookmarkedAlready);
+      }, [isBookmarked]);
     
-    const { successful, savePageUrl } = UpdateLibraryLastPage({
+    const { successful, savePageUrl,bookmarkPageUrl, bookmarkedAlready } = UpdateLibraryLastPage({
           setLoading: (loading) => console.log(`Loading: ${loading}`),
           handleLibraryClick: (data) => {
               console.log('Library Clicked:', data);
           },
     });
+
+    function handleBookmark(){
+        if(isBookmarked){
+            console.log('This page have been bookmarked already.');
+            alert("This page have been bookmarked already.");
+        }else{
+            if (pageTitleRef.current) {
+                const pageTitle = pageTitleRef.current.textContent.trim();
+                bookmarkPageUrl(pageTitle);
+                setIsBookmarked(true);
+                alert("Bookmarked successfully.");
+            }
+        }
+    }
 
     return (
         <Box sx={{
@@ -35,8 +54,15 @@ const Page1 = () => {
             minHeight: '100vh',
             justifyContent: 'space-between'
         }}>
+             <Box sx={{ display: "flex", justifyContent: "right", alignItems: "right" }}>
+                <Tooltip title="Click to Bookmark">
+                    <IconButton onClick={handleBookmark} aria-label="add to wishlist">
+                        {isBookmarked ? <BookmarkIcon /> : <BookmarkBorderIcon />}
+                    </IconButton>
+                </Tooltip>
+            </Box>
             <Box>
-                <Typography variant="h4" sx={{ mb: 1, textAlign: 'center' }}>Home Care</Typography>
+                <Typography ref={pageTitleRef} variant="h4" sx={{ mb: 1, textAlign: 'center' }}>Home Care</Typography>
                 <Typography variant="h6" sx={{ mb: 2 }}>Page 1 of 2</Typography>
                 <ul>
                     <li>Many with dementia want to stay home as they age.</li>
