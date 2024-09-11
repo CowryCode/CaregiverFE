@@ -26,6 +26,7 @@ const Home = () => {
 
   const [token, setToken] = useState(null);
   const [profile, setProfile] = useState({});
+  const [openDialog, setOpenDialog] = useState(false);
 
   const myPriorityNeed = () => {
     // THIS ARRAY IS GENERATED AFTER SUBMITTING NEED ASSESSMENT
@@ -93,6 +94,11 @@ const trackLastDateUser = async () => {
   const handleSidebarToggle = () => {
     document.getElementById("sidebar").classList.toggle("active");
   };
+
+  const handleDialogClose = () => {
+    setOpenDialog(false);
+  };
+
 
   const handleLibraryClick = () => {
     // const data = [3, 2, 4, 5, 1]; 
@@ -283,19 +289,33 @@ const trackLastDateUser = async () => {
                 <img src={feedbackImg} alt="Feedback" />
                 <p>Feedback</p>
               </span>
-              <span className="icon" >
+              <span className="icon" onClick={() => navigate("/contact-us")}>
                 {/* <img src={supportImg} alt="Contact Us" /> */}
                 <img src={supportImg} alt="Contact Us" />
                 <p>Contact Us</p>
               </span>
-              <span className="icon" onClick={() => navigate("/withdraw")}>
-                {/* <img src={lifecareImg} alt="Voluntary withdrawal" /> */}
+              <span className="icon" onClick={() => navigate("/withdraw")}> 
+                {/* <img src={lifecareImg} alt="Voluntary withdrawal" /> */} 
                 <img src={withdrawalImg} alt="Voluntary withdrawal" />
                 <p>Voluntary Withdrawal</p>
               </span>
             </div>
           </main>
         </div>
+        {openDialog && (
+            <div className="dialog">
+              <div className="dialog-content">
+                <h3>Withdrawal</h3>
+                <p>
+                {/* <strong>If you withdraw, you won't have access to the caregiver platform? </strong> */}
+                If you withdraw, you won't have access to the caregiver platform? 
+                Doe you want to withdraw? 
+                </p>
+                <button onClick={handleDialogClose}>Yes</button>
+                <button onClick={handleDialogClose}>No</button>
+              </div>
+            </div>
+          )}
       </div>
       <Footer />
     </>

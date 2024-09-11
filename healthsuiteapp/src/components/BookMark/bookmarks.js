@@ -135,7 +135,7 @@ const BookMarks = () => {
           {openDialog && (
             <div className="dialog">
               <div className="dialog-content">
-                <h3>Referral Code</h3>
+                {/* <h3>Referral Code</h3> */}
                 <p>
                 <strong>Are you sure you want to remove this bookmark?</strong>
                 </p>

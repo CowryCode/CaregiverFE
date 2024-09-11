@@ -14,6 +14,7 @@ import Footer from "../Footer/Footer";
 import Sidebar from "../SidebarMenu/SideBar";
 import { FaBars } from "react-icons/fa";
 import "./Profile.css";
+import LocalStorageService from "../../utils/LocalStorageService";
 
 const Profile = () => {
   const [profileData, setProfileData] = useState({
@@ -25,6 +26,7 @@ const Profile = () => {
     mailingAddress: "",
   });
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [profile, setProfile] = useState({});
 
   const handleSidebarToggle = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -32,27 +34,16 @@ const Profile = () => {
   };
 
   useEffect(() => {
-    // Fetch profile data from the backend
-    // const fetchData = async () => {
-    //   try {
-    //     const response = await fetch('YOUR_BACKEND_ENDPOINT');
-    //     const data = await response.json();
-    //     setProfileData(data);
-    //   } catch (error) {
-    //     console.error('Error fetching profile data:', error);
-    //   }
-    // };
-
-    // fetchData();
+    const localprofile = LocalStorageService.getItem('profile');
 
     // Using dummy data for now
     setProfileData({
-      name: "John Doe",
-      userName: "john.doe@example.com",
-      province: "Ontario",
-      email: "john.doe@example.com",
-      phoneNumber: "1234567890",
-      mailingAddress: "1234 Elm Street, Springfield, IL 62704",
+      name: `${localprofile.firstName} ${localprofile.lastName}`,
+      userName: "N/A",
+      province: "N/A",
+      email: localprofile.email,
+      phoneNumber: localprofile.phoneNumber,
+      mailingAddress: localprofile.mailAddress,
     });
   }, []);
 
@@ -73,13 +64,13 @@ const Profile = () => {
               <ListItem>
                 <ListItemText primary="Name" secondary={profileData.name} />
               </ListItem>
-              <Divider />
+              {/* <Divider />
               <ListItem>
                 <ListItemText
                   primary="Username"
                   secondary={profileData.userName}
                 />
-              </ListItem>
+              </ListItem> */}
               <Divider />
               <ListItem>
                 <ListItemText

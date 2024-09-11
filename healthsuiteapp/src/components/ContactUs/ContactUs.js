@@ -14,13 +14,18 @@ import {
   DialogContentText,
   DialogTitle,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import Sidebar from '../SidebarMenu/SideBar';
 import { FaBars } from 'react-icons/fa';
 import "./ContactUs.css";
+import axiosInstance from "../../apicall/AxiosInstance";
 
 const ContactUs = () => {
+  const navigate = useNavigate();
+
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -45,13 +50,23 @@ const ContactUs = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     // Add form validation and submission logic here
-
+    submitToAPI();
     setShowSuccess(true);
   };
 
   const handleCloseDialog = () => {
     setShowSuccess(false);
   };
+
+  const submitToAPI = () => {
+    axiosInstance.post(`/caregiver/v1/contact-us`, formData) 
+    .then(response => {
+      navigate(`/`);
+    })
+    .catch(error => {
+        console.error('Error', error);
+    });
+  }
 
   return (
     <div className={`app-container ${isSidebarOpen ? 'with-sidebar' : ''}`}>

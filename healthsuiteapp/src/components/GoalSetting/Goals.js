@@ -15,7 +15,7 @@ import axiosInstance from "../../apicall/AxiosInstance";
 // }
 
 const Goals = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const [openDialog, setOpenDialog] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [goals, setGoals] = useState([]);

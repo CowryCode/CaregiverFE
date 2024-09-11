@@ -10,13 +10,17 @@ import {
   DialogContentText,
   DialogTitle,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import Sidebar from '../SidebarMenu/SideBar';
 import { FaBars } from 'react-icons/fa';
 import "./Feedback.css";
+import axiosInstance from "../../apicall/AxiosInstance";
 
 const Feedback = () => {
+  const navigate = useNavigate();
+
   const [showSuccess, setShowSuccess] = useState(false);
   const [feedbackData, setFeedbackData] = useState({
     subject: "",
@@ -36,6 +40,7 @@ const Feedback = () => {
       return;
     }
     setShowSuccess(true);
+    submitToAPI();
     console.log("Feedback submitted:", feedbackData);
   };
 
@@ -49,6 +54,16 @@ const Feedback = () => {
       [event.target.name]: event.target.value,
     });
   };
+
+  const submitToAPI = () => {
+    axiosInstance.post(`/caregiver/v1/save-feedback`, feedbackData) 
+    .then(response => {
+      navigate(`/`);
+    })
+    .catch(error => {
+        console.error('Error', error);
+    });
+  }
 
   return (
     <div className={`app-container ${isSidebarOpen ? 'with-sidebar' : ''}`}>
