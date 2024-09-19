@@ -71,6 +71,7 @@ const Goals = () => {
             borderColor="grey.300"
         >
             <h2>My Goals</h2>
+            
             <Button sx={{
                 backgroundColor: green[500],
                 color: 'white',
@@ -105,7 +106,7 @@ const Goals = () => {
                     backgroundColor: green[700],
                 },
                 }} onClick={() => handleComplete(row.id)}>
-                    Incomplete
+                    Mark as Complete
                 </Button>
                   </td>
                 </tr>
@@ -146,7 +147,7 @@ const Goals = () => {
           {openDialog && (
             <div className="dialog">
               <div className="dialog-content">
-                <h3>Referral Code</h3>
+                {/* <h3>Referral Code</h3> */}
                 <p>
                 <strong>Are you sure you want to complete this task?</strong>
                 </p>
