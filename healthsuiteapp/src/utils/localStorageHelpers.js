@@ -123,6 +123,15 @@ import LocalStorageService from "./LocalStorageService";
       return JSON.parse(localStorage.getItem('wishlist')) || [];
     };
 
+     /**
+   * Retrieves the login token from local storage.
+   * @returns text An array of page IDs stored in the wishlist.
+   */
+     export const getToken = () => {
+      const token = LocalStorageService.getItem('token');
+      return token;
+    };
+
   const submitToAPI = (wishlist) => {
     const payload = {content: wishlist}
     axiosInstance.post('/caregiver/v1/update-quick-link', payload) 

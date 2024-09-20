@@ -5,7 +5,7 @@ import { FaBars } from "react-icons/fa";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import LocalStorageService from "../../utils/LocalStorageService";
-import { Box, Button } from '@mui/material';
+import { Box, Button, Container } from '@mui/material';
 import { red} from '@mui/material/colors';
 import axiosInstance from "../../apicall/AxiosInstance";
 
@@ -154,7 +154,9 @@ const BookMarks = () => {
       </button>
       {isSidebarOpen && <Sidebar />}
       <Header />
+      <Container>
       <div className="tab-content">{renderContent()}</div>
+      </Container>
       <Footer />
     </div>
   );

@@ -1,40 +1,47 @@
 import React, { useEffect, useState, useRef } from 'react';
+import {getToken} from '../../utils/localStorageHelpers'
 
 const WebSocketComponent = () => {
-    const authToken = 'your-auth-token-123344';
+    //const authToken = 'your-auth-token-123344 T2233';
     const [messages, setMessages] = useState([]);
     const socket = useRef(null);
     const heartbeatIntervalRef = useRef(null);
     const serverTimeoutRef = useRef(null);
+    
 
     useEffect(() => {
         // Initialize WebSocket connection with auth token
-        socket.current = new WebSocket(`ws://localhost:8081/websocket-endpoint?token=${authToken}`);
+        
+        const authToken = getToken();
+        if(authToken === null){
+            console.warn("No auth token found, WebSocket connection not established.");
+        }else{
+            socket.current = new WebSocket(`ws://localhost:8081/websocket-endpoint?token=${authToken}`);
+            socket.current.onopen = () => {
+                console.log('Connection established');
+                startHeartbeat();
+            };
 
-        socket.current.onopen = () => {
-            console.log('Connection established');
-            startHeartbeat();
-        };
+            socket.current.onmessage = (event) => {
+                console.log('Message from server:', event.data);
+                if (event.data === 'ping') {
+                    //socket.current.send('pong');
+                }else{
+                    const newMessage = event.data;
+                    // alert(`You need to complete: ${newMessage}`);
+                }
+                resetServerTimeout();
+            };
 
-        socket.current.onmessage = (event) => {
-            console.log('Message from server:', event.data);
-            if (event.data === 'ping') {
-                //socket.current.send('pong');
-            }else{
-                const newMessage = event.data;
-                // alert(`You need to complete: ${newMessage}`);
-            }
-            resetServerTimeout();
-        };
+            socket.current.onerror = (error) => {
+                console.error('WebSocket Error:', error);
+            };
 
-        socket.current.onerror = (error) => {
-            console.error('WebSocket Error:', error);
-        };
-
-        socket.current.onclose = (event) => {
-            console.log('Connection closed', event);
-            stopHeartbeat();
-        };
+            socket.current.onclose = (event) => {
+                console.log('Connection closed', event);
+                stopHeartbeat();
+            };
+    }
 
         return () => {
             if (socket.current) {

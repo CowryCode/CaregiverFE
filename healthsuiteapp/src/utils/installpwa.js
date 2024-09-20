@@ -41,7 +41,11 @@ useEffect(() => {
     setDeferredPrompt(e);
     // Show the modal only if the app is not installed
     if (!isInstalled) {
-      setShowModal(true);
+     // setShowModal(true);
+      if (window.matchMedia('(max-width: 768px)').matches) {
+        setShowModal(true);
+      }
+      
     }
   };
 

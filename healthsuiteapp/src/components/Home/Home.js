@@ -176,15 +176,6 @@ const trackLastDateUser = async () => {
                     Contact Us
                   </span>
                 </li>
-                {/* <li className="nav-item">
-                  <span
-                    className="nav-link"
-                    onClick={() => navigate("/eligibility-form")}
-                  >
-                    <i className="fas fa-clipboard-list"></i>
-                    Forms
-                  </span>
-                </li> */}
                 <li className="nav-item">
                   <span className="nav-link" onClick={() => navigate("/admin")}>
                     <i className="fas fa-clipboard-list"></i>
@@ -197,48 +188,6 @@ const trackLastDateUser = async () => {
                     Logout
                   </span>
                 </li>
-                {/* <li className="nav-item">
-                  <span className="nav-link">
-                    <i className="fas fa-clipboard-list"></i>
-                    ******************************************
-                  </span>
-                </li>
-                <li className="nav-item">
-                  <span
-                    className="nav-link"
-                    onClick={() => navigate("/caregiverregister")}
-                  >
-                    <i className="fas fa-clipboard-list"></i>
-                    Provider Register CareGiver
-                  </span>
-                </li>
-                <li className="nav-item">
-                  <span
-                    className="nav-link"
-                    onClick={() => navigate("/referral-code-validation")}
-                  >
-                    <i className="fas fa-clipboard-list"></i>
-                    Login with RefCode
-                  </span>
-                </li>
-                <li className="nav-item">
-                  <span
-                    className="nav-link"
-                    onClick={() => navigate("/baseline-questionnaire-f1")}
-                  >
-                    <i className="fas fa-clipboard-list"></i>
-                    Baseline Questionnaire
-                  </span>
-                </li>
-                <li className="nav-item">
-                  <span
-                    className="nav-link"
-                    onClick={() => navigate("/registration")}
-                  >
-                    <i className="fas fa-clipboard-list"></i>
-                    Complete Registration
-                  </span>
-                </li> */}
               </ul>
             </div>
           </nav>

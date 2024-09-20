@@ -8,6 +8,7 @@ import LocalStorageService from "../../utils/LocalStorageService";
 import { Box, Button } from '@mui/material';
 import { amber, green } from '@mui/material/colors';
 import axiosInstance from "../../apicall/AxiosInstance";
+import { Container } from "@mui/system";
 
 // function getGoals() {
 //     const goalsJSON = LocalStorageService.getGoals();
@@ -166,7 +167,9 @@ const Goals = () => {
       </button>
       {isSidebarOpen && <Sidebar />}
       <Header />
+      <Container>
       <div className="tab-content">{renderContent()}</div>
+      </Container>
       <Footer />
     </div>
   );
