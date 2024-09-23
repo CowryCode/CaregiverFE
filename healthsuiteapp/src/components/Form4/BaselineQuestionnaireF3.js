@@ -8,9 +8,11 @@ import Footer from "../Footer/Footer";
 import axiosInstance from '../../apicall/AxiosInstance';
 import LoadingComponent from '../loader/LoadingComponent';
 import LocalStorageService from '../../utils/LocalStorageService';
+import {getUserProfile} from '../../utils/localStorageHelpers';
 
 const BaselineQuestionnaireF3 = () => {
   const [loading, setLoading] = useState(false);
+  const [lastPage, setLastPage] = useState(false);
 
   const [formData, setFormData] = useState({
     handleMemoryLoss: "",
@@ -49,7 +51,12 @@ const BaselineQuestionnaireF3 = () => {
   };
 
   useEffect(() => {
-    const userData = LocalStorageService.getItem('profile');
+    // const userData = LocalStorageService.getItem('profile');
+    const userData = getUserProfile();
+    const qtype = userData.qtype;
+    if(qtype !== 2 ){
+      setLastPage(true);
+    }
     if (userData) {
         updateUserID(userData.id);
     }
@@ -60,7 +67,13 @@ const submitToAPI = () => {
 
     axiosInstance.post('/caregiver/v1/save-b3questionnaire', formData) 
     .then(response => {
+      if(lastPage){
+        alert(`Submitted successfully`);
+        window.location.href = '/';
+      }else{
         window.location.href = '/baseline-questionnaire-f4';
+      }
+        
     })
     .catch(error => {
         alert(`Form processing unsuccessful  . . .`);
@@ -168,7 +181,7 @@ const submitToAPI = () => {
             </table>
           </div>
           <button type="submit" className="btn btn-primary btn-block">
-            Next
+          {lastPage ? "Submit" : "Next"}
           </button>
         </form>
       </div>

@@ -42,7 +42,7 @@ function Login() {
       const needSequenceArray = JSON.parse(needSequence);
 
       const serializedValue = JSON.stringify(response.data.profile);
-      console.log(`PROFILE : ${serializedValue}`)
+      console.log(`PROFILE : ${serializedValue}`);
 
       if(needSequenceArray.length > 0 ){
         LocalStorageService.setArray('libraryorder', needSequenceArray);

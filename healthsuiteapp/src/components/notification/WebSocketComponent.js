@@ -12,7 +12,7 @@ const WebSocketComponent = () => {
     useEffect(() => {
         // Initialize WebSocket connection with auth token
         
-        const authToken = getToken();
+       const authToken = getToken(); // CHANGE THIS TO PROFILE ID
         if(authToken === null){
             console.warn("No auth token found, WebSocket connection not established.");
         }else{
@@ -28,7 +28,7 @@ const WebSocketComponent = () => {
                     //socket.current.send('pong');
                 }else{
                     const newMessage = event.data;
-                    // alert(`You need to complete: ${newMessage}`);
+                     alert(`Notification Alert: ${newMessage}`);
                 }
                 resetServerTimeout();
             };

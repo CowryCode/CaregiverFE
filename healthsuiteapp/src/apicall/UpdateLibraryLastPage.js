@@ -70,10 +70,21 @@ const UpdateLibraryLastPage = ({ setLoading, handleLibraryClick }) => {
     };
 
     const bookmarkedAlready = () => {
+
         const currentPath = location.pathname;
         const bookmarksJSON = LocalStorageService.getBookMarks();
+        // Check if bookmarksJSON is null or undefined
+        if (!bookmarksJSON || !Array.isArray(bookmarksJSON)) {
+           return false;
+        }
+        // Check if currentPath is bookmarked
         return bookmarksJSON.some(obj => obj.url === currentPath);
-       // return false;
+
+
+
+        // const currentPath = location.pathname;
+        // const bookmarksJSON = LocalStorageService.getBookMarks();
+        // return bookmarksJSON.some(obj => obj.url === currentPath);
     }
 
     return { successful, savePageUrl, bookmarkPageUrl, bookmarkedAlready };

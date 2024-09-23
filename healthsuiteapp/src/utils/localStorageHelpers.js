@@ -132,6 +132,12 @@ import LocalStorageService from "./LocalStorageService";
       return token;
     };
 
+    export const getUserProfile = () => {
+      //const token = LocalStorageService.getItem('token');
+      const userData = LocalStorageService.getItem('profile');
+      return userData;
+    };
+
   const submitToAPI = (wishlist) => {
     const payload = {content: wishlist}
     axiosInstance.post('/caregiver/v1/update-quick-link', payload) 

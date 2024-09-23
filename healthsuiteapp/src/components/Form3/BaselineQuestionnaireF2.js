@@ -8,6 +8,7 @@ import Footer from '../Footer/Footer';
 import axiosInstance from '../../apicall/AxiosInstance';
 import LoadingComponent from '../loader/LoadingComponent';
 import LocalStorageService from '../../utils/LocalStorageService';
+import {getUserProfile} from '../../utils/localStorageHelpers';
 
 
 const BaselineQuestionnaireF2 = () => {
@@ -73,7 +74,8 @@ const BaselineQuestionnaireF2 = () => {
     };
 
     useEffect(() => {
-        const userData = LocalStorageService.getItem('profile');
+        //const userData = LocalStorageService.getItem('profile');
+        const userData = getUserProfile();
         if (userData) {
             updateUserID(userData.id);
         }
