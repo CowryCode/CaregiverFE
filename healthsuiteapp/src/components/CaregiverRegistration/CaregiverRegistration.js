@@ -7,6 +7,7 @@ import './CaregiverRegistration.css';
 import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../../apicall/AxiosInstance';
 import LoadingComponent from '../loader/LoadingComponent';
+import AxiosInstanceProvider from '../../apicall/AxiosInstanceProvider';
 
 
 const CaregiverRegistration = () => {
@@ -72,15 +73,15 @@ const CaregiverRegistration = () => {
     // const response = await fetchReferralCode();
     // setReferralCode(response);
 
-   // submitToAPI();
+    submitToAPI();
     
   };
 
   const submitToAPI = () => {
     setLoading(true);
     const jsonString = JSON.stringify(formData);
-    alert(`Caregiver API response :  ${jsonString}`);
-    axiosInstance.post('/caregiver/v1/create-care-provider', formData) // Replace with your API endpoint and data
+    //axiosInstance.post('/caregiver/v1/create-care-provider', formData)
+    AxiosInstanceProvider.post('/caregiver/v1/create-care-provider', formData)
     .then(response => {
         // setResponseData(response.data);
         //alert(`Caregiver API response :  ${response.data}`);
@@ -219,9 +220,9 @@ const CaregiverRegistration = () => {
           <Button variant="contained" color="primary" type="submit" className="submit-button">
             Submit
           </Button> 
-          <Button variant="contained" color="primary"  style={{ marginLeft: '10px' }}  onClick={() => navigate('/similar-users')}>
+          {/* <Button variant="contained" color="primary"  style={{ marginLeft: '10px' }}  onClick={() => navigate('/similar-users')}>
             Similiar Users Exists
-          </Button>
+          </Button> */}
         </form>
       )}
 

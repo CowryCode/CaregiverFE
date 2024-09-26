@@ -75,33 +75,10 @@ const EligibilityForm = () => {
             userID: formData.userID
         };
     
-        const jsonString = JSON.stringify(payload);
-        console.log(jsonString);
-        alert('Form data prepared as JSON:\n' + jsonString);
-    
-        // API post request (commented out for now)
-        /*
-        fetch('https://api.demo.com', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: jsonString
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Success:', data);
-            alert('Form submitted successfully!');
-            window.location.href = '../Form2/index.html';  
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-            alert('There was an error submitting the form.');
-        });
-        */
-    
-        // Temporary redirect for demonstration purposes
-        //window.location.href = 'consent-form';
+        // const jsonString = JSON.stringify(payload);
+        // console.log(jsonString);
+        // alert('Form data prepared as JSON:\n' + jsonString);
+
         submitToAPI();
     };
     

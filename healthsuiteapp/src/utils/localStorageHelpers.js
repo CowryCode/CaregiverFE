@@ -138,6 +138,19 @@ import LocalStorageService from "./LocalStorageService";
       return userData;
     };
 
+    export const saveProviderToken = (providertoken) => {
+      localStorage.setItem('providerToken', providertoken);
+      console.log(`PROVIDER PROFILE : ${providertoken}`);
+    };
+
+    export const getProviderToken = () => {
+      const token = localStorage.getItem('providerToken');
+       return token ? token : null
+    };
+
+    
+
+
   const submitToAPI = (wishlist) => {
     const payload = {content: wishlist}
     axiosInstance.post('/caregiver/v1/update-quick-link', payload) 

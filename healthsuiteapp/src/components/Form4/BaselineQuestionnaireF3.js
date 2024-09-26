@@ -53,6 +53,7 @@ const BaselineQuestionnaireF3 = () => {
   useEffect(() => {
     // const userData = LocalStorageService.getItem('profile');
     const userData = getUserProfile();
+    console.log(`PROFILE : ${userData}`);
     const qtype = userData.qtype;
     if(qtype !== 2 ){
       setLastPage(true);

@@ -102,7 +102,6 @@ const ConsentFormPage19 = () => {
 
     setLoading(true);
     const jsonString = JSON.stringify(payload);
-    alert(`PAYLOAD:  ${jsonString}`);
     axiosInstance.post('/caregiver/v1/submit-consent', payload) 
     .then(response => {
         setOpenSuccessDialog(true); 
