@@ -28,25 +28,18 @@ function CoreTopics() {
 
   const liborder = LocalStorageService.getArray('libraryorder');
 
-  
-  // const jsonString = JSON.stringify(libraryOrder);
-  //const order = location.state?.order || [3, 2, 1, 5, 4]; // Static array for development purposes
+
   const order = location.state?.order || liborder;
   const orderedTopics = order.map(index => coreTopics[index - 1]);
 
 
-  // useEffect(() => {
-  //   const liborder = LocalStorageService.getItem('libraryorder');
-  //   if (liborder.) {
-  //       updateUserID(userData.id);
-  //   }
-  // }, []);
 
   const handleTopicChange = (index) => {
     navigate(orderedTopics[index].path);
   };
 
   useEffect(() => {
+
     const savedPath = LocalStorageService.getItem('libraryLastPage');
     console.log(`PATH : ${savedPath}`);
     if( savedPath != null) {

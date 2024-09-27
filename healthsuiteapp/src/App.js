@@ -49,10 +49,10 @@ function App() {
         <Route path="/baseline-questionnaire-f3/*" element={<BaselineQuestionnaireF3 />} />
         <Route path="/baseline-questionnaire-f4/*" element={<BaselineQuestionnaireF4 />} />
         {/* <Route path="/registration" element={<Registration />} /> */}
-        <Route path="/user-complete-profile" element={<CompleteCareGiverProfile />} />
+        <Route path="/user-complete-profile/*" element={<CompleteCareGiverProfile />} />
         <Route path="/login" element={<Login />} />
         <Route path="/login-provider" element={<LoginProvider />} />
-        <Route path="/need-assessment" element={<NeedAssessmentForm />} />
+        <Route path="/need-assessment/*" element={<NeedAssessmentForm />} />
         <Route path="/admin" element={<UserTable />} />
         <Route path="/library/*" element={<CoreTopics />} />
         <Route path="/quicktips" element={<QuickTips />} />

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate , useLocation  } from 'react-router-dom';
 import { TextField, MenuItem, Button, Container, Typography, Grid } from '@mui/material';
 import './NeedAssessmentForm.css';
 import Sidebar from '../SidebarMenu/SideBar';
@@ -13,6 +13,7 @@ import LocalStorageService from '../../utils/LocalStorageService';
 
 const NeedAssessmentForm = () => {
     const navigate = useNavigate();
+    const location = useLocation();
 
     const [loading, setLoading] = useState(false);
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -145,26 +146,45 @@ const NeedAssessmentForm = () => {
         const userData = LocalStorageService.getItem('profile');
         if (userData) {
             updateUserID(userData.id);
+        }else{
+            navigate(`/login`);
         }
     }, []);
+
+    // const preloadData = () => {
+    //     setLoading(true);
+    //     const currentPath = location.pathname;
+    //     const parts = currentPath.split('=');
+    //     const userId = parts[1];
+      
+    //     axiosInstance.get(`/caregiver/v1/get-demographics/${userId}`)
+    //     .then(response => {
+    //       if (response) {
+    //         updateUserID(response.data.id);
+    //     }
+    //     })
+    //     .catch(error => {
+    //         console.error('Error', error);
+    //     })
+    //     .finally(() => {
+    //       setLoading(false);
+    //     });
+    //   }
 
     const submitToAPI = () => {
         setLoading(true);
 
-        const jsonString = JSON.stringify(formData2);
-        alert(jsonString);
-
         axiosInstance.post('/caregiver/v1/save-need-assessment', formData2)
             .then(response => {
                 const needSequence = response.data;
-
-                const needSequenceArray = JSON.parse(needSequence);
-
+                const jsonString = JSON.stringify(needSequence);
+                console.log(`Library Sequence : ${jsonString}`)
+                const needSequenceArray = JSON.parse(jsonString);
                 if(needSequenceArray.length > 0 ){
                     LocalStorageService.setArray('libraryorder', needSequenceArray);
                 }
-                // LocalStorageService.setItem('libraryorder', response.data);
                 handleLibraryClick(response.data);
+            
             })
             .catch(error => {
                 console.error('Error', error);
@@ -175,9 +195,9 @@ const NeedAssessmentForm = () => {
     }
 
     const options = [
-        { value: 0, label: 'None/Little' },
-        { value: 1, label: 'Some/Significant' },
-        { value: 2, label: 'Extreme' },
+        { value: 1, label: 'None/Little' },
+        { value: 2, label: 'Some/Significant' },
+        { value: 3, label: 'Extreme' },
     ];
 
     return (

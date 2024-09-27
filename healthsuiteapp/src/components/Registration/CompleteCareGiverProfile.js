@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import {
   Container,
   TextField,
@@ -31,11 +31,10 @@ import LocalStorageService from '../../utils/LocalStorageService';
 const CompleteCareGiverProfile = () => {
   const [loading, setLoading] = useState(false);
   const [profile, setProfile] = useState({});
-  
-
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const navigate = useNavigate();
-  const [showSuccess, setShowSuccess] = useState(false);
+  const location = useLocation();
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -193,21 +192,41 @@ const CompleteCareGiverProfile = () => {
     }));
   };
   useEffect(() => {
-    const userData = LocalStorageService.getItem('profile');
-    if (userData) {
-        preloadFormData(userData);
-        updateUserID(userData.id);
-        setProfile(userData);
-    }
+    preloadData();
+    // const userData = LocalStorageService.getItem('profile');
+    // if (userData) {
+    //     preloadFormData(userData);
+    //     updateUserID(userData.id);
+    //     setProfile(userData);
+    // }
 }, []);
+
+const preloadData = () => {
+  setLoading(true);
+  const currentPath = location.pathname;
+  const parts = currentPath.split('=');
+  const userId = parts[1];
+
+  axiosInstance.get(`/caregiver/v1/get-demographics/${userId}`)
+  .then(response => {
+    if (response) {
+      preloadFormData(response.data);
+      updateUserID(response.data.id);
+      setProfile(response.data);
+  }
+  })
+  .catch(error => {
+      console.error('Error', error);
+  })
+  .finally(() => {
+    setLoading(false);
+  });
+}
+
 
 const submitToAPI = () => {
     setLoading(true);
 
-    const jsonString = JSON.stringify(formData);
-    const profileDetail = JSON.stringify(profile);
-    console.log(jsonString);
-    alert('Form data prepared as JSON:\n' + jsonString);
 
     axiosInstance.post('/caregiver/v1/complete-profiles', formData) 
     .then(response => {

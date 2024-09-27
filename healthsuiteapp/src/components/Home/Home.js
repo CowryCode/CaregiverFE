@@ -101,17 +101,12 @@ const trackLastDateUser = async () => {
 
 
   const handleLibraryClick = () => {
-    // const data = [3, 2, 4, 5, 1]; 
 
     const data = LocalStorageService.getItem('token');
+    const liborder = LocalStorageService.getArray('libraryorder');
 
-    if(profile.needAssessmentSubmitted  && data.length > 0){
-      // THIS ARRAY IS GENERATED AFTER SUBMITTING NEED ASSESSMENT
-      // WHEN NEED ASSESSMENT HAS NOT BEEN SUBMITTED DATA IS EMPTY
-      
-        //const firstTopic = data[0];
-        const firstTopic = 1;
-
+    if(liborder && liborder.length > 0){
+      const firstTopic = liborder[0];
       navigate(`/library/core-topic${firstTopic}`);
     }else{
       navigate(`/need-assessment`);

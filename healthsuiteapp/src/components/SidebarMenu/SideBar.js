@@ -31,12 +31,12 @@ const Sidebar = () => {
     const handleLibraryClick = () => { 
     
         const data = LocalStorageService.getItem('token');
+        const liborder = LocalStorageService.getArray('libraryorder');
     
-        if(profile.needAssessmentSubmitted  && data.length > 0){
-          // THIS ARRAY IS GENERATED AFTER SUBMITTING NEED ASSESSMENT
-          // WHEN NEED ASSESSMENT HAS NOT BEEN SUBMITTED DATA IS EMPTY
+        // if(profile.needAssessmentSubmitted  && data.length > 0 && liborder.length > 0 ){
+        if(liborder && liborder.length > 0 ){
           
-            const firstTopic = data[0];
+            const firstTopic = liborder[0];
             //const firstTopic = 1;
     
           navigate(`/library/core-topic${firstTopic}`);
