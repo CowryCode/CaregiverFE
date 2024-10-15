@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import {getToken} from '../../utils/localStorageHelpers'
+import {getToken, getUserProfile} from '../../utils/localStorageHelpers'
 
 const WebSocketComponent = () => {
     //const authToken = 'your-auth-token-123344 T2233';
@@ -13,10 +13,12 @@ const WebSocketComponent = () => {
         // Initialize WebSocket connection with auth token
         
        const authToken = getToken(); // CHANGE THIS TO PROFILE ID
-        if(authToken === null){
+       const profile = getUserProfile();
+        if(authToken === null || profile === null){
             console.warn("No auth token found, WebSocket connection not established.");
         }else{
-            socket.current = new WebSocket(`ws://localhost:8081/websocket-endpoint?token=${authToken}`);
+            //socket.current = new WebSocket(`ws://localhost:8081/websocket-endpoint?id=${profile.id}token=${authToken}`);
+            socket.current = new WebSocket(`ws://http://caregiver4-env.eba-c36jiwcw.ca-central-1.elasticbeanstalk.com/websocket-endpoint?id=${profile.id}token=${authToken}`);
             socket.current.onopen = () => {
                 console.log('Connection established');
                 startHeartbeat();
