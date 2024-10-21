@@ -63,7 +63,7 @@ const BaselineQuestionnaireF1 = () => {
 
     useEffect(() => {
         const currentPath = location.pathname;
-        const userMatch = pathname.match("user=(\d+)");
+        const userMatch = currentPath.match("user=(\d+)");
         if (userMatch && userMatch[1]) {
             const userId = userMatch[1];
             console.log("User ID:", userId);
