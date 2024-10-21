@@ -148,7 +148,8 @@ const ReferralCodeValidation = () => {
     axiosInstance.get(`/caregiver/v1/login-with-refcode/${referralCode}`)
     .then(response => {
       const data = { participantName: `${response.data.firstName} ${response.data.lastName}` };
-       LocalStorageService.setItem('profile', response.data);
+      console.log("PROFILE ::::::::", response.data)
+        LocalStorageService.setItem('profile', response.data);
         setErrorDialog(false);
         setScreenNumber(response.data.preActiveScreenNumber);
         setValidationMessage(`The code you have entered is for ${data.participantName}. Please confirm that your code has been entered correctly:`);

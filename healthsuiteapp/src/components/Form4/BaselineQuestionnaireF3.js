@@ -4,13 +4,14 @@ import Sidebar from "../SidebarMenu/SideBar";
 import { FaBars } from "react-icons/fa";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
-
+import { useLocation } from 'react-router-dom';
 import axiosInstance from '../../apicall/AxiosInstance';
 import LoadingComponent from '../loader/LoadingComponent';
 import LocalStorageService from '../../utils/LocalStorageService';
 import {getUserProfile} from '../../utils/localStorageHelpers';
 
 const BaselineQuestionnaireF3 = () => {
+  const location = useLocation();
   const [loading, setLoading] = useState(false);
   const [lastPage, setLastPage] = useState(false);
 

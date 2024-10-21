@@ -4,7 +4,7 @@ import Sidebar from '../SidebarMenu/SideBar';
 import { FaBars } from 'react-icons/fa';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
-
+import { useLocation } from 'react-router-dom';
 import axiosInstance from '../../apicall/AxiosInstance';
 import LoadingComponent from '../loader/LoadingComponent';
 import LocalStorageService from '../../utils/LocalStorageService';
@@ -12,6 +12,7 @@ import {getUserProfile} from '../../utils/localStorageHelpers';
 
 
 const BaselineQuestionnaireF2 = () => {
+    const location = useLocation();
     const [loading, setLoading] = useState(false);
 
     const [formData, setFormData] = useState({
@@ -74,7 +75,15 @@ const BaselineQuestionnaireF2 = () => {
     };
 
     useEffect(() => {
-        //const userData = LocalStorageService.getItem('profile');
+        // const currentPath = location.pathname;
+        // const userMatch = currentPath.match(/user=(\d+)/);
+        // if (userMatch && userMatch[1]) {
+        //     const userId = userMatch[1];
+        //     updateUserID(userId);
+        // } else {
+        //     console.log("User ID not found.");
+        // } 
+
         const userData = getUserProfile();
         if (userData) {
             updateUserID(userData.id);
