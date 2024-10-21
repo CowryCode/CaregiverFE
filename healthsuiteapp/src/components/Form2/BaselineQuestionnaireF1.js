@@ -121,7 +121,7 @@ const BaselineQuestionnaireF1 = () => {
             window.location.href = '/baseline-questionnaire-f2';
         })
         .catch(error => {
-            alert(`Form processing unsuccessful  . . . ${payload}`);
+            alert(`Form processing unsuccessful  . . . ${JSON.stringify(payload)}`);
            // window.location.href = '/baseline-questionnaire-f1';
             console.error('Error', error);
         })
