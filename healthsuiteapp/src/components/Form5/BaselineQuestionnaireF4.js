@@ -40,7 +40,7 @@ const BaselineQuestionnaireF4 = () => {
     event.preventDefault();
     const jsonString = JSON.stringify(formData);
     console.log(jsonString);
-    alert("Form data prepared as JSON:\n" + jsonString);
+    //alert("Form data prepared as JSON:\n" + jsonString);
     // API post request
     /*
         fetch('https://api.demo.com', {
