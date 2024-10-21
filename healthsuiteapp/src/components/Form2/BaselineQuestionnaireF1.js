@@ -66,16 +66,14 @@ const BaselineQuestionnaireF1 = () => {
         const userMatch = currentPath.match(/user=(\d+)/);
         if (userMatch && userMatch[1]) {
             const userId = userMatch[1];
-            console.log("User ID:", userId);
+            updateUserID(userId);
         } else {
             console.log("User ID not found.");
         }  
-        const userData = LocalStorageService.getItem('profile');
-        console.log("THE PROFILE : ", JSON.stringify(userData));  
-
-        if (userData) {
-            updateUserID(userData.id);
-        }
+        // const userData = LocalStorageService.getItem('profile');
+        // if (userData) {
+        //     updateUserID(userData.id);
+        // }
       }, []);
 
     const handleSubmit = (e) => {
@@ -132,7 +130,7 @@ const BaselineQuestionnaireF1 = () => {
             window.location.href = '/baseline-questionnaire-f2';
         })
         .catch(error => {
-            alert(`Form processing unsuccessful  . . . ${JSON.stringify(payload)}`);
+            //alert(`Form processing unsuccessful  . . . ${JSON.stringify(payload)}`);
            // window.location.href = '/baseline-questionnaire-f1';
             console.error('Error', error);
         })
