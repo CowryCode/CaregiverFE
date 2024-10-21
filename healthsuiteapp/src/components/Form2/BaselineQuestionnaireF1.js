@@ -71,7 +71,7 @@ const BaselineQuestionnaireF1 = () => {
             console.log("User ID not found.");
         }  
         const userData = LocalStorageService.getItem('profile');
-        console.log("THE PROFILE : ", JSON.stringify(payload));  
+        console.log("THE PROFILE : ", JSON.stringify(userData));  
 
         if (userData) {
             updateUserID(userData.id);
