@@ -105,7 +105,7 @@ const EligibilityForm = () => {
 
 
         const jsonString = JSON.stringify(formData);
-        alert(`Caregiver API response :  ${jsonString}`);
+        // alert(`Caregiver API response :  ${jsonString}`);
         axiosInstance.post('/caregiver/v1/submit-eligibility-form', payload) 
         .then(response => {
             alert(`${response.data}`);
