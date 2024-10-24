@@ -7,7 +7,8 @@ import Header from "../Header/Header";
 import axiosInstance from '../../apicall/AxiosInstance';
 import LoadingComponent from '../loader/LoadingComponent';
 import LocalStorageService from "../../utils/LocalStorageService";
-import { refreshQuickTips, getGoals , getBookMarks} from "../../utils/localStorageHelpers";
+import { refreshQuickTips, getGoals , getBookMarks, justLoggedIn} from "../../utils/localStorageHelpers";
+import LogicRouter from "../../config/LogicRouter";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -42,15 +43,13 @@ function Login() {
       const needSequenceArray = JSON.parse(needSequence);
 
       const serializedValue = JSON.stringify(response.data.profile);
-      
 
       if(needSequenceArray && needSequenceArray.length > 0 ){
         LocalStorageService.setArray('libraryorder', needSequenceArray);
         // const order =   needSequence.split(',');
         // LocalStorageService.setItem('libraryorder', needSequence);
       }
-
-      
+      justLoggedIn();
       navigate(`/`);
     })
     .catch(error => {

@@ -5,12 +5,15 @@ import Sidebar from "../SidebarMenu/SideBar";
 import { FaBars } from "react-icons/fa";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
-
+import { useLocation } from 'react-router-dom';
 import axiosInstance from '../../apicall/AxiosInstance';
 import LoadingComponent from '../loader/LoadingComponent';
 import LocalStorageService from '../../utils/LocalStorageService';
+import LogicRouter from "../../config/LogicRouter";
+import {getUserProfile} from '../../utils/localStorageHelpers';
 
 const BaselineQuestionnaireF4 = () => {
+  const location = useLocation();
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -25,6 +28,7 @@ const BaselineQuestionnaireF4 = () => {
     comment: "",
     userID: ""
   });
+  const [isLogicRouterComplete, setIsLogicRouterComplete] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const handleSidebarToggle = () => {
@@ -40,28 +44,7 @@ const BaselineQuestionnaireF4 = () => {
     event.preventDefault();
     const jsonString = JSON.stringify(formData);
     console.log(jsonString);
-    //alert("Form data prepared as JSON:\n" + jsonString);
-    // API post request
-    /*
-        fetch('https://api.demo.com', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: jsonString
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Success:', data);
-            alert('Form submitted successfully!');
-            
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-            alert('There was an error submitting the form.');
-        });
-        */
-        submitToAPI()
+    submitToAPI()
   };
 
   const updateUserID = (newUserID) => {
@@ -72,7 +55,8 @@ const BaselineQuestionnaireF4 = () => {
   };
 
   useEffect(() => {
-    const userData = LocalStorageService.getItem('profile');
+    //const userData = LocalStorageService.getItem('profile');
+    const userData = getUserProfile();
     if (userData) {
         updateUserID(userData.id);
     }
@@ -84,7 +68,7 @@ const submitToAPI = () => {
     axiosInstance.post('/caregiver/v1/save-b4questionnaire', formData) 
     .then(response => {
       alert(`Congratulations, you just completed the baseline questionnaire.`);
-      navigate(`/registration`);
+      navigate(`/login`);
     })
     .catch(error => {
         alert(`Form processing unsuccessful  . . .`);
@@ -95,7 +79,16 @@ const submitToAPI = () => {
     });
   }
 
+  const handleLogicRouterComplete = () => {
+    setIsLogicRouterComplete(true);
+  };
+
   return (
+    <div>
+    {!isLogicRouterComplete && (
+       <LogicRouter onComplete={handleLogicRouterComplete} />
+    )}
+    {isLogicRouterComplete && (
     <div className={`app-container ${isSidebarOpen ? "with-sidebar" : ""}`}>
       <button className="sidebar-toggle" onClick={handleSidebarToggle}>
         <FaBars />
@@ -437,6 +430,8 @@ const submitToAPI = () => {
           </div>
       )}
       <Footer />
+    </div>
+    )}
     </div>
   );
 };

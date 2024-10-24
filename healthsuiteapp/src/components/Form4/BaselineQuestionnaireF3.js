@@ -7,8 +7,9 @@ import Footer from "../Footer/Footer";
 import { useLocation } from 'react-router-dom';
 import axiosInstance from '../../apicall/AxiosInstance';
 import LoadingComponent from '../loader/LoadingComponent';
-import LocalStorageService from '../../utils/LocalStorageService';
+import LocalStorageService from "../../utils/LocalStorageService";
 import {getUserProfile} from '../../utils/localStorageHelpers';
+import LogicRouter from "../../config/LogicRouter";
 
 const BaselineQuestionnaireF3 = () => {
   const location = useLocation();
@@ -28,6 +29,7 @@ const BaselineQuestionnaireF3 = () => {
     getAnswersRelativeCare: "",
     userID: 0
   });
+  const [isLogicRouterComplete, setIsLogicRouterComplete] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const handleSidebarToggle = () => {
@@ -53,8 +55,11 @@ const BaselineQuestionnaireF3 = () => {
 
   useEffect(() => {
     // const userData = LocalStorageService.getItem('profile');
+    //const userData = getUserProfile();
+   
+    
+  
     const userData = getUserProfile();
-    console.log(`PROFILE : ${userData}`);
     const qtype = userData.qtype;
     if(qtype !== 2 ){
       setLastPage(true);
@@ -62,6 +67,7 @@ const BaselineQuestionnaireF3 = () => {
     if (userData) {
         updateUserID(userData.id);
     }
+  
 }, []);
 
 const submitToAPI = () => {
@@ -87,7 +93,16 @@ const submitToAPI = () => {
     });
 }
 
+const handleLogicRouterComplete = () => {
+  setIsLogicRouterComplete(true);
+};
+
   return (
+    <div>
+    {!isLogicRouterComplete && (
+       <LogicRouter onComplete={handleLogicRouterComplete} />
+    )}
+    {isLogicRouterComplete && (
     <div className={`app-container ${isSidebarOpen ? "with-sidebar" : ""}`}>
       <button className="sidebar-toggle" onClick={handleSidebarToggle}>
         <FaBars />
@@ -194,6 +209,8 @@ const submitToAPI = () => {
             </div>
             )}
       <Footer />
+    </div>
+    )}
     </div>
   );
 };

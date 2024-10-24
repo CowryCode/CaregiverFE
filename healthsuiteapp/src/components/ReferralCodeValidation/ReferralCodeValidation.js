@@ -21,7 +21,6 @@ import axiosInstance from '../../apicall/AxiosInstance';
 import LoadingComponent from '../loader/LoadingComponent';
 import LocalStorageService from '../../utils/LocalStorageService';
 
-
 const ReferralCodeValidation = () => {
   const navigate = useNavigate();
 
@@ -56,13 +55,6 @@ const ReferralCodeValidation = () => {
   }
 
   const routeUser = (screenNumber) => {
-    // 1 = Caregiver Eligibility Screen (/eligibility-form)
-      // 2 = Consent form (/consent-form)
-      // 3 = Baseline Questionnaire Screen 1 (/baseline-questionnaire-f1)
-      // 4 = Baseline Questionnaire Screen 2 (/baseline-questionnaire-f2)
-      // 5 = Baseline Questionnaire Screen 3 (/baseline-questionnaire-f3)
-      // 6 = Baseline Questionnaire Screen 4 (/baseline-questionnaire-f4)
-      // 7 = Complete user profile (/user-complete-profile)
       console.log(`SCREEN NUMBER :  ${screenNumber}`);
       const profileDetail = JSON.stringify(profile);
       console.log('SAVED PROFILE ' + profileDetail);
@@ -84,16 +76,13 @@ const ReferralCodeValidation = () => {
         navigate(`/baseline-questionnaire-f3`);
         break;
       case 6:
-        navigate(`/baseline-questionnaire-f4`);
-        break;
-      case 7:
         navigate(`/user-complete-profile`);
         break;
-      case 8:
-        navigate(`/login`);
+      case 7:
+        navigate(`/baseline-questionnaire-f4`);
         break;
       default:
-        console.warn('Unknown screen number:', screenNumber);
+        navigate(`/login`);
   }
 };
 
@@ -148,7 +137,6 @@ const ReferralCodeValidation = () => {
     axiosInstance.get(`/caregiver/v1/login-with-refcode/${referralCode}`)
     .then(response => {
       const data = { participantName: `${response.data.firstName} ${response.data.lastName}` };
-      console.log("PROFILE ::::::::", response.data)
         LocalStorageService.setItem('profile', response.data);
         setErrorDialog(false);
         setScreenNumber(response.data.preActiveScreenNumber);

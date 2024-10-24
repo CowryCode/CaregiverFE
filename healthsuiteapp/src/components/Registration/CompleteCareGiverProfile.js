@@ -97,18 +97,20 @@ const CompleteCareGiverProfile = () => {
     event.preventDefault();
     if (!validateForm()) return;
 
-    if (formData.email) {
-        const emailExists = await confirmEmail(formData.email);
-        if (emailExists) {
-          setErrors((prevErrors) => ({
-            ...prevErrors,
-            email: "Email Address already exists",
-          }));
-          return;
-        }else{
-         submitToAPI();
-        }
-    }
+    submitToAPI();
+    // THIS CHECK IS MOVED TO POINT OF SIGNUP BECAUSE EMAIL IS CAPTURED THEN
+    // if (formData.email) {
+    //     const emailExists = await confirmEmail(formData.email);
+    //     if (emailExists) {
+    //       setErrors((prevErrors) => ({
+    //         ...prevErrors,
+    //         email: "Email Address already exists",
+    //       }));
+    //       return;
+    //     }else{
+    //      submitToAPI();
+    //     }
+    // }
 
     // if (formData.phoneNumber) {
     //   const phoneExists = await checkPhoneNumber(formData.phoneNumber);
@@ -122,9 +124,6 @@ const CompleteCareGiverProfile = () => {
     //    // submitToAPI();
     //   }
     // }
-
-    setShowSuccess(true);
-    console.log("Form submitted successfully", formData);
     // navigate(`/login`);
   };
 
@@ -137,15 +136,16 @@ const CompleteCareGiverProfile = () => {
     }
   };
 
-  const confirmEmail = async (email) => {
-    await new Promise((resolve) => setTimeout(resolve, 500));
-    //Commented out actual API call for now
-    //const response = await fetch(`https://api.example.com/checkPhoneNumber?phone=${phoneNumber}`);
-    const response = await fetch(`http://localhost:8081/caregiver/v1/confirm-email/${email}`);
-    const data = await response.json();
-    return data;
-
-  };
+  // const confirmEmail = async (email) => {
+  //   await new Promise((resolve) => setTimeout(resolve, 500));
+  //   //Commented out actual API call for now
+  //   const check = axiosInstance.get(`/caregiver/v1/confirm-email/${email}`) 
+  //         .then(response => {
+  //           const data = response.json();
+  //           return data;
+  //         })
+  //   return check;
+  // };
 
   const checkPhoneNumber = async (phoneNumber) => {
     await new Promise((resolve) => setTimeout(resolve, 500));
@@ -182,6 +182,8 @@ const CompleteCareGiverProfile = () => {
         lastName: profile.lastName,
         age:profile.age,
         gender: profile.gender,
+        email: profile.userName,
+        userName: profile.userName,
     }));
   };
 
@@ -230,7 +232,8 @@ const submitToAPI = () => {
 
     axiosInstance.post('/caregiver/v1/complete-profiles', formData) 
     .then(response => {
-      alert(`Congratulations, you have successfully created your login credentials.`);
+      setShowSuccess(true);
+      //alert(`Congratulations, you have successfully created your login credentials.`);
       navigate(`/login`);
     })
     .catch(error => {
@@ -315,6 +318,7 @@ return (
             margin="normal"
             label="*Email"
             name="email"
+            disabled={true}
             value={formData.email}
             onChange={handleChange}
             error={!!errors.email}

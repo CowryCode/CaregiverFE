@@ -5,7 +5,6 @@ import {getToken} from '../utils/localStorageHelpers'
 
 const axiosInstance = axios.create({
     baseURL: 'http://localhost:8081', // Replace with your API base URL
-    //baseURL: 'http://caregiver4-env.eba-c36jiwcw.ca-central-1.elasticbeanstalk.com',
     //baseURL: 'https://caregiverapi.healthensuite.com',
 });
 

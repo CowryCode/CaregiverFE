@@ -2,31 +2,27 @@ import React , { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Home.css";
 import { FaBars } from "react-icons/fa"; // Importing the FaBars icon
-// import beginImg from "../../assets/begin.png";
 import profileImg from "../../assets/profile-icon.png";
-// import handbookImg from "../../assets/handbook.png";
 import priorityNeedImg from "../../assets/priority-need-icon.jpg";
 import supportImg from "../../assets/contactus.png";
-// import workshopImg from "../../assets/workshop.png";
 import myGoalsImg from "../../assets/mygoalsIcon.png";
-// import governmentImg from "../../assets/government.png";
 import quickTipsImg from "../../assets/myQuickTipsIcon.jpg";
-// import adultcareImg from "../../assets/adultcare.png";
 import bookmarkImg from "../../assets/bookMarksIcon.jpg";
-// import lifecareImg from "../../assets/lifecare.png";
 import withdrawalImg from "../../assets/withdrawalIcon.png"; 
-// import formImg from "../../assets/form.png";
 import feedbackImg from "../../assets/feedbackIcon.jpg";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import LocalStorageService from "../../utils/LocalStorageService";
 import axiosInstance from "../../apicall/AxiosInstance";
+import LogicRouter from "../../config/LogicRouter";
+
 const Home = () => {
   const navigate = useNavigate();
 
   const [token, setToken] = useState(null);
   const [profile, setProfile] = useState({});
   const [openDialog, setOpenDialog] = useState(false);
+  const [isLogicRouterComplete, setIsLogicRouterComplete] = useState(false);
 
   const myPriorityNeed = () => {
     // THIS ARRAY IS GENERATED AFTER SUBMITTING NEED ASSESSMENT
@@ -51,12 +47,12 @@ const Home = () => {
     setProfile(localprofile);
 
     if(localtoken === null || localprofile === null){
-      navigate(`/login`);
+      //navigate(`/login`);
+      //LogicRouter();
+    }else{
+      trackLastDateUser();
     }
-
-    trackLastDateUser();
-
-  }, []);
+  }, [navigate]);
 
 
 const trackLastDateUser = async () => {
@@ -111,25 +107,19 @@ const trackLastDateUser = async () => {
     }else{
       navigate(`/need-assessment`);
     }
-    
+  };
 
-
-    // THIS ARRAY IS GENERATED AFTER SUBMITTING NEED ASSESSMENT
-    // const data = [3, 2, 4, 5, 1]; // Static array for development purposes
-    // WHEN NEED ASSESSMENT HAS NOT BEEN SUBMITTED DATA IS EMPTY
-    // const data = [];
-    // if (data.length > 0) {
-    //   //const firstTopic = data[0];
-    //   const firstTopic = 1;
-
-    //   navigate(`/library/core-topic${firstTopic}`);
-    // } else {
-    //   navigate(`/need-assessment`);
-    // }
+  const handleLogicRouterComplete = () => {
+    setIsLogicRouterComplete(true);
   };
 
   return (
     <>
+    <div>
+      {!isLogicRouterComplete && (
+         <LogicRouter onComplete={handleLogicRouterComplete} />
+      )}
+      {isLogicRouterComplete && (
       <div className="container-fluid">
         <div className="row">
           <nav id="sidebar" className="col-md-3 col-lg-2 sidebar">
@@ -261,6 +251,8 @@ const trackLastDateUser = async () => {
             </div>
           )}
       </div>
+      )}
+    </div>
       <Footer />
     </>
   );

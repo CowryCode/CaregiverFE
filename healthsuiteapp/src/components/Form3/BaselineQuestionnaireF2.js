@@ -9,6 +9,7 @@ import axiosInstance from '../../apicall/AxiosInstance';
 import LoadingComponent from '../loader/LoadingComponent';
 import LocalStorageService from '../../utils/LocalStorageService';
 import {getUserProfile} from '../../utils/localStorageHelpers';
+import LogicRouter from '../../config/LogicRouter';
 
 
 const BaselineQuestionnaireF2 = () => {
@@ -51,6 +52,7 @@ const BaselineQuestionnaireF2 = () => {
         generalWellbeing: '',
         userID : 0
     });
+    const [isLogicRouterComplete, setIsLogicRouterComplete] = useState(false);
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
     const handleSidebarToggle = () => {
@@ -88,10 +90,12 @@ const BaselineQuestionnaireF2 = () => {
         if (userData) {
             updateUserID(userData.id);
         }
+
     }, []);
 
     const submitToAPI = () => {
         setLoading(true);
+        console.log("Sidebar is ", formData );
 
         axiosInstance.post('/caregiver/v1/save-b2questionnaire', formData) 
         .then(response => {
@@ -107,8 +111,16 @@ const BaselineQuestionnaireF2 = () => {
         });
     }
 
+    const handleLogicRouterComplete = () => {
+        setIsLogicRouterComplete(true);
+      };
 
     return (
+        <div>
+      {!isLogicRouterComplete && (
+         <LogicRouter onComplete={handleLogicRouterComplete} />
+      )}
+      {isLogicRouterComplete && (
         <div className={`app-container ${isSidebarOpen ? 'with-sidebar' : ''}`}>
             <button className="sidebar-toggle" onClick={handleSidebarToggle}>
                 <FaBars />
@@ -442,6 +454,8 @@ const BaselineQuestionnaireF2 = () => {
             )}
             <Footer />
         </div>
+        )}
+    </div>
     );
 };
 

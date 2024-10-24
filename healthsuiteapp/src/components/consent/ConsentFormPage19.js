@@ -87,16 +87,49 @@ const ConsentFormPage19 = () => {
     if (!fullName || !email || email !== verifyEmail || !phone || !nickname) {
       setError('All fields are required and emails must match.');
       return;
+    }else{
+      confirmEmail(formData.email, formData);
     }
 
+    // const { fullName, email, verifyEmail, phone, nickname } = formData;
+    // if (!fullName || !email || email !== verifyEmail || !phone || !nickname) {
+    //   setError('All fields are required and emails must match.');
+    //   return;
+    // }
+    // const payload = {
+    //   emailResult: checkBoxStates.summary,
+    //   futureStudies: checkBoxStates.futureContact,
+    //   legalRights: checkBoxStates.legalRights,
+    //   agreed: dataConsent === 'yes',
+    //   fullName: fullName,
+    //   emailAddress: email,
+    //   phoneNumber: phone,
+    //   userID: userid
+    // };
+
+    // setLoading(true);
+    // axiosInstance.post('/caregiver/v1/submit-consent', payload) 
+    // .then(response => {
+    //     setOpenSuccessDialog(true); 
+    // })
+    // .catch(error => {
+    //     alert(`Your consenting process wasn't successful at this time`);
+    //     console.error('Error', error);
+    // })
+    // .finally(() => {
+    //   setLoading(false);
+    // });
+  };
+
+  const submitToAPI = (formData) => {
     const payload = {
       emailResult: checkBoxStates.summary,
       futureStudies: checkBoxStates.futureContact,
       legalRights: checkBoxStates.legalRights,
       agreed: dataConsent === 'yes',
-      fullName: fullName,
-      emailAddress: email,
-      phoneNumber: phone,
+      fullName: formData.fullName,
+      emailAddress: formData.email,
+      phoneNumber: formData.phone,
       userID: userid
     };
 
@@ -112,6 +145,20 @@ const ConsentFormPage19 = () => {
     .finally(() => {
       setLoading(false);
     });
+  }
+
+  const confirmEmail = async (email, formData) => {
+    await new Promise((resolve) => setTimeout(resolve, 500));
+    //Commented out actual API call for now
+    const check = axiosInstance.get(`/caregiver/v1/confirm-email/${email}`) 
+          .then(response => {
+            submitToAPI(formData);
+          })
+          .catch(error => {
+            setError('Email Address already used by another user');
+            console.error('Error', error);
+        })
+    return check;
   };
 
   const handleNoThanks = () => {
@@ -176,6 +223,8 @@ const ConsentFormPage19 = () => {
           </>
         )}
 
+        {error && <Alert severity="error" sx={{ mt: 2 }}>{error}</Alert>}
+
         {showForm && (
           <>
             <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
@@ -237,7 +286,7 @@ const ConsentFormPage19 = () => {
             </Button>
           </>
         )}
-        {error && <Alert severity="error" sx={{ mt: 2 }}>{error}</Alert>}
+        {/* {error && <Alert severity="error" sx={{ mt: 2 }}>{error}</Alert>} */}
       </Container>  
       )}
       {loading && (

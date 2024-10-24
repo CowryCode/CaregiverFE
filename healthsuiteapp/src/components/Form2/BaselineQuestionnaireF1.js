@@ -7,7 +7,8 @@ import Footer from '../Footer/Footer';
 import { useLocation } from 'react-router-dom';
 import axiosInstance from '../../apicall/AxiosInstance';
 import LoadingComponent from '../loader/LoadingComponent';
-import LocalStorageService from '../../utils/LocalStorageService';
+import {getUserProfile, saveUserProfile } from '../../utils/localStorageHelpers';
+import LogicRouter from "../../config/LogicRouter";
 
 const BaselineQuestionnaireF1 = () => {
     const location = useLocation();
@@ -32,8 +33,10 @@ const BaselineQuestionnaireF1 = () => {
         typicalWeekDetail: '',
         userID : 0
     });
-
+    
+    const [isLogicRouterComplete, setIsLogicRouterComplete] = useState(false);
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
 
     const handleSidebarToggle = () => {
         setIsSidebarOpen(!isSidebarOpen);
@@ -70,7 +73,9 @@ const BaselineQuestionnaireF1 = () => {
         } else {
             console.log("User ID not found.");
         }  
-        // const userData = LocalStorageService.getItem('profile');
+       
+        //const userData = LocalStorageService.getItem('profile');
+        // const userData = getUserProfile();
         // if (userData) {
         //     updateUserID(userData.id);
         // }
@@ -127,19 +132,39 @@ const BaselineQuestionnaireF1 = () => {
             };
         axiosInstance.post('/caregiver/v1/save-baseline-questionnaire', payload) 
         .then(response => {
+            refreshProfile(response.data.userID);
             window.location.href = '/baseline-questionnaire-f2';
         })
         .catch(error => {
             //alert(`Form processing unsuccessful  . . . ${JSON.stringify(payload)}`);
            // window.location.href = '/baseline-questionnaire-f1';
             console.error('Error', error);
+        });
+    }
+
+    const refreshProfile = ({id}) => {
+        axiosInstance.get(`/caregiver/v1/get-profile/${id}`) 
+        .then(response => {
+            saveUserProfile(response.data);
+        })
+        .catch(error => {
+            console.error('Error', error);
         })
         .finally(() => {
           setLoading(false);
         });
-      }
+    }
+
+    const handleLogicRouterComplete = () => {
+        setIsLogicRouterComplete(true);
+      };
 
     return (
+    //     <div>
+    //   {!isLogicRouterComplete && (
+    //      <LogicRouter onComplete={handleLogicRouterComplete} />
+    //   )}
+    //   {isLogicRouterComplete && (
         <div className={`app-container ${isSidebarOpen ? 'with-sidebar' : ''}`}>
             <button className="sidebar-toggle" onClick={handleSidebarToggle}>
                 <FaBars />
@@ -363,8 +388,8 @@ const BaselineQuestionnaireF1 = () => {
             )}
             <Footer />
         </div>
-        
-        
+    //     )}
+    // </div>
     );
 };
 

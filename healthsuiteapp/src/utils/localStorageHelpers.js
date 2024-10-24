@@ -132,20 +132,48 @@ import LocalStorageService from "./LocalStorageService";
       return token;
     };
 
+    export const saveUserProfile = (profile) => {
+      LocalStorageService.setItem('profile', profile);
+    };
+
     export const getUserProfile = () => {
-      //const token = LocalStorageService.getItem('token');
       const userData = LocalStorageService.getItem('profile');
       return userData;
     };
 
     export const saveProviderToken = (providertoken) => {
       localStorage.setItem('providerToken', providertoken);
-      console.log(`PROVIDER PROFILE : ${providertoken}`);
     };
 
     export const getProviderToken = () => {
       const token = localStorage.getItem('providerToken');
        return token ? token : null
+    };
+
+    export const saveRoute = (route) => {
+      localStorage.setItem('Route', route);
+    };
+
+    export const getRoute = () => {
+      const token = localStorage.getItem('Route');
+       return token ? token : 0
+    };
+
+    export const justLoggedIn = () => {
+      localStorage.setItem('JLI', "true");
+    };
+
+    export const getJustLoggedIn = () => {
+      const token = localStorage.getItem('JLI');
+       return token ? token : null;
+    };
+
+    export const clearJustLoggedIn = () => {
+      try {
+        localStorage.removeItem('JLI');
+      } catch (error) {
+        console.error(`Error removing item JLI from localStorage:`, error);
+      }
     };
 
     
