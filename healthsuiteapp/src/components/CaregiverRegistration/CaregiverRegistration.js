@@ -33,6 +33,14 @@ const CaregiverRegistration = () => {
   const [referralCodeUrl, setReferralCodeUrl] = useState(null);
   const [openErrorDialog, setOpenErrorDialog] = useState(false);
   const [caregiverconsented, setCaregiverConsented] = useState(true);
+  const [similarProfiles, setSimilarProfiles] = useState(false);
+
+  const [rows, setRows] = useState([]);
+
+  const handleGetRefCode = async (name) => {
+    setReferralCode("REF123456");
+    setOpenDialog(true);
+  };
 
   const handleEligibilityChange = (event) => {
     if(event.target.name === 'caregiverconsent' && event.target.value === "No"){
@@ -94,9 +102,28 @@ const CaregiverRegistration = () => {
     AxiosInstanceProvider.post('/caregiver/v1/create-care-provider', formData)
     .then(response => {
         // setResponseData(response.data);
-        //alert(`Caregiver API response :  ${response.data}`);
+        //alert(`Caregiver API response :  ${JSON.stringify(response.data)}`);
+
         setReferralCode(response.data.referralCode);
         setReferralCodeUrl(response.data.url);
+        // if(similarProfiles){
+          const isDataNull = response.data !== null;
+          const isSimilarProfilesNull = response.data?.similarProfiles !== null;
+          const size = response.data?.similarProfiles?.length || 0;
+          if(response.data !== null){
+            if(response.data?.similarProfiles !== null){
+              const size = response.data?.similarProfiles?.length || 0;
+              if(size > 0){
+                const date = response.data?.similarProfiles[0].referralDate ? new Date(response.data?.similarProfiles[0].referralDate).toISOString().split("T")[0] : "N/A";
+                console.log(`PROFILE : ${JSON.stringify(response.data?.similarProfiles[0])} `); 
+                console.log(`REF DATE : ${date} `); 
+                console.log(`DETAIL : data : ${isDataNull}  Similar Profile : ${isSimilarProfilesNull}  Size : ${size}`); 
+                setRows(response.data?.similarProfiles);
+                setSimilarProfiles(true);
+              }
+            }
+          }
+        // } 
     })
     .catch(error => {
         setOpenErrorDialog(true);
@@ -123,8 +150,8 @@ const CaregiverRegistration = () => {
 
   return (
     
-    <Container maxWidth="sm" className="caregiver-registration-container">
-      {!loading && (
+    <Container maxWidth="md" className="caregiver-registration-container">
+      {!loading  && (
       <div>
       <Typography variant="h6" gutterBottom>
         Caregiver’s eligibility and registration
@@ -235,13 +262,54 @@ const CaregiverRegistration = () => {
                 )}
               </FormControl> */}
           <Button variant="contained" color="primary" type="submit" className="submit-button">
-            Submit
+          {similarProfiles ? "Submit Anyway" : "Submit"}
           </Button> 
           {/* <Button variant="contained" color="primary"  style={{ marginLeft: '10px' }}  onClick={() => navigate('/similar-users')}>
             Similiar Users Exists
           </Button> */}
         </form>
       )}
+   
+   {similarProfiles && ( <div className="user-table-container">
+      <h2>Similar Profle</h2>
+      A similar caregiver record already exists. If your caregiver has already been referred to Health enSuite Caregiver, they should be listed below. Click to view their details. If this is a new caregiver, continue with the referral process.
+      <table className="user-table">
+        <thead>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Age</th>
+            <th>Gender</th>
+            <th>Referral Date</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row, index) => (
+            <tr key={index}>
+              <td>{row.firstName }</td>
+              <td>{row.lastName}</td>
+              <td>{row.age}</td>
+              <td>{row.gender}</td>
+              <td>{row.referralDate ? new Date(row.referralDate).toISOString().split("T")[0] : "N/A"}</td>
+              <td>
+                <button className="action-button get-refcode" onClick={() => handleGetRefCode(row.name)}>Get RefCode</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+       {openDialog && (
+        <div className="dialog">
+          <div className="dialog-content">
+            <h3>Referral Code</h3>
+            <p>Your referral code is: <strong>{referralCode}</strong></p>
+            <button onClick={handleDialogClose}>Close</button>
+          </div>
+        </div>
+      )}
+    </div>)}
 
       {referralCode && !loading && (
         <div className="referral-code-container">
