@@ -17,7 +17,8 @@ const CaregiverRegistration = () => {
 
   const [eligibility, setEligibility] = useState({
     moderateDementia: '',
-    experiencingDistress: ''
+    experiencingDistress: '',
+    caregiverconsent: '',
   });
   const [formData, setFormData] = useState({
     firstName: '',
@@ -31,12 +32,21 @@ const CaregiverRegistration = () => {
   const [referralCode, setReferralCode] = useState(null);
   const [referralCodeUrl, setReferralCodeUrl] = useState(null);
   const [openErrorDialog, setOpenErrorDialog] = useState(false);
+  const [caregiverconsented, setCaregiverConsented] = useState(true);
 
   const handleEligibilityChange = (event) => {
+    if(event.target.name === 'caregiverconsent' && event.target.value === "No"){
+      setCaregiverConsented(false);
+    } 
     setEligibility({
       ...eligibility,
       [event.target.name]: event.target.value
     });
+  };
+
+  const handleNoConsent = (action) => {
+      //setCaregiverConsented(true);
+      window.location.reload();
   };
 
   const handleFormChange = (event) => {
@@ -120,19 +130,26 @@ const CaregiverRegistration = () => {
         Caregiver’s eligibility and registration
       </Typography>
       {!showForm &&  (
-      <form onSubmit={handleEligibilitySubmit}>
-        <FormControl component="fieldset" className="caregiver-form-group">
-          <FormLabel component="legend">1. Does the person this caregiver is providing care for have moderate dementia?</FormLabel>
-          <RadioGroup name="moderateDementia" value={eligibility.moderateDementia} onChange={handleEligibilityChange}>
+      <form onSubmit={handleEligibilitySubmit}> 
+      <FormControl component="fieldset" className="caregiver-form-group">
+          <FormLabel component="legend">1. Do you have the caregiver’s consent to submit this referral form? </FormLabel>
+          <RadioGroup name="caregiverconsent" value={eligibility.caregiverconsent} onChange={handleEligibilityChange}>
             <FormControlLabel value="Yes" control={<Radio />} label="Yes" />
             <FormControlLabel value="No" control={<Radio />} label="No" />
           </RadioGroup>
         </FormControl>
         <FormControl component="fieldset" className="caregiver-form-group">
-          <FormLabel component="legend">2. Is the caregiver experiencing distress?</FormLabel>
+          <FormLabel component="legend">2. Does the person this caregiver is providing care for have moderate dementia?</FormLabel>
+          <RadioGroup name="moderateDementia" value={eligibility.moderateDementia} onChange={handleEligibilityChange}>
+            <FormControlLabel value="Yes" control={<Radio />} label="Yes" disabled={caregiverconsented !== true} />
+            <FormControlLabel value="No" control={<Radio />} label="No" disabled={caregiverconsented !== true} />
+          </RadioGroup>
+        </FormControl>
+        <FormControl component="fieldset" className="caregiver-form-group">
+          <FormLabel component="legend">3. Is the caregiver experiencing distress?</FormLabel>
           <RadioGroup name="experiencingDistress" value={eligibility.experiencingDistress} onChange={handleEligibilityChange}>
-            <FormControlLabel value="Yes" control={<Radio />} label="Yes" />
-            <FormControlLabel value="No" control={<Radio />} label="No" />
+            <FormControlLabel value="Yes" control={<Radio />} label="Yes" disabled={caregiverconsented !== true} />
+            <FormControlLabel value="No" control={<Radio />} label="No" disabled={caregiverconsented !== true} />
           </RadioGroup>
         </FormControl>
         <div className="submit-button-container">
@@ -282,6 +299,20 @@ const CaregiverRegistration = () => {
         </DialogContent>
         <DialogActions>
           <Button onClick={() => handleDialogClose('error')} color="primary">
+            OK
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      <Dialog open={!caregiverconsented} onClose={() => handleNoConsent('error')}>
+        <DialogTitle>Consent Required</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+          This caregver is not eligible. You need to have the caregiver's consent to submit this referral form.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => handleNoConsent('error')} color="primary">
             OK
           </Button>
         </DialogActions>

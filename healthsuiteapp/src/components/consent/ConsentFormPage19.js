@@ -84,7 +84,8 @@ const ConsentFormPage19 = () => {
 
   const handleAgree = () => {
     const { fullName, email, verifyEmail, phone, nickname } = formData;
-    if (!fullName || !email || email !== verifyEmail || !phone || !nickname) {
+    //if (!fullName || !email || email !== verifyEmail || !phone || !nickname) {
+    if (!fullName || !email || email !== verifyEmail || !phone) {
       setError('All fields are required and emails must match.');
       return;
     }else{
@@ -271,7 +272,7 @@ const ConsentFormPage19 = () => {
             />
             <TextField
               margin="normal"
-              required
+              // required
               fullWidth
               id="nickname"
               label="Name or Nickname used for communications from study staff"
@@ -323,7 +324,7 @@ const ConsentFormPage19 = () => {
         <DialogTitle>Success</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Thank you for your time. An email will be sent to you within 2 business days confirming your consent with the study information attached.
+          Thank you for your time. An email will be sent to you soon confirming your consent with the study information attached.
           </DialogContentText>
         </DialogContent>
         <DialogActions>

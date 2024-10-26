@@ -127,8 +127,15 @@ const ReferralCodeValidation = () => {
     // }else{
     //   setValidationMessage(`The code you have entered is for ${data.participantName}. Please confirm that your code has been entered correctly:`);
     // }
+    //alert(` CHOICE : ${unknownReferralCode}`);
+    if(unknownReferralCode){
+      alert("Kindly contact admin to retrieve your refcode")
+      navigate(`/contact-us`);
+    }else{
+      submitToAPI();
+    }
 
-    submitToAPI();
+    
 
   };
 

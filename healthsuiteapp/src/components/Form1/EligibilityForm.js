@@ -36,10 +36,11 @@ const EligibilityForm = () => {
 
         if (type === 'checkbox') {
             if (checked) {
-                setFormData((prevData) => ({
-                    ...prevData,
-                    [name]: [...prevData[name], value],
-                }));
+                    setFormData((prevData) => ({
+                        ...prevData,
+                        [name]: [...prevData[name], value],
+                    }));
+            
             } else {
                 setFormData((prevData) => ({
                     ...prevData,
@@ -79,7 +80,12 @@ const EligibilityForm = () => {
         // console.log(jsonString);
         // alert('Form data prepared as JSON:\n' + jsonString);
 
-        submitToAPI();
+        if(formData.hourPerWeek === "less than 1 hour per week"){
+            alert("You are not eligible for this study");
+        }else{
+            submitToAPI();
+        }
+        
     };
     
     const submitToAPI = () => {
