@@ -156,7 +156,7 @@ import LocalStorageService from "./LocalStorageService";
 
     export const getRoute = () => {
       const token = localStorage.getItem('Route');
-       return token ? token : 0
+       return token ? token : null
     };
 
     export const justLoggedIn = () => {

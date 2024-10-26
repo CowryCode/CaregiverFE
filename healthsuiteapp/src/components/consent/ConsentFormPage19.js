@@ -168,13 +168,13 @@ const ConsentFormPage19 = () => {
   const handleCloseExitDialog = (confirmExit) => {
     setOpenExitDialog(false);
     if (confirmExit) {
-      navigate('/');
+      navigate('/login');
     }
   };
 
   const handleCloseSuccessDialog = () => {
     setOpenSuccessDialog(false);
-    navigate('/'); // Navigate to home page after displaying the success dialog
+    navigate('/login'); // Navigate to home page after displaying the success dialog
   };
 
   return (

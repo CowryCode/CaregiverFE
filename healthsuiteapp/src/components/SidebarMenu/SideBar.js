@@ -189,6 +189,12 @@ const Sidebar = () => {
               Logout
             </span>
           </li>
+          <li className="nav-item">
+            <span className="nav-link" onClick={() => navigate("/install")}>
+              <i className="fas fa-clipboard-list"></i>
+              Install App
+            </span>
+          </li>
         </ul>
       </div>
     </nav>

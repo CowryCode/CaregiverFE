@@ -35,7 +35,7 @@ function App() {
   return (
     <Router>
       <WebSocketComponent />
-      <InstallPWA />
+      {/* <InstallPWA /> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path='/test' element={<Page3 />} />
@@ -64,6 +64,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/video" element={<Video />} />
+        <Route path="/install" element={<InstallPWA />} />
       </Routes>
     </Router>
   );

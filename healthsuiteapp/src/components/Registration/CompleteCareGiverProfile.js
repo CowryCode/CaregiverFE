@@ -166,13 +166,42 @@ const CompleteCareGiverProfile = () => {
 
   };
 
+  // const handleCheckboxChange = (event) => {
+  //   const { name, checked } = event.target;
+
+  //   setFormData((prevFormData) => ({
+  //     ...prevFormData,
+  //     [name]: checked,
+  //   }));
+  // };
+
   const handleCheckboxChange = (event) => {
     const { name, checked } = event.target;
 
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: checked,
-    }));
+    setFormData((prevFormData) => {
+      const updatedFormData = {
+        ...prevFormData,
+        [name]: checked,
+      };
+
+      if (name === "noneAllowed" && checked) {
+        return {
+          ...updatedFormData,
+          emailAllowed: false,
+          smsAllowed: false,
+          appAllowed: false,
+        };
+      }
+
+      if ((name === "emailAllowed" || name === "smsAllowed" || name === "appAllowed")   && checked) {
+        return {
+          ...updatedFormData,
+          noneAllowed: false,
+        };
+      }
+
+      return updatedFormData;
+    });
   };
 
   const preloadFormData = (profile) => {

@@ -106,7 +106,7 @@ const CaregiverRegistration = () => {
     if (action === 'OK') {
       window.location.href = '/provider-dashboard';
     }else if (action === 'error'){
-      window.location.href = '/caregiverregister';
+      window.location.href = '/login-provider';
     }
     setOpenDialog(false);
   };
@@ -277,7 +277,7 @@ const CaregiverRegistration = () => {
         <DialogTitle>Unsuccessful</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            For some reason you can't create an account now. Try again later, if it persists contact admin
+            For some reason you can't create an account now. Login then try again, if it persists contact admin
           </DialogContentText>
         </DialogContent>
         <DialogActions>

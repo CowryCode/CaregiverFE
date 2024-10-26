@@ -15,14 +15,22 @@ import Footer from "../Footer/Footer";
 import LocalStorageService from "../../utils/LocalStorageService";
 import axiosInstance from "../../apicall/AxiosInstance";
 import LogicRouter from "../../config/LogicRouter";
+import Sidebar from "../SidebarMenu/SideBar";
 
 const Home = () => {
   const navigate = useNavigate();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const [token, setToken] = useState(null);
   const [profile, setProfile] = useState({});
   const [openDialog, setOpenDialog] = useState(false);
   const [isLogicRouterComplete, setIsLogicRouterComplete] = useState(false);
+
+  const handleSidebarToggle1 = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+    console.log("Sidebar is " + (isSidebarOpen ? "open" : "closed"));
+  };
+
 
   const myPriorityNeed = () => {
     // THIS ARRAY IS GENERATED AFTER SUBMITTING NEED ASSESSMENT
@@ -71,8 +79,11 @@ const trackLastDateUser = async () => {
   }
 
   try {
-    const tokenResponse = await axiosInstance.get('/caregiver/v1/test-token');
-    console.log(`Token is Valid`);
+    const tokenIsValid = await axiosInstance.get('/caregiver/v1/test-token');
+    console.log(`Token is Valid : ${JSON.stringify(tokenIsValid.data)}`);
+    if(tokenIsValid.data !== true){
+      navigate(`/login`);
+    }
   } catch (error) {
     console.error('Error', error);
     LocalStorageService.clear();
@@ -115,14 +126,14 @@ const trackLastDateUser = async () => {
 
   return (
     <>
-    <div>
+    <div className={`app-container ${isSidebarOpen ? "with-sidebar" : ""}`}>
       {!isLogicRouterComplete && (
          <LogicRouter onComplete={handleLogicRouterComplete} />
       )}
       {isLogicRouterComplete && (
       <div className="container-fluid">
         <div className="row">
-          <nav id="sidebar" className="col-md-3 col-lg-2 sidebar">
+          {/* <nav id="sidebar" className="col-md-3 col-lg-2 sidebar">
             <div className="sidebar-sticky">
               <ul className="nav flex-column">
                 <li className="nav-item">
@@ -175,10 +186,9 @@ const trackLastDateUser = async () => {
                 </li>
               </ul>
             </div>
-          </nav>
-
+          </nav> */}
           <main role="main" className="col-md-9 ml-sm-auto col-lg-10 px-md-4">
-            <button
+            {/* <button
               id="sidebarToggle"
               className="btn btn-primary d-md-none"
               type="button"
@@ -187,10 +197,14 @@ const trackLastDateUser = async () => {
               aria-label="Toggle navigation"
               onClick={handleSidebarToggle}
             >
-              <FaBars /> {/* Using the FaBars icon */}
-            </button>
+              <FaBars />
+            </button> */}
             <hr className="blue-line" />
             <Header />
+            <button className="sidebar-toggle" onClick={handleSidebarToggle1}>
+              <FaBars />
+            </button>
+            {isSidebarOpen && <Sidebar />}
             <hr className="blue-line" />
             <div className="icon-container">
               <span className="icon" onClick={() => navigate("/Profile")}>

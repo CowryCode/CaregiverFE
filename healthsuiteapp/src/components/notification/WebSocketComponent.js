@@ -17,8 +17,8 @@ const WebSocketComponent = () => {
         if(authToken === null || profile === null){
             console.warn("No auth token found, WebSocket connection not established.");
         }else{
-            socket.current = new WebSocket(`ws://localhost:8081/websocket-endpoint?id=${profile.id}token=${authToken}`);
-           // socket.current = new WebSocket(`ws://https://caregiverapi.healthensuite.com/websocket-endpoint?id=${profile.id}token=${authToken}`);
+           //socket.current = new WebSocket(`ws://localhost:8081/websocket-endpoint?id=${profile.id}token=${authToken}`);
+           socket.current = new WebSocket(`ws://https://caregiverapi.healthensuite.com/websocket-endpoint?id=${profile.id}token=${authToken}`);
             socket.current.onopen = () => {
                 console.log('Connection established');
                 startHeartbeat();

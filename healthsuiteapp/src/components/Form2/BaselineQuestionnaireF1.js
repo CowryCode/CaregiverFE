@@ -132,8 +132,9 @@ const BaselineQuestionnaireF1 = () => {
             };
         axiosInstance.post('/caregiver/v1/save-baseline-questionnaire', payload) 
         .then(response => {
-            refreshProfile(response.data.userID);
-            window.location.href = '/baseline-questionnaire-f2';
+            refreshProfile(formData.userID);
+            // refreshProfile(response.data.userID);
+            // window.location.href = '/baseline-questionnaire-f2';
         })
         .catch(error => {
             //alert(`Form processing unsuccessful  . . . ${JSON.stringify(payload)}`);
@@ -142,10 +143,13 @@ const BaselineQuestionnaireF1 = () => {
         });
     }
 
-    const refreshProfile = ({id}) => {
+    const refreshProfile = (id) => {
         axiosInstance.get(`/caregiver/v1/get-profile/${id}`) 
         .then(response => {
             saveUserProfile(response.data);
+            window.location.href = '/baseline-questionnaire-f2';
+            // saveUserProfile(response.data);
+            // window.location.href = '/baseline-questionnaire-f2';
         })
         .catch(error => {
             console.error('Error', error);

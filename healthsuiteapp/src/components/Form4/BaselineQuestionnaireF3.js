@@ -15,6 +15,7 @@ const BaselineQuestionnaireF3 = () => {
   const location = useLocation();
   const [loading, setLoading] = useState(false);
   const [lastPage, setLastPage] = useState(false);
+  const [qType, setQType] = useState(0);
 
   const [formData, setFormData] = useState({
     handleMemoryLoss: "",
@@ -63,6 +64,7 @@ const BaselineQuestionnaireF3 = () => {
     const qtype = userData.qtype;
     if(qtype !== 2 ){
       setLastPage(true);
+      setQType(qtype);
     }
     if (userData) {
         updateUserID(userData.id);
@@ -77,7 +79,12 @@ const submitToAPI = () => {
     .then(response => {
       if(lastPage){
         alert(`Submitted successfully`);
-        window.location.href = '/';
+        if(qType < 2 ){ //LESS THAN 2 MEANS USER IS IN SIGNUP PROCESS (BASELINE QUESTIONNAIRE INCOMPLETE)
+          window.location.href = '/login';
+        }else{
+          window.location.href = '/';
+        }
+        
       }else{
         window.location.href = '/baseline-questionnaire-f4';
       }

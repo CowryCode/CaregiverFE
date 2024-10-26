@@ -69,6 +69,7 @@ useEffect(() => {
   };
   const handleCancelClick = () => {
     setShowModal(false);
+    window.location.href = '/';
   };
 
   if (!showModal) {
