@@ -24,7 +24,8 @@ const CaregiverRegistration = () => {
     firstName: '',
     lastName: '',
     age: '',
-    gender: ''
+    gender: '',
+    allowDuplicateRecord: false,
   });
   const [errors, setErrors] = useState({});
   const [showForm, setShowForm] = useState(false);
@@ -34,12 +35,14 @@ const CaregiverRegistration = () => {
   const [openErrorDialog, setOpenErrorDialog] = useState(false);
   const [caregiverconsented, setCaregiverConsented] = useState(true);
   const [similarProfiles, setSimilarProfiles] = useState(false);
+  const [userId, setUserId] = useState(0);
 
   const [rows, setRows] = useState([]);
 
-  const handleGetRefCode = async (name) => {
-    setReferralCode("REF123456");
-    setOpenDialog(true);
+  const handleGetRefCode = async (id) => {
+    // setReferralCode("REF123456");
+    // setOpenDialog(true);
+    retrieveRefCode(id)
   };
 
   const handleEligibilityChange = (event) => {
@@ -91,6 +94,13 @@ const CaregiverRegistration = () => {
     // const response = await fetchReferralCode();
     // setReferralCode(response);
 
+    if(similarProfiles){
+      setFormData({
+        ...formData,
+        allowDuplicateRecord: true
+      });
+    }
+
     submitToAPI();
     
   };
@@ -98,15 +108,17 @@ const CaregiverRegistration = () => {
   const submitToAPI = () => {
     setLoading(true);
     const jsonString = JSON.stringify(formData);
+    console.log("Form data : ", jsonString)
     //axiosInstance.post('/caregiver/v1/create-care-provider', formData)
-    AxiosInstanceProvider.post('/caregiver/v1/create-care-provider', formData)
+    AxiosInstanceProvider.post(`/caregiver/v1/create-care-provider/${similarProfiles}`, formData)
     .then(response => {
         // setResponseData(response.data);
         //alert(`Caregiver API response :  ${JSON.stringify(response.data)}`);
 
-        setReferralCode(response.data.referralCode);
-        setReferralCodeUrl(response.data.url);
-        // if(similarProfiles){
+
+        // setReferralCode(response.data.referralCode);
+        // setReferralCodeUrl(response.data.url);
+         if(!similarProfiles){
           const isDataNull = response.data !== null;
           const isSimilarProfilesNull = response.data?.similarProfiles !== null;
           const size = response.data?.similarProfiles?.length || 0;
@@ -115,15 +127,32 @@ const CaregiverRegistration = () => {
               const size = response.data?.similarProfiles?.length || 0;
               if(size > 0){
                 const date = response.data?.similarProfiles[0].referralDate ? new Date(response.data?.similarProfiles[0].referralDate).toISOString().split("T")[0] : "N/A";
-                console.log(`PROFILE : ${JSON.stringify(response.data?.similarProfiles[0])} `); 
-                console.log(`REF DATE : ${date} `); 
-                console.log(`DETAIL : data : ${isDataNull}  Similar Profile : ${isSimilarProfilesNull}  Size : ${size}`); 
                 setRows(response.data?.similarProfiles);
                 setSimilarProfiles(true);
               }
             }
           }
-        // } 
+         }else{
+          setReferralCode(response.data.referralCode);
+          setReferralCodeUrl(response.data.url);
+        } 
+        setUserId(response.data.id)
+    })
+    .catch(error => {
+        setOpenErrorDialog(true);
+        console.error('Error', error);
+    })
+    .finally(() => {
+      setLoading(false);
+    });
+  }
+
+  const retrieveRefCode = (id) => {
+    setLoading(true);
+    AxiosInstanceProvider.get(`/caregiver/v1/retrieve-refcode/${id}`)
+    .then(response => {
+      setReferralCode(response.data?.referralCode);
+      setReferralCodeUrl(response.data?.url);
     })
     .catch(error => {
         setOpenErrorDialog(true);
@@ -270,7 +299,7 @@ const CaregiverRegistration = () => {
         </form>
       )}
    
-   {similarProfiles && ( <div className="user-table-container">
+   {!referralCode && !loading && similarProfiles && ( <div className="user-table-container">
       <h2>Similar Profle</h2>
       A similar caregiver record already exists. If your caregiver has already been referred to Health enSuite Caregiver, they should be listed below. Click to view their details. If this is a new caregiver, continue with the referral process.
       <table className="user-table">
@@ -293,7 +322,7 @@ const CaregiverRegistration = () => {
               <td>{row.gender}</td>
               <td>{row.referralDate ? new Date(row.referralDate).toISOString().split("T")[0] : "N/A"}</td>
               <td>
-                <button className="action-button get-refcode" onClick={() => handleGetRefCode(row.name)}>Get RefCode</button>
+                <button className="action-button get-refcode" onClick={() => handleGetRefCode(row.id)}>Get RefCode</button>
               </td>
             </tr>
           ))}
