@@ -130,6 +130,9 @@ const CaregiverRegistration = () => {
                 setRows(response.data?.similarProfiles);
                 setSimilarProfiles(true);
               }
+            }else{
+              setReferralCode(response.data.referralCode);
+              setReferralCodeUrl(response.data.url);
             }
           }
          }else{
