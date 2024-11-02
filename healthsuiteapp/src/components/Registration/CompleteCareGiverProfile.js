@@ -235,8 +235,11 @@ const CompleteCareGiverProfile = () => {
 const preloadData = () => {
   setLoading(true);
   const currentPath = location.pathname;
-  const parts = currentPath.split('=');
-  const userId = parts[1];
+  // const parts = currentPath.split('=');
+  // const userId = parts[1];
+
+  const match = currentPath.match(/user=(\d+)/);
+  const userId = match ? match[1] : null;
 
   axiosInstance.get(`/caregiver/v1/get-demographics/${userId}`)
   .then(response => {
