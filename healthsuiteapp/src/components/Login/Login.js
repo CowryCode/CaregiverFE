@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { TextField, Button, Typography, Container, Box } from "@mui/material";
 import Footer from "../Footer/Footer";
@@ -25,6 +25,10 @@ function Login() {
     // Add your login logic or call to API here
     submitToAPI();
   };
+
+  useEffect(() => {
+    LocalStorageService.clear();
+  }, []);
 
   const submitToAPI = () => {
     setLoading(true);
