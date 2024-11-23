@@ -4,8 +4,8 @@ import LocalStorageService from '../utils/LocalStorageService';
 import {getToken} from '../utils/localStorageHelpers'
 
 const axiosInstance = axios.create({
-    //baseURL: 'http://localhost:8081', // Replace with your API base URL
-    baseURL: 'https://caregiverapi.healthensuite.com',
+    baseURL: 'http://localhost:8081', // Replace with your API base URL
+    // baseURL: 'https://caregiverapi.healthensuite.com',
 });
 
 axiosInstance.interceptors.request.use(config => {
