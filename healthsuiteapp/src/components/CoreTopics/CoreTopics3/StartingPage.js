@@ -54,7 +54,7 @@ const StartingPage = () => {
             display: 'flex',
             flexDirection: 'column',
             minHeight: '100vh',
-            justifyContent: 'space-between'
+            // justifyContent: 'space-between'
         }}>
             <Box sx={{ display: "flex", justifyContent: "right", alignItems: "right" }}>
                 <Tooltip title="Click to Bookmark">
@@ -64,7 +64,10 @@ const StartingPage = () => {
                 </Tooltip>
             </Box>
 
-            <Typography ref={pageTitleRef} variant="h3" sx={{ color: 'red', textAlign: 'center', mb: 1 }}>Core Topic 3</Typography>
+            {/* <Typography ref={pageTitleRef} variant="h3" sx={{ color: 'red', textAlign: 'center', mb: 1 }}>Core Topic 3</Typography> */}
+            <Typography ref={pageTitleRef}  variant="h2" sx={{ fontSize: '2.5rem', color: '#007FFF', textAlign: 'center', py: 2 }}>
+                    Core Topic: Supporting the Person Living with Dementia
+                </Typography>
             <Typography variant="h4" sx={{ mb: 1, textAlign: 'center', bgcolor: '#007FFF', color: 'white', p: 1 }}>Supporting the Person Living with Dementia</Typography>
             <Box>
                 <Typography variant="h6" sx={{ mb: 2 }}>Page 1 of 1</Typography>

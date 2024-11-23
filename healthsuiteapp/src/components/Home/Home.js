@@ -67,7 +67,7 @@ const Home = () => {
     const data = LocalStorageService.getItem('token');
     const liborder = LocalStorageService.getArray('libraryorder');
 
-    if(liborder && liborder.length > 0){
+    if(liborder?.length > 0 && data !== null){
       setShowNeedForm(false)
     }else{
       setShowNeedForm(true)

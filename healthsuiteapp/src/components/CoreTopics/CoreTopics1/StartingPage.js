@@ -65,7 +65,8 @@ const StartingPage = () => {
 
             <Box sx={{ flex: 1 }}>
                 <Typography ref={pageTitleRef}  variant="h2" sx={{ fontSize: '2.5rem', color: '#007FFF', textAlign: 'center', py: 2 }}>
-                    Core Topic 1: Taking Care of Yourself (Self-care)
+                    {/* Core Topic 1: Taking Care of Yourself (Self-care) */}
+                    Core Topic: Taking Care of Yourself (Self-care)
                 </Typography>
                 <Typography variant="h3" sx={{ backgroundColor: '#007FFF', color: 'white', textAlign: 'center', fontSize: '1.5rem', py: 1 }}>
                     Taking Care of Yourself

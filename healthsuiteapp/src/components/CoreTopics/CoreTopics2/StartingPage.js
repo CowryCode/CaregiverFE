@@ -55,7 +55,7 @@ const StartingPage = () => {
             display: 'flex',
             flexDirection: 'column',
             minHeight: '100vh',
-            justifyContent: 'space-between'
+            // justifyContent: 'space-between'
         }}>
             <Box sx={{ display: "flex", justifyContent: "right", alignItems: "right" }}>
                 <Tooltip title="Click to Bookmark">
@@ -65,10 +65,17 @@ const StartingPage = () => {
                 </Tooltip>
             </Box>
 
-            <Typography ref={pageTitleRef} variant="h4" sx={{ color: 'red', textAlign: 'center', mb: 3 }}>Core Topic 2</Typography>
+            <Typography ref={pageTitleRef}  variant="h2" sx={{ fontSize: '2.5rem', color: '#007FFF', textAlign: 'center', py: 2 }}>
+                    Core Topic: Support for You
+                </Typography>
+                <Typography variant="h3" sx={{ backgroundColor: '#007FFF', color: 'white', textAlign: 'center', fontSize: '1.5rem', py: 1 }}>
+                    Support for You
+                </Typography>
+
+            {/* <Typography ref={pageTitleRef} variant="h4" sx={{ color: 'red', textAlign: 'center', mb: 3 }}>Core Topic 2</Typography> */}
         
             <Box>
-                <Typography variant="h5" sx={{ mb: 1, textAlign: 'center', bgcolor: '#007FFF', color: 'white', p: 1 }}>Support for You</Typography>
+                {/* <Typography variant="h5" sx={{ mb: 1, textAlign: 'center', bgcolor: '#007FFF', color: 'white', p: 1 }}>Support for You</Typography> */}
                 <Typography variant="h6" sx={{ mb: 2 }}>Page 1 of 1</Typography>
                 <ul>
                     <li>Caring for someone with dementia can be draining.</li>

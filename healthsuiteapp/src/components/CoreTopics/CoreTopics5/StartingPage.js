@@ -52,7 +52,7 @@ const StartingPage = () => {
             display: 'flex',
             flexDirection: 'column',
             minHeight: '100vh',
-            justifyContent: 'space-between'
+            // justifyContent: 'space-between'
         }}>
             <Box sx={{ display: "flex", justifyContent: "right", alignItems: "right" }}>
                 <Tooltip title="Click to Bookmark">
@@ -61,9 +61,17 @@ const StartingPage = () => {
                     </IconButton>
                 </Tooltip>
             </Box>
-            <Typography ref={pageTitleRef} variant="h4" sx={{ mb: 1, textAlign: 'center', color: 'red' }}>CORE TOPIC 5</Typography>
-            {/* <Typography variant="h5" sx={{ mb: 1, textAlign: 'center', color: 'blue' }}>Core Topic 5: Time Management</Typography> */}
-            <Typography variant="h6" sx={{ mb: 1, textAlign: 'center', backgroundColor: 'green', color: 'white' }}>Time Management</Typography>
+            {/* <Typography ref={pageTitleRef} variant="h4" sx={{ mb: 1, textAlign: 'center', color: 'red' }}>CORE TOPIC 5</Typography> */}
+            <Typography ref={pageTitleRef}  variant="h2" sx={{ fontSize: '2.5rem', color: '#007FFF', textAlign: 'center', py: 2 }}>
+                    {/* CORE TOPIC 5: Time Management */}
+                    CORE TOPIC: Time Management
+            </Typography>
+            {/* <Typography variant="h6" sx={{ mb: 1, textAlign: 'center', backgroundColor: 'green', color: 'white' }}>Time Management</Typography>  */}
+            <Typography variant="h3" sx={{ backgroundColor: '#007FFF', color: 'white', textAlign: 'center', fontSize: '1.5rem', py: 1 }}>
+                Time Management
+            </Typography>
+            
+
             <Typography variant="h6" sx={{ mb: 2 }}>1 of 1 (CONTENT)</Typography>
             <ul>
                 <li>Caring for someone with dementia can be part- or full-time.</li>
