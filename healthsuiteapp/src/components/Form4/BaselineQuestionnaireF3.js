@@ -10,12 +10,14 @@ import LoadingComponent from '../loader/LoadingComponent';
 import LocalStorageService from "../../utils/LocalStorageService";
 import {getUserProfile} from '../../utils/localStorageHelpers';
 import LogicRouter from "../../config/LogicRouter";
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button } from '@mui/material';
 
 const BaselineQuestionnaireF3 = () => {
   const location = useLocation();
   const [loading, setLoading] = useState(false);
   const [lastPage, setLastPage] = useState(false);
   const [qType, setQType] = useState(0);
+  const [submit, setSubmit] = useState(false);
 
   const [formData, setFormData] = useState({
     handleMemoryLoss: "",
@@ -44,8 +46,13 @@ const BaselineQuestionnaireF3 = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    submitToAPI();
+    setSubmit(true);
   };
+
+  const confirmSubmit = (event) => {
+    setSubmit(false);
+    submitToAPI();
+  }
   
   const updateUserID = (newUserID) => {
     setFormData((prevFormData) => ({
@@ -121,6 +128,7 @@ const handleLogicRouterComplete = () => {
         <h2 className="text-center">
           Family Caregivers' Self-Efficacy for Managing Dementia Form
         </h2>
+        <p>How certain do you feel for handling the below situations? </p>
         <form id="dementiaForm" onSubmit={handleSubmit}>
           <div className="table-responsive">
             <table className="table table-bordered">
@@ -218,6 +226,29 @@ const handleLogicRouterComplete = () => {
       <Footer />
     </div>
     )}
+
+      {submit && (
+            <Dialog 
+            open={submit} 
+            disableEscapeKeyDown 
+            onClose={(event, reason) => {
+              if (reason !== 'backdropClick') return;
+              // Prevent default close on backdrop click
+            }}
+          >
+            <DialogTitle>Notice</DialogTitle>
+            <DialogContent>
+              <strong>
+                  Thank you for completing the assessments, please check your email for the next step
+             </strong>
+            </DialogContent>
+            <DialogActions>
+              <Button variant="contained" color="primary" onClick={confirmSubmit}>
+                OK
+              </Button>
+            </DialogActions>
+          </Dialog>
+      )}
     </div>
   );
 };

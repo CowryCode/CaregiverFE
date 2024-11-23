@@ -17,6 +17,7 @@ import axiosInstance from "../../apicall/AxiosInstance";
 // import LogicRouter from "../../config/LogicRouter";
 import LogicRouter from "../../config/LogicRouter";
 import Sidebar from "../SidebarMenu/SideBar";
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button } from '@mui/material';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -25,6 +26,7 @@ const Home = () => {
   const [token, setToken] = useState(null);
   const [profile, setProfile] = useState({});
   const [openDialog, setOpenDialog] = useState(false);
+  const [showNeedForm, setShowNeedForm] = useState(false);
   const [isLogicRouterComplete, setIsLogicRouterComplete] = useState(false);
 
   const handleSidebarToggle1 = () => {
@@ -54,13 +56,25 @@ const Home = () => {
     const localprofile = LocalStorageService.getItem('profile');
     setToken(localtoken);
     setProfile(localprofile);
-
     if(localtoken === null || localprofile === null){
       //navigate(`/login`);
       //LogicRouter();
     }else{
       trackLastDateUser();
     }
+
+    // START SETUP SHOW NEED FORM FLAG
+    const data = LocalStorageService.getItem('token');
+    const liborder = LocalStorageService.getArray('libraryorder');
+
+    if(liborder && liborder.length > 0){
+      setShowNeedForm(false)
+    }else{
+      setShowNeedForm(true)
+    }
+
+    // START SETUP SHOW NEED FORM FLAG
+
   }, [navigate]);
 
 
@@ -92,8 +106,6 @@ const trackLastDateUser = async () => {
   }
 };
 
-
-
   const logout = () => {
     LocalStorageService.clear();
     navigate(`/login`);
@@ -109,16 +121,23 @@ const trackLastDateUser = async () => {
 
 
   const handleLibraryClick = () => {
-
-    const data = LocalStorageService.getItem('token');
-    const liborder = LocalStorageService.getArray('libraryorder');
-
-    if(liborder && liborder.length > 0){
+    if(showNeedForm){
+      navigate(`/need-assessment`);
+    }else{
+      const liborder = LocalStorageService.getArray('libraryorder');
       const firstTopic = liborder[0];
       navigate(`/library/core-topic${firstTopic}`);
-    }else{
-      navigate(`/need-assessment`);
     }
+
+    // const data = LocalStorageService.getItem('token');
+    // const liborder = LocalStorageService.getArray('libraryorder');
+
+    // if(liborder && liborder.length > 0){
+    //   const firstTopic = liborder[0];
+    //   navigate(`/library/core-topic${firstTopic}`);
+    // }else{
+    //   navigate(`/need-assessment`);
+    // }
   };
 
   const handleLogicRouterComplete = () => {
@@ -265,6 +284,29 @@ const trackLastDateUser = async () => {
               </div>
             </div>
           )}
+
+        {showNeedForm && (
+            <Dialog 
+            open={showNeedForm} 
+            disableEscapeKeyDown 
+            onClose={(event, reason) => {
+              if (reason !== 'backdropClick') return;
+              // Prevent default close on backdrop click
+            }}
+          >
+            <DialogTitle>Notice</DialogTitle>
+            <DialogContent>
+              <strong>
+                  You need to complete the need assessment to continue . . .
+             </strong>
+            </DialogContent>
+            <DialogActions>
+              <Button variant="contained" color="primary" onClick={handleLibraryClick}>
+                OK
+              </Button>
+            </DialogActions>
+          </Dialog>
+        )}
       </div>
       )}
     </div>
