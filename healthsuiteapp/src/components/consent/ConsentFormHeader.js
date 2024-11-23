@@ -14,7 +14,7 @@ const ConsentFormHeader = () => {
   return (
     <>
     <Header />
-    <Container maxWidth="sm">
+    <Container maxWidth="sm" sx={{ marginTop: 4, paddingBottom: 8 }} >
       <Typography variant="h6" gutterBottom component="div">
         Online Consent Form
       </Typography>
@@ -55,7 +55,7 @@ const ConsentFormHeader = () => {
         Phone: (902) 470 7934 or call toll-free number: 1-877-341-8309 press 5,<br />
         Available Monday – Friday, between 9 a.m. to 5 p.m. Atlantic Time
       </Typography>
-      <Button variant="contained" color="primary" onClick={handleNext} style={{ marginTop: 20 }}>
+      <Button variant="contained" color="primary" onClick={handleNext} style={{ marginTop: 20}}>
         Next
       </Button>
     </Container>

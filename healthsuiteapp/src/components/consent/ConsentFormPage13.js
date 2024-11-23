@@ -40,7 +40,7 @@ const ConsentFormPage13 = () => {
 
   return (
     <Container maxWidth="sm">
-      <Container component="main" maxWidth="sm" sx={{ marginTop: 8 }}>
+      <Container component="main" maxWidth="sm" sx={{ marginTop: 8 , paddingBottom: 8 }}>
         <Typography variant="h6" gutterBottom>
           Audits of this study could be done by the funding sources (CIHR), the Nova Scotia Health Research Ethics Board, or the IWK Health Centre’s Research Ethics Board. In the case of an audit, your file could be reviewed. Anyone performing an audit would also keep your identity confidential.
         </Typography>

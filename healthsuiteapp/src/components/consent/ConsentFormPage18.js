@@ -36,7 +36,7 @@ const ConsentFormPage18 = () => {
   };
 
   return (
-    <Container maxWidth="sm">
+    <Container maxWidth="sm" sx={{ marginTop: 8 , paddingBottom: 8 }}>
       <Typography variant="h6" gutterBottom>
         Participant Consent:
       </Typography>

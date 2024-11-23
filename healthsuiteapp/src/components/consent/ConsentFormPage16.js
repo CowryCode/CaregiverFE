@@ -32,7 +32,7 @@ const ConsentFormPage16 = () => {
 
   return (
     <Container maxWidth="sm">
-      <Container component="main" maxWidth="sm" sx={{ marginTop: 8 }}>
+      <Container component="main" maxWidth="sm" sx={{ marginTop: 8 , paddingBottom: 8 }}>
         <Typography variant="h6" gutterBottom>
           What if I have study questions or problems?
         </Typography>

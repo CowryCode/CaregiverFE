@@ -32,7 +32,7 @@ const ConsentFormPage15 = () => {
 
   return (
     <Container maxWidth="sm">
-      <Container component="main" maxWidth="sm" sx={{ marginTop: 8 }}>
+      <Container component="main" maxWidth="sm" sx={{ marginTop: 8 , paddingBottom: 8 }}>
         <Typography variant="h6" gutterBottom>
           Are there things I can do to protect my privacy?
         </Typography>

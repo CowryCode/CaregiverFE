@@ -181,7 +181,7 @@ const ConsentFormPage19 = () => {
   return (
     <Container maxWidth="sm">
       {!loading && (
-      <Container component="main" maxWidth="sm" sx={{ marginTop: 8 }}>
+      <Container component="main" maxWidth="sm" sx={{ marginTop: 8 , paddingBottom: 8 }}>
         <Typography variant="h6" gutterBottom>
           Participant Consent:
         </Typography>
@@ -324,14 +324,16 @@ const ConsentFormPage19 = () => {
         <DialogTitle>Success</DialogTitle>
         <DialogContent>
           <DialogContentText>
-          Thank you for your time. An email will be sent to you soon confirming your consent with the study information attached.
+          <strong>
+          Thank you for your interest in this project, please check your email for the next step
+          </strong>
           </DialogContentText>
         </DialogContent>
-        <DialogActions>
+        {/* <DialogActions>
           <Button onClick={handleCloseSuccessDialog} color="primary" autoFocus>
             OK
           </Button>
-        </DialogActions>
+        </DialogActions> */}
       </Dialog>
     </Container>
   );

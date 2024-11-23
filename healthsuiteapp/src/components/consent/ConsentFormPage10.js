@@ -32,7 +32,7 @@ const ConsentFormPage10 = () => {
 
   return (
     <Container maxWidth="sm">
-      <Container component="main" maxWidth="sm" sx={{ marginTop: 8 }}>
+      <Container component="main" maxWidth="sm" sx={{ marginTop: 8 , paddingBottom: 8 }}>
         <Typography variant="h6" gutterBottom>
           Are there any conflicts of interest? What about possible profit from commercialization?
         </Typography>

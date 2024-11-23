@@ -42,7 +42,7 @@ const ConsentFormPage2 = () => {
 
   return (
     <Container maxWidth="sm">
-      <Container component="main" maxWidth="sm" sx={{ marginTop: 8 }}>
+      <Container component="main" maxWidth="sm" sx={{ marginTop: 8 , paddingBottom: 8 }}>
         <Typography variant="h6" gutterBottom>
           Introduction
         </Typography>
@@ -116,7 +116,7 @@ const ConsentFormPage2 = () => {
           <Button onClick={() => handleCloseDialog(false)} color="primary">
             Cancel
           </Button>
-          <Button onClick={() => handleCloseDialog(true)} color="secondary" autoFocus>
+          <Button onClick={() => handleCloseDialog(true)} color="secondary" autoFocus >
             Yes, Exit
           </Button>
         </DialogActions>
