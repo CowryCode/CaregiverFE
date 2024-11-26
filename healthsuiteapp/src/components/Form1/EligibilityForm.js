@@ -3,11 +3,16 @@ import './EligibilityForm.css';
 import axiosInstance from '../../apicall/AxiosInstance';
 import LoadingComponent from '../loader/LoadingComponent';
 import LocalStorageService from '../../utils/LocalStorageService';
+import {
+    Button,
+    Dialog,
+    DialogActions,
+    DialogContentText,
+    DialogTitle,
+  } from "@mui/material";
 
 const EligibilityForm = () => {
     const [loading, setLoading] = useState(false);
-
-
     const [formData, setFormData] = useState({
         age18: '',
         internetAccess: '',
@@ -16,6 +21,11 @@ const EligibilityForm = () => {
         hourPerWeek: '',
         userID: ''
     });
+
+
+    const [eligibilitySubmitted, setEligibilitySubmitted] = useState(false);
+    const [startConsent, setStartConsent] = useState(false);
+    const [openDialog, setOpenDialog] = useState(false);
 
     const updateUserID = (newUserID) => {
         setFormData((prevFormData) => ({
@@ -55,6 +65,31 @@ const EligibilityForm = () => {
         }
     };
 
+    const handleNextStepOptions = (event) => {
+        const { name, value, id, checked } = event.target;
+
+        if (checked) {
+            if (id === 'nextStepYes') {
+                setStartConsent(true);
+            } 
+            if (id === 'nextStepNo') {
+                setStartConsent(false);
+                setOpenDialog(true);
+            }
+        } 
+    };
+
+    const handleNextStepLater = () => {
+        setOpenDialog(false);
+        window.location.href = 'referral-code-validation';
+    };
+
+    const handleNextStepNow = (event) => {
+        event.preventDefault();
+        setOpenDialog(false);
+        window.location.href = 'consent-form';
+    };
+
     const handleSubmit = (event) => {
         event.preventDefault();
     
@@ -86,7 +121,8 @@ const EligibilityForm = () => {
         else if(formData.hourPerWeek === "less than 1 hour per week"){
             alert("You are currently not eligible to participate in this study. You must be caring for a person with moderate dementia for more than 1 hour per week to be able to participate in the Health enSuite Caregivers program.");
         } else{
-            submitToAPI();
+            setEligibilitySubmitted(true);
+           // submitToAPI();
         }
         
     };
@@ -117,8 +153,9 @@ const EligibilityForm = () => {
         // alert(`Caregiver API response :  ${jsonString}`);
         axiosInstance.post('/caregiver/v1/submit-eligibility-form', payload) 
         .then(response => {
-            alert(`${response.data}`);
-            window.location.href = 'consent-form';
+            //alert(`${response.data}`);
+            //window.location.href = 'consent-form';
+            setEligibilitySubmitted(true);
         })
         .catch(error => {
             window.location.href = '/';
@@ -131,7 +168,7 @@ const EligibilityForm = () => {
 
     return (
         <div className="container">
-            {!loading && (
+            {!loading && !eligibilitySubmitted && (
             <div className="form-container">
                 <h2 className="text-center">Caregiver Eligibility Screening</h2>
                 <form id="caregiverForm" onSubmit={handleSubmit}>
@@ -375,7 +412,75 @@ const EligibilityForm = () => {
                 <LoadingComponent/>
             </div>
             )}
-        </div>
+            {eligibilitySubmitted && (
+            <div className="form-container">
+                <h2 className="text-center">Congratulations!</h2>
+                <form id="postSubmissionOptions">
+                    
+                    <div className="form-group">
+                        <label>Thank you for answering our questions. You may be eligible for the Health enSuite Caregivers Study. The next step involves learning about the study and making a decision about whether you would like to participate. This informed consent process may take up to 30 minutes to complete. </label>
+                        <br></br>
+                        <div className="form-group">
+                        <br />
+                        <div className="form-check form-check-inline">
+                            <input
+                                className="form-check-input"
+                                type="radio"
+                                name="nextStep"
+                                id="nextStepYes"
+                                value="yes"
+                                checked={startConsent}
+                                onChange={handleNextStepOptions}
+                            />
+                            <label className="form-check-label" htmlFor="nextStepYes">I am ready to begin the online consent process.  </label>
+                        </div>
+                        <div className="form-check form-check-inline">
+                            <input
+                                className="form-check-input"
+                                type="radio"
+                                name="nextStep"
+                                id="nextStepNo"
+                                value="no"
+                                checked={openDialog}
+                                onChange={handleNextStepOptions}
+                            />
+                            <label className="form-check-label" htmlFor="nextStepNo">I would like to complete this step at another time.</label>
+                        </div>
+                    </div>
+                       
+                    </div>
+                    <button 
+                        type="submit" 
+                        disabled={!startConsent} 
+                        className="btn btn-primary btn-block"
+                        onClick={handleNextStepNow}
+                        >
+                        Start Consent 
+                    </button>
+                </form>
+              </div>
+            )}
+ 
+            <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
+                    <DialogTitle>Notice</DialogTitle>
+                    <DialogContentText>
+                    You will need to enter your referral code again when you are ready to continue.
+                    </DialogContentText>
+                    <DialogActions>
+                    <Button onClick={() => setOpenDialog(false)} color="primary">
+                        Close
+                    </Button>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        // onClick={() => alert('Referral code submitted to backend')}
+                        onClick={handleNextStepLater}
+                    >
+                        Ok
+                    </Button>
+                    </DialogActions>
+            </Dialog>
+         </div>
         
     );
 }
