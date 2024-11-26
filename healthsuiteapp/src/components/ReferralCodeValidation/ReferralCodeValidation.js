@@ -8,6 +8,7 @@ import {
   Button,
   Typography,
   RadioGroup,
+  FormHelperText,
   Radio,
   Dialog,
   DialogActions,
@@ -103,33 +104,9 @@ const ReferralCodeValidation = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Simulate API call to validate referral code
-    // fetch('/api/validateReferralCode', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify({ referralCode })
-    // })
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     setParticipantName(data.participantName);
-    //     setValidationMessage(`The code you have entered is for ${data.participantName}. Please confirm that your code has been entered correctly:`);
-    //     setOpenDialog(true);
-    //   })
-    //   .catch(error => console.error('Error validating referral code:', error));
-
-    // Dummy data for demonstration
-    // const data = { participantName: "John Doe" };
-    // setParticipantName(data.participantName);
-    // if(unknownReferralCode){
-    //   setValidationMessage(`Please contact admin from the home page to retrieve your refcode`);
-    // }else{
-    //   setValidationMessage(`The code you have entered is for ${data.participantName}. Please confirm that your code has been entered correctly:`);
-    // }
     //alert(` CHOICE : ${unknownReferralCode}`);
     if(unknownReferralCode){
-      alert("Kindly contact admin to retrieve your refcode")
+      alert("Kindly contact admin to retrieve your refcode (teamhealthensuite@iwk.nshealth.ca)")
       navigate(`/contact-us`);
     }else{
       submitToAPI();
@@ -151,7 +128,7 @@ const ReferralCodeValidation = () => {
     })
     .catch(error => {
       setErrorDialog(true)
-      setValidationMessage(`Invalid Refcode, kindly review your refcode. If you can't login, contact your provider`);
+      setValidationMessage(`Invalid Refcode, kindly review your refcode. If you can't login, contact admin teamhealthensuite@iwk.nshealth.ca`);
     })
     .finally(() => {
       setLoading(false); // Hide throbber
@@ -187,6 +164,7 @@ const ReferralCodeValidation = () => {
       navigate(`/`); 
     }
   };
+
 
   return (
     <Container maxWidth="sm" className="referral-code-validation-container">
@@ -231,12 +209,17 @@ const ReferralCodeValidation = () => {
           <DialogContentText>
             {validationMessage}
           </DialogContentText>
-          {!unknownReferralCode && !errorDialog &&
+          {!unknownReferralCode && !errorDialog && (<>
           <RadioGroup name="confirmation" value={confirmation} onChange={handleConfirmationChange}>
             <FormControlLabel value="yes" control={<Radio />} label="Yes. This is me." />
             <FormControlLabel value="no" control={<Radio />} label="No. This is not me." />
-          </RadioGroup>
-          }
+          </RadioGroup> 
+          {confirmation === 'no' && (
+            <FormHelperText error>
+              contact admin : teamhealthensuite@iwk.nshealth.ca
+            </FormHelperText>
+          )}
+          </>)}
         </DialogContent>
         <DialogActions>
           <Button onClick={handleDialogClose} color="primary">

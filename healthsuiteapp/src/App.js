@@ -54,7 +54,7 @@ function App() {
         <Route path="/login-provider" element={<LoginProvider />} />
         <Route path="/need-assessment/*" element={<NeedAssessmentForm />} />
         <Route path="/admin" element={<UserTable />} />
-        <Route path="/library/*" element={<CoreTopics />} />
+        <Route path="/library/*" element={<CoreTopics/>} />
         <Route path="/quicktips" element={<QuickTips />} />
         <Route path="/goalsetting" element={<GoalSetting />} />
         <Route path="/goals" element={<Goals />} />

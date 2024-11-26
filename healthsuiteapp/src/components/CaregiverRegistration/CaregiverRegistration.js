@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  Container, TextField, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, Button, Typography, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle
+  Container, TextField, FormControl, FormHelperText, FormLabel, RadioGroup, FormControlLabel, Radio, Button, Typography, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle
 } from '@mui/material';
 import './CaregiverRegistration.css';
 
@@ -59,6 +59,12 @@ const CaregiverRegistration = () => {
       //setCaregiverConsented(true);
       window.location.reload();
   };
+
+
+  const handleNotEligible = (action) => {
+    //setCaregiverConsented(true);
+    window.location.reload();
+};
 
   const handleFormChange = (event) => {
     setFormData({
@@ -254,13 +260,17 @@ const CaregiverRegistration = () => {
             error={!!errors.age}
             helperText={errors.age}
           />
-          <FormControl fullWidth margin="normal">
+          <FormControl fullWidth margin="normal"
+          error={!!errors.gender}
+          // helperText={errors.gender}
+          >
             <FormLabel>Gender</FormLabel>
             <RadioGroup name="gender" value={formData.gender} onChange={handleFormChange}>
               <FormControlLabel value="Male" control={<Radio />} label="Male" />
               <FormControlLabel value="Female" control={<Radio />} label="Female" />
               <FormControlLabel value="Others" control={<Radio />} label="Others" />
             </RadioGroup>
+            {errors.gender && <FormHelperText>{errors.gender}</FormHelperText>}
           </FormControl>
           {/* <FormControl fullWidth margin="normal" error={!!errors.gender}>
                 <FormLabel>
@@ -346,7 +356,7 @@ const CaregiverRegistration = () => {
       {referralCode && !loading && (
         <div className="referral-code-container">
           <Typography variant="h6" gutterBottom>
-            Health enSuite Caregivers
+           Referral Code and Instructions
           </Typography>
           <Typography variant="body1">
             Follow the steps below to learn more about how you can access Health enSuite Caregivers. It is an online program for caregivers of people with dementia that is currently being evaluated by a team of researchers based at the IWK Health Centre.
@@ -380,10 +390,13 @@ const CaregiverRegistration = () => {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => handleDialogClose('Cancel')} color="primary">
+          {/* <Button onClick={() => handleDialogClose('Cancel')} color="primary">
             Cancel
-          </Button>
-          <Button onClick={() => handleDialogClose('OK')} color="primary">
+          </Button> */}
+          {/* <Button onClick={() => handleNotEligible('OK')} color="primary">
+            OK
+          </Button> */}
+          <Button onClick={() => handleNotEligible()} color="primary">
             OK
           </Button>
         </DialogActions>
