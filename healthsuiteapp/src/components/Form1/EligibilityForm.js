@@ -75,14 +75,17 @@ const EligibilityForm = () => {
             hourPerWeek: formData.hourPerWeek,
             userID: formData.userID
         };
-    
-        // const jsonString = JSON.stringify(payload);
-        // console.log(jsonString);
-        // alert('Form data prepared as JSON:\n' + jsonString);
 
-        if(formData.hourPerWeek === "less than 1 hour per week"){
-            alert("You are not eligible for this study");
-        }else{
+        if(formData.age18 !== 'yes'){
+            alert("You are currently not eligible to participate in this study. This application is designed to support caregivers who are 18 years and older.");
+        }else if(formData.internetAccess !== 'yes' ){
+            alert("You are currently not eligible to participate in this study. To access the Health enSuite Caregivers program you will need regular access to a device with an internet connection.");
+        }else if (formData.assistanceNeeded?.length < 1 && formData.encouragementNeeded?.length < 1 ){
+            alert("You are currently not eligible to participate in this study. You must be caring for a person with moderate dementia to be able to participate in the Health enSuite Caregivers program.");
+        }
+        else if(formData.hourPerWeek === "less than 1 hour per week"){
+            alert("You are currently not eligible to participate in this study. You must be caring for a person with moderate dementia for more than 1 hour per week to be able to participate in the Health enSuite Caregivers program.");
+        } else{
             submitToAPI();
         }
         
@@ -357,7 +360,13 @@ const EligibilityForm = () => {
                             <label className="form-check-label" htmlFor="lessThan1Hour">Less than 1 hour per week</label>
                         </div>
                     </div>
-                    <button type="submit" className="btn btn-primary btn-block">Submit</button>
+             
+                    <button 
+                        type="submit" 
+                        disabled={formData.age18 === '' || formData.internetAccess === '' || formData.hourPerWeek === ''} 
+                        className="btn btn-primary btn-block">
+                        Submit
+                    </button>
                 </form>
             </div>
             )}
