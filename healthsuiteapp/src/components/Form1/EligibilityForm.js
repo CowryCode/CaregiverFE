@@ -121,8 +121,7 @@ const EligibilityForm = () => {
         else if(formData.hourPerWeek === "less than 1 hour per week"){
             alert("You are currently not eligible to participate in this study. You must be caring for a person with moderate dementia for more than 1 hour per week to be able to participate in the Health enSuite Caregivers program.");
         } else{
-            setEligibilitySubmitted(true);
-           // submitToAPI();
+            submitToAPI();
         }
         
     };

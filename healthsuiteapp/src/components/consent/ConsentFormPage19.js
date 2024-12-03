@@ -43,6 +43,9 @@ const ConsentFormPage19 = () => {
   const [openExitDialog, setOpenExitDialog] = useState(false);
   const [openSuccessDialog, setOpenSuccessDialog] = useState(false);
   const [userid, setUserID] = useState(0);
+  const [emailExists, setEmailExists] = useState(false);
+  const [phoneNumberExists, setPhoneNumberExists] = useState(false);
+  const [activateSubmit, setActivateSubmit] = useState(false);
 
   const handleCheckboxChange = (event) => {
     setCheckBoxStates({ ...checkBoxStates, [event.target.name]: event.target.checked });
@@ -71,9 +74,57 @@ const ConsentFormPage19 = () => {
     }
   };
 
-  const handleInputChange = (event) => {
-    setFormData({ ...formData, [event.target.name]: event.target.value });
+  // const handleInputChange = (event) => {
+  //   setFormData({ ...formData, [event.target.name]: event.target.value });
+  //   if(event.target.name === 'email'){
+  //     if(isValidEmail(event.target.value)){
+  //       setEmailExists(true);
+  //       const [emailExists] = await confirmEmail(event.target.value);
+  //     }
+  //   }
+  //   if(event.target.name === 'phone'){
+  //     if(isValidCanadianPhoneNumber(event.target.value)){
+  //       setPhoneNumberExists(true);
+  //       const [phoneNumberExists] =  await confirmPhoneNumber(event.target.value);
+  //     }
+  //   }
+  // };
+
+  const handleInputChange = async (event) => {
+    const { name, value } = event.target;
+  
+    setFormData({ ...formData, [name]: value });
+  
+    try {
+      if (name === 'email' && isValidEmail(value)) {
+        const emailExists = await confirmEmail(value); 
+        setEmailExists(emailExists); 
+        if(emailExists) {
+          setError('This email have been used by another user');
+        }
+      }
+  
+      if (name === 'phone' && isValidCanadianPhoneNumber(value)) {
+        const phoneNumberExists = await confirmPhoneNumber(value); 
+        setPhoneNumberExists(phoneNumberExists);
+        if(phoneNumberExists){
+          setError('This phone number have been used by another user');
+        }
+      }
+    } catch (error) {
+      console.error('Error during validation:', error);
+    }
   };
+
+  const isValidEmail = (email) =>{
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+
+  const isValidCanadianPhoneNumber = (phoneNumber) => {
+    const phoneRegex = /^\+1\d{10}$/;
+    return phoneRegex.test(phoneNumber);
+  }
 
   useEffect(() => {
     const userData = LocalStorageService.getItem('profile');
@@ -82,45 +133,27 @@ const ConsentFormPage19 = () => {
     }
   }, []);
 
-  const handleAgree = () => {
+  const handleAgree = (event) => {
+    event.preventDefault();
     const { fullName, email, verifyEmail, phone, nickname } = formData;
     //if (!fullName || !email || email !== verifyEmail || !phone || !nickname) {
-    if (!fullName || !email || email !== verifyEmail || !phone) {
+    if(!isValidEmail(email) ){
+      setError('Invalid email');
+    }else if (!isValidCanadianPhoneNumber(phone)){
+      setError('Invalid phone number, ensure it is canadian number and has country code with');
+    }else if (!fullName || !email || email !== verifyEmail || !phone) {
       setError('All fields are required and emails must match.');
       return;
     }else{
-      confirmEmail(formData.email, formData);
+      //confirmEmail(formData.email, formData);
+      // confirmAndSubmit(formData)
+      // confirmEmail(email);
+      // confirmPhoneNumber(phone);
+
+      submitToAPI(formData);
     }
-
-    // const { fullName, email, verifyEmail, phone, nickname } = formData;
-    // if (!fullName || !email || email !== verifyEmail || !phone || !nickname) {
-    //   setError('All fields are required and emails must match.');
-    //   return;
-    // }
-    // const payload = {
-    //   emailResult: checkBoxStates.summary,
-    //   futureStudies: checkBoxStates.futureContact,
-    //   legalRights: checkBoxStates.legalRights,
-    //   agreed: dataConsent === 'yes',
-    //   fullName: fullName,
-    //   emailAddress: email,
-    //   phoneNumber: phone,
-    //   userID: userid
-    // };
-
-    // setLoading(true);
-    // axiosInstance.post('/caregiver/v1/submit-consent', payload) 
-    // .then(response => {
-    //     setOpenSuccessDialog(true); 
-    // })
-    // .catch(error => {
-    //     alert(`Your consenting process wasn't successful at this time`);
-    //     console.error('Error', error);
-    // })
-    // .finally(() => {
-    //   setLoading(false);
-    // });
   };
+
 
   const submitToAPI = (formData) => {
     const payload = {
@@ -134,7 +167,7 @@ const ConsentFormPage19 = () => {
       userID: userid
     };
 
-    setLoading(true);
+    //setLoading(true);
     axiosInstance.post('/caregiver/v1/submit-consent', payload) 
     .then(response => {
         setOpenSuccessDialog(true); 
@@ -148,16 +181,42 @@ const ConsentFormPage19 = () => {
     });
   }
 
-  const confirmEmail = async (email, formData) => {
-    await new Promise((resolve) => setTimeout(resolve, 500));
-    //Commented out actual API call for now
+  const confirmEmail = async (email) => {
     const check = axiosInstance.get(`/caregiver/v1/confirm-email/${email}`) 
           .then(response => {
-            submitToAPI(formData);
+            console.log(`The feedback : ${response.data }`)
+            if(response.data === true){
+              // setEmailExists(true);
+              console.log("Email exists . . .")
+              return true;
+            }
+            return false;
+            //submitToAPI(formData);
           })
           .catch(error => {
             setError('Email Address already used by another user');
             console.error('Error', error);
+            throw new Error('Email confirmation failed');
+        })
+    return check;
+  };
+
+  const confirmPhoneNumber = async (phone) => {
+    const check = axiosInstance.get(`/caregiver/v1/confirm-phone/${phone}`) 
+          .then(response => {
+            console.log(`The feedback : ${response.data }`)
+            if(response.data === true){
+              console.log("Phone Number exists . . .")
+             // setPhoneNumberExists(true);
+              return true;
+            }
+            return false;
+            //submitToAPI(formData);
+          })
+          .catch(error => {
+            setError('Email Address already used by another user');
+            console.error('Error', error);
+            throw new Error('Phone confirmation failed');
         })
     return check;
   };
@@ -185,6 +244,11 @@ const ConsentFormPage19 = () => {
         <Typography variant="h6" gutterBottom>
           Participant Consent:
         </Typography>
+        {!showAdditionalContent && (
+          <>
+        {/* <Typography variant="h6" gutterBottom>
+          Participant Consent:
+        </Typography> */}
         <FormGroup>
           <FormControlLabel
             control={<Checkbox checked={checkBoxStates.summary} onChange={handleCheckboxChange} name="summary" />}
@@ -202,8 +266,8 @@ const ConsentFormPage19 = () => {
         <Button onClick={handleNext} variant="outlined" color="primary">
           Next
         </Button>
-
-        {showAdditionalContent && (
+        </> )}
+        {showAdditionalContent && !showForm && (
           <>
             <Typography variant="body1" gutterBottom sx={{ mt: 2 }}>
               You have the option of allowing your study data to be re-used by approved researchers. Any of your personal information that can identify you will be removed before files are shared with other researchers. Researchers that wish to use study data must have their new study approved by an ethics board; and sign an agreement ensuring your confidentiality and restricting use to only the approved study.
@@ -279,7 +343,13 @@ const ConsentFormPage19 = () => {
               name="nickname"
               onChange={handleInputChange}
             />
-            <Button onClick={handleAgree} variant="contained" color="primary" sx={{ mt: 2 }}>
+            <Button 
+            onClick={handleAgree} 
+            variant="contained" 
+            color="primary" 
+            sx={{ mt: 2 }}
+            disabled = {emailExists || phoneNumberExists}
+            >
               I Agree
             </Button>
             <Button onClick={handleNoThanks} variant="outlined" color="secondary" sx={{ mt: 2 }}>
@@ -289,7 +359,7 @@ const ConsentFormPage19 = () => {
         )}
         {/* {error && <Alert severity="error" sx={{ mt: 2 }}>{error}</Alert>} */}
       </Container>  
-      )}
+       )}
       {loading && (
       <div>
         <LoadingComponent/>

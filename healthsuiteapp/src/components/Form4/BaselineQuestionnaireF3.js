@@ -10,7 +10,7 @@ import LoadingComponent from '../loader/LoadingComponent';
 import LocalStorageService from "../../utils/LocalStorageService";
 import {getUserProfile} from '../../utils/localStorageHelpers';
 import LogicRouter from "../../config/LogicRouter";
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button } from '@mui/material';
+import { DialogContentText, Dialog, DialogTitle, DialogContent, DialogActions, Button } from '@mui/material';
 
 const BaselineQuestionnaireF3 = () => {
   const location = useLocation();
@@ -18,6 +18,7 @@ const BaselineQuestionnaireF3 = () => {
   const [lastPage, setLastPage] = useState(false);
   const [qType, setQType] = useState(0);
   const [submit, setSubmit] = useState(false);
+  const [openErrorDialog, setOpenErrorDialog] = useState(false);
 
   const [formData, setFormData] = useState({
     handleMemoryLoss: "",
@@ -46,7 +47,25 @@ const BaselineQuestionnaireF3 = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setSubmit(true);
+    if (!validateFormData(formData)) {
+      setOpenErrorDialog(true)
+    }else{
+      setSubmit(true);
+    }
+    
+  };
+
+  const validateFormData = (data) => {
+    for (const key in data) {
+      if (data.hasOwnProperty(key) && (data[key] === '' || data[key] === 0)) {
+        return false; // Return false if any value is empty or zero
+      }
+    }
+    return true; // Return true if all fields are filled
+};
+
+const handleDialogClose = () => {
+    setOpenErrorDialog(false);
   };
 
   const confirmSubmit = (event) => {
@@ -126,9 +145,9 @@ const handleLogicRouterComplete = () => {
       {!loading && (
       <div className="form-container">
         <h2 className="text-center">
-          Family Caregivers' Self-Efficacy for Managing Dementia Form
+           Family Caregivers' Self-Efficacy for Managing Dementia Form
         </h2>
-        <p>How certain do you feel for handling the below situations? </p>
+        <p><string>How certain do you feel for handling the below situations? </string></p>
         <form id="dementiaForm" onSubmit={handleSubmit}>
           <div className="table-responsive">
             <table className="table table-bordered">
@@ -249,6 +268,20 @@ const handleLogicRouterComplete = () => {
             </DialogActions>
           </Dialog>
       )}
+
+      <Dialog open={openErrorDialog} onClose={() => handleDialogClose()}>
+        <DialogTitle>Incomplete Form</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Kindly fill all field before submitting
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => handleDialogClose()} color="primary">
+            OK
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 };

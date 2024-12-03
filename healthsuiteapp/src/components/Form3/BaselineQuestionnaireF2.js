@@ -10,6 +10,9 @@ import LoadingComponent from '../loader/LoadingComponent';
 import LocalStorageService from '../../utils/LocalStorageService';
 import {getUserProfile} from '../../utils/localStorageHelpers';
 import LogicRouter from '../../config/LogicRouter';
+import {
+    Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle
+  } from '@mui/material';
 
 
 const BaselineQuestionnaireF2 = () => {
@@ -54,6 +57,8 @@ const BaselineQuestionnaireF2 = () => {
     });
     const [isLogicRouterComplete, setIsLogicRouterComplete] = useState(false);
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const [openErrorDialog, setOpenErrorDialog] = useState(false);
+   
 
     const handleSidebarToggle = () => {
         setIsSidebarOpen(!isSidebarOpen);
@@ -66,8 +71,28 @@ const BaselineQuestionnaireF2 = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-       submitToAPI();
+        if (!validateFormData(formData)) {
+            // alert('Please fill in all fields before submitting.');
+            setOpenErrorDialog(true)
+           // return;
+        }else{
+            submitToAPI();
+        }   
     };
+
+
+    const validateFormData = (data) => {
+        for (const key in data) {
+          if (data.hasOwnProperty(key) && (data[key] === '' || data[key] === 0)) {
+            return false; // Return false if any value is empty or zero
+          }
+        }
+        return true; // Return true if all fields are filled
+    };
+
+    const handleDialogClose = () => {
+        setOpenErrorDialog(false);
+      };
 
     const updateUserID = (newUserID) => {
         setFormData((prevFormData) => ({
@@ -129,17 +154,17 @@ const BaselineQuestionnaireF2 = () => {
             <Header />
             {!loading && (
             <div className="form-container">
-                <h2 className="text-center">Carer Well-being and Support (CWS) Questionnaire</h2>
+                <h2 className="text-center"> <strong>Carer Well-being and Support (CWS) Questionnaire</strong></h2>
                 <p>The questions in this section are about aspects of your general well-being. All of the questions are about how you have been over the past four weeks.</p>
                 <p>We recognise that some carers may be caring for more than one person with dementia. For each question, tick one box on each line that best reflects your caring responsibilities as a whole.</p>
-                <h4>Your role as a carer</h4>
+                <h4><strong>Your role as a carer</strong></h4>
                 <p>The first set of questions asks about your role as a carer. (Please tick one box on each line.)</p>
                 <form id="cwsForm" onSubmit={handleSubmit}>
                     <div className="table-responsive">
                         <table className="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th>During the past 4 weeks, how concerned were you about…</th>
+                                    <th>During the past 4 weeks, how concerned were you about:</th>
                                     <th>A lot</th>
                                     <th>Quite a bit</th>
                                     <th>Moderately</th>
@@ -167,7 +192,7 @@ const BaselineQuestionnaireF2 = () => {
                             </tbody>
                         </table>
                     </div>
-                    <h4>Your relationship with the person you care for</h4>
+                    <h4><strong>Your relationship with the person you care for</strong></h4>
                     <p>The next questions are about your relationship with the person you care for. (Please tick one box on each line.)</p>
                     <div className="table-responsive">
                         <table className="table table-bordered">
@@ -202,7 +227,7 @@ const BaselineQuestionnaireF2 = () => {
                             </tbody>
                         </table>
                     </div>
-                    <h4>Your relationships with family and friends</h4>
+                    <h4><strong>Your relationships with family and friends</strong></h4>
                     <p>The next questions are about your relationships with family and friends. (Please tick one box on each line.)</p>
                     <div className="table-responsive">
                         <table className="table table-bordered">
@@ -235,7 +260,7 @@ const BaselineQuestionnaireF2 = () => {
                             </tbody>
                         </table>
                     </div>
-                    <h4>Your financial situation</h4>
+                    <h4><strong>Your financial situation</strong></h4>
                     <p>The next questions are about your financial situation. (Please tick one box on each line.)</p>
                     <div className="table-responsive">
                         <table className="table table-bordered">
@@ -267,7 +292,7 @@ const BaselineQuestionnaireF2 = () => {
                             </tbody>
                         </table>
                     </div>
-                    <h4>Your physical health</h4>
+                    <h4><strong>Your physical health</strong></h4>
                     <p>The next questions are about your physical health. (Please tick one box on each line.)</p>
                     <div className="table-responsive">
                         <table className="table table-bordered">
@@ -298,7 +323,7 @@ const BaselineQuestionnaireF2 = () => {
                             </tbody>
                         </table>
                     </div>
-                    <h4>Your emotional well-being</h4>
+                    <h4><strong>Your emotional well-being</strong></h4>
                     <p>The next questions are about your emotional well-being. (Please tick one box on each line.)</p>
                     <div className="table-responsive">
                         <table className="table table-bordered">
@@ -333,7 +358,7 @@ const BaselineQuestionnaireF2 = () => {
                             </tbody>
                         </table>
                     </div>
-                    <h4>Stigma and discrimination</h4>
+                    <h4><strong>Stigma and discrimination</strong></h4>
                     <p>(Please tick one box on each line.)</p>
                     <div className="table-responsive">
                         <table className="table table-bordered">
@@ -359,7 +384,7 @@ const BaselineQuestionnaireF2 = () => {
                             </tbody>
                         </table>
                     </div>
-                    <h4>Your own safety</h4>
+                    <h4><strong>Your own safety</strong></h4>
                     <p>(Please tick one box on each line.)</p>
                     <div className="table-responsive">
                         <table className="table table-bordered">
@@ -390,7 +415,7 @@ const BaselineQuestionnaireF2 = () => {
                             </tbody>
                         </table>
                     </div>
-                    <h4>The safety of the person you care for</h4>
+                    <h4><strong>The safety of the person you care for</strong></h4>
                     <p>(Please tick one box on each line.)</p>
                     <div className="table-responsive">
                         <table className="table table-bordered">
@@ -422,7 +447,7 @@ const BaselineQuestionnaireF2 = () => {
                             </tbody>
                         </table>
                     </div>
-                    <h4>Overall general well-being</h4>
+                    <h4><strong>Overall general well-being</strong></h4>
                     <p>(Please tick one box only.)</p>
                     <div className="table-responsive">
                         <table className="table table-bordered">
@@ -455,6 +480,20 @@ const BaselineQuestionnaireF2 = () => {
             <Footer />
         </div>
         )}
+
+      <Dialog open={openErrorDialog} onClose={() => handleDialogClose()}>
+        <DialogTitle>Incomplete Form</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Kindly fill all field before submitting
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => handleDialogClose()} color="primary">
+            OK
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
     );
 };

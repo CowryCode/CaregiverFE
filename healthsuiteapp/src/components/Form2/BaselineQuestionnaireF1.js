@@ -36,6 +36,11 @@ const BaselineQuestionnaireF1 = () => {
     
     const [isLogicRouterComplete, setIsLogicRouterComplete] = useState(false);
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const [selectedRelationship, setSelectedRelationship] = useState("");
+    const [selectedGender, setSelectedGender] = useState("");
+    const [ageError, setAgeError] = useState("");
+    const [childrenError, setChildrenError] = useState("");
+    const [weekError, setWeekError] = useState("");
 
 
     const handleSidebarToggle = () => {
@@ -83,9 +88,73 @@ const BaselineQuestionnaireF1 = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        submitToAPI();
+        //alert(JSON.stringify(formData) );
+
+        if(parseInt(formData.dementiaPersonAge, 10) < 18){
+            setAgeError("Age must be greater than or equal to 18")
+        }else if(!isNumeric(parseInt(formData.dementiaPersonAge, 10))){
+            setAgeError("Value must be a digit")
+        }else if(!isNumeric(parseInt(formData.numberOfChildren, 10)) || parseInt(formData.numberOfChildren, 10) < 0){
+            setChildrenError("Value must be a digit and none negative value")
+        }else if(!isNumeric(parseInt(formData.hoursPerWeek, 10)) || parseInt(formData.hoursPerWeek, 10) < 0){
+            setWeekError("Value must be a digit and none negative value")
+        }else{
+            submitToAPI();
+        }
+        
     };
+    function isNumeric(value) {
+        return /^\d+$/.test(value);
+      }
+
+    const relationshipOptions = [
+        "Spouse/Partner",
+        "Mother",
+        "Father",
+        "Brother",
+        "Sister",
+        "Aunt",
+        "Uncle",
+        "Friend",
+        "Other",
+    ];
+
+    const genderOptions = [
+        "A Man",
+        "A Woman",
+        "Another Gender Identity"
+    ];
     
+    const handleDropDown = (e) => {
+        const { id, value} = e.target;
+        console.log(`ID : ${id}`);
+        console.log(`VALUE : ${value}`);
+        if(id === 'relationship'){
+            setSelectedRelationship(value);
+            setFormData((prevFormData) => ({
+                ...prevFormData,
+                relationshipToDementiaPerson: value
+            }));
+        }
+        if(id === 'gender'){
+            setSelectedGender(value);
+            setFormData((prevFormData) => ({
+                ...prevFormData,
+                dementiaPersonIdentity: value
+            }));
+        }
+        // if (type === 'checkbox') {
+        //     setFormData(prevState => ({
+        //         ...prevState,
+        //         [name]: checked ? [...prevState[name], value] : prevState[name].filter(item => item !== value)
+        //     }));
+        // } else if (type === 'radio') {
+        //     setFormData(prevState => ({ ...prevState, [name]: value }));
+        // } else {
+        //     setFormData(prevState => ({ ...prevState, [name]: value }));
+        // }
+    };
+
 
     const submitToAPI = () => {
         setLoading(true);
@@ -157,6 +226,9 @@ const BaselineQuestionnaireF1 = () => {
             {!loading && (
             <div className="form-container">
                 <h2 className="text-center">Background Information Form</h2>
+                <p>This form contains questions that can help us better understand the users of the Health enSuite apps. 
+                    Note: A full set of answers will be most informative for our research, however, if there are questions that you would rather not answer, then please select "prefer not to say."
+                </p>
                 <form id="backgroundForm" onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label htmlFor="postalCode">1. What are the first 3 letters of your postal code?</label>
@@ -263,22 +335,74 @@ const BaselineQuestionnaireF1 = () => {
                             </label>
                         </div>
                     </div>
+
                     <div className="form-group">
                         <label>5. How many children living in your home?</label>
                         <input type="number" className="form-control" name="numberOfChildren" value={formData.numberOfChildren} onChange={handleChange} />
+                        {childrenError && <span className="text-danger">{childrenError}</span>}
                     </div>
                     <h5>Questions about your role as a caregiver and the person with dementia:</h5>
-                    <div className="form-group">
+                    {/* <div className="form-group">
                         <label>6. What is your relationship to the person with dementia?</label>
                         <input type="text" className="form-control" name="relationshipToDementiaPerson" value={formData.relationshipToDementiaPerson} onChange={handleChange} />
+                    </div> */}
+                    <div className="form-group">
+                        <label htmlFor="relationship">6. What is your relationship to the person with dementia?</label>
+                        <select
+                        id="relationship"
+                        className="form-control"
+                        value={selectedRelationship}
+                        onChange={handleDropDown}
+                        >
+                        <option value="" disabled>
+                        {!selectedRelationship ? "-- Select an option --" : selectedRelationship}
+                        </option>
+                        {relationshipOptions.map((option, index) => (
+                            <option key={index} value={option}>
+                            {option}
+                            </option>
+                        ))}
+                        </select>
                     </div>
+                    {selectedRelationship === 'Other' && (
+                        <div className="form-group">
+                          {/* <input type="text" className="form-control" name="relationshipToDementiaPerson" value={formData.relationshipToDementiaPerson} onChange={handleChange} /> */}
+                          {/* <label>Tell us the relationship</label> */}
+                          <input 
+                          type="text" 
+                          className="form-control" 
+                          name="relationshipToDementiaPerson"
+                          placeholder="Enter your relationship to the dementia person"
+                          onChange={handleChange} />
+                       </div>
+                    )}
                     <div className="form-group">
                         <label>7. How old is this person?</label>
                         <input type="number" className="form-control" name="dementiaPersonAge" value={formData.dementiaPersonAge} onChange={handleChange} />
+                        {ageError && <span className="text-danger">{ageError}</span>}
                     </div>
-                    <div className="form-group">
+                    
+                    {/* <div className="form-group">
                         <label>8. What is this person’s gender identity?</label>
                         <input type="text" className="form-control" name="dementiaPersonIdentity" value={formData.dementiaPersonIdentity} onChange={handleChange} />
+                    </div> */}
+                    <div className="form-group">
+                        <label htmlFor="relationship">8. What is this person’s gender identity?</label>
+                        <select
+                        id="gender"
+                        className="form-control"
+                        value={selectedGender}
+                        onChange={handleDropDown}
+                        >
+                        <option value="" disabled>
+                        {!selectedGender ? "-- Select Gender --" : selectedGender}
+                        </option>
+                        {genderOptions.map((option, index) => (
+                            <option key={index} value={option}>
+                            {option}
+                            </option>
+                        ))}
+                        </select>
                     </div>
                     <div className="form-group">
                         <label>9. Does this person have any chronic health conditions other than dementia? Please check all that apply.</label>
@@ -344,6 +468,7 @@ const BaselineQuestionnaireF1 = () => {
                     <div className="form-group">
                         <label>12. In the past week, how many hours per week did you spend supporting this person either by doing tasks for him/her, providing emotional support, or supervision?</label>
                         <input type="number" className="form-control" name="hoursPerWeek" value={formData.hoursPerWeek} onChange={handleChange} />
+                        {weekError && <span className="text-danger">{weekError}</span>}
                     </div>
                     <div className="form-group">
                         <label>13. Was this a typical week for you?</label><br />

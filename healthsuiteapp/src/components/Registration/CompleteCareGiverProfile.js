@@ -76,8 +76,10 @@ const CompleteCareGiverProfile = () => {
         newErrors.age = "Age is required";
     if (!formData.email.includes("@"))
       newErrors.email = "Invalid email address";
-    if (formData.phoneNumber && !/^\d{10}$/.test(formData.phoneNumber))
-      newErrors.phoneNumber = "Invalid phone number";
+    // if (formData.phoneNumber && !/^\d{10}$/.test(formData.phoneNumber))
+    //   newErrors.phoneNumber = "Invalid phone number";
+    if (formData.phoneNumber && !isValidCanadianPhoneNumber(formData.phoneNumber ))
+      newErrors.phoneNumber = "Invalid Canadian phone number";
     if (!formData.phoneNumber)
         newErrors.phoneNumber = "Phone number is required";
     if (!formData.password) newErrors.password = "Password is required";
@@ -92,6 +94,11 @@ const CompleteCareGiverProfile = () => {
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
+
+  const isValidCanadianPhoneNumber = (phoneNumber) => {
+    const phoneRegex = /^\+1\d{10}$/;
+    return phoneRegex.test(phoneNumber);
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -147,16 +154,16 @@ const CompleteCareGiverProfile = () => {
   //   return check;
   // };
 
-  const checkPhoneNumber = async (phoneNumber) => {
-    await new Promise((resolve) => setTimeout(resolve, 500));
-    //Commented out actual API call for now
-    //const response = await fetch(`https://api.example.com/checkPhoneNumber?phone=${phoneNumber}`);
-    // const response = await fetch(`http://localhost:8081/caregiver/v1/${phoneNumber}`);
-    // const data = await response.json();
-    // return data.exists;
+  // const checkPhoneNumber = async (phoneNumber) => {
+  //   await new Promise((resolve) => setTimeout(resolve, 500));
+  //   //Commented out actual API call for now
+  //   //const response = await fetch(`https://api.example.com/checkPhoneNumber?phone=${phoneNumber}`);
+  //   // const response = await fetch(`http://localhost:8081/caregiver/v1/${phoneNumber}`);
+  //   // const data = await response.json();
+  //   // return data.exists;
 
-    return false; // Change to true to simulate an existing number
-  };
+  //   return false; // Change to true to simulate an existing number
+  // };
 
   const handleChange = (event) => {
     setFormData({
@@ -360,7 +367,7 @@ return (
           <TextField
             fullWidth
             margin="normal"
-            label="Phone Number"
+            label="* Phone Number"
             name="phoneNumber"
             value={formData.phoneNumber}
             onChange={handleChange}
@@ -370,7 +377,7 @@ return (
           <TextField
             fullWidth
             margin="normal"
-            label="Mailing Address"
+            label="* Mailing Address"
             name="mailingAddress"
             value={formData.mailingAddress}
             onChange={handleChange}

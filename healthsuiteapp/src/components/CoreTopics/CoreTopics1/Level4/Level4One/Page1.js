@@ -102,7 +102,7 @@ const Page1 = () => {
             </TableContainer>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
                 <Button variant="contained" onClick={handlePrevious}>Previous</Button> {/* Consider disabling if this is the first page */}
-                <Typography sx={{ fontSize: '0.875rem', alignSelf: 'center' }}>End Of Level1</Typography>
+                <Typography sx={{ fontSize: '0.875rem', alignSelf: 'center' }}>End Of Core Topic 1</Typography>
                 <Button variant="contained" disabled>Next</Button> {/* Disabled since this is the last page */}
             </Box>
         </Box>

@@ -67,7 +67,13 @@ function CoreTopics() {
       {!loading && (
         <Grid container>
           <Grid item xs={12}>
-            <Navigation topics={orderedTopics.map(topic => topic.title)} onTopicChange={handleTopicChange} mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} />
+            {/* <Navigation topics={orderedTopics.map(topic => topic.title)} onTopicChange={handleTopicChange} mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} /> */}
+            <Navigation
+              topics={orderedTopics.map(({ title, path }) => ({ title, path }))}
+              onTopicChange={handleTopicChange}
+              mobileOpen={mobileOpen}
+              setMobileOpen={setMobileOpen}
+            />
           </Grid>
           <Grid item xs={12} style={{ paddingLeft: mobileOpen ? '250px' : '0', transition: 'padding-left 0.3s ease' }}>
             <Routes>

@@ -207,7 +207,7 @@ const NeedAssessmentForm = () => {
             </button>
             {isSidebarOpen && <Sidebar />}
             <Header />
-            <Container maxWidth="md" className="form-container">
+            <Container maxWidth="lg" className="form-container">
                 <Typography variant="h4" gutterBottom>
                     Needs Assessment Questionnaire
                 </Typography>

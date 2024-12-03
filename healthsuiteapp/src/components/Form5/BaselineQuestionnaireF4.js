@@ -11,6 +11,9 @@ import LoadingComponent from '../loader/LoadingComponent';
 import LocalStorageService from '../../utils/LocalStorageService';
 import LogicRouter from "../../config/LogicRouter";
 import {getUserProfile} from '../../utils/localStorageHelpers';
+import {
+  Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle
+} from '@mui/material';
 
 const BaselineQuestionnaireF4 = () => {
   const location = useLocation();
@@ -30,6 +33,7 @@ const BaselineQuestionnaireF4 = () => {
   });
   const [isLogicRouterComplete, setIsLogicRouterComplete] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [openErrorDialog, setOpenErrorDialog] = useState(false);
 
   const handleSidebarToggle = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -42,9 +46,27 @@ const BaselineQuestionnaireF4 = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const jsonString = JSON.stringify(formData);
-    console.log(jsonString);
-    submitToAPI()
+    // submitToAPI()
+    if (!validateFormData(formData)) {
+      // alert('Please fill in all fields before submitting.');
+      setOpenErrorDialog(true)
+     // return;
+    }else{
+        submitToAPI();
+    }   
+  };
+
+  const validateFormData = (data) => {
+    for (const key in data) {
+      if (data.hasOwnProperty(key) && (data[key] === '' || data[key] === 0)) {
+        return false; // Return false if any value is empty or zero
+      }
+    }
+    return true; // Return true if all fields are filled
+};
+
+const handleDialogClose = () => {
+    setOpenErrorDialog(false);
   };
 
   const updateUserID = (newUserID) => {
@@ -432,6 +454,20 @@ const submitToAPI = () => {
       <Footer />
     </div>
     )}
+
+    <Dialog open={openErrorDialog} onClose={() => handleDialogClose()}>
+        <DialogTitle>Incomplete Form</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Kindly fill all field before submitting
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => handleDialogClose()} color="primary">
+            OK
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 };
