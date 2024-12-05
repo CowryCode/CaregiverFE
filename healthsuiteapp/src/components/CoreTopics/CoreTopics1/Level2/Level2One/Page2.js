@@ -38,18 +38,25 @@ const Page2 = () => {
     };
 
     const handleBookmark = () => {
+        console.log(`HANDLE BOOKMARK CHECK : ${isBookmarked}`);
         if (isBookmarked) {
+            console.log(`HANDLE BOOKMARK CHECK 1 : ${isBookmarked}`)
             removeFromWishlist(pageId);
             setIsBookmarked(false);
+            console.log(`HANDLE BOOKMARK CHECK 2 : ${isBookmarked}`)
         } else {
-            addToWishlist(pageId);
+            console.log(`HANDLE BOOKMARK CHECK 3 : ${isBookmarked}`)
             setIsBookmarked(true);
+            addToWishlist(pageId);
+            alert("Bookmarked successfully.");
+            console.log(`HANDLE BOOKMARK CHECK 4 : ${isBookmarked}`)
         }
     };
 
     useEffect(() => {
         savePageUrl();
         setIsBookmarked(bookmarkedAlready);
+        console.log(`Updated isBookmarked state: ${isBookmarked}`);
       }, [isBookmarked]);
     
       const { successful, savePageUrl,bookmarkPageUrl, bookmarkedAlready  } = UpdateLibraryLastPage({
@@ -70,7 +77,6 @@ const Page2 = () => {
             justifyContent: 'space-between',
             backgroundColor: '#f3f3f3' 
         }}>
-           
             <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <Typography ref={pageTitleRef} variant="h4" sx={{ mb: 1, textAlign: 'center', color: '#007FFF' }}>Level 2.1: Exercise</Typography>
                 <Tooltip title="Add to QuickTips">

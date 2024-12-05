@@ -51,17 +51,20 @@ const ContactUs = () => {
     event.preventDefault();
     // Add form validation and submission logic here
     submitToAPI();
-    setShowSuccess(true);
+    //setShowSuccess(true);
   };
 
   const handleCloseDialog = () => {
     setShowSuccess(false);
+    navigate(`/`);
   };
 
   const submitToAPI = () => {
+    
     axiosInstance.post(`/caregiver/v1/contact-us`, formData) 
     .then(response => {
-      navigate(`/`);
+      setShowSuccess(true);
+      
     })
     .catch(error => {
         console.error('Error', error);
@@ -136,8 +139,11 @@ const ContactUs = () => {
                 </Button>
               </Box>
             </form>
-            {showSuccess && (
-              <Dialog open={showSuccess} onClose={handleCloseDialog}>
+          </CardContent>
+        </Card>
+      </Container>
+       {/* {showSuccess && ( */}
+       <Dialog open={showSuccess} onClose={handleCloseDialog}>
                 <DialogTitle>Message Sent</DialogTitle>
                 <DialogContent>
                   <DialogContentText>
@@ -145,15 +151,12 @@ const ContactUs = () => {
                   </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                  <Button onClick={handleCloseDialog} color="primary" autoFocus>
+                  <Button onClick={handleCloseDialog} color="primary" >
                     Close
                   </Button>
                 </DialogActions>
               </Dialog>
-            )}
-          </CardContent>
-        </Card>
-      </Container>
+            {/* )} */}
       <Footer />
     </div>
   );

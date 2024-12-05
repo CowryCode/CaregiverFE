@@ -30,6 +30,7 @@ import GoalSetting from './components/GoalSetting/GoalSetting';
 import Goals from './components/GoalSetting/Goals'
 import BookMarks from './components/BookMark/bookmarks';
 import LoginProvider from './components/Login/LoginProvider';
+import CoreTopicsHome from './components/CoreTopics/CoreTopicsHome';
 
 function App() {
   return (
@@ -55,6 +56,7 @@ function App() {
         <Route path="/need-assessment/*" element={<NeedAssessmentForm />} />
         <Route path="/admin" element={<UserTable />} />
         <Route path="/library/*" element={<CoreTopics/>} />
+        <Route path="/library/home" element={<CoreTopicsHome/>} />
         <Route path="/quicktips" element={<QuickTips />} />
         <Route path="/goalsetting" element={<GoalSetting />} />
         <Route path="/goals" element={<Goals />} />

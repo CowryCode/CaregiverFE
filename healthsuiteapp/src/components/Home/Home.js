@@ -124,9 +124,19 @@ const trackLastDateUser = async () => {
     if(showNeedForm){
       navigate(`/need-assessment`);
     }else{
+      //DON'T DELETE:: THIS LOGIC TAKE USER DIRECTLY TO THE FIRST TOPIC FROM THE ARRAY
       const liborder = LocalStorageService.getArray('libraryorder');
       const firstTopic = liborder[0];
-      navigate(`/library/core-topic${firstTopic}`);
+      //navigate(`/library/core-topic${firstTopic}`);
+
+      //DON'T DELETE:: NOW IF NO OLD PAGE, GO TO HOME
+      const savedPath = LocalStorageService.getItem('libraryLastPage');
+      if( savedPath != null) {
+          //navigate(`${savedPath}`);
+          window.location.href = savedPath;
+      }else{
+          window.location.href = "library/home";
+      }
     }
 
     // const data = LocalStorageService.getItem('token');
@@ -252,21 +262,18 @@ const trackLastDateUser = async () => {
                 <img src={bookmarkImg} alt="BookMarks" />
                 <p>My Bookmarks</p>
               </span>
-              <span className="icon" onClick={() => navigate("/feedback")}>
-                {/* <img src={formImg} alt="Referral Form" /> */}
+              {/* <span className="icon" onClick={() => navigate("/feedback")}>
                 <img src={feedbackImg} alt="Feedback" />
                 <p>Feedback</p>
               </span>
               <span className="icon" onClick={() => navigate("/contact-us")}>
-                {/* <img src={supportImg} alt="Contact Us" /> */}
                 <img src={supportImg} alt="Contact Us" />
                 <p>Contact Us</p>
               </span>
               <span className="icon" onClick={() => navigate("/withdraw")}> 
-                {/* <img src={lifecareImg} alt="Voluntary withdrawal" /> */} 
                 <img src={withdrawalImg} alt="Voluntary withdrawal" />
                 <p>Voluntary Withdrawal</p>
-              </span>
+              </span> */}
             </div>
           </main>
         </div>

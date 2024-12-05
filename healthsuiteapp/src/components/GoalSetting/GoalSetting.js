@@ -62,7 +62,7 @@ const submitToAPI = () => {
     axiosInstance.post('/caregiver/v1/save-goal', feedbackData)
     .then(response => {
       LocalStorageService.saveGoals(response);
-      navigate(`/`);
+      navigate(`/goals`);
     })
     .catch(error => {
         console.error('Error', error);
@@ -103,7 +103,7 @@ const submitToAPI = () => {
           <TextField
             fullWidth
             margin="normal"
-            label="Subject"
+            label="Write your Goal"
             name="subject"
             value={feedbackData.subject}
             onChange={handleChange}
@@ -111,8 +111,8 @@ const submitToAPI = () => {
           <TextField
             fullWidth
             margin="normal"
-            label="Goal"
-            placeholder="what goal are you setting?"
+            label="SMART Goal "
+            placeholder="Describe your goal: What do you want to achieve? How will you track it? Is it realistic and relevant? When will you complete it?"
             multiline
             rows={4}
             name="content"

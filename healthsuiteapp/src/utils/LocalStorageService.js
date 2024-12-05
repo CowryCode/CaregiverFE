@@ -67,11 +67,27 @@ const LocalStorageService = {
    },
 
    getBookMarks() {
-    const boomarksJSON = localStorage.getItem('bookmarks');
-    if (!boomarksJSON) {
-        return [];
-    }
-     return JSON.parse(boomarksJSON);
+    // const boomarksJSON = localStorage.getItem('bookmarks');
+    // if (!boomarksJSON) {
+    //     return [];
+    // }
+    //  return JSON.parse(boomarksJSON);
+
+     const bookmarksJSON = localStorage.getItem('bookmarks');
+     if (!bookmarksJSON) {
+         return [];
+     }
+ 
+     // Parse the JSON data
+     const bookmarks = JSON.parse(bookmarksJSON);
+     const bb = JSON.stringify(bookmarks);
+     // Remove duplicates (assuming each bookmark is an object with a unique `id`)
+     const uniqueBookmarks = bookmarks.filter(
+         (bookmark, index, self) =>
+             index === self.findIndex((b) => b.url === bookmark.url)
+     );
+ 
+     return uniqueBookmarks;
    },
   
     removeItem(key) {

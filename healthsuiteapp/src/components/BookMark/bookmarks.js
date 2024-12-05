@@ -18,9 +18,8 @@ const BookMarks = () => {
   const [bookmarks, setBookMarks] = useState([]);
   const [bookmarkid, setBookMarkId] = useState(0);
 
-
+  const bookmarksJSON = LocalStorageService.getBookMarks();
   useEffect(() => {
-    const bookmarksJSON = LocalStorageService.getBookMarks();
     setBookMarks(bookmarksJSON);
     if (bookmarksJSON.length > 0) {
        setLoading(false);

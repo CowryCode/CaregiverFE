@@ -100,8 +100,8 @@ function Navigation({ topics, onTopicChange, mobileOpen, setMobileOpen }) {
                 <div className="core-sidebar-sticky">
                     <ul className="nav flex-column">
                         <li className="nav-item">
-                                {/* <span className="nav-link" onClick={home}> */}
-                                <span className="nav-link" onClick={() => toggleMenu('home1')}>
+                                <span className="nav-link" onClick={home}> 
+                                {/* <span className="nav-link" onClick={() => toggleMenu('home1')}> */}
                                     Home
                                 </span>
                                 {/* {openSubMenus.home1 && (
@@ -126,7 +126,8 @@ function Navigation({ topics, onTopicChange, mobileOpen, setMobileOpen }) {
                         {topics.map(({ title, path }, index) => (
                         <li className="nav-item" key={index}>
                             <span className="nav-link" onClick={() => toggleMenu(path)}>
-                            {title} {path} submenus
+                            {/* {title} {path} */}
+                            {title} {path} 
                             </span>
                             {openSubMenus[path] && (
                                 <ul className="sub-nav">
