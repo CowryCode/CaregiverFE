@@ -62,7 +62,7 @@ const BaselineQuestionnaireF3 = () => {
       }
     }
     return true; // Return true if all fields are filled
-};
+  };
 
 const handleDialogClose = () => {
     setOpenErrorDialog(false);

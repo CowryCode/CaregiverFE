@@ -31,6 +31,8 @@ import Goals from './components/GoalSetting/Goals'
 import BookMarks from './components/BookMark/bookmarks';
 import LoginProvider from './components/Login/LoginProvider';
 import CoreTopicsHome from './components/CoreTopics/CoreTopicsHome';
+import CaregiverRegistrationEligibility from './components/CaregiverRegistration/CaregiverRegistrationEligibility';
+import RecoverRefCode from './components/CaregiverRegistration/RecoverRefCode';
 
 function App() {
   return (
@@ -40,7 +42,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path='/test' element={<Page3 />} />
+        <Route path="/caregiverregister-eligibility" element={<CaregiverRegistrationEligibility/>} />
         <Route path="/caregiverregister" element={<CaregiverRegistration />} />
+        <Route path="/recover-refcode" element={<RecoverRefCode />} />
         <Route path="/similar-users" element={<UserDuplicateRecords />} /> 
         <Route path="/referral-code-validation" element={<ReferralCodeValidation />} />
         <Route path="/eligibility-form" element={<EligibilityForm />} />

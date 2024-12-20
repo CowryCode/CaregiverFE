@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  Container, TextField, FormControl, FormHelperText, FormLabel, RadioGroup, FormControlLabel, Radio, Button, Typography, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle
+  Container, Divider, TextField, FormControl, FormHelperText, FormLabel, RadioGroup, FormControlLabel, Radio, Button, Typography, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle
 } from '@mui/material';
 import './CaregiverRegistration.css';
 
@@ -28,7 +28,7 @@ const CaregiverRegistration = () => {
     allowDuplicateRecord: false,
   });
   const [errors, setErrors] = useState({});
-  const [showForm, setShowForm] = useState(false);
+  const [showForm, setShowForm] = useState(true);
   const [openDialog, setOpenDialog] = useState(false);
   const [referralCode, setReferralCode] = useState(null);
   const [referralCodeUrl, setReferralCodeUrl] = useState(null);
@@ -194,37 +194,7 @@ const CaregiverRegistration = () => {
       <Typography variant="h6" gutterBottom>
         Caregiver’s eligibility and registration
       </Typography>
-      {!showForm &&  (
-      <form onSubmit={handleEligibilitySubmit}> 
-      <FormControl component="fieldset" className="caregiver-form-group">
-          <FormLabel component="legend">1. Do you have the caregiver’s consent to submit this referral form? </FormLabel>
-          <RadioGroup name="caregiverconsent" value={eligibility.caregiverconsent} onChange={handleEligibilityChange}>
-            <FormControlLabel value="Yes" control={<Radio />} label="Yes" />
-            <FormControlLabel value="No" control={<Radio />} label="No" />
-          </RadioGroup>
-        </FormControl>
-        <FormControl component="fieldset" className="caregiver-form-group">
-          <FormLabel component="legend">2. Does the person this caregiver is providing care for have moderate dementia?</FormLabel>
-          <RadioGroup name="moderateDementia" value={eligibility.moderateDementia} onChange={handleEligibilityChange}>
-            <FormControlLabel value="Yes" control={<Radio />} label="Yes" disabled={caregiverconsented !== true} />
-            <FormControlLabel value="No" control={<Radio />} label="No" disabled={caregiverconsented !== true} />
-          </RadioGroup>
-        </FormControl>
-        <FormControl component="fieldset" className="caregiver-form-group">
-          <FormLabel component="legend">3. Is the caregiver experiencing distress?</FormLabel>
-          <RadioGroup name="experiencingDistress" value={eligibility.experiencingDistress} onChange={handleEligibilityChange}>
-            <FormControlLabel value="Yes" control={<Radio />} label="Yes" disabled={caregiverconsented !== true} />
-            <FormControlLabel value="No" control={<Radio />} label="No" disabled={caregiverconsented !== true} />
-          </RadioGroup>
-        </FormControl>
-        <div className="submit-button-container">
-          <Button variant="contained" color="primary" type="submit" className="eligibility-submit-button">
-            Submit
-          </Button>
-        </div>
-      </form>
-      )}
-
+     
       {showForm && referralCode == null && (
         <form onSubmit={handleFormSubmit} className="caregiver-referral-form">
           <Typography variant="h6" gutterBottom>
@@ -311,6 +281,38 @@ const CaregiverRegistration = () => {
           </Button> */}
         </form>
       )}
+
+     {!showForm &&  (
+      <form onSubmit={handleEligibilitySubmit}> 
+      <FormControl component="fieldset" className="caregiver-form-group">
+          <FormLabel component="legend">1. Do you have the caregiver’s consent to submit this referral form? </FormLabel>
+          <RadioGroup name="caregiverconsent" value={eligibility.caregiverconsent} onChange={handleEligibilityChange}>
+            <FormControlLabel value="Yes" control={<Radio />} label="Yes" />
+            <FormControlLabel value="No" control={<Radio />} label="No" />
+          </RadioGroup>
+        </FormControl>
+        <FormControl component="fieldset" className="caregiver-form-group">
+          <FormLabel component="legend">2. Does the person this caregiver is providing care for have moderate dementia?</FormLabel>
+          <RadioGroup name="moderateDementia" value={eligibility.moderateDementia} onChange={handleEligibilityChange}>
+            <FormControlLabel value="Yes" control={<Radio />} label="Yes" disabled={caregiverconsented !== true} />
+            <FormControlLabel value="No" control={<Radio />} label="No" disabled={caregiverconsented !== true} />
+          </RadioGroup>
+        </FormControl>
+        <FormControl component="fieldset" className="caregiver-form-group">
+          <FormLabel component="legend">3. Is the caregiver experiencing distress?</FormLabel>
+          <RadioGroup name="experiencingDistress" value={eligibility.experiencingDistress} onChange={handleEligibilityChange}>
+            <FormControlLabel value="Yes" control={<Radio />} label="Yes" disabled={caregiverconsented !== true} />
+            <FormControlLabel value="No" control={<Radio />} label="No" disabled={caregiverconsented !== true} />
+          </RadioGroup>
+        </FormControl>
+        <div className="submit-button-container">
+          <Button variant="contained" color="primary" type="submit" className="eligibility-submit-button">
+            Submit
+          </Button>
+        </div>
+      </form>
+      )}
+
    
    {!referralCode && !loading && similarProfiles && ( <div className="user-table-container">
       <h2>Similar Profle</h2>
@@ -354,32 +356,82 @@ const CaregiverRegistration = () => {
     </div>)}
 
       {referralCode && !loading && (
-        <div className="referral-code-container">
+
+          <div className="referral-code-container">
           <Typography variant="h6" gutterBottom>
-           Referral Code and Instructions
+            Health enSuite Caregivers
           </Typography>
           <Typography variant="body1">
-            Follow the steps below to learn more about how you can access Health enSuite Caregivers. It is an online program for caregivers of people with dementia that is currently being evaluated by a team of researchers based at the IWK Health Centre.
+              An online program for caregivers of people with dementia, currently being evaluated by researchers at the IWK Health Centre. 
+          </Typography>
+          <Divider sx={{ borderBottomWidth: 3 }} /> 
+          <Typography variant="h6" gutterBottom>
+            How to Access Health enSuite Caregivers
           </Typography>
           <Typography variant="body1">
-            To access the Health enSuite Caregivers:
             <ol>
-              <li>Open a web browser on your computer, tablet, or smartphone. Direct your browser to this address: <strong>{referralCodeUrl}</strong> </li>
-              <li>Enter your referral code. This will be used to verify who you are. Your referral code is: <strong>{referralCode}</strong></li>
-              <li>Follow the directions on the screen to learn more about the Health enSuite Caregivers Study and to decide whether you would like to participate.</li>
+              <li><b>Open a web browser </b>on your computer, tablet, or smartphone.</li>
+              <li><b>Visit:</b> https://main.d374rejbccpaql.amplifyapp.com/referral-code-validation/</li>
+              <li><b>Enter your referral code:</b> <br/> 
+                  <b>Referral Code: </b>{referralCodeUrl} <br/>
+                  This code verifies your identity and grants access to the program.
+              </li>
+              <li><b>Follow the on-screen instructions </b> to learn more about the Health enSuite Caregivers Study and decide if you would like to participate.</li>
             </ol>
           </Typography>
-          <Typography variant="body1">
-            If you have any questions, you can contact the Health enSuite research team by email: TeamHealthEnSuite@iwk.nshealth.ca OR phone: (902) 470 7934 or call the toll-free number: 1-877-341-8309 ext 5.
+          <Divider sx={{ borderBottomWidth: 3 }} /> 
+          <Typography variant="h6" gutterBottom>
+             Need Help?
           </Typography>
           <Typography variant="body1">
-            If you misplace this instructions sheet, do not worry! You can either request your health care provider to issue a new one OR contact the Health enSuite research team by email: TeamHealthEnSuite@iwk.nshealth.ca OR phone: (902) 470 7934 or call the toll-free number: 1-877-341-8309 press 5.
+            <ul>
+              <li><b>Email: </b>TeamHealthEnSuite@iwk.nshealth.ca</li>
+              <li><b>Phone: </b>(902) 470-7934</li>
+              <li><b>Toll-Free: </b>1-877-341-8309, ext. 5</li>
+            </ul>
+          </Typography>
+          <Typography variant="h6" gutterBottom>
+              Lost This Instruction Sheet?
+          </Typography>
+          <Typography variant="body1">
+             If you misplace these instructions, you can: <br/>
+            <ul>
+              <li><b>Request a new one </b>from your health care provider, or</li>
+              <li><b>Contact the research team </b>by email or phone (details above).</li>
+            </ul>
           </Typography>
           <Typography variant="body1">
             Best regards,<br />
             Health enSuite team
           </Typography>
-        </div>
+          </div>
+
+        // <div className="referral-code-container">
+        //   <Typography variant="h6" gutterBottom>
+        //    Referral Code and Instructions
+        //   </Typography>
+        //   <Typography variant="body1">
+        //     Follow the steps below to learn more about how you can access Health enSuite Caregivers. It is an online program for caregivers of people with dementia that is currently being evaluated by a team of researchers based at the IWK Health Centre.
+        //   </Typography>
+        //   <Typography variant="body1">
+        //     To access the Health enSuite Caregivers:
+        //     <ol>
+        //       <li>Open a web browser on your computer, tablet, or smartphone. Direct your browser to this address: <strong>{referralCodeUrl}</strong> </li>
+        //       <li>Enter your referral code. This will be used to verify who you are. Your referral code is: <strong>{referralCode}</strong></li>
+        //       <li>Follow the directions on the screen to learn more about the Health enSuite Caregivers Study and to decide whether you would like to participate.</li>
+        //     </ol>
+        //   </Typography>
+        //   <Typography variant="body1">
+        //     If you have any questions, you can contact the Health enSuite research team by email: TeamHealthEnSuite@iwk.nshealth.ca OR phone: (902) 470 7934 or call the toll-free number: 1-877-341-8309 ext 5.
+        //   </Typography>
+        //   <Typography variant="body1">
+        //     If you misplace this instructions sheet, do not worry! You can either request your health care provider to issue a new one OR contact the Health enSuite research team by email: TeamHealthEnSuite@iwk.nshealth.ca OR phone: (902) 470 7934 or call the toll-free number: 1-877-341-8309 press 5.
+        //   </Typography>
+        //   <Typography variant="body1">
+        //     Best regards,<br />
+        //     Health enSuite team
+        //   </Typography>
+        // </div>
       )}
 
       <Dialog open={openDialog} onClose={() => handleDialogClose('Cancel')}>

@@ -32,7 +32,8 @@ function LoginProvider() {
     AxiosInstanceProvider.post('/caregiver/auth/v1/login-provider', payload)
     .then(response => {
       saveProviderToken(response.data);
-      navigate(`/caregiverregister`);
+      // navigate(`/caregiverregister`);
+      navigate(`/caregiverregister-eligibility`);
     })
     .catch(error => {
         alert(`Login unsuccessful  . . .`);

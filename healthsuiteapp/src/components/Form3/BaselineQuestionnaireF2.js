@@ -92,7 +92,7 @@ const BaselineQuestionnaireF2 = () => {
 
     const handleDialogClose = () => {
         setOpenErrorDialog(false);
-      };
+    };
 
     const updateUserID = (newUserID) => {
         setFormData((prevFormData) => ({

@@ -39,7 +39,7 @@ const QuickTips = () => {
       </button>
       {isSidebarOpen && <Sidebar />}
     <Container>
-    <h1>Quick Tipes</h1>
+    <h1>Quick Tips</h1>
     {pages.length > 0 ? (
       <ul style={{ listStyleType: 'none', padding: 0 }}>
         {pages.map((PageComponent, index) => (
