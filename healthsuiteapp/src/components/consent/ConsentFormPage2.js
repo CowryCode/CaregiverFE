@@ -62,10 +62,10 @@ const ConsentFormPage2 = () => {
           You may decide not to take part or you may withdraw from the study at any time. This will not affect the care you or your family members will receive from the healthcare provider that referred you to the study.
         </Typography>
         <FormGroup>
-          <Typography paragraph>
+          {/* <Typography paragraph>
             This study is voluntary. I do not have to take part and can leave the study at any time.
-          </Typography>
-          <RadioGroup row value={consentStatus} onChange={handleConsentChange}>
+          </Typography> */}
+          {/* <RadioGroup row value={consentStatus} onChange={handleConsentChange}>
             <FormControlLabel
               value="TRUE"
               control={<Radio />}
@@ -81,13 +81,13 @@ const ConsentFormPage2 = () => {
             <Alert severity="info">
               'TRUE: You do not have to take part in this study.'
             </Alert>
-          )}
+          )} */}
         </FormGroup>
         <Button
           variant="outlined"
           color="primary"
           onClick={handleContinue}
-          disabled={!consentStatus}
+          // disabled={!consentStatus}
         >
           Continue
         </Button>

@@ -52,7 +52,7 @@ const ConsentFormPage7 = () => {
         <Typography paragraph>
           Your participation in this study may also benefit others. The outcomes of this study could help other people gain access to effective treatment that was previously unavailable.
         </Typography>
-        <FormGroup>
+        {/* <FormGroup>
           <Typography paragraph>
             This study is guaranteed to reduce my stress levels.
           </Typography>
@@ -73,12 +73,12 @@ const ConsentFormPage7 = () => {
               'FALSE: It is possible that you will experience improvements in your stress levels, but this is not guaranteed.'
             </Alert>
           )}
-        </FormGroup>
+        </FormGroup> */}
         <Button
           variant="outlined"
           color="primary"
           onClick={handleContinue}
-          disabled={!benefitGuarantee}
+          // disabled={!benefitGuarantee}
         >
           Continue
         </Button>

@@ -252,6 +252,10 @@ const BaselineQuestionnaireF1 = () => {
                             <input className="form-check-input" type="radio" name="maritalStatus" id="widowed" value="Widow or widower" checked={formData.maritalStatus === 'Widow or widower'} onChange={handleChange} />
                             <label className="form-check-label" htmlFor="widowed">Widow or widower</label>
                         </div>
+                        <div className="form-check">
+                            <input className="form-check-input" type="radio" name="maritalStatus" id="widowed" value="Prefer not to say" checked={formData.maritalStatus === 'Prefer not to say'} onChange={handleChange} />
+                            <label className="form-check-label" htmlFor="widowed">Prefer not to say</label>
+                        </div>
                     </div>
                     <div className="form-group">
                         <label>3. What is the highest level of schooling/education that you have successfully completed?</label><br />
@@ -432,7 +436,7 @@ const BaselineQuestionnaireF1 = () => {
                         </div>
                         <div className="form-check">
                             <input className="form-check-input" type="checkbox" name="chronicHealthCondition" id="otherChronicCondition" value="Other" checked={formData.chronicHealthCondition.includes('Other')} onChange={handleChange} />
-                            <label className="form-check-label" htmlFor="otherChronicCondition">Other (please specify):
+                            <label className="form-check-label" htmlFor="otherChronicCondition">Other (e.g., hypertension, arthritis, chronic kidney disease, mental illness, gastrointestinal disease, etc.):
                                 <input type="text" className="form-control mt-2" name="otherChronicConditionDetail" value={formData.otherChronicConditionDetail} onChange={handleChange} />
                             </label>
                         </div>

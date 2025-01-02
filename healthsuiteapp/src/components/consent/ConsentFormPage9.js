@@ -52,7 +52,7 @@ const ConsentFormPage9 = () => {
         <Typography paragraph>
           If you have limited internet access you should check with your service provider to make sure you will not go over your allowed access per month, which could result in extra costs on your monthly bill.
         </Typography>
-        <FormGroup>
+        {/* <FormGroup>
           <Typography paragraph>
             The study staff will cover the cost of my internet service.
           </Typography>
@@ -73,12 +73,12 @@ const ConsentFormPage9 = () => {
               'FALSE: We do not provide internet service. Using this online program is similar to reading other text on the Internet or watching short YouTube videos. However, you should always be aware of your Internet usage so that you do not go over your limit (if you have one).'
             </Alert>
           )}
-        </FormGroup>
+        </FormGroup> */}
         <Button
           variant="outlined"
           color="primary"
           onClick={handleContinue}
-          disabled={!internetCostAssumption}
+          // disabled={!internetCostAssumption}
         >
           Continue
         </Button>

@@ -49,7 +49,7 @@ const ConsentFormPage3 = () => {
         <Typography paragraph>
           Many people experience stress as a result of caring for a person with dementia. It can be challenging to take care of yourself while also managing your caregiving responsibilities. Health enSuite Caregivers is a new program that is designed to help caregivers find strategies they can use to improve their well-being. This research study aims to determine whether Health enSuite Caregivers is a more effective way to improve well-being than what is currently being offered to caregivers in Canada. The results of this study will help service providers and policymakers decide whether this program should be offered to more people.
         </Typography>
-        <FormGroup>
+        {/* <FormGroup>
           <Typography paragraph>
             Health enSuite Caregivers is already proven to work.
           </Typography>
@@ -70,12 +70,12 @@ const ConsentFormPage3 = () => {
               'FALSE: Health enSuite Caregivers is a new program. The content it delivers is based on existing evidence and recommendations. The purpose of this study is to determine if this new program is more effective than the services and care that are usually provided.'
             </Alert>
           )}
-        </FormGroup>
+        </FormGroup> */}
         <Button
           variant="outlined"
           color="primary"
           onClick={handleContinue}
-          disabled={!responseStatus}
+          // disabled={!responseStatus}
         >
           Continue
         </Button>

@@ -22,13 +22,15 @@ const ConsentFormHeader = () => {
         <strong>Study Information</strong>
       </Typography>
       <Typography variant="body2" gutterBottom component="div">
-        <strong>Research Title:</strong> Evaluating app-based treatments for distressed caregivers caring for persons with moderate dementia: Health enSuite Caregivers application study
+        <strong>Research Title:</strong>
+        <br/> Evaluating app-based treatments for distressed caregivers caring for persons with moderate dementia: Health enSuite Caregivers application study
       </Typography>
       <Typography variant="body2" gutterBottom component="div">
         <strong>Research Team</strong>
       </Typography>
+      <ul>
       <Typography variant="body2" gutterBottom component="div">
-        Principal Investigator: Dr. Patrick McGrath, OC, PhD, FRSC, FCAHS<br />
+      <strong> Principal Investigator:</strong><br/>Dr. Patrick McGrath, OC, PhD, FRSC, FCAHS<br />
         Centre for Research in Family Health, IWK Health Centre
       </Typography>
       <Typography variant="body2" gutterBottom component="div">
@@ -45,6 +47,7 @@ const ConsentFormHeader = () => {
         Dr. Janice Keefe, PhD<br />
         Nova Scotia Centre on Aging - Mount Saint Vincent University
       </Typography>
+      </ul>
       <Typography variant="body2" gutterBottom component="div">
         <strong>Funding</strong><br />
         This project is funded by the Canadian Institutes of Health Research (CIHR).

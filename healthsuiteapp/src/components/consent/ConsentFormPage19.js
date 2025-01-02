@@ -334,7 +334,7 @@ const ConsentFormPage19 = () => {
               name="phone"
               onChange={handleInputChange}
             />
-            <TextField
+            {/* <TextField
               margin="normal"
               // required
               fullWidth
@@ -342,7 +342,7 @@ const ConsentFormPage19 = () => {
               label="Name or Nickname used for communications from study staff"
               name="nickname"
               onChange={handleInputChange}
-            />
+            /> */}
             <Button 
             onClick={handleAgree} 
             variant="contained" 

@@ -15,6 +15,7 @@ import Sidebar from "../SidebarMenu/SideBar";
 import { FaBars } from "react-icons/fa";
 import "./Profile.css";
 import LocalStorageService from "../../utils/LocalStorageService";
+import {getUserProfile} from "../../utils/localStorageHelpers";
 
 const Profile = () => {
   const [profileData, setProfileData] = useState({
@@ -34,7 +35,8 @@ const Profile = () => {
   };
 
   useEffect(() => {
-    const localprofile = LocalStorageService.getItem('profile');
+   // const localprofile = LocalStorageService.getItem('profile');
+    const localprofile = getUserProfile();
 
     // Using dummy data for now
     setProfileData({

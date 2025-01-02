@@ -55,7 +55,7 @@ const ConsentFormPage5 = () => {
         <Typography paragraph>
           Following the participation in a 12-week program, you will complete the follow-up assessments at 3 months and again at 6 months. The follow-up assessments will be similar to the baseline assessment. It is important that you complete the follow-up assessment so that we know about any changes you have experienced. If some aspects of your well-being have improved, we want to know. If some things have gotten worse, we want to know that too.
         </Typography>
-        <FormGroup>
+        {/* <FormGroup>
           <Typography paragraph>
             Question: I will be asked to answer questions about my experiences as a caregiver only once.
           </Typography>
@@ -76,12 +76,12 @@ const ConsentFormPage5 = () => {
               'FALSE: You will be asked questions about your experiences as a caregiver three times during the study.'
             </Alert>
           )}
-        </FormGroup>
+        </FormGroup> */}
         <Button
           variant="outlined"
           color="primary"
           onClick={handleContinue}
-          disabled={!assessmentFrequency}
+          // disabled={!assessmentFrequency}
         >
           Continue
         </Button>

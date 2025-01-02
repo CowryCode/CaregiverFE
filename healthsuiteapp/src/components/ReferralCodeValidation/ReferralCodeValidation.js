@@ -111,9 +111,11 @@ const ReferralCodeValidation = () => {
     }else{
       submitToAPI();
     }
+  };
 
-    
-
+  const handleContactAdmin = (event) => {
+    event.preventDefault();
+    navigate(`/contact-us`);
   };
 
   const submitToAPI = () => {
@@ -214,17 +216,18 @@ const ReferralCodeValidation = () => {
             <FormControlLabel value="yes" control={<Radio />} label="Yes. This is me." />
             <FormControlLabel value="no" control={<Radio />} label="No. This is not me." />
           </RadioGroup> 
-          {confirmation === 'no' && (
+          {/* {confirmation === 'no' && (
             <FormHelperText error>
               contact admin : teamhealthensuite@iwk.nshealth.ca
             </FormHelperText>
-          )}
+          )} */}
           </>)}
         </DialogContent>
         <DialogActions>
           <Button onClick={handleDialogClose} color="primary">
             Close
           </Button>
+          {confirmation === 'yes' && (
           <Button
             variant="contained"
             color="primary"
@@ -234,6 +237,17 @@ const ReferralCodeValidation = () => {
           >
             Confirm
           </Button>
+          )}
+          {confirmation === 'no' && (
+            <Button
+            variant="contained"
+            color="primary"
+            onClick={handleContactAdmin}
+            // disabled={!submitActive}
+            >
+            Contact Admin
+          </Button>
+          )}
         </DialogActions>
       </Dialog>
     </Container>

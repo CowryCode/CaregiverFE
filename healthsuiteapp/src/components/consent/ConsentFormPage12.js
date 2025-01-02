@@ -55,7 +55,7 @@ const ConsentFormPage12 = () => {
         <Typography paragraph>
           E-messaging (email and texting) can be used by a member or members of the research team to communicate with you while you are in this study. All communication done with you will be done only through an NSH Webmail account, or text by a phone issued to a research member through Nova Scotia Health (NSH). All efforts are made to keep information sent or received private, but it is possible other people may be able to see, read, and change messages sent to or from NSH.
         </Typography>
-        <FormGroup>
+        {/* <FormGroup>
           <Typography paragraph>
             When the study is published, people will know I was a part of the study.
           </Typography>
@@ -76,12 +76,12 @@ const ConsentFormPage12 = () => {
               'FALSE: All information gathered about you during the study is private and confidential. Identifying information will not be included in any presentation or publication of the results of the study.'
             </Alert>
           )}
-        </FormGroup>
+        </FormGroup> */}
         <Button
           variant="outlined"
           color="primary"
           onClick={handleContinue}
-          disabled={!privacyConcern}
+          // disabled={!privacyConcern}
         >
           Continue
         </Button>

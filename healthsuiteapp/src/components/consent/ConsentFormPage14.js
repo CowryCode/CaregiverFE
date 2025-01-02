@@ -55,7 +55,7 @@ const ConsentFormPage14 = () => {
         <Typography paragraph>
           At the end of the study, the data collected as part of this study will be archived for a minimum of 5 years. The study information that will be archived will be de-identified and will not include any of your personal information (name, contact information). The archived de-identified information will be stored in a secure location within the IWK Health Centre or outside of the IWK Health Centre.
         </Typography>
-        <FormGroup>
+        {/* <FormGroup>
           <Typography paragraph>
             De-identified (no names or contact information) study information will be stored for years.
           </Typography>
@@ -76,12 +76,12 @@ const ConsentFormPage14 = () => {
               'TRUE: De-identified study data will be stored securely for a minimum of five years after study results have been published. This allows the study results to be verified, if needed, and recommended by the Research Ethics Board.'
             </Alert>
           )}
-        </FormGroup>
+        </FormGroup> */}
         <Button
           variant="outlined"
           color="primary"
           onClick={handleContinue}
-          disabled={!dataStorageConfirmation}
+          // disabled={!dataStorageConfirmation}
         >
           Continue
         </Button>

@@ -55,7 +55,7 @@ const ConsentFormPage4 = () => {
         <Typography paragraph>
           All aspects of this study will be completed online. This app was designed specifically for this study. The information collected will be kept confidential. You can download this app to use on your smartphone or access it through a web browser. The content in both versions is the same, so you can use whichever format you prefer.
         </Typography>
-        <FormGroup>
+        {/* <FormGroup>
           <Typography paragraph>
             I can choose the treatment group I want.
           </Typography>
@@ -76,12 +76,12 @@ const ConsentFormPage4 = () => {
               'FALSE: Your treatment group will be randomly assigned.'
             </Alert>
           )}
-        </FormGroup>
+        </FormGroup> */}
         <Button
           variant="outlined"
           color="primary"
           onClick={handleContinue}
-          disabled={!selectionStatus}
+          // disabled={!selectionStatus}
         >
           Continue
         </Button>

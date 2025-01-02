@@ -55,7 +55,7 @@ const ConsentFormPage6 = () => {
         <Typography paragraph>
           We will be responsible for protecting your personal health information. However, there is a rare possibility that your personal health information is released inadvertently.
         </Typography>
-        <FormGroup>
+        {/* <FormGroup>
           <Typography paragraph>
             Some of the advice I receive while participating in this study might not be helpful for me.
           </Typography>
@@ -76,12 +76,12 @@ const ConsentFormPage6 = () => {
               'TRUE: If you find that something is not helpful, don’t continue doing it. Try something else instead.'
             </Alert>
           )}
-        </FormGroup>
+        </FormGroup> */}
         <Button
           variant="outlined"
           color="primary"
           onClick={handleContinue}
-          disabled={!adviceHelpfulness}
+          // disabled={!adviceHelpfulness}
         >
           Continue
         </Button>

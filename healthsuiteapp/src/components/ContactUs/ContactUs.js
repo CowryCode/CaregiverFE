@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState , useEffect} from "react";
 import {
   Container,
   TextField,
@@ -21,9 +21,19 @@ import Sidebar from '../SidebarMenu/SideBar';
 import { FaBars } from 'react-icons/fa';
 import "./ContactUs.css";
 import axiosInstance from "../../apicall/AxiosInstance";
+import {getUserProfile} from "../../utils/localStorageHelpers";
 
 const ContactUs = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const localprofile = getUserProfile();
+    setFormData({
+      ...formData,
+       name: `${localprofile.firstName} ${localprofile.lastName}`,
+       email: localprofile.email,
+    });
+   }, []);
 
 
   const [formData, setFormData] = useState({

@@ -55,7 +55,7 @@ const ConsentFormPage8 = () => {
         <Typography paragraph>
           You will be sent an email confirming that you have withdrawn from the study. Your identifiable information will be completely erased from the study database. Information from any assessments you have completed (e.g., questionnaires, sleep diaries) will be retained. This information will be identified with a unique system-generated code.
         </Typography>
-        <FormGroup>
+        {/* <FormGroup>
           <Typography paragraph>
             I may decide NOT to take part in the study – even after I sign the Consent Form.
           </Typography>
@@ -76,12 +76,12 @@ const ConsentFormPage8 = () => {
               'TRUE: You may stop taking part in the study at any time.'
             </Alert>
           )}
-        </FormGroup>
+        </FormGroup> */}
         <Button
           variant="outlined"
           color="primary"
           onClick={handleContinue}
-          disabled={!withdrawalOption}
+          // disabled={!withdrawalOption}
         >
           Continue
         </Button>

@@ -27,18 +27,20 @@ const Video = () => {
       </button>
       {isSidebarOpen && <Sidebar />}
       <Header />
-      <Container maxWidth="sm" className="video-container">
+      <Container maxWidth="md" className="video-container">
         <Card className="video-card">
           <CardContent>
             <Typography variant="h5" component="div" gutterBottom>
-              Watch Our Video
+              <strong>Smart Goal Video </strong> 
             </Typography>
             <Box className="video-wrapper">
               <iframe
                 width="100%"
                 height="315"
-                src="https://www.youtube.com/embed/wnHW6o8WMas?si=gpLiIBgHveSMJVcj"
-                title="YouTube video player"
+                // src="https://www.youtube.com/embed/wnHW6o8WMas?si=gpLiIBgHveSMJVcj"
+                // title="YouTube video player"
+                src="https://insomnia2.s3.ca-central-1.amazonaws.com/assets/caregiver-assets/goalsetting.mp4"
+                title="Smart Goals"
                 frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen
