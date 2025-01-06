@@ -115,6 +115,7 @@ const CaregiverRegistration = () => {
     setLoading(true);
     const jsonString = JSON.stringify(formData);
     console.log("Form data : ", jsonString)
+    console.log("Similar Profile : ", similarProfiles)
     //axiosInstance.post('/caregiver/v1/create-care-provider', formData)
     AxiosInstanceProvider.post(`/caregiver/v1/create-care-provider/${similarProfiles}`, formData)
     .then(response => {
