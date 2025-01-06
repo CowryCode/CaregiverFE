@@ -113,18 +113,15 @@ const CaregiverRegistration = () => {
 
   const submitToAPI = () => {
     setLoading(true);
-    const jsonString = JSON.stringify(formData);
-    console.log("Form data : ", jsonString)
-    console.log("Similar Profile : ", similarProfiles)
+    // const jsonString = JSON.stringify(formData);
+    // console.log("Form data : ", jsonString)
     //axiosInstance.post('/caregiver/v1/create-care-provider', formData)
     AxiosInstanceProvider.post(`/caregiver/v1/create-care-provider/${similarProfiles}`, formData)
     .then(response => {
-        // setResponseData(response.data);
-        //alert(`Caregiver API response :  ${JSON.stringify(response.data)}`);
 
-
-        // setReferralCode(response.data.referralCode);
-        // setReferralCodeUrl(response.data.url);
+      const jsonString = JSON.stringify(response.data);
+      console.log("Feedback: ", jsonString);
+       
          if(!similarProfiles){
           const isDataNull = response.data !== null;
           const isSimilarProfilesNull = response.data?.similarProfiles !== null;
