@@ -117,11 +117,7 @@ const CaregiverRegistration = () => {
     // console.log("Form data : ", jsonString)
     //axiosInstance.post('/caregiver/v1/create-care-provider', formData)
     AxiosInstanceProvider.post(`/caregiver/v1/create-care-provider/${similarProfiles}`, formData)
-    .then(response => {
-
-      const jsonString = JSON.stringify(response.data);
-      console.log("Feedback: ", jsonString);
-       
+    .then(response => {   
          if(!similarProfiles){
           const isDataNull = response.data !== null;
           const isSimilarProfilesNull = response.data?.similarProfiles !== null;
