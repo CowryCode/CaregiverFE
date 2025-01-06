@@ -371,7 +371,7 @@ const CaregiverRegistration = () => {
               <li><b>Open a web browser </b>on your computer, tablet, or smartphone.</li>
               <li><b>Visit:</b> https://main.d374rejbccpaql.amplifyapp.com/referral-code-validation/</li>
               <li><b>Enter your referral code:</b> <br/> 
-                  <b>Referral Code: </b>{referralCodeUrl} <br/>
+                  <b>Referral Code: </b>{referralCode} <br/>
                   This code verifies your identity and grants access to the program.
               </li>
               <li><b>Follow the on-screen instructions </b> to learn more about the Health enSuite Caregivers Study and decide if you would like to participate.</li>
