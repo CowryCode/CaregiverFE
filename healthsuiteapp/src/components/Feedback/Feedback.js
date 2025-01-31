@@ -46,6 +46,7 @@ const Feedback = () => {
 
   const handleCloseDialog = () => {
     setShowSuccess(false);
+    navigate(`/`);
   };
 
   const handleChange = (event) => {
@@ -58,7 +59,7 @@ const Feedback = () => {
   const submitToAPI = () => {
     axiosInstance.post(`/caregiver/v1/save-feedback`, feedbackData) 
     .then(response => {
-      navigate(`/`);
+      // navigate(`/`);
     })
     .catch(error => {
         console.error('Error', error);
@@ -92,7 +93,7 @@ const Feedback = () => {
             fullWidth
             margin="normal"
             label="Message"
-            placeholder="Why are you contacting us?"
+            placeholder="Please share your feedback"
             multiline
             rows={4}
             name="message"
@@ -107,7 +108,7 @@ const Feedback = () => {
               <DialogTitle>Feedback Submitted</DialogTitle>
               <DialogContent>
                 <DialogContentText>
-                  Thank you for your feedback. We appreciate your effort in helping us improve.
+                Thank you. Your feedback has been shared with the team.
                 </DialogContentText>
               </DialogContent>
               <DialogActions>

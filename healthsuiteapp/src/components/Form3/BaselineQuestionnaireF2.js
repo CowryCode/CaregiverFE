@@ -155,10 +155,10 @@ const BaselineQuestionnaireF2 = () => {
             {!loading && (
             <div className="form-container">
                 <h2 className="text-center"> <strong>Carer Well-being and Support (CWS) Questionnaire</strong></h2>
-                <p>The questions in this section are about aspects of your general well-being. All of the questions are about how you have been over the past four weeks.</p>
-                <p>We recognise that some carers may be caring for more than one person with dementia. For each question, tick one box on each line that best reflects your caring responsibilities as a whole.</p>
+                <p>The questions in this section are about aspects of <strong>your general well-being</strong> . All of the questions are about how you have been over the <strong> past four weeks.</strong> </p>
+                <p>We recognise that some carers may be caring for more than one person with dementia. For each question, <strong> tick one box on each line</strong>  that best reflects your caring responsibilities as a whole.</p>
                 <h4><strong>Your role as a carer</strong></h4>
-                <p>The first set of questions asks about your role as a carer. (Please tick one box on each line.)</p>
+                <p>The first set of questions asks about your <strong> role as a carer.</strong>  (Please tick one box on each line.)</p>
                 <form id="cwsForm" onSubmit={handleSubmit}>
                     <div className="table-responsive">
                         <table className="table table-bordered">
@@ -193,7 +193,7 @@ const BaselineQuestionnaireF2 = () => {
                         </table>
                     </div>
                     <h4><strong>Your relationship with the person you care for</strong></h4>
-                    <p>The next questions are about your relationship with the person you care for. (Please tick one box on each line.)</p>
+                    <p>The next questions are about your <strong>relationship with the person you care for.</strong>  (Please tick one box on each line.)</p>
                     <div className="table-responsive">
                         <table className="table table-bordered">
                             <thead>

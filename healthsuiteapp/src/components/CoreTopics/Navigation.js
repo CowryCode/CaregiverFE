@@ -127,7 +127,7 @@ function Navigation({ topics, onTopicChange, mobileOpen, setMobileOpen }) {
                         <li className="nav-item" key={index}>
                             <span className="nav-link" onClick={() => toggleMenu(path)}>
                             {/* {title} {path} */}
-                            {title} {path} 
+                            {title}
                             </span>
                             {openSubMenus[path] && (
                                 <ul className="sub-nav">

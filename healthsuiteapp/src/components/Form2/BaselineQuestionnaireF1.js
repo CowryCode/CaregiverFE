@@ -58,6 +58,9 @@ const BaselineQuestionnaireF1 = () => {
         } else if (type === 'radio') {
             setFormData(prevState => ({ ...prevState, [name]: value }));
         } else {
+            if(name === "dementiaPersonAge"){
+                checkAge(value);
+            }
             setFormData(prevState => ({ ...prevState, [name]: value }));
         }
     };
@@ -86,12 +89,20 @@ const BaselineQuestionnaireF1 = () => {
         // }
       }, []);
 
+    const checkAge = (age) => {
+        if(parseInt(age, 10) < 18){
+            setAgeError("Person you are caring for cannot be less than 18 years of age")
+        }else{
+            setAgeError("")
+        }
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
         //alert(JSON.stringify(formData) );
 
         if(parseInt(formData.dementiaPersonAge, 10) < 18){
-            setAgeError("Age must be greater than or equal to 18")
+            setAgeError("Person you are caring for cannot be less than 18 years of age")
         }else if(!isNumeric(parseInt(formData.dementiaPersonAge, 10))){
             setAgeError("Value must be a digit")
         }else if(!isNumeric(parseInt(formData.numberOfChildren, 10)) || parseInt(formData.numberOfChildren, 10) < 0){
@@ -116,13 +127,15 @@ const BaselineQuestionnaireF1 = () => {
         "Aunt",
         "Uncle",
         "Friend",
+        "Prefer not to say",
         "Other",
     ];
 
     const genderOptions = [
         "A Man",
         "A Woman",
-        "Another Gender Identity"
+        "Another Gender Identity",
+        "Prefer not to say"
     ];
     
     const handleDropDown = (e) => {
@@ -253,8 +266,8 @@ const BaselineQuestionnaireF1 = () => {
                             <label className="form-check-label" htmlFor="widowed">Widow or widower</label>
                         </div>
                         <div className="form-check">
-                            <input className="form-check-input" type="radio" name="maritalStatus" id="widowed" value="Prefer not to say" checked={formData.maritalStatus === 'Prefer not to say'} onChange={handleChange} />
-                            <label className="form-check-label" htmlFor="widowed">Prefer not to say</label>
+                            <input className="form-check-input" type="radio" name="maritalStatus" id="maritalStatusPreferNotToSay" value="Prefer not to say" checked={formData.maritalStatus === 'Prefer not to say'} onChange={handleChange} />
+                            <label className="form-check-label" htmlFor="maritalStatusPreferNotToSay">Prefer not to say</label>
                         </div>
                     </div>
                     <div className="form-group">
@@ -296,6 +309,10 @@ const BaselineQuestionnaireF1 = () => {
                             <label className="form-check-label" htmlFor="doctorateDegree">Doctorate or professional degree</label>
                         </div>
                         <div className="form-check">
+                            <input className="form-check-input" type="radio" name="levelOfEducation" id="levelOfEducationPreferNotToSay" value="Prefer not to say" checked={formData.levelOfEducation === 'Prefer not to say'} onChange={handleChange} />
+                            <label className="form-check-label" htmlFor="levelOfEducationPreferNotToSay">Prefer not to say</label>
+                        </div>
+                        <div className="form-check">
                             <input className="form-check-input" type="radio" name="levelOfEducation" id="otherEducation" value="Other" checked={formData.levelOfEducation === 'Other'} onChange={handleChange} />
                             <label className="form-check-label" htmlFor="otherEducation">Other (please specify):
                                 <input type="text" className="form-control mt-2" name="otherEducationDetail" value={formData.otherEducationDetail} onChange={handleChange} />
@@ -331,6 +348,10 @@ const BaselineQuestionnaireF1 = () => {
                         <div className="form-check">
                             <input className="form-check-input" type="checkbox" name="employmentStatus" id="student" value="Student" checked={formData.employmentStatus.includes('Student')} onChange={handleChange} />
                             <label className="form-check-label" htmlFor="student">Student</label>
+                        </div>
+                        <div className="form-check">
+                            <input className="form-check-input" type="checkbox" name="employmentStatus" id="employmentStatusPrefNotSay" value="Prefer not to say" checked={formData.employmentStatus.includes('Prefer not to say')} onChange={handleChange} />
+                            <label className="form-check-label" htmlFor="employmentStatusPrefNotSay">Prefer not to say</label>
                         </div>
                         <div className="form-check">
                             <input className="form-check-input" type="checkbox" name="employmentStatus" id="otherEmployment" value="Other" checked={formData.employmentStatus.includes('Other')} onChange={handleChange} />

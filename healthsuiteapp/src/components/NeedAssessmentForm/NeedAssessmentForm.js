@@ -211,6 +211,11 @@ const NeedAssessmentForm = () => {
                 <Typography variant="h4" gutterBottom>
                     Needs Assessment Questionnaire
                 </Typography>
+                <Typography gutterBottom>
+                Experiencing some stress is part of everyday life, however, we also know that providing daily support to someone living with dementia can be exhausting. 
+                When considering how best to meet the needs of a person with dementia, it is important to think about what's best for the person while also evaluating the impact that caregiving is having on your own well-being. 
+                <br/>At this point in your caregiving journey, please select the best answer that most appropriately describes the level of difficulty you are experiencing with the following areas:  
+                </Typography>
                 {!loading && (
                 <form onSubmit={handleSubmit}>
                     <Grid container spacing={3}>

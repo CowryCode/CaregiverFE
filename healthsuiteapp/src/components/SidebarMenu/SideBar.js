@@ -48,7 +48,7 @@ const Sidebar = () => {
     const logout = () => {
         LocalStorageService.clear();
         navigate(`/login`);
-      }
+    }
 
 
     return (

@@ -209,7 +209,8 @@ const ReferralCodeValidation = () => {
         <DialogTitle>Referral Code Validation</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            {validationMessage}
+            {/* {validationMessage} */}
+            {confirmation !== 'yes' ?  validationMessage : "Thank you for your interest in the Health enSuite Caregiver study. Your answers to the following questions will help us determine if you are eligible to participate in this research study."}
           </DialogContentText>
           {!unknownReferralCode && !errorDialog && (<>
           <RadioGroup name="confirmation" value={confirmation} onChange={handleConfirmationChange}>

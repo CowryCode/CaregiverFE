@@ -73,7 +73,7 @@ const StartingPage = () => {
                     <li>Changes in your exercise routine, diet and sleeping habits can impact your physical well-being.</li>
                     <li>The following sections will provide you with information on exercise, nutrition, and sleep disturbances.</li>
                 </ul>
-                <Typography sx={{ mt: 2, fontSize: '0.875rem' }}>(Word count: 92)</Typography>
+                {/* <Typography sx={{ mt: 2, fontSize: '0.875rem' }}>(Word count: 92)</Typography> */}
             </Box>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
                 <Button variant="contained" onClick={handlePrevious}>Previous</Button>
