@@ -33,6 +33,7 @@ import LoginProvider from './components/Login/LoginProvider';
 import CoreTopicsHome from './components/CoreTopics/CoreTopicsHome';
 import CaregiverRegistrationEligibility from './components/CaregiverRegistration/CaregiverRegistrationEligibility';
 import RecoverRefCode from './components/CaregiverRegistration/RecoverRefCode';
+import GoalEdit from './components/GoalSetting/GoalEdit';
 
 function App() {
   return (
@@ -64,6 +65,7 @@ function App() {
         <Route path="/quicktips" element={<QuickTips />} />
         <Route path="/goalsetting" element={<GoalSetting />} />
         <Route path="/goals" element={<Goals />} />
+        <Route path="/edit-goals" element={<GoalEdit />} />
         <Route path="/bookmarks" element={<BookMarks />} />
         <Route path="/withdraw" element={<VoluntaryWithdrawal />} />
         <Route path="/feedback" element={<Feedback />} />

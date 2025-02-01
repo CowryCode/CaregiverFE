@@ -32,7 +32,7 @@ const Goals = () => {
     }else{
       setLoading(true);
     }
-  }, [openDialog, goals]);
+  }, []);
 
   const handleSidebarToggle = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -44,13 +44,17 @@ const Goals = () => {
     setGoalId(id)
   };
 
+  const updateGoal = (goal) => {
+    navigate('/edit-goals', { state: { goal } })
+  };
+
   const handleDialogClose = () => {
     submitToAPI();
     setOpenDialog(false);
   };
 
   const submitToAPI = () => {
-    axiosInstance.get(`/caregiver/v1/update-goals/${goalId}`) 
+    axiosInstance.get(`/caregiver/v1/complete-goals/${goalId}`) 
     .then(response => {
      LocalStorageService.saveGoals(response);
       navigate(`/goals`);
@@ -108,6 +112,15 @@ const Goals = () => {
                 },
                 }} onClick={() => handleComplete(row.id)}>
                     Mark as Complete
+                </Button>
+                <Button sx={{
+                backgroundColor: green[500],
+                color: 'white',
+                '&:hover': {
+                    backgroundColor: green[700],
+                },
+                }} onClick={() => updateGoal(row)}>
+                    Update
                 </Button>
                   </td>
                 </tr>
